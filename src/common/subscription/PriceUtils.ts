@@ -11,7 +11,6 @@ import { UserError } from "../api/main/UserError.js"
 import { isIOSApp } from "../api/common/Env"
 import { MobilePlanPrice } from "../native/common/generatedipc/MobilePlanPrice"
 import { locator } from "../api/main/CommonLocator.js"
-import { isReferenceDateWithinCyberMondayCampaign } from "../misc/CyberMondayUtils.js"
 
 export const enum PaymentInterval {
 	Monthly = 1,
@@ -205,7 +204,8 @@ export class PriceAndConfigProvider {
 			throw new Error(`no such iOS plan ${planName}`)
 		}
 
-		const isCyberMonday = isReferenceDateWithinCyberMondayCampaign(Const.CURRENT_DATE ?? new Date())
+		// const isTutaBirthdayCampaign = isReferenceDateWithinTutaBirthdayCampaign(Const.CURRENT_DATE ?? new Date())
+		// TODO
 
 		switch (paymentInterval) {
 			case PaymentInterval.Monthly:

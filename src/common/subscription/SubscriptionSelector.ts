@@ -33,7 +33,7 @@ import {
 import { px } from "../gui/size.js"
 import { LoginButton, LoginButtonAttrs } from "../gui/base/buttons/LoginButton.js"
 import { isIOSApp } from "../api/common/Env"
-import { isReferenceDateWithinCyberMondayCampaign } from "../misc/CyberMondayUtils.js"
+import { isReferenceDateWithinTutaBirthdayCampaign } from "../misc/ElevenYearsTutaUtils.js"
 import { theme } from "../gui/theme.js"
 
 const BusinessUseItems: SegmentControlItem<boolean>[] = [
@@ -101,7 +101,7 @@ export class SubscriptionSelector implements Component<SubscriptionSelectorAttr>
 		currentPlanType: PlanType | null,
 		priceInfoTextId: TranslationKey | null,
 		isBusiness: boolean,
-		isCyberMonday: boolean,
+		isCyberMonday: boolean, // TODO
 	): Children {
 		const wrapInDiv = (text: string, style?: Record<string, any>) => {
 			return m(".b.center", { style }, text)
@@ -140,7 +140,7 @@ export class SubscriptionSelector implements Component<SubscriptionSelectorAttr>
 		// Show the business segmentControl for signup, if both personal & business plans are allowed
 		const showBusinessSelector = !onlyBusinessPlansAccepted && !onlyPersonalPlansAccepted && !isIOSApp()
 
-		const isCyberMonday = isReferenceDateWithinCyberMondayCampaign(Const.CURRENT_DATE ?? new Date())
+		const isTutaBirthdayCampaign = isReferenceDateWithinTutaBirthdayCampaign(Const.CURRENT_DATE ?? new Date())
 
 		let subscriptionPeriodInfoMsg = !signup && currentPlan !== PlanType.Free ? lang.get("switchSubscriptionInfo_msg") + " " : ""
 		if (options.businessUse()) {
@@ -148,13 +148,13 @@ export class SubscriptionSelector implements Component<SubscriptionSelectorAttr>
 			subscriptionPeriodInfoMsg += lang.get("pricing.subscriptionPeriodInfoBusiness_msg")
 		} else {
 			if (inMobileView) {
-				if (isCyberMonday) {
+				if (isTutaBirthdayCampaign) {
 					plans = [PlanType.Legend, PlanType.Revolutionary, PlanType.Free]
 				} else {
 					plans = [PlanType.Revolutionary, PlanType.Legend, PlanType.Free]
 				}
 			} else {
-				if (isCyberMonday) {
+				if (isTutaBirthdayCampaign) {
 					plans = [PlanType.Free, PlanType.Legend, PlanType.Revolutionary]
 				} else {
 					plans = [PlanType.Free, PlanType.Revolutionary, PlanType.Legend]
@@ -163,7 +163,8 @@ export class SubscriptionSelector implements Component<SubscriptionSelectorAttr>
 			subscriptionPeriodInfoMsg += lang.get("pricing.subscriptionPeriodInfoPrivate_msg")
 		}
 
-		const shouldShowFirstYearDiscountNotice = !isIOSApp() && isCyberMonday && !options.businessUse() && options.paymentInterval() === PaymentInterval.Yearly
+		const shouldShowFirstYearDiscountNotice =
+			!isIOSApp() && isTutaBirthdayCampaign && !options.businessUse() && options.paymentInterval() === PaymentInterval.Yearly
 
 		additionalInfo = m(".flex.flex-column.items-center", [
 			featureExpander.All, // global feature expander
@@ -176,8 +177,8 @@ export class SubscriptionSelector implements Component<SubscriptionSelectorAttr>
 			.map((personalPlan, i) => {
 				// only show category title for the leftmost item
 				return [
-					this.renderBuyOptionBox(vnode.attrs, inMobileView, personalPlan, isCyberMonday),
-					this.renderBuyOptionDetails(vnode.attrs, i === 0, personalPlan, featureExpander, isCyberMonday),
+					this.renderBuyOptionBox(vnode.attrs, inMobileView, personalPlan, isTutaBirthdayCampaign),
+					this.renderBuyOptionDetails(vnode.attrs, i === 0, personalPlan, featureExpander, isTutaBirthdayCampaign),
 				]
 			})
 
@@ -189,7 +190,7 @@ export class SubscriptionSelector implements Component<SubscriptionSelectorAttr>
 						items: BusinessUseItems,
 				  })
 				: null,
-			this.renderHeadline(msg, currentPlanType, priceInfoTextId, options.businessUse(), isCyberMonday),
+			this.renderHeadline(msg, currentPlanType, priceInfoTextId, options.businessUse(), isTutaBirthdayCampaign),
 			m(
 				".flex.center-horizontally.wrap",
 				{

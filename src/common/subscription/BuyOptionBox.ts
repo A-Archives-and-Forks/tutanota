@@ -1,6 +1,6 @@
 import m, { Child, Children, Component, Vnode, VnodeDOM } from "mithril"
 import { px, size } from "../gui/size"
-import type { TranslationKey, MaybeTranslation } from "../misc/LanguageViewModel"
+import type { MaybeTranslation } from "../misc/LanguageViewModel"
 import { lang } from "../misc/LanguageViewModel"
 import type { lazy } from "@tutao/tutanota-utils"
 import { Icon } from "../gui/base/Icon"
@@ -12,8 +12,7 @@ import { Icons } from "../gui/base/icons/Icons"
 import { BootIcons } from "../gui/base/icons/BootIcons"
 import { InfoIcon } from "../gui/base/InfoIcon.js"
 import { theme } from "../gui/theme.js"
-import { isReferenceDateWithinCyberMondayCampaign } from "../misc/CyberMondayUtils.js"
-import { client } from "../misc/ClientDetector"
+import { isReferenceDateWithinTutaBirthdayCampaign } from "../misc/ElevenYearsTutaUtils.js"
 import { isIOSApp } from "../api/common/Env"
 
 export type BuyOptionBoxAttr = {
@@ -142,10 +141,10 @@ export class BuyOptionBox implements Component<BuyOptionBoxAttr> {
 	view(vnode: Vnode<BuyOptionBoxAttr>) {
 		const { attrs } = vnode
 
-		const isCyberMonday = isReferenceDateWithinCyberMondayCampaign(Const.CURRENT_DATE ?? new Date())
+		const isTutaBirthdayCampaign = isReferenceDateWithinTutaBirthdayCampaign(Const.CURRENT_DATE ?? new Date())
 		const isLegendPlan = attrs.targetSubscription === PlanType.Legend
 		const isYearly = (attrs.selectedPaymentInterval == null ? attrs.accountPaymentInterval : attrs.selectedPaymentInterval()) === PaymentInterval.Yearly
-		const shouldApplyCyberMondayDesign = isLegendPlan && isCyberMonday && isYearly
+		const shouldHighlight = isLegendPlan && isTutaBirthdayCampaign && isYearly
 
 		return m(
 			".fg-black",
@@ -158,7 +157,7 @@ export class BuyOptionBox implements Component<BuyOptionBoxAttr> {
 			},
 			[
 				m(
-					".buyOptionBox" + (attrs.highlighted ? (shouldApplyCyberMondayDesign ? ".highlighted.cyberMonday" : ".highlighted") : ""),
+					".buyOptionBox" + (attrs.highlighted ? (shouldHighlight ? ".highlighted.cyberMonday" : ".highlighted") : ""),
 					{
 						style: {
 							display: "flex",
@@ -169,12 +168,12 @@ export class BuyOptionBox implements Component<BuyOptionBoxAttr> {
 						},
 					},
 					[
-						shouldApplyCyberMondayDesign ? this.renderCyberMondayRibbon() : this.renderBonusMonthsRibbon(attrs.bonusMonths),
+						shouldHighlight ? this.renderCyberMondayRibbon() : this.renderBonusMonthsRibbon(attrs.bonusMonths),
 						typeof attrs.heading === "string" ? this.renderHeading(attrs.heading) : attrs.heading,
 						this.renderPrice(attrs.price, isYearly ? attrs.referencePrice : undefined),
 						m(".small.text-center", attrs.priceHint ? lang.getTranslationText(attrs.priceHint) : lang.get("emptyString_msg")),
 						m(".small.text-center.pb-ml", lang.getTranslationText(attrs.helpLabel)),
-						this.renderPaymentIntervalControl(attrs.selectedPaymentInterval, shouldApplyCyberMondayDesign),
+						this.renderPaymentIntervalControl(attrs.selectedPaymentInterval, shouldHighlight),
 						attrs.actionButton
 							? m(
 									".button-min-height",
@@ -242,7 +241,7 @@ export class BuyOptionBox implements Component<BuyOptionBoxAttr> {
 						paymentInterval?.(v)
 						m.redraw()
 					},
-					shouldApplyCyberMonday,
+					shouldApplyTutaBirthdayColors: shouldApplyCyberMonday,
 			  })
 			: null
 	}
