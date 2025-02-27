@@ -762,7 +762,7 @@ o.spec("KeyRotationFacadeTest", function () {
 					const recipientKeyVersion = "0"
 					const pubEncBucketKeyMock = object<Uint8Array>()
 					const protocolVersion = CryptoProtocolVersion.TUTA_CRYPT
-					when(cryptoFacade.encryptBucketKeyForInternalRecipient(userGroupId, anything(), memberMailAddress, [])).thenResolve(
+					when(cryptoFacade.encryptBucketKeyForInternalRecipient(userGroupId, anything(), memberMailAddress, [], [])).thenResolve(
 						createTestEntity(InternalRecipientKeyDataTypeRef, {
 							protocolVersion,
 							senderKeyVersion: user.userGroup.groupKeyVersion,
@@ -837,7 +837,7 @@ o.spec("KeyRotationFacadeTest", function () {
 							mailAddress: memberMailAddress,
 						}),
 					])
-					when(cryptoFacade.encryptBucketKeyForInternalRecipient(userGroupId, anything(), memberMailAddress, [])).thenDo(
+					when(cryptoFacade.encryptBucketKeyForInternalRecipient(userGroupId, anything(), memberMailAddress, [], [])).thenDo(
 						(senderUserGroupId: Id, bucketKey: AesKey, recipientMailAddress: string, notFoundRecipients: Array<string>) => {
 							notFoundRecipients.push(memberMailAddress)
 							return null

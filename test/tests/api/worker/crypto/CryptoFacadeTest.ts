@@ -673,6 +673,7 @@ o.spec("CryptoFacadeTest", function () {
 		when(keyLoaderFacade.loadCurrentKeyPair(senderUserGroup._id)).thenResolve({ version: 0, object: senderKeyPairs })
 
 		const notFoundRecipients = []
+		const keyVerificationMismatchRecipients = []
 		const pqEncapsulation: PQBucketKeyEncapsulation = {
 			kyberCipherText: new Uint8Array([1]),
 			kekEncBucketKey: new Uint8Array([2]),
@@ -719,6 +720,7 @@ o.spec("CryptoFacadeTest", function () {
 			bk,
 			recipientMailAddress,
 			notFoundRecipients,
+			keyVerificationMismatchRecipients,
 		)) as InternalRecipientKeyData
 
 		o(internalRecipientKeyData!.recipientKeyVersion).equals("0")
@@ -777,6 +779,7 @@ o.spec("CryptoFacadeTest", function () {
 		when(keyLoaderFacade.loadCurrentKeyPair(senderUserGroup._id)).thenResolve(senderAsymmetricKeyPair)
 
 		const notFoundRecipients = []
+		const keyVerificationMismatchRecipients = []
 
 		const recipientPublicKeys: Versioned<RsaPublicKey> = {
 			version: 0,
@@ -813,6 +816,7 @@ o.spec("CryptoFacadeTest", function () {
 			bk,
 			recipientMailAddress,
 			notFoundRecipients,
+			keyVerificationMismatchRecipients,
 		)) as InternalRecipientKeyData
 
 		o(internalRecipientKeyData!.recipientKeyVersion).equals("0")

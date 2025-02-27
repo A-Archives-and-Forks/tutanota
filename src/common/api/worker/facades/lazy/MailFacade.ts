@@ -113,7 +113,6 @@ import {
 	Aes128Key,
 	aes256RandomKey,
 	AesKey,
-	PublicKey,
 	bitArrayToUint8Array,
 	createAuthVerifier,
 	decryptKey,
@@ -121,6 +120,7 @@ import {
 	generateRandomSalt,
 	keyToUint8Array,
 	murmurHash,
+	PublicKey,
 	random,
 	sha256Hash,
 } from "@tutao/tutanota-crypto"
@@ -139,6 +139,7 @@ import { resolveTypeReference } from "../../../common/EntityFunctions.js"
 import { KeyLoaderFacade, parseKeyVersion } from "../KeyLoaderFacade.js"
 import { encryptBytes, encryptKeyWithVersionedKey, encryptString, VersionedEncryptedKey, VersionedKey } from "../../crypto/CryptoWrapper.js"
 import { PublicKeyProvider } from "../PublicKeyProvider.js"
+import { KeyVerificationMismatchError } from "../../../common/error/KeyVerificationMismatchError"
 
 assertWorkerOrNode()
 type Attachments = ReadonlyArray<TutanotaFile | DataFile | FileReference>
@@ -671,6 +672,7 @@ export class MailFacade {
 
 	private async addRecipientKeyData(bucketKey: AesKey, sendDraftData: SendDraftData, recipients: Array<Recipient>, senderMailGroupId: Id): Promise<void> {
 		const notFoundRecipients: string[] = []
+		const keyVerificationMismatchRecipients: string[] = []
 
 		for (const recipient of recipients) {
 			if (recipient.address === SYSTEM_GROUP_MAIL_ADDRESS || !recipient) {
@@ -714,6 +716,7 @@ export class MailFacade {
 					bucketKey,
 					recipient.address,
 					notFoundRecipients,
+					keyVerificationMismatchRecipients,
 				)
 				if (keyData == null) {
 					// cannot add recipient because of notFoundError
@@ -728,6 +731,9 @@ export class MailFacade {
 
 		if (notFoundRecipients.length > 0) {
 			throw new RecipientsNotFoundError(notFoundRecipients.join("\n"))
+		}
+		if (keyVerificationMismatchRecipients.length > 0) {
+			throw new KeyVerificationMismatchError("key verification mismatch when sending mail").setData(keyVerificationMismatchRecipients)
 		}
 	}
 

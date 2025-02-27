@@ -863,7 +863,7 @@ export default {
         "keyManagement.text_label": "Text",
         "keyManagement.textVerification_label": "Verify with text",
         "keyManagement.unknownError_title": "Unknown error",
-        "keyManagement.unverifiedRecipient_msg": "This recipient's public key does not match the expected one:",
+        "keyManagement.recipientsVerificationMismatchError_msg": "This email could not be sent. The recipients' public keys changed. To proceed, please check the recipients:",
         "keyManagement.verificationByQrCodeScan_label": "Scan the QR code you received from your contact.",
         "keyManagement.verificationByText_label": "Compare the fingerprint displayed below to the one you received from the contact. Click on \"{button}\" only if both fingerprints match.",
         "keyManagement.verificationByTextMailAdress_label": "Enter the Tuta email address of the contact you want to verify.",

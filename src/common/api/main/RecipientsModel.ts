@@ -32,6 +32,8 @@ export interface ResolvableRecipient extends Recipient {
 
 	/** update the name. will override whatever the name has resolved to */
 	setName(name: string): void
+
+	markAsKeyVerificationMismatch(): Promise<void>
 }
 
 export enum ResolveMode {
@@ -88,6 +90,7 @@ class ResolvableRecipientImpl implements ResolvableRecipient {
 	private readonly initialContact: Contact | null = null
 
 	private overrideContact: Contact | null = null
+	private overrideVerificationState: KeyVerificationState | null
 
 	get address(): string {
 		return this._address
@@ -131,6 +134,7 @@ class ResolvableRecipientImpl implements ResolvableRecipient {
 		}
 
 		this._name = arg.name ?? null
+		this.overrideVerificationState = null
 
 		if (!(arg.contact instanceof Array)) {
 			this.initialContact = arg.contact ?? null
@@ -147,7 +151,11 @@ class ResolvableRecipientImpl implements ResolvableRecipient {
 			return contact
 		})
 		this.lazyVerificationState = new LazyLoaded(async () => {
-			return await this.resolveVerification(arg.address)
+			if (this.overrideVerificationState != null) {
+				return this.overrideVerificationState
+			} else {
+				return this.keyVerificationFacade.resolveVerificationState(arg.address, null)
+			}
 		})
 
 		if (resolveMode === ResolveMode.Eager) {
@@ -238,7 +246,8 @@ class ResolvableRecipientImpl implements ResolvableRecipient {
 		}
 	}
 
-	private async resolveVerification(mailAddress: string): Promise<KeyVerificationState> {
-		return this.keyVerificationFacade.resolveVerificationState(mailAddress, null)
+	async markAsKeyVerificationMismatch(): Promise<void> {
+		this.overrideVerificationState = KeyVerificationState.MISMATCH
+		await this.lazyVerificationState.reload()
 	}
 }

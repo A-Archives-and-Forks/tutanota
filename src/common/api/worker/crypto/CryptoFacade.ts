@@ -65,13 +65,13 @@ import {
 	aes256RandomKey,
 	aesEncrypt,
 	AesKey,
-	PublicKey,
 	bitArrayToUint8Array,
 	decryptKey,
 	EccPublicKey,
 	encryptKey,
 	isPqKeyPairs,
 	isVersionedPqPublicKey,
+	PublicKey,
 	sha256Hash,
 } from "@tutao/tutanota-crypto"
 import { RecipientNotResolvedError } from "../../common/error/RecipientNotResolvedError"
@@ -88,7 +88,6 @@ import { KeyLoaderFacade, parseKeyVersion } from "../facades/KeyLoaderFacade.js"
 import { encryptKeyWithVersionedKey, VersionedEncryptedKey, VersionedKey } from "./CryptoWrapper.js"
 import { AsymmetricCryptoFacade } from "./AsymmetricCryptoFacade.js"
 import { KeyVerificationFacade, KeyVerificationState } from "../facades/lazy/KeyVerificationFacade"
-import { UnverifiedRecipientError } from "../../common/error/UnverifiedRecipientError"
 import { PublicKeyProvider } from "../facades/PublicKeyProvider.js"
 import { KeyVersion } from "@tutao/tutanota-utils/dist/Utils.js"
 import { KeyRotationFacade } from "../facades/KeyRotationFacade.js"
@@ -720,22 +719,24 @@ export class CryptoFacade {
 		bucketKey: AesKey,
 		recipientMailAddress: string,
 		notFoundRecipients: Array<string>,
+		keyVerificationMismatchRecipients: Array<string>,
 	): Promise<InternalRecipientKeyData | SymEncInternalRecipientKeyData | null> {
 		try {
 			const publicKey = await this.publicKeyProvider.loadCurrentPubKey({
 				identifier: recipientMailAddress,
 				identifierType: PublicKeyIdentifierType.MAIL_ADDRESS,
 			})
-			// We do not create any key data in case there is one not found recipient, but we want to
-			// collect ALL not found recipients when iterating a recipient list.
-			if (notFoundRecipients.length !== 0) {
-				return null
-			}
 
 			// Check if recipient is still verified for recipientMailAddress
 			const keyVerificationFacade = await this.lazyKeyVerificationFacade()
 			if ((await keyVerificationFacade.resolveVerificationState(recipientMailAddress, publicKey)) == KeyVerificationState.MISMATCH) {
-				throw new UnverifiedRecipientError(recipientMailAddress)
+				keyVerificationMismatchRecipients.push(recipientMailAddress)
+			}
+
+			// We do not create any key data in case there is one not found recipient or not verified, but we want to
+			// collect ALL failed recipients when iterating a recipient list.
+			if (notFoundRecipients.length !== 0 || keyVerificationMismatchRecipients.length !== 0) {
+				return null
 			}
 
 			const isExternalSender = this.userFacade.getUser()?.accountType === AccountType.EXTERNAL
