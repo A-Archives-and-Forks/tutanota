@@ -102,7 +102,7 @@ import { RSA_TEST_KEYPAIR } from "../facades/RsaPqPerformanceTest.js"
 import { DefaultEntityRestCache } from "../../../../../src/common/api/worker/rest/DefaultEntityRestCache.js"
 import { loadLibOQSWASM } from "../WASMTestUtils.js"
 import { AsymmetricCryptoFacade } from "../../../../../src/common/api/worker/crypto/AsymmetricCryptoFacade.js"
-import { KeyVerificationFacade } from "../../../../../src/common/api/worker/facades/lazy/KeyVerificationFacade"
+import { KeyVerificationFacade, KeyVerificationState } from "../../../../../src/common/api/worker/facades/lazy/KeyVerificationFacade"
 import { KeyLoaderFacade, parseKeyVersion } from "../../../../../src/common/api/worker/facades/KeyLoaderFacade.js"
 import { PublicKeyProvider } from "../../../../../src/common/api/worker/facades/PublicKeyProvider.js"
 import { KeyRotationFacade } from "../../../../../src/common/api/worker/facades/KeyRotationFacade.js"
@@ -851,15 +851,8 @@ o.spec("CryptoFacadeTest", function () {
 		let notFoundRecipientMailAddress = "notfound@tutanota.com"
 		let bk = aes256RandomKey()
 
-		let senderMailAddress = "alice@tutanota.com"
-
-		const senderKeyPair: KeyPair = object()
-
-		const senderAsymmetricKeyPair: Versioned<RsaKeyPair> = object()
-		const senderPublicKey: Versioned<RsaPublicKey> = object()
-
-		const notFoundRecipients = []
-		const keyVerificationMismatchRecipients = []
+		const notFoundRecipients: string[] = []
+		const keyVerificationMismatchRecipients: string[] = []
 
 		const recipientPublicKeys: Versioned<RsaPublicKey> = {
 			version: 0,
@@ -881,26 +874,17 @@ o.spec("CryptoFacadeTest", function () {
 			keyVerificationMismatchRecipients,
 		)
 
-		o(internalRecipientKeyData!.recipientKeyVersion).equals("0")
-		o(internalRecipientKeyData!.mailAddress).equals(verificationFailureRecipientMailAddress)
-		o(internalRecipientKeyData.protocolVersion).equals(CryptoProtocolVersion.RSA)
-		o(internalRecipientKeyData.pubEncBucketKey).deepEquals(pubEncBucketKey)
-		verify(publicKeyProvider, { times: 0 })
+		o(notFoundRecipients).deepEquals(["notfound@tutanota.com"])
+		o(keyVerificationMismatchRecipients).deepEquals([])
+		verify(userFacade.getUser(), { times: 0 })
 	})
 
 	o("encryptBucketKeyForInternalRecipient for verification-failing recipients", async function () {
 		let verificationFailureRecipientMailAddress = "bob@tutanota.com"
 		let bk = aes256RandomKey()
 
-		let senderMailAddress = "alice@tutanota.com"
-
-		const senderKeyPair: KeyPair = object()
-
-		const senderAsymmetricKeyPair: Versioned<RsaKeyPair> = object()
-		const senderPublicKey: Versioned<RsaPublicKey> = object()
-
-		const notFoundRecipients = []
-		const keyVerificationMismatchRecipients = []
+		const notFoundRecipients: string[] = []
+		const keyVerificationMismatchRecipients: string[] = []
 
 		const recipientPublicKeys: Versioned<RsaPublicKey> = {
 			version: 0,
@@ -913,6 +897,8 @@ o.spec("CryptoFacadeTest", function () {
 			}),
 		).thenResolve(recipientPublicKeys)
 
+		when(keyVerificationFacade.resolveVerificationState(anything(), anything())).thenResolve(KeyVerificationState.MISMATCH)
+
 		await crypto.encryptBucketKeyForInternalRecipient(
 			"senderGroupId",
 			bk,
@@ -921,11 +907,9 @@ o.spec("CryptoFacadeTest", function () {
 			keyVerificationMismatchRecipients,
 		)
 
-		o(internalRecipientKeyData!.recipientKeyVersion).equals("0")
-		o(internalRecipientKeyData!.mailAddress).equals(verificationFailureRecipientMailAddress)
-		o(internalRecipientKeyData.protocolVersion).equals(CryptoProtocolVersion.RSA)
-		o(internalRecipientKeyData.pubEncBucketKey).deepEquals(pubEncBucketKey)
-		verify(publicKeyProvider, { times: 0 })
+		o(notFoundRecipients).deepEquals([])
+		o(keyVerificationMismatchRecipients).deepEquals(["bob@tutanota.com"])
+		verify(userFacade.getUser(), { times: 0 })
 	})
 
 	o("authenticateSender | sender is authenticated for correct SenderIdentityKey", async function () {
