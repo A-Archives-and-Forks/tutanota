@@ -1435,7 +1435,7 @@ styles.registerStyle("main", () => {
 			"z-index": 2,
 		},
 		".bottom-nav": {
-			/* 
+			/*
             this class is sometimes on a nav element, which has a default box-sizing
             to set all nav elements to border-box, we must make sure to not break any existing styling
             */
@@ -1827,9 +1827,6 @@ styles.registerStyle("main", () => {
 			"padding-bottom": px(0),
 			"padding-left": px(0),
 			"padding-right": px(0),
-		},
-		".segmentControl-border-active-cyber-monday": {
-			border: `2px solid ${theme.content_accent_cyber_monday}`,
 		},
 		".segmentControlItem": {
 			cursor: "pointer",

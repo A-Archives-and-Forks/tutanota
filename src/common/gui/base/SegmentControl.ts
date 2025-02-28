@@ -1,5 +1,6 @@
 import m, { Children, Component, Vnode } from "mithril"
 import { px } from "../size"
+import { theme } from "../theme.js"
 
 export type SegmentControlItem<T> = {
 	name: string
@@ -27,15 +28,13 @@ export class SegmentControl<T> implements Component<SegmentControlAttrs<T>> {
 				},
 				items.map((item) =>
 					m(
-						"button.segmentControlItem.flex.center-horizontally.center-vertically.text-ellipsis.small" +
-							(item.value === selectedValue
-								? `.segmentControl-border-active${shouldApplyTutaBirthdayColors ? "-cyber-monday" : ""}.content-accent-fg${
-										shouldApplyTutaBirthdayColors ? "-cyber-monday" : ""
-								  }`
-								: ".segmentControl-border"),
+						`button.segmentControlItem.flex.center-horizontally.center-vertically.text-ellipsis.small${
+							item.value === selectedValue ? ".segmentControl-border-active.content-accent-fg" : ".segmentControl-border"
+						}`,
 						{
 							style: {
 								flex: "0 1 " + (typeof itemMaxWidth !== "undefined" ? px(itemMaxWidth) : px(120)),
+								...(shouldApplyTutaBirthdayColors && { border: `2px solid ${theme.content_accent_cyber_monday}` }),
 							},
 							title: item.name,
 							role: "tab",
