@@ -34,7 +34,7 @@ export class SegmentControl<T> implements Component<SegmentControlAttrs<T>> {
 						{
 							style: {
 								flex: "0 1 " + (typeof itemMaxWidth !== "undefined" ? px(itemMaxWidth) : px(120)),
-								...(shouldApplyTutaBirthdayColors && { border: `2px solid ${theme.content_accent_cyber_monday}` }),
+								...(shouldApplyTutaBirthdayColors && item.value === selectedValue && { border: `2px solid ${theme.content_accent_tuta_bday}` }),
 							},
 							title: item.name,
 							role: "tab",
