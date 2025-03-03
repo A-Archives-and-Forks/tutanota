@@ -357,7 +357,7 @@ export class SubscriptionSelector implements Component<SubscriptionSelectorAttr>
 			categories: categoriesToShow,
 			featuresExpanded: this.featuresExpanded[targetSubscription] || this.featuresExpanded.All,
 			renderCategoryTitle,
-			iconStyle: isCyberMonday && isYearly && isLegend ? { fill: theme.content_accent_cyber_monday } : undefined,
+			iconStyle: isCyberMonday && isYearly && isLegend ? { fill: theme.content_accent_tuta_bday } : undefined,
 		}
 	}
 

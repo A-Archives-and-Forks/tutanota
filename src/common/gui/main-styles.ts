@@ -739,7 +739,7 @@ styles.registerStyle("main", () => {
 			color: theme.content_button_icon_selected,
 		},
 		".accent-bg-cyber-monday": {
-			"background-color": theme.content_accent_cyber_monday,
+			"background-color": theme.content_accent_tuta_bday,
 			color: theme.content_button_icon_selected,
 		},
 		".accent-fg": {
@@ -2007,7 +2007,7 @@ styles.registerStyle("main", () => {
 			padding: px(9),
 		},
 		".buyOptionBox.highlighted.cyberMonday": {
-			border: `2px solid ${theme.content_accent_cyber_monday}`,
+			border: `2px solid ${theme.content_accent_tuta_bday}`,
 			padding: px(9),
 		},
 		".info-badge": {
@@ -2073,7 +2073,7 @@ styles.registerStyle("main", () => {
 			color: theme.content_bg,
 		},
 		".ribbon-horizontal-cyber-monday": {
-			background: theme.content_bg_cyber_monday,
+			background: theme.content_bg_tuta_bday,
 			color: theme.content_bg,
 		},
 		".ribbon-horizontal:after": {
@@ -2087,7 +2087,7 @@ styles.registerStyle("main", () => {
 			right: 0,
 		},
 		".ribbon-horizontal-cyber-monday:after": {
-			"border-left": `6px solid ${theme.content_bg_cyber_monday}`,
+			"border-left": `6px solid ${theme.content_bg_tuta_bday}`,
 		},
 		".ribbon-horizontal:before": {
 			content: '""',
@@ -2100,7 +2100,7 @@ styles.registerStyle("main", () => {
 			left: 0,
 		},
 		".ribbon-horizontal-cyber-monday:before": {
-			"border-right": `6px solid ${theme.content_bg_cyber_monday}`,
+			"border-right": `6px solid ${theme.content_bg_tuta_bday}`,
 		},
 		// calendar
 		".flex-end-on-child .button-content": {
