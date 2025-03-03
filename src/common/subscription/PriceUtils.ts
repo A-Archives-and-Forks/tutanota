@@ -186,18 +186,15 @@ export class PriceAndConfigProvider {
 	 * Returns the subscription price with the currency formatting on iOS and as a plain period seperated number on other platforms
 	 */
 	getSubscriptionPriceWithCurrency(paymentInterval: PaymentInterval, subscription: PlanType, type: UpgradePriceType): SubscriptionPrice {
-		const price = this.getSubscriptionPrice(paymentInterval, subscription, type)
-		const rawPrice = price.toString()
-
 		if (isIOSApp()) {
-			return this.getAppStorePaymentsSubscriptionPrice(subscription, paymentInterval, rawPrice, type)
+			return this.getAppStorePaymentsSubscriptionPrice(subscription, paymentInterval, type)
 		} else {
 			const price = this.getSubscriptionPrice(paymentInterval, subscription, type)
 			return { displayPrice: formatPrice(price, true), rawPrice: price.toString() }
 		}
 	}
 
-	private getAppStorePaymentsSubscriptionPrice(subscription: PlanType, paymentInterval: PaymentInterval, rawPrice: string, type: UpgradePriceType) {
+	private getAppStorePaymentsSubscriptionPrice(subscription: PlanType, paymentInterval: PaymentInterval, type: UpgradePriceType) {
 		const planName = PlanTypeToName[subscription]
 		const applePrices = this.getMobilePrices().get(planName.toLowerCase())
 
@@ -211,7 +208,7 @@ export class PriceAndConfigProvider {
 			case PaymentInterval.Monthly:
 				return { displayPrice: applePrices.displayMonthlyPerMonth, rawPrice: applePrices.rawMonthlyPerMonth }
 			case PaymentInterval.Yearly: {
-				if (isTutaBirthdayCampaign && subscription === PlanType.Legend) {
+				if (isTutaBirthdayCampaign && subscription === PlanType.Legend && type === UpgradePriceType.PlanActualPrice) {
 					const revolutionaryPlanPrice = this.getMobilePrices().get(PlanTypeToName[PlanType.Revolutionary].toLowerCase())
 
 					if (!revolutionaryPlanPrice) {
