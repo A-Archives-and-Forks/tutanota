@@ -4518,6 +4518,15 @@ export const typeModels = {
 				"type": "String",
 				"cardinality": "One",
 				"encrypted": false
+			},
+			"typeId": {
+				"final": false,
+				"name": "typeId",
+				"id": 2554,
+				"since": 123,
+				"type": "Number",
+				"cardinality": "One",
+				"encrypted": false
 			}
 		},
 		"associations": {},
