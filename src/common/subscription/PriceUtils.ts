@@ -11,6 +11,7 @@ import { UserError } from "../api/main/UserError.js"
 import { isIOSApp } from "../api/common/Env"
 import { MobilePlanPrice } from "../native/common/generatedipc/MobilePlanPrice"
 import { locator } from "../api/main/CommonLocator.js"
+import { isReferenceDateWithinTutaBirthdayCampaign } from "../misc/ElevenYearsTutaUtils.js"
 
 export const enum PaymentInterval {
 	Monthly = 1,
@@ -204,14 +205,24 @@ export class PriceAndConfigProvider {
 			throw new Error(`no such iOS plan ${planName}`)
 		}
 
-		// const isTutaBirthdayCampaign = isReferenceDateWithinTutaBirthdayCampaign(Const.CURRENT_DATE ?? new Date())
-		// TODO
+		const isTutaBirthdayCampaign = isReferenceDateWithinTutaBirthdayCampaign(Const.CURRENT_DATE ?? new Date())
 
 		switch (paymentInterval) {
 			case PaymentInterval.Monthly:
 				return { displayPrice: applePrices.displayMonthlyPerMonth, rawPrice: applePrices.rawMonthlyPerMonth }
-			case PaymentInterval.Yearly:
+			case PaymentInterval.Yearly: {
+				if (isTutaBirthdayCampaign && subscription === PlanType.Legend) {
+					const revolutionaryPlanPrice = this.getMobilePrices().get(PlanTypeToName[PlanType.Revolutionary].toLowerCase())
+
+					if (!revolutionaryPlanPrice) {
+						throw new Error("no such iOS plan for Revolutionary.")
+					}
+
+					return { displayPrice: revolutionaryPlanPrice.displayYearlyPerYear, rawPrice: revolutionaryPlanPrice.rawYearlyPerYear }
+				}
+
 				return { displayPrice: applePrices.displayYearlyPerYear, rawPrice: applePrices.rawYearlyPerYear }
+			}
 		}
 	}
 
