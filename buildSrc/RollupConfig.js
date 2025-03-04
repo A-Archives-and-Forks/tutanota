@@ -374,7 +374,7 @@ export function bundleDependencyCheckPlugin() {
 
 			for (const chunk of Object.values(bundle)) {
 				// https://www.rollupjs.org/plugin-development/#generatebundle
-				if (chunk.type === "asset") continue
+				if (chunk.typeId === "asset") continue
 				if (!chunk || !chunk.modules) {
 					continue
 				}

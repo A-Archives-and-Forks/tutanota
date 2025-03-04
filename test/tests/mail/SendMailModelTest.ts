@@ -167,7 +167,7 @@ o.spec("SendMailModel", function () {
 				recipient.address,
 				recipient.name,
 				recipient.contact,
-				recipient.type,
+				recipient.typeId,
 				[INTERNAL_RECIPIENT_1.address],
 				[],
 				resolveMode,
@@ -578,7 +578,7 @@ o.spec("SendMailModel", function () {
 		})
 
 		o("contact updated email kept", async function () {
-			const { app, type } = ContactTypeRef
+			const { app, typeId } = ContactTypeRef
 			const [instanceListId, instanceId] = existingContact._id
 			const contactForUpdate = {
 				firstName: "newfirstname",
@@ -601,7 +601,7 @@ o.spec("SendMailModel", function () {
 			await model.initWithTemplate({ to: recipients }, "somb", "", [], true, "a@b.c", false)
 			await model.handleEntityEvent({
 				application: app,
-				typeId: type,
+				typeId: typeId,
 				operation: OperationType.UPDATE,
 				instanceListId,
 				instanceId,
@@ -611,7 +611,7 @@ o.spec("SendMailModel", function () {
 			o(updatedRecipient && updatedRecipient.name).equals(getContactDisplayName(downcast(contactForUpdate)))
 		})
 		o("contact updated email removed or changed", async function () {
-			const { app, type } = ContactTypeRef
+			const { app, typeId } = ContactTypeRef
 			const [instanceListId, instanceId] = existingContact._id
 			const contactForUpdate = {
 				firstName: "james",
@@ -636,7 +636,7 @@ o.spec("SendMailModel", function () {
 			await model.initWithTemplate({ to: recipients }, "b", "c", [], true, "", false)
 			await model.handleEntityEvent({
 				application: app,
-				typeId: type,
+				typeId: typeId,
 				operation: OperationType.UPDATE,
 				instanceListId,
 				instanceId,
@@ -646,12 +646,12 @@ o.spec("SendMailModel", function () {
 			o(updatedContact ?? null).equals(null)
 		})
 		o("contact removed", async function () {
-			const { app, type } = ContactTypeRef
+			const { app, typeId } = ContactTypeRef
 			const [instanceListId, instanceId] = existingContact._id
 			await model.initWithTemplate({ to: recipients }, "subj", "", [], true, "a@b.c", false)
 			await model.handleEntityEvent({
 				application: app,
-				typeId: type,
+				typeId: typeId,
 				operation: OperationType.DELETE,
 				instanceListId,
 				instanceId,

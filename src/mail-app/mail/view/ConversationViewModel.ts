@@ -295,7 +295,7 @@ export class ConversationViewModel {
 		if (this.loadingState.isConnectionLost()) {
 			this.loadingState.trackPromise(
 				this.loadConversation().then(async () => {
-					const mails = (this.conversation?.filter((e) => e.type === "mail") ?? []) as Array<MailItem>
+					const mails = (this.conversation?.filter((e) => e.typeId === "mail") ?? []) as Array<MailItem>
 					await Promise.all(mails.map((m) => m.viewModel.loadAll(Promise.resolve())))
 				}),
 			)

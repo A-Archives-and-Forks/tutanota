@@ -31,7 +31,7 @@ import {
 import { PageSize } from "../../../../src/common/gui/base/ListUtils"
 import { createTestEntity } from "../../TestUtils"
 import { tutaDunkel, tutaRed } from "../../../../src/common/gui/builtinThemes"
-import { EntityUpdateData } from "../../../../src/common/api/common/utils/EntityUpdateUtils"
+import { entityUpateToUpdateData, EntityUpdateData } from "../../../../src/common/api/common/utils/EntityUpdateUtils"
 import { MailboxDetail } from "../../../../src/common/mailFunctionality/MailboxModel"
 import { GroupInfoTypeRef, GroupTypeRef } from "../../../../src/common/api/entities/sys/TypeRefs"
 import { ConnectionError } from "../../../../src/common/api/common/error/RestError"
@@ -306,7 +306,7 @@ o.spec("MailListModelTest", () => {
 
 			const entityUpdateData = {
 				application: MailFolderTypeRef.app,
-				type: MailFolderTypeRef.type,
+				type: MailFolderTypeRef.typeId,
 				instanceListId: getListId(labels[1]),
 				instanceId: getElementId(labels[1]),
 				operation: OperationType.DELETE,
@@ -327,7 +327,7 @@ o.spec("MailListModelTest", () => {
 
 			const entityUpdateData = {
 				application: MailFolderTypeRef.app,
-				type: MailFolderTypeRef.type,
+				type: MailFolderTypeRef.typeId,
 				instanceListId: getListId(labels[1]),
 				instanceId: getElementId(labels[1]),
 				operation: OperationType.DELETE,
@@ -346,7 +346,7 @@ o.spec("MailListModelTest", () => {
 
 			const entityUpdateData = {
 				application: MailSetEntryTypeRef.app,
-				type: MailSetEntryTypeRef.type,
+				type: MailSetEntryTypeRef.typeId,
 				instanceListId: getListId(someMail.mailSetEntry),
 				instanceId: getElementId(someMail.mailSetEntry),
 				operation: OperationType.DELETE,
@@ -380,7 +380,7 @@ o.spec("MailListModelTest", () => {
 
 			const entityUpdateData = {
 				application: MailSetEntryTypeRef.app,
-				type: MailSetEntryTypeRef.type,
+				type: MailSetEntryTypeRef.typeId,
 				instanceListId: getListId(newEntry),
 				instanceId: getElementId(newEntry),
 				operation: OperationType.CREATE,
@@ -435,7 +435,7 @@ o.spec("MailListModelTest", () => {
 
 			const entityUpdateData = {
 				application: MailTypeRef.app,
-				type: MailTypeRef.type,
+				type: MailTypeRef.typeId,
 				instanceListId: getListId(mail),
 				instanceId: getElementId(mail),
 				operation: OperationType.UPDATE,
@@ -454,7 +454,7 @@ o.spec("MailListModelTest", () => {
 			const mail = { ...model.items[2] }
 			const entityUpdateData = {
 				application: MailTypeRef.app,
-				type: MailTypeRef.type,
+				type: MailTypeRef.typeId,
 				instanceListId: getListId(mail),
 				instanceId: getElementId(mail),
 				operation: OperationType.UPDATE,

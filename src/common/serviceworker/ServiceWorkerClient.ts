@@ -95,7 +95,7 @@ export function init(domainConfig: DomainConfig) {
 							return
 						}
 
-						if (event.data.type === "error") {
+						if (event.data.typeId === "error") {
 							const unserializedError = objToError(event.data.value)
 							handleUncaughtError(unserializedError)
 						}
