@@ -35,6 +35,8 @@ import { SubscriptionApp } from "./SubscriptionViewer"
 export type SignupFormAttrs = {
 	/** Handle a new account signup. if readonly then the argument will always be null */
 	onComplete: (arg0: NewAccountData | null) => void
+	/** Handle failed signup, in case of failed captcha for example */
+	onFail: () => void
 	onChangePlan: () => void
 	isBusinessUse: lazy<boolean>
 	isPaidSubscription: lazy<boolean>
@@ -171,7 +173,11 @@ export class SignupForm implements Component<SignupFormAttrs> {
 						a.isPaidSubscription(),
 						a.campaign(),
 					).then((newAccountData) => {
-						a.onComplete(newAccountData ? newAccountData : null)
+						if (newAccountData != null) {
+							a.onComplete(newAccountData)
+						} else {
+							a.onFail()
+						}
 					})
 				}
 			})

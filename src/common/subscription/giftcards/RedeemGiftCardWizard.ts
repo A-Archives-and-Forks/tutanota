@@ -337,6 +337,9 @@ class GiftCardCredentialsPage implements WizardPageN<RedeemGiftCardModel> {
 						}),
 				)
 			},
+			onFail: () => {
+				emitWizardEvent(this.domElement, WizardEventType.CLOSE_DIALOG)
+			},
 			onChangePlan: () => {
 				emitWizardEvent(this.domElement, WizardEventType.SHOW_PREVIOUS_PAGE)
 			},
