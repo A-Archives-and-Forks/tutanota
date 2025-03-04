@@ -249,7 +249,7 @@ o.spec("ConversationViewModel", function () {
 				[
 					{
 						application: "tutanota",
-						type: "ConversationEntry",
+						typeId: "ConversationEntry",
 						operation: OperationType.CREATE,
 						instanceListId: listId,
 						instanceId: yetAnotherMail.conversationEntry[1],
@@ -287,7 +287,7 @@ o.spec("ConversationViewModel", function () {
 				[
 					{
 						application: "tutanota",
-						type: "ConversationEntry",
+						typeId: "ConversationEntry",
 						operation: OperationType.UPDATE,
 						instanceListId: listId,
 						instanceId: anotherMail.conversationEntry[1],
@@ -314,7 +314,7 @@ o.spec("ConversationViewModel", function () {
 				[
 					{
 						application: "tutanota",
-						type: "ConversationEntry",
+						typeId: "ConversationEntry",
 						operation: OperationType.CREATE,
 						instanceListId: listId,
 						instanceId: yetAnotherMail.conversationEntry[1],
@@ -379,7 +379,7 @@ o.spec("ConversationViewModel", function () {
 				[
 					{
 						application: "tutanota",
-						type: "ConversationEntry",
+						typeId: "ConversationEntry",
 						operation: OperationType.UPDATE,
 						instanceListId: listId,
 						instanceId: trashDraftMail.conversationEntry[1],

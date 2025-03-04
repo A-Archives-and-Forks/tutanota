@@ -151,7 +151,7 @@ o.spec("EventBusClientTest", function () {
 			when(cacheMock.getLastEntityEventBatchForGroup(mailGroupId)).thenResolve("------------")
 			when(cacheMock.timeSinceLastSyncMs()).thenResolve(1)
 			const update = createTestEntity(EntityUpdateTypeRef, {
-				type: "Mail",
+				typeId: "Mail",
 				application: "tutanota",
 				instanceListId: mailGroupId,
 				instanceId: "newBatchId",
@@ -253,7 +253,7 @@ o.spec("EventBusClientTest", function () {
 			createTestEntity(EntityUpdateTypeRef, {
 				_id: "eventBatchId",
 				application: "tutanota",
-				type: "Mail",
+				typeId: "Mail",
 				instanceListId: "listId1",
 				instanceId: "id1",
 				operation: OperationType.UPDATE,
@@ -304,7 +304,7 @@ o.spec("EventBusClientTest", function () {
 		const mailEntityUpdate = createTestEntity(EntityUpdateTypeRef, {
 			_id: "eventBatchId",
 			application: "tutanota",
-			type: "Mail",
+			typeId: "Mail",
 			instanceListId: "listId1",
 			instanceId: "id1",
 			operation: OperationType.UPDATE,
@@ -312,7 +312,7 @@ o.spec("EventBusClientTest", function () {
 		const unknownEntityUpdate = createTestEntity(EntityUpdateTypeRef, {
 			_id: "eventBatchId",
 			application: "sys",
-			type: "UnknownType",
+			typeId: "UnknownType",
 			instanceListId: "listId2",
 			instanceId: "id1",
 			operation: OperationType.UPDATE,
@@ -403,7 +403,7 @@ o.spec("EventBusClientTest", function () {
 			values: {},
 			associations: {},
 		}
-		const unknownTypeRef: TypeRef<UnknownType> = new TypeRef("sys", "Unknown")
+		const unknownTypeRef: TypeRef<UnknownType> = new TypeRef("sys", 99999999)
 		return create(unknownTypeModel, unknownTypeRef)
 	}
 
@@ -415,7 +415,7 @@ o.spec("EventBusClientTest", function () {
 				createTestEntity(EntityUpdateTypeRef, {
 					_id: "eventBatchId",
 					application: "tutanota",
-					type: "Mail",
+					typeId: "Mail",
 					instanceListId: "listId1",
 					instanceId: "id1",
 					operation: OperationType.UPDATE,
@@ -423,7 +423,7 @@ o.spec("EventBusClientTest", function () {
 				createTestEntity(EntityUpdateTypeRef, {
 					_id: "eventBatchId",
 					application: "sys",
-					type: "UnknownType",
+					typeId: "UnknownType",
 					instanceListId: "listId2",
 					instanceId: "id1",
 					operation: OperationType.UPDATE,
@@ -441,7 +441,7 @@ o.spec("EventBusClientTest", function () {
 				createTestEntity(EntityUpdateTypeRef, {
 					_id: "eventbatchid",
 					application: "tutanota",
-					type: "Mail",
+					typeId: "Mail",
 					instanceListId: "listId1",
 					instanceId: "id1",
 					operation: OperationType.UPDATE,

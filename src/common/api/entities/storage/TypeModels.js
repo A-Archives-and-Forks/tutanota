@@ -51,7 +51,7 @@ export const typeModels = {
 				"since": 8,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "BlobId",
+				"refTypeId": 144,
 				"dependency": null
 			}
 		},
@@ -126,7 +126,7 @@ export const typeModels = {
 				"since": 4,
 				"type": "AGGREGATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "BlobReadData",
+				"refTypeId": 175,
 				"dependency": null
 			},
 			"write": {
@@ -136,7 +136,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "AGGREGATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "BlobWriteData",
+				"refTypeId": 73,
 				"dependency": null
 			}
 		},
@@ -170,7 +170,7 @@ export const typeModels = {
 				"since": 4,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "BlobServerAccessInfo",
+				"refTypeId": 157,
 				"dependency": null
 			}
 		},
@@ -231,7 +231,7 @@ export const typeModels = {
 				"since": 4,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "BlobReferenceTokenWrapper",
+				"refTypeId": 1990,
 				"dependency": "sys"
 			}
 		},
@@ -292,7 +292,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "Blob",
+				"refTypeId": 1882,
 				"dependency": "sys"
 			}
 		},
@@ -335,7 +335,7 @@ export const typeModels = {
 				"since": 10,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "BlobReferenceTokenWrapper",
+				"refTypeId": 1990,
 				"dependency": "sys"
 			}
 		},
@@ -396,7 +396,7 @@ export const typeModels = {
 				"since": 4,
 				"type": "ELEMENT_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "Archive",
+				"refTypeId": 22,
 				"dependency": null
 			}
 		},
@@ -521,7 +521,7 @@ export const typeModels = {
 				"since": 4,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "BlobServerUrl",
+				"refTypeId": 154,
 				"dependency": null
 			}
 		},
@@ -605,7 +605,7 @@ export const typeModels = {
 				"since": 4,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "InstanceId",
+				"refTypeId": 172,
 				"dependency": null
 			}
 		},

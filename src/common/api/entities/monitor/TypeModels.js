@@ -92,7 +92,7 @@ export const typeModels = {
 				"since": 22,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "CounterValue",
+				"refTypeId": 300,
 				"dependency": null
 			}
 		},
@@ -239,7 +239,7 @@ export const typeModels = {
 				"since": 14,
 				"type": "ELEMENT_ASSOCIATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "Customer",
+				"refTypeId": 31,
 				"dependency": null
 			}
 		},
@@ -459,7 +459,7 @@ export const typeModels = {
 				"since": 23,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "ErrorReportData",
+				"refTypeId": 316,
 				"dependency": null
 			},
 			"files": {
@@ -469,7 +469,7 @@ export const typeModels = {
 				"since": 23,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "ErrorReportFile",
+				"refTypeId": 305,
 				"dependency": null
 			}
 		},

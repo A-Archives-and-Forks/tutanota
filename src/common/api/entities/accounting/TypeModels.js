@@ -137,7 +137,7 @@ export const typeModels = {
 				"since": 3,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "CustomerAccountPosting",
+				"refTypeId": 79,
 				"dependency": null
 			}
 		},

@@ -3,7 +3,7 @@ import { TypeRef } from "@tutao/tutanota-utils"
 import { typeModels } from "./TypeModels.js"
 
 
-export const CustomerAccountPostingTypeRef: TypeRef<CustomerAccountPosting> = new TypeRef("accounting", "CustomerAccountPosting")
+export const CustomerAccountPostingTypeRef: TypeRef<CustomerAccountPosting> = new TypeRef("accounting", 79)
 
 export function createCustomerAccountPosting(values: StrippedEntity<CustomerAccountPosting>): CustomerAccountPosting {
 	return Object.assign(create(typeModels.CustomerAccountPosting, CustomerAccountPostingTypeRef), values)
@@ -18,7 +18,7 @@ export type CustomerAccountPosting = {
 	type: NumberString;
 	valueDate: Date;
 }
-export const CustomerAccountReturnTypeRef: TypeRef<CustomerAccountReturn> = new TypeRef("accounting", "CustomerAccountReturn")
+export const CustomerAccountReturnTypeRef: TypeRef<CustomerAccountReturn> = new TypeRef("accounting", 86)
 
 export function createCustomerAccountReturn(values: StrippedEntity<CustomerAccountReturn>): CustomerAccountReturn {
 	return Object.assign(create(typeModels.CustomerAccountReturn, CustomerAccountReturnTypeRef), values)
