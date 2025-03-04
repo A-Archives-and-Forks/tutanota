@@ -6,53 +6,17 @@ use serde::{Deserialize, Serialize};
 
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
-pub struct UsageTestAssignment {
+pub struct UsageTestMetricConfigValue {
 	pub _id: Option<CustomId>,
-	pub name: String,
-	pub sendPings: bool,
-	pub testId: GeneratedId,
-	pub variant: Option<i64>,
-	pub stages: Vec<UsageTestStage>,
+	pub key: String,
+	pub value: String,
 }
 
-impl Entity for UsageTestAssignment {
+impl Entity for UsageTestMetricConfigValue {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "usage",
-			type_: "UsageTestAssignment",
-		}
-	}
-}
-
-#[derive(uniffi::Record, Clone, Serialize, Deserialize)]
-#[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
-pub struct UsageTestAssignmentIn {
-	pub _format: i64,
-	pub testDeviceId: Option<GeneratedId>,
-}
-
-impl Entity for UsageTestAssignmentIn {
-	fn type_ref() -> TypeRef {
-		TypeRef {
-			app: "usage",
-			type_: "UsageTestAssignmentIn",
-		}
-	}
-}
-
-#[derive(uniffi::Record, Clone, Serialize, Deserialize)]
-#[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
-pub struct UsageTestAssignmentOut {
-	pub _format: i64,
-	pub testDeviceId: GeneratedId,
-	pub assignments: Vec<UsageTestAssignment>,
-}
-
-impl Entity for UsageTestAssignmentOut {
-	fn type_ref() -> TypeRef {
-		TypeRef {
-			app: "usage",
-			type_: "UsageTestAssignmentOut",
+			type_: "UsageTestMetricConfigValue",
 		}
 	}
 }
@@ -78,23 +42,6 @@ impl Entity for UsageTestMetricConfig {
 
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
-pub struct UsageTestMetricConfigValue {
-	pub _id: Option<CustomId>,
-	pub key: String,
-	pub value: String,
-}
-
-impl Entity for UsageTestMetricConfigValue {
-	fn type_ref() -> TypeRef {
-		TypeRef {
-			app: "usage",
-			type_: "UsageTestMetricConfigValue",
-		}
-	}
-}
-
-#[derive(uniffi::Record, Clone, Serialize, Deserialize)]
-#[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct UsageTestMetricData {
 	pub _id: Option<CustomId>,
 	pub name: String,
@@ -106,25 +53,6 @@ impl Entity for UsageTestMetricData {
 		TypeRef {
 			app: "usage",
 			type_: "UsageTestMetricData",
-		}
-	}
-}
-
-#[derive(uniffi::Record, Clone, Serialize, Deserialize)]
-#[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
-pub struct UsageTestParticipationIn {
-	pub _format: i64,
-	pub stage: i64,
-	pub testDeviceId: GeneratedId,
-	pub testId: GeneratedId,
-	pub metrics: Vec<UsageTestMetricData>,
-}
-
-impl Entity for UsageTestParticipationIn {
-	fn type_ref() -> TypeRef {
-		TypeRef {
-			app: "usage",
-			type_: "UsageTestParticipationIn",
 		}
 	}
 }
@@ -144,6 +72,78 @@ impl Entity for UsageTestStage {
 		TypeRef {
 			app: "usage",
 			type_: "UsageTestStage",
+		}
+	}
+}
+
+#[derive(uniffi::Record, Clone, Serialize, Deserialize)]
+#[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
+pub struct UsageTestAssignmentIn {
+	pub _format: i64,
+	pub testDeviceId: Option<GeneratedId>,
+}
+
+impl Entity for UsageTestAssignmentIn {
+	fn type_ref() -> TypeRef {
+		TypeRef {
+			app: "usage",
+			type_: "UsageTestAssignmentIn",
+		}
+	}
+}
+
+#[derive(uniffi::Record, Clone, Serialize, Deserialize)]
+#[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
+pub struct UsageTestAssignment {
+	pub _id: Option<CustomId>,
+	pub name: String,
+	pub sendPings: bool,
+	pub testId: GeneratedId,
+	pub variant: Option<i64>,
+	pub stages: Vec<UsageTestStage>,
+}
+
+impl Entity for UsageTestAssignment {
+	fn type_ref() -> TypeRef {
+		TypeRef {
+			app: "usage",
+			type_: "UsageTestAssignment",
+		}
+	}
+}
+
+#[derive(uniffi::Record, Clone, Serialize, Deserialize)]
+#[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
+pub struct UsageTestAssignmentOut {
+	pub _format: i64,
+	pub testDeviceId: GeneratedId,
+	pub assignments: Vec<UsageTestAssignment>,
+}
+
+impl Entity for UsageTestAssignmentOut {
+	fn type_ref() -> TypeRef {
+		TypeRef {
+			app: "usage",
+			type_: "UsageTestAssignmentOut",
+		}
+	}
+}
+
+#[derive(uniffi::Record, Clone, Serialize, Deserialize)]
+#[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
+pub struct UsageTestParticipationIn {
+	pub _format: i64,
+	pub stage: i64,
+	pub testDeviceId: GeneratedId,
+	pub testId: GeneratedId,
+	pub metrics: Vec<UsageTestMetricData>,
+}
+
+impl Entity for UsageTestParticipationIn {
+	fn type_ref() -> TypeRef {
+		TypeRef {
+			app: "usage",
+			type_: "UsageTestParticipationIn",
 		}
 	}
 }

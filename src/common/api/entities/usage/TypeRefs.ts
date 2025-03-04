@@ -3,6 +3,75 @@ import { TypeRef } from "@tutao/tutanota-utils"
 import { typeModels } from "./TypeModels.js"
 
 
+export const UsageTestMetricConfigValueTypeRef: TypeRef<UsageTestMetricConfigValue> = new TypeRef("usage", "UsageTestMetricConfigValue")
+
+export function createUsageTestMetricConfigValue(values: StrippedEntity<UsageTestMetricConfigValue>): UsageTestMetricConfigValue {
+	return Object.assign(create(typeModels.UsageTestMetricConfigValue, UsageTestMetricConfigValueTypeRef), values)
+}
+
+export type UsageTestMetricConfigValue = {
+	_type: TypeRef<UsageTestMetricConfigValue>;
+
+	_id: Id;
+	key: string;
+	value: string;
+}
+export const UsageTestMetricConfigTypeRef: TypeRef<UsageTestMetricConfig> = new TypeRef("usage", "UsageTestMetricConfig")
+
+export function createUsageTestMetricConfig(values: StrippedEntity<UsageTestMetricConfig>): UsageTestMetricConfig {
+	return Object.assign(create(typeModels.UsageTestMetricConfig, UsageTestMetricConfigTypeRef), values)
+}
+
+export type UsageTestMetricConfig = {
+	_type: TypeRef<UsageTestMetricConfig>;
+
+	_id: Id;
+	name: string;
+	type: NumberString;
+
+	configValues: UsageTestMetricConfigValue[];
+}
+export const UsageTestMetricDataTypeRef: TypeRef<UsageTestMetricData> = new TypeRef("usage", "UsageTestMetricData")
+
+export function createUsageTestMetricData(values: StrippedEntity<UsageTestMetricData>): UsageTestMetricData {
+	return Object.assign(create(typeModels.UsageTestMetricData, UsageTestMetricDataTypeRef), values)
+}
+
+export type UsageTestMetricData = {
+	_type: TypeRef<UsageTestMetricData>;
+
+	_id: Id;
+	name: string;
+	value: string;
+}
+export const UsageTestStageTypeRef: TypeRef<UsageTestStage> = new TypeRef("usage", "UsageTestStage")
+
+export function createUsageTestStage(values: StrippedEntity<UsageTestStage>): UsageTestStage {
+	return Object.assign(create(typeModels.UsageTestStage, UsageTestStageTypeRef), values)
+}
+
+export type UsageTestStage = {
+	_type: TypeRef<UsageTestStage>;
+
+	_id: Id;
+	maxPings: NumberString;
+	minPings: NumberString;
+	name: string;
+
+	metrics: UsageTestMetricConfig[];
+}
+export const UsageTestAssignmentInTypeRef: TypeRef<UsageTestAssignmentIn> = new TypeRef("usage", "UsageTestAssignmentIn")
+
+export function createUsageTestAssignmentIn(values: StrippedEntity<UsageTestAssignmentIn>): UsageTestAssignmentIn {
+	return Object.assign(create(typeModels.UsageTestAssignmentIn, UsageTestAssignmentInTypeRef), values)
+}
+
+export type UsageTestAssignmentIn = {
+	_type: TypeRef<UsageTestAssignmentIn>;
+
+	_format: NumberString;
+	testDeviceId: null | Id;
+}
 export const UsageTestAssignmentTypeRef: TypeRef<UsageTestAssignment> = new TypeRef("usage", "UsageTestAssignment")
 
 export function createUsageTestAssignment(values: StrippedEntity<UsageTestAssignment>): UsageTestAssignment {
@@ -20,18 +89,6 @@ export type UsageTestAssignment = {
 
 	stages: UsageTestStage[];
 }
-export const UsageTestAssignmentInTypeRef: TypeRef<UsageTestAssignmentIn> = new TypeRef("usage", "UsageTestAssignmentIn")
-
-export function createUsageTestAssignmentIn(values: StrippedEntity<UsageTestAssignmentIn>): UsageTestAssignmentIn {
-	return Object.assign(create(typeModels.UsageTestAssignmentIn, UsageTestAssignmentInTypeRef), values)
-}
-
-export type UsageTestAssignmentIn = {
-	_type: TypeRef<UsageTestAssignmentIn>;
-
-	_format: NumberString;
-	testDeviceId: null | Id;
-}
 export const UsageTestAssignmentOutTypeRef: TypeRef<UsageTestAssignmentOut> = new TypeRef("usage", "UsageTestAssignmentOut")
 
 export function createUsageTestAssignmentOut(values: StrippedEntity<UsageTestAssignmentOut>): UsageTestAssignmentOut {
@@ -45,47 +102,6 @@ export type UsageTestAssignmentOut = {
 	testDeviceId: Id;
 
 	assignments: UsageTestAssignment[];
-}
-export const UsageTestMetricConfigTypeRef: TypeRef<UsageTestMetricConfig> = new TypeRef("usage", "UsageTestMetricConfig")
-
-export function createUsageTestMetricConfig(values: StrippedEntity<UsageTestMetricConfig>): UsageTestMetricConfig {
-	return Object.assign(create(typeModels.UsageTestMetricConfig, UsageTestMetricConfigTypeRef), values)
-}
-
-export type UsageTestMetricConfig = {
-	_type: TypeRef<UsageTestMetricConfig>;
-
-	_id: Id;
-	name: string;
-	type: NumberString;
-
-	configValues: UsageTestMetricConfigValue[];
-}
-export const UsageTestMetricConfigValueTypeRef: TypeRef<UsageTestMetricConfigValue> = new TypeRef("usage", "UsageTestMetricConfigValue")
-
-export function createUsageTestMetricConfigValue(values: StrippedEntity<UsageTestMetricConfigValue>): UsageTestMetricConfigValue {
-	return Object.assign(create(typeModels.UsageTestMetricConfigValue, UsageTestMetricConfigValueTypeRef), values)
-}
-
-export type UsageTestMetricConfigValue = {
-	_type: TypeRef<UsageTestMetricConfigValue>;
-
-	_id: Id;
-	key: string;
-	value: string;
-}
-export const UsageTestMetricDataTypeRef: TypeRef<UsageTestMetricData> = new TypeRef("usage", "UsageTestMetricData")
-
-export function createUsageTestMetricData(values: StrippedEntity<UsageTestMetricData>): UsageTestMetricData {
-	return Object.assign(create(typeModels.UsageTestMetricData, UsageTestMetricDataTypeRef), values)
-}
-
-export type UsageTestMetricData = {
-	_type: TypeRef<UsageTestMetricData>;
-
-	_id: Id;
-	name: string;
-	value: string;
 }
 export const UsageTestParticipationInTypeRef: TypeRef<UsageTestParticipationIn> = new TypeRef("usage", "UsageTestParticipationIn")
 
@@ -102,20 +118,4 @@ export type UsageTestParticipationIn = {
 	testId: Id;
 
 	metrics: UsageTestMetricData[];
-}
-export const UsageTestStageTypeRef: TypeRef<UsageTestStage> = new TypeRef("usage", "UsageTestStage")
-
-export function createUsageTestStage(values: StrippedEntity<UsageTestStage>): UsageTestStage {
-	return Object.assign(create(typeModels.UsageTestStage, UsageTestStageTypeRef), values)
-}
-
-export type UsageTestStage = {
-	_type: TypeRef<UsageTestStage>;
-
-	_id: Id;
-	maxPings: NumberString;
-	minPings: NumberString;
-	name: string;
-
-	metrics: UsageTestMetricConfig[];
 }
