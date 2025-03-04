@@ -6,7 +6,7 @@
 
 /** @type {any} */
 export const typeModels = {
-	"CustomerAccountPosting": {
+	"79": {
 		"name": "CustomerAccountPosting",
 		"since": 3,
 		"type": "AGGREGATED_TYPE",
@@ -65,7 +65,7 @@ export const typeModels = {
 		"app": "accounting",
 		"version": "7"
 	},
-	"CustomerAccountReturn": {
+	"86": {
 		"name": "CustomerAccountReturn",
 		"since": 3,
 		"type": "DATA_TRANSFER_TYPE",

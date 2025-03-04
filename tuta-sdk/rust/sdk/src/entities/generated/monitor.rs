@@ -6,6 +6,60 @@ use serde::{Deserialize, Serialize};
 
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
+pub struct ReadCounterData {
+	pub _format: i64,
+	pub columnName: Option<GeneratedId>,
+	pub counterType: i64,
+	pub rowName: String,
+}
+
+impl Entity for ReadCounterData {
+	fn type_ref() -> TypeRef {
+		TypeRef {
+			app: "monitor",
+			type_: "ReadCounterData",
+		}
+	}
+}
+
+#[derive(uniffi::Record, Clone, Serialize, Deserialize)]
+#[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
+pub struct ReadCounterReturn {
+	pub _format: i64,
+	pub value: Option<i64>,
+	pub counterValues: Vec<CounterValue>,
+}
+
+impl Entity for ReadCounterReturn {
+	fn type_ref() -> TypeRef {
+		TypeRef {
+			app: "monitor",
+			type_: "ReadCounterReturn",
+		}
+	}
+}
+
+#[derive(uniffi::Record, Clone, Serialize, Deserialize)]
+#[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
+pub struct WriteCounterData {
+	pub _format: i64,
+	pub column: GeneratedId,
+	pub counterType: Option<i64>,
+	pub row: String,
+	pub value: i64,
+}
+
+impl Entity for WriteCounterData {
+	fn type_ref() -> TypeRef {
+		TypeRef {
+			app: "monitor",
+			type_: "WriteCounterData",
+		}
+	}
+}
+
+#[derive(uniffi::Record, Clone, Serialize, Deserialize)]
+#[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct ApprovalMail {
 	pub _format: i64,
 	pub _id: Option<IdTupleCustom>,
@@ -45,6 +99,23 @@ impl Entity for CounterValue {
 
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
+pub struct ErrorReportFile {
+	pub _id: Option<CustomId>,
+	pub content: String,
+	pub name: String,
+}
+
+impl Entity for ErrorReportFile {
+	fn type_ref() -> TypeRef {
+		TypeRef {
+			app: "monitor",
+			type_: "ErrorReportFile",
+		}
+	}
+}
+
+#[derive(uniffi::Record, Clone, Serialize, Deserialize)]
+#[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct ErrorReportData {
 	pub _id: Option<CustomId>,
 	pub additionalInfo: String,
@@ -69,58 +140,6 @@ impl Entity for ErrorReportData {
 
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
-pub struct ErrorReportFile {
-	pub _id: Option<CustomId>,
-	pub content: String,
-	pub name: String,
-}
-
-impl Entity for ErrorReportFile {
-	fn type_ref() -> TypeRef {
-		TypeRef {
-			app: "monitor",
-			type_: "ErrorReportFile",
-		}
-	}
-}
-
-#[derive(uniffi::Record, Clone, Serialize, Deserialize)]
-#[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
-pub struct ReadCounterData {
-	pub _format: i64,
-	pub columnName: Option<GeneratedId>,
-	pub counterType: i64,
-	pub rowName: String,
-}
-
-impl Entity for ReadCounterData {
-	fn type_ref() -> TypeRef {
-		TypeRef {
-			app: "monitor",
-			type_: "ReadCounterData",
-		}
-	}
-}
-
-#[derive(uniffi::Record, Clone, Serialize, Deserialize)]
-#[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
-pub struct ReadCounterReturn {
-	pub _format: i64,
-	pub value: Option<i64>,
-	pub counterValues: Vec<CounterValue>,
-}
-
-impl Entity for ReadCounterReturn {
-	fn type_ref() -> TypeRef {
-		TypeRef {
-			app: "monitor",
-			type_: "ReadCounterReturn",
-		}
-	}
-}
-
-#[derive(uniffi::Record, Clone, Serialize, Deserialize)]
-#[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct ReportErrorIn {
 	pub _format: i64,
 	pub data: ErrorReportData,
@@ -132,25 +151,6 @@ impl Entity for ReportErrorIn {
 		TypeRef {
 			app: "monitor",
 			type_: "ReportErrorIn",
-		}
-	}
-}
-
-#[derive(uniffi::Record, Clone, Serialize, Deserialize)]
-#[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
-pub struct WriteCounterData {
-	pub _format: i64,
-	pub column: GeneratedId,
-	pub counterType: Option<i64>,
-	pub row: String,
-	pub value: i64,
-}
-
-impl Entity for WriteCounterData {
-	fn type_ref() -> TypeRef {
-		TypeRef {
-			app: "monitor",
-			type_: "WriteCounterData",
 		}
 	}
 }
