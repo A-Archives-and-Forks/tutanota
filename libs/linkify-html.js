@@ -688,11 +688,11 @@ var Tokenizer = /** @class */function () {
       return token;
     }
     for (var i = 0; i < arguments.length; i++) {
-      if (token.type === arguments[i]) {
+      if (token.typeId === arguments[i]) {
         return token;
       }
     }
-    throw new Error("token type was unexpectedly " + token.type);
+    throw new Error("token type was unexpectedly " + token.typeId);
   };
   Tokenizer.prototype.push = function (token) {
     this.token = token;
@@ -849,7 +849,7 @@ function linkifyHtml(str, opts) {
   // Linkify the tokens given by the parser
   for (let i = 0; i < tokens.length; i++) {
     const token = tokens[i];
-    if (token.type === StartTag) {
+    if (token.typeId === StartTag) {
       linkifiedTokens.push(token);
 
       // Ignore all the contents of ignored tags
@@ -861,7 +861,7 @@ function linkifyHtml(str, opts) {
       let preskipLen = linkifiedTokens.length;
       skipTagTokens(tagName, tokens, ++i, linkifiedTokens);
       i += linkifiedTokens.length - preskipLen - 1;
-    } else if (token.type !== Chars) {
+    } else if (token.typeId !== Chars) {
       // Skip this token, it's not important
       linkifiedTokens.push(token);
     } else {
@@ -874,7 +874,7 @@ function linkifyHtml(str, opts) {
   // Convert the tokens back into a string
   for (let i = 0; i < linkifiedTokens.length; i++) {
     const token = linkifiedTokens[i];
-    switch (token.type) {
+    switch (token.typeId) {
       case LinkifyResult:
         linkified.push(token.rendered);
         break;
@@ -970,10 +970,10 @@ function skipTagTokens(tagName, tokens, i, skippedTokens) {
   let stackCount = 1;
   while (i < tokens.length && stackCount > 0) {
     let token = tokens[i];
-    if (token.type === StartTag && token.tagName.toUpperCase() === tagName) {
+    if (token.typeId === StartTag && token.tagName.toUpperCase() === tagName) {
       // Nested tag of the same type, "add to stack"
       stackCount++;
-    } else if (token.type === EndTag && token.tagName.toUpperCase() === tagName) {
+    } else if (token.typeId === EndTag && token.tagName.toUpperCase() === tagName) {
       // Closing tag
       stackCount--;
     }

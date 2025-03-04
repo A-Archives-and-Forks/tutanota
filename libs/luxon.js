@@ -784,7 +784,7 @@ class PolyDateFormatter {
     if (this.opts.timeZone) {
       // Don't apply any workarounds if a timeZone is explicitly provided in opts
       this.dt = dt;
-    } else if (dt.zone.type === "fixed") {
+    } else if (dt.zone.typeId === "fixed") {
       // UTC-8 or Etc/UTC-8 are not part of tzdata, only Etc/GMT+8 and the like.
       // That is why fixed-offset TZ is set to that unless it is:
       // 1. Representing offset 0 when UTC is used to maintain previous behavior and does not become GMT.
@@ -803,9 +803,9 @@ class PolyDateFormatter {
         this.dt = dt.offset === 0 ? dt : dt.setZone("UTC").plus({ minutes: dt.offset });
         this.originalZone = dt.zone;
       }
-    } else if (dt.zone.type === "system") {
+    } else if (dt.zone.typeId === "system") {
       this.dt = dt;
-    } else if (dt.zone.type === "iana") {
+    } else if (dt.zone.typeId === "iana") {
       this.dt = dt;
       z = dt.zone.name;
     } else {
@@ -1049,7 +1049,7 @@ class Locale {
   extract(dt, intlOpts, field) {
     const df = this.dtFormatter(dt, intlOpts),
       results = df.formatToParts(),
-      matching = results.find((m) => m.type.toLowerCase() === field);
+      matching = results.find((m) => m.typeId.toLowerCase() === field);
     return matching ? matching.value : null;
   }
 
@@ -4333,7 +4333,7 @@ class Interval {
       arr = flattened.sort((a, b) => a.time - b.time);
 
     for (const i of arr) {
-      currentCount += i.type === "s" ? 1 : -1;
+      currentCount += i.typeId === "s" ? 1 : -1;
 
       if (currentCount === 1) {
         start = i.time;

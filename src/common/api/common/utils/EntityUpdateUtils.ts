@@ -22,8 +22,9 @@ export function entityUpateToUpdateData(update: EntityUpdate): EntityUpdateData 
 	}
 }
 
-export function isUpdateForTypeRef(typeRef: TypeRef<unknown>, update: EntityUpdateData): boolean {
-	return isSameTypeRefByAttr(typeRef, update.application, update.typeId)
+export function isUpdateForTypeRef(typeRef: TypeRef<unknown>, update: EntityUpdateData | EntityUpdate): boolean {
+	const typeId = typeof update.typeId === "number" ? update.typeId : parseInt(update.typeId)
+	return isSameTypeRefByAttr(typeRef, update.application, typeId)
 }
 
 export function isUpdateFor<T extends SomeEntity>(entity: T, update: EntityUpdateData): boolean {

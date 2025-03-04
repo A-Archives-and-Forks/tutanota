@@ -47,14 +47,14 @@ pub struct Group {
 	#[serde(rename = "type")]
 	pub r#type: i64,
 	pub admin: Option<GeneratedId>,
-	pub archives: Vec<undefined>,
-	pub currentKeys: Option<undefined>,
+	pub archives: Vec<ArchiveType>,
+	pub currentKeys: Option<KeyPair>,
 	pub customer: Option<GeneratedId>,
-	pub formerGroupKeys: Option<undefined>,
+	pub formerGroupKeys: Option<GroupKeysRef>,
 	pub groupInfo: IdTupleGenerated,
 	pub invitations: GeneratedId,
 	pub members: GeneratedId,
-	pub pubAdminGroupEncGKey: Option<undefined>,
+	pub pubAdminGroupEncGKey: Option<PubEncKeyData>,
 	pub storageCounter: Option<GeneratedId>,
 	pub user: Option<GeneratedId>,
 }
@@ -86,7 +86,7 @@ pub struct GroupInfo {
 	pub mailAddress: Option<String>,
 	pub name: String,
 	pub group: GeneratedId,
-	pub mailAddressAliases: Vec<undefined>,
+	pub mailAddressAliases: Vec<MailAddressAlias>,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -139,21 +139,21 @@ pub struct Customer {
 	pub r#type: i64,
 	pub adminGroup: GeneratedId,
 	pub adminGroups: GeneratedId,
-	pub auditLog: Option<undefined>,
+	pub auditLog: Option<AuditLogRef>,
 	pub customerGroup: GeneratedId,
 	pub customerGroups: GeneratedId,
 	pub customerInfo: IdTupleGenerated,
-	pub customizations: Vec<undefined>,
+	pub customizations: Vec<Feature>,
 	pub orderProcessingAgreement: Option<IdTupleGenerated>,
 	pub properties: Option<GeneratedId>,
 	pub referralCode: Option<GeneratedId>,
-	pub rejectedSenders: Option<undefined>,
+	pub rejectedSenders: Option<RejectedSendersRef>,
 	pub serverProperties: Option<GeneratedId>,
 	pub teamGroups: GeneratedId,
-	pub userAreaGroups: Option<undefined>,
+	pub userAreaGroups: Option<UserAreaGroups>,
 	pub userGroups: GeneratedId,
-	pub whitelabelChildren: Option<undefined>,
-	pub whitelabelParent: Option<undefined>,
+	pub whitelabelChildren: Option<WhitelabelChildrenRef>,
+	pub whitelabelParent: Option<WhitelabelParent>,
 }
 
 impl Entity for Customer {
@@ -287,17 +287,17 @@ pub struct User {
 	pub salt: Option<Vec<u8>>,
 	#[serde(with = "serde_bytes")]
 	pub verifier: Vec<u8>,
-	pub alarmInfoList: Option<undefined>,
-	pub auth: Option<undefined>,
-	pub authenticatedDevices: Vec<undefined>,
+	pub alarmInfoList: Option<UserAlarmInfoListType>,
+	pub auth: Option<UserAuthentication>,
+	pub authenticatedDevices: Vec<AuthenticatedDevice>,
 	pub customer: Option<GeneratedId>,
-	pub externalAuthInfo: Option<undefined>,
+	pub externalAuthInfo: Option<UserExternalAuthInfo>,
 	pub failedLogins: GeneratedId,
-	pub memberships: Vec<undefined>,
-	pub pushIdentifierList: Option<undefined>,
+	pub memberships: Vec<GroupMembership>,
+	pub pushIdentifierList: Option<PushIdentifierList>,
 	pub secondFactorAuthentications: GeneratedId,
 	pub successfulLogins: GeneratedId,
-	pub userGroup: undefined,
+	pub userGroup: GroupMembership,
 }
 
 impl Entity for User {
@@ -337,7 +337,7 @@ pub struct GroupRoot {
 	pub _ownerGroup: Option<GeneratedId>,
 	pub _permissions: GeneratedId,
 	pub externalGroupInfos: GeneratedId,
-	pub externalUserAreaGroupInfos: Option<undefined>,
+	pub externalUserAreaGroupInfos: Option<UserAreaGroups>,
 	pub externalUserReferences: GeneratedId,
 }
 
@@ -418,7 +418,7 @@ pub struct Permission {
 	pub symKeyVersion: Option<i64>,
 	#[serde(rename = "type")]
 	pub r#type: i64,
-	pub bucket: Option<undefined>,
+	pub bucket: Option<Bucket>,
 	pub group: Option<GeneratedId>,
 }
 
@@ -496,11 +496,11 @@ pub struct CustomerInfo {
 	pub testEndTime: Option<DateTime>,
 	pub usedSharedEmailAliases: i64,
 	pub accountingInfo: GeneratedId,
-	pub bookings: Option<undefined>,
-	pub customPlan: Option<undefined>,
+	pub bookings: Option<BookingsRef>,
+	pub customPlan: Option<PlanConfiguration>,
 	pub customer: GeneratedId,
-	pub domainInfos: Vec<undefined>,
-	pub giftCards: Option<undefined>,
+	pub domainInfos: Vec<DomainInfo>,
+	pub giftCards: Option<GiftCardsRef>,
 	pub referredBy: Option<GeneratedId>,
 	pub supportInfo: Option<GeneratedId>,
 	pub takeoverCustomer: Option<GeneratedId>,
@@ -1039,7 +1039,7 @@ impl Entity for VersionData {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct VersionReturn {
 	pub _format: i64,
-	pub versions: Vec<undefined>,
+	pub versions: Vec<Version>,
 }
 
 impl Entity for VersionReturn {
@@ -1108,8 +1108,8 @@ pub struct SecondFactorAuthData {
 	#[serde(rename = "type")]
 	pub r#type: Option<i64>,
 	pub session: Option<IdTupleCustom>,
-	pub u2f: Option<undefined>,
-	pub webauthn: Option<undefined>,
+	pub u2f: Option<U2fResponseData>,
+	pub webauthn: Option<WebauthnResponseData>,
 }
 
 impl Entity for SecondFactorAuthData {
@@ -1252,7 +1252,7 @@ pub struct DeleteCustomerData {
 	pub takeoverMailAddress: Option<String>,
 	pub undelete: bool,
 	pub customer: GeneratedId,
-	pub surveyData: Option<undefined>,
+	pub surveyData: Option<SurveyData>,
 }
 
 impl Entity for DeleteCustomerData {
@@ -1274,9 +1274,9 @@ pub struct CustomerProperties {
 	pub externalUserWelcomeMessage: String,
 	pub lastUpgradeReminder: Option<DateTime>,
 	pub usageDataOptedOut: bool,
-	pub bigLogo: Option<undefined>,
-	pub notificationMailTemplates: Vec<undefined>,
-	pub smallLogo: Option<undefined>,
+	pub bigLogo: Option<File>,
+	pub notificationMailTemplates: Vec<NotificationMailTemplate>,
+	pub smallLogo: Option<File>,
 }
 
 impl Entity for CustomerProperties {
@@ -1294,8 +1294,8 @@ pub struct ExternalPropertiesReturn {
 	pub _format: i64,
 	pub accountType: i64,
 	pub message: String,
-	pub bigLogo: Option<undefined>,
-	pub smallLogo: Option<undefined>,
+	pub bigLogo: Option<File>,
+	pub smallLogo: Option<File>,
 }
 
 impl Entity for ExternalPropertiesReturn {
@@ -1449,7 +1449,7 @@ pub struct Booking {
 	pub endDate: Option<DateTime>,
 	pub paymentInterval: i64,
 	pub paymentMonths: i64,
-	pub items: Vec<undefined>,
+	pub items: Vec<BookingItem>,
 }
 
 impl Entity for Booking {
@@ -1498,7 +1498,7 @@ impl Entity for StringWrapper {
 pub struct CustomDomainReturn {
 	pub _format: i64,
 	pub validationResult: i64,
-	pub invalidDnsRecords: Vec<undefined>,
+	pub invalidDnsRecords: Vec<StringWrapper>,
 }
 
 impl Entity for CustomDomainReturn {
@@ -1546,7 +1546,7 @@ pub struct InvoiceInfo {
 	pub specialPriceSharingPerUser: Option<i64>,
 	pub specialPriceUserSingle: Option<i64>,
 	pub specialPriceUserTotal: Option<i64>,
-	pub paymentErrorInfo: Option<undefined>,
+	pub paymentErrorInfo: Option<PaymentErrorInfo>,
 }
 
 impl Entity for InvoiceInfo {
@@ -1569,7 +1569,7 @@ pub struct SwitchAccountTypePostIn {
 	pub plan: i64,
 	pub specialPriceUserSingle: Option<i64>,
 	pub referralCode: Option<GeneratedId>,
-	pub surveyData: Option<undefined>,
+	pub surveyData: Option<SurveyData>,
 }
 
 impl Entity for SwitchAccountTypePostIn {
@@ -1628,7 +1628,7 @@ pub struct PaymentDataServicePutData {
 	pub paymentMethod: i64,
 	pub paymentMethodInfo: Option<String>,
 	pub paymentToken: Option<String>,
-	pub creditCard: Option<undefined>,
+	pub creditCard: Option<CreditCard>,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -1647,7 +1647,7 @@ impl Entity for PaymentDataServicePutData {
 pub struct PaymentDataServicePutReturn {
 	pub _format: i64,
 	pub result: i64,
-	pub braintree3dsRequest: Option<undefined>,
+	pub braintree3dsRequest: Option<Braintree3ds2Request>,
 }
 
 impl Entity for PaymentDataServicePutReturn {
@@ -1685,7 +1685,7 @@ impl Entity for PriceRequestData {
 pub struct PriceServiceData {
 	pub _format: i64,
 	pub date: Option<DateTime>,
-	pub priceRequest: Option<undefined>,
+	pub priceRequest: Option<PriceRequestData>,
 }
 
 impl Entity for PriceServiceData {
@@ -1723,7 +1723,7 @@ pub struct PriceData {
 	pub paymentInterval: i64,
 	pub price: i64,
 	pub taxIncluded: bool,
-	pub items: Vec<undefined>,
+	pub items: Vec<PriceItemData>,
 }
 
 impl Entity for PriceData {
@@ -1741,9 +1741,9 @@ pub struct PriceServiceReturn {
 	pub _format: i64,
 	pub currentPeriodAddedPrice: Option<i64>,
 	pub periodEndDate: DateTime,
-	pub currentPriceNextPeriod: Option<undefined>,
-	pub currentPriceThisPeriod: Option<undefined>,
-	pub futurePriceNextPeriod: Option<undefined>,
+	pub currentPriceNextPeriod: Option<PriceData>,
+	pub currentPriceThisPeriod: Option<PriceData>,
+	pub futurePriceNextPeriod: Option<PriceData>,
 }
 
 impl Entity for PriceServiceReturn {
@@ -1824,7 +1824,7 @@ pub struct CustomerServerProperties {
 	pub _permissions: GeneratedId,
 	pub requirePasswordUpdateAfterReset: bool,
 	pub saveEncryptedIpAddressInSession: bool,
-	pub emailSenderList: Vec<undefined>,
+	pub emailSenderList: Vec<EmailSenderListElement>,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -1910,7 +1910,7 @@ pub struct EntityEventBatch {
 	pub _id: Option<IdTupleGenerated>,
 	pub _ownerGroup: Option<GeneratedId>,
 	pub _permissions: GeneratedId,
-	pub events: Vec<undefined>,
+	pub events: Vec<EntityUpdate>,
 }
 
 impl Entity for EntityEventBatch {
@@ -1981,8 +1981,8 @@ pub struct WhitelabelConfig {
 	pub metaTags: String,
 	pub privacyStatementUrl: Option<String>,
 	pub whitelabelCode: String,
-	pub bootstrapCustomizations: Vec<undefined>,
-	pub whitelabelRegistrationDomains: Vec<undefined>,
+	pub bootstrapCustomizations: Vec<BootstrapFeature>,
+	pub whitelabelRegistrationDomains: Vec<StringWrapper>,
 }
 
 impl Entity for WhitelabelConfig {
@@ -2068,7 +2068,7 @@ pub struct SecondFactor {
 	pub otpSecret: Option<Vec<u8>>,
 	#[serde(rename = "type")]
 	pub r#type: i64,
-	pub u2f: Option<undefined>,
+	pub u2f: Option<U2fRegisteredDevice>,
 }
 
 impl Entity for SecondFactor {
@@ -2105,7 +2105,7 @@ pub struct U2fChallenge {
 	pub _id: Option<CustomId>,
 	#[serde(with = "serde_bytes")]
 	pub challenge: Vec<u8>,
-	pub keys: Vec<undefined>,
+	pub keys: Vec<U2fKey>,
 }
 
 impl Entity for U2fChallenge {
@@ -2123,8 +2123,8 @@ pub struct Challenge {
 	pub _id: Option<CustomId>,
 	#[serde(rename = "type")]
 	pub r#type: i64,
-	pub otp: Option<undefined>,
-	pub u2f: Option<undefined>,
+	pub otp: Option<OtpChallenge>,
+	pub u2f: Option<U2fChallenge>,
 }
 
 impl Entity for Challenge {
@@ -2153,7 +2153,7 @@ pub struct Session {
 	pub loginIpAddress: Option<String>,
 	pub loginTime: DateTime,
 	pub state: i64,
-	pub challenges: Vec<undefined>,
+	pub challenges: Vec<Challenge>,
 	pub user: GeneratedId,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
@@ -2214,7 +2214,7 @@ impl Entity for CreateSessionData {
 pub struct CreateSessionReturn {
 	pub _format: i64,
 	pub accessToken: String,
-	pub challenges: Vec<undefined>,
+	pub challenges: Vec<Challenge>,
 	pub user: GeneratedId,
 }
 
@@ -2489,7 +2489,7 @@ impl Entity for GeneratedIdWrapper {
 pub struct SseConnectData {
 	pub _format: i64,
 	pub identifier: String,
-	pub userIds: Vec<undefined>,
+	pub userIds: Vec<GeneratedIdWrapper>,
 }
 
 impl Entity for SseConnectData {
@@ -2507,7 +2507,7 @@ pub struct NotificationInfo {
 	pub _id: Option<CustomId>,
 	pub mailAddress: String,
 	pub userId: GeneratedId,
-	pub mailId: Option<undefined>,
+	pub mailId: Option<IdTupleWrapper>,
 }
 
 impl Entity for NotificationInfo {
@@ -2596,7 +2596,7 @@ pub struct PlanPrices {
 	pub planName: String,
 	pub sharing: bool,
 	pub whitelabel: bool,
-	pub planConfiguration: undefined,
+	pub planConfiguration: PlanConfiguration,
 }
 
 impl Entity for PlanPrices {
@@ -2615,18 +2615,18 @@ pub struct UpgradePriceServiceReturn {
 	pub bonusMonthsForYearlyPlan: i64,
 	pub business: bool,
 	pub messageTextId: Option<String>,
-	pub advancedPrices: undefined,
-	pub essentialPrices: undefined,
-	pub freePrices: undefined,
-	pub legendaryPrices: undefined,
-	pub plans: Vec<undefined>,
-	pub premiumBusinessPrices: undefined,
-	pub premiumPrices: undefined,
-	pub proPrices: undefined,
-	pub revolutionaryPrices: undefined,
-	pub teamsBusinessPrices: undefined,
-	pub teamsPrices: undefined,
-	pub unlimitedPrices: undefined,
+	pub advancedPrices: PlanPrices,
+	pub essentialPrices: PlanPrices,
+	pub freePrices: PlanPrices,
+	pub legendaryPrices: PlanPrices,
+	pub plans: Vec<PlanPrices>,
+	pub premiumBusinessPrices: PlanPrices,
+	pub premiumPrices: PlanPrices,
+	pub proPrices: PlanPrices,
+	pub revolutionaryPrices: PlanPrices,
+	pub teamsBusinessPrices: PlanPrices,
+	pub teamsPrices: PlanPrices,
+	pub unlimitedPrices: PlanPrices,
 }
 
 impl Entity for UpgradePriceServiceReturn {
@@ -2664,7 +2664,7 @@ pub struct WebsocketEntityData {
 	pub _format: i64,
 	pub eventBatchId: GeneratedId,
 	pub eventBatchOwner: GeneratedId,
-	pub eventBatch: Vec<undefined>,
+	pub eventBatch: Vec<EntityUpdate>,
 }
 
 impl Entity for WebsocketEntityData {
@@ -2698,7 +2698,7 @@ impl Entity for WebsocketCounterValue {
 pub struct WebsocketCounterData {
 	pub _format: i64,
 	pub mailGroup: GeneratedId,
-	pub counterValues: Vec<undefined>,
+	pub counterValues: Vec<WebsocketCounterValue>,
 }
 
 impl Entity for WebsocketCounterData {
@@ -2771,7 +2771,7 @@ pub struct AlarmInfo {
 	pub _id: Option<CustomId>,
 	pub alarmIdentifier: String,
 	pub trigger: String,
-	pub calendarRef: undefined,
+	pub calendarRef: CalendarEventRef,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
 
@@ -2794,7 +2794,7 @@ pub struct UserAlarmInfo {
 	pub _ownerGroup: Option<GeneratedId>,
 	pub _ownerKeyVersion: Option<i64>,
 	pub _permissions: GeneratedId,
-	pub alarmInfo: undefined,
+	pub alarmInfo: AlarmInfo,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -2851,8 +2851,8 @@ pub struct RepeatRule {
 	pub frequency: i64,
 	pub interval: i64,
 	pub timeZone: String,
-	pub advancedRules: Vec<undefined>,
-	pub excludedDates: Vec<undefined>,
+	pub advancedRules: Vec<CalendarAdvancedRepeatRule>,
+	pub excludedDates: Vec<DateWrapper>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
 
@@ -2873,9 +2873,9 @@ pub struct AlarmNotification {
 	pub eventStart: DateTime,
 	pub operation: i64,
 	pub summary: String,
-	pub alarmInfo: undefined,
-	pub notificationSessionKeys: Vec<undefined>,
-	pub repeatRule: Option<undefined>,
+	pub alarmInfo: AlarmInfo,
+	pub notificationSessionKeys: Vec<NotificationSessionKey>,
+	pub repeatRule: Option<RepeatRule>,
 	pub user: GeneratedId,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -2893,7 +2893,7 @@ impl Entity for AlarmNotification {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct AlarmServicePost {
 	pub _format: i64,
-	pub alarmNotifications: Vec<undefined>,
+	pub alarmNotifications: Vec<AlarmNotification>,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -2948,9 +2948,9 @@ impl Entity for CustomDomainCheckGetIn {
 pub struct CustomDomainCheckGetOut {
 	pub _format: i64,
 	pub checkResult: i64,
-	pub invalidRecords: Vec<undefined>,
-	pub missingRecords: Vec<undefined>,
-	pub requiredRecords: Vec<undefined>,
+	pub invalidRecords: Vec<DnsRecord>,
+	pub missingRecords: Vec<DnsRecord>,
+	pub requiredRecords: Vec<DnsRecord>,
 }
 
 impl Entity for CustomDomainCheckGetOut {
@@ -3020,9 +3020,9 @@ pub struct UserGroupRoot {
 	pub _id: Option<GeneratedId>,
 	pub _ownerGroup: Option<GeneratedId>,
 	pub _permissions: GeneratedId,
-	pub groupKeyUpdates: Option<undefined>,
+	pub groupKeyUpdates: Option<GroupKeyUpdatesRef>,
 	pub invitations: GeneratedId,
-	pub keyRotations: Option<undefined>,
+	pub keyRotations: Option<KeyRotationsRef>,
 }
 
 impl Entity for UserGroupRoot {
@@ -3102,7 +3102,7 @@ pub struct Invoice {
 	pub vatRate: i64,
 	pub bookings: Vec<IdTupleGenerated>,
 	pub customer: GeneratedId,
-	pub items: Vec<undefined>,
+	pub items: Vec<InvoiceItem>,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -3127,8 +3127,8 @@ pub struct MissedNotification {
 	pub _ownerKeyVersion: Option<i64>,
 	pub _permissions: GeneratedId,
 	pub lastProcessedNotificationId: Option<GeneratedId>,
-	pub alarmNotifications: Vec<undefined>,
-	pub notificationInfos: Vec<undefined>,
+	pub alarmNotifications: Vec<AlarmNotification>,
+	pub notificationInfos: Vec<NotificationInfo>,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -3146,7 +3146,7 @@ impl Entity for MissedNotification {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct BrandingDomainGetReturn {
 	pub _format: i64,
-	pub certificateInfo: Option<undefined>,
+	pub certificateInfo: Option<CertificateInfo>,
 }
 
 impl Entity for BrandingDomainGetReturn {
@@ -3314,7 +3314,7 @@ pub struct GiftCardGetReturn {
 	pub _format: i64,
 	pub maxPerPeriod: i64,
 	pub period: i64,
-	pub options: Vec<undefined>,
+	pub options: Vec<GiftCardOption>,
 }
 
 impl Entity for GiftCardGetReturn {
@@ -3460,7 +3460,7 @@ impl Entity for Braintree3ds2Response {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct PaymentDataServicePostData {
 	pub _format: i64,
-	pub braintree3dsResponse: undefined,
+	pub braintree3dsResponse: Braintree3ds2Response,
 }
 
 impl Entity for PaymentDataServicePostData {
@@ -3525,10 +3525,10 @@ impl Entity for ArchiveRef {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct ArchiveType {
 	pub _id: Option<CustomId>,
-	pub active: undefined,
-	pub inactive: Vec<undefined>,
+	pub active: ArchiveRef,
+	pub inactive: Vec<ArchiveRef>,
 	#[serde(rename = "type")]
-	pub r#type: undefined,
+	pub r#type: TypeInfo,
 }
 
 impl Entity for ArchiveType {
@@ -3623,7 +3623,7 @@ impl Entity for CustomerAccountTerminationRequest {
 pub struct CustomerAccountTerminationPostIn {
 	pub _format: i64,
 	pub terminationDate: Option<DateTime>,
-	pub surveyData: Option<undefined>,
+	pub surveyData: Option<SurveyData>,
 }
 
 impl Entity for CustomerAccountTerminationPostIn {
@@ -3672,7 +3672,7 @@ impl Entity for MailAddressAvailability {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct MultipleMailAddressAvailabilityData {
 	pub _format: i64,
-	pub mailAddresses: Vec<undefined>,
+	pub mailAddresses: Vec<StringWrapper>,
 }
 
 impl Entity for MultipleMailAddressAvailabilityData {
@@ -3688,7 +3688,7 @@ impl Entity for MultipleMailAddressAvailabilityData {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct MultipleMailAddressAvailabilityReturn {
 	pub _format: i64,
-	pub availabilities: Vec<undefined>,
+	pub availabilities: Vec<MailAddressAvailability>,
 }
 
 impl Entity for MultipleMailAddressAvailabilityReturn {
@@ -3711,7 +3711,7 @@ pub struct InstanceSessionKey {
 	#[serde(with = "serde_bytes")]
 	pub symEncSessionKey: Vec<u8>,
 	pub symKeyVersion: i64,
-	pub typeInfo: undefined,
+	pub typeInfo: TypeInfo,
 }
 
 impl Entity for InstanceSessionKey {
@@ -3734,7 +3734,7 @@ pub struct BucketKey {
 	pub pubEncBucketKey: Option<Vec<u8>>,
 	pub recipientKeyVersion: i64,
 	pub senderKeyVersion: Option<i64>,
-	pub bucketEncSessionKeys: Vec<undefined>,
+	pub bucketEncSessionKeys: Vec<InstanceSessionKey>,
 	pub keyGroup: Option<GeneratedId>,
 }
 
@@ -3751,7 +3751,7 @@ impl Entity for BucketKey {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct UpdateSessionKeysPostIn {
 	pub _format: i64,
-	pub ownerEncSessionKeys: Vec<undefined>,
+	pub ownerEncSessionKeys: Vec<InstanceSessionKey>,
 }
 
 impl Entity for UpdateSessionKeysPostIn {
@@ -3873,7 +3873,7 @@ impl Entity for PlanConfiguration {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct PlanServiceGetOut {
 	pub _format: i64,
-	pub config: undefined,
+	pub config: PlanConfiguration,
 }
 
 impl Entity for PlanServiceGetOut {
@@ -3942,7 +3942,7 @@ pub struct InvoiceDataGetOut {
 	pub vatIdNumber: Option<String>,
 	pub vatRate: i64,
 	pub vatType: i64,
-	pub items: Vec<undefined>,
+	pub items: Vec<InvoiceDataItem>,
 }
 
 impl Entity for InvoiceDataGetOut {
@@ -4008,8 +4008,8 @@ pub struct GroupKey {
 	#[serde(with = "serde_bytes")]
 	pub ownerEncGKey: Vec<u8>,
 	pub ownerKeyVersion: i64,
-	pub keyPair: Option<undefined>,
-	pub pubAdminGroupEncGKey: Option<undefined>,
+	pub keyPair: Option<KeyPair>,
+	pub pubAdminGroupEncGKey: Option<PubEncKeyData>,
 }
 
 impl Entity for GroupKey {
@@ -4046,10 +4046,10 @@ pub struct KeyRotation {
 	pub _permissions: GeneratedId,
 	pub groupKeyRotationType: i64,
 	pub targetKeyVersion: i64,
-	pub adminDistKeyPair: Option<undefined>,
-	pub adminPubKeyMac: Option<undefined>,
-	pub distEncAdminGroupSymKey: Option<undefined>,
-	pub distKeyMac: Option<undefined>,
+	pub adminDistKeyPair: Option<KeyPair>,
+	pub adminPubKeyMac: Option<KeyMac>,
+	pub distEncAdminGroupSymKey: Option<PubEncKeyData>,
+	pub distKeyMac: Option<KeyMac>,
 }
 
 impl Entity for KeyRotation {
@@ -4145,9 +4145,9 @@ pub struct GroupKeyRotationData {
 	pub groupEncPreviousGroupKey: Vec<u8>,
 	pub groupKeyVersion: i64,
 	pub group: GeneratedId,
-	pub groupKeyUpdatesForMembers: Vec<undefined>,
-	pub groupMembershipUpdateData: Vec<undefined>,
-	pub keyPair: Option<undefined>,
+	pub groupKeyUpdatesForMembers: Vec<GroupKeyUpdateData>,
+	pub groupMembershipUpdateData: Vec<GroupMembershipUpdateData>,
+	pub keyPair: Option<KeyPair>,
 }
 
 impl Entity for GroupKeyRotationData {
@@ -4163,7 +4163,7 @@ impl Entity for GroupKeyRotationData {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct GroupKeyRotationPostIn {
 	pub _format: i64,
-	pub groupKeyUpdates: Vec<undefined>,
+	pub groupKeyUpdates: Vec<GroupKeyRotationData>,
 }
 
 impl Entity for GroupKeyRotationPostIn {
@@ -4233,9 +4233,9 @@ pub struct UserGroupKeyRotationData {
 	pub userGroupEncPreviousGroupKey: Vec<u8>,
 	pub userGroupKeyVersion: i64,
 	pub group: GeneratedId,
-	pub keyPair: undefined,
-	pub pubAdminGroupEncUserGroupKey: Option<undefined>,
-	pub recoverCodeData: Option<undefined>,
+	pub keyPair: KeyPair,
+	pub pubAdminGroupEncUserGroupKey: Option<PubEncKeyData>,
+	pub recoverCodeData: Option<RecoverCodeData>,
 }
 
 impl Entity for UserGroupKeyRotationData {
@@ -4251,10 +4251,10 @@ impl Entity for UserGroupKeyRotationData {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct AdminGroupKeyRotationPostIn {
 	pub _format: i64,
-	pub adminGroupKeyData: undefined,
-	pub adminPubKeyMacList: Vec<undefined>,
-	pub distribution: Vec<undefined>,
-	pub userGroupKeyData: undefined,
+	pub adminGroupKeyData: GroupKeyRotationData,
+	pub adminPubKeyMacList: Vec<KeyMac>,
+	pub distribution: Vec<AdminGroupKeyDistributionElement>,
+	pub userGroupKeyData: UserGroupKeyRotationData,
 }
 
 impl Entity for AdminGroupKeyRotationPostIn {
@@ -4279,7 +4279,7 @@ pub struct GroupKeyUpdate {
 	#[serde(with = "serde_bytes")]
 	pub groupKey: Vec<u8>,
 	pub groupKeyVersion: i64,
-	pub bucketKey: undefined,
+	pub bucketKey: BucketKey,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -4322,7 +4322,7 @@ pub struct PubEncKeyData {
 	pub senderIdentifier: Option<String>,
 	pub senderIdentifierType: Option<i64>,
 	pub senderKeyVersion: Option<i64>,
-	pub symKeyMac: Option<undefined>,
+	pub symKeyMac: Option<KeyMac>,
 }
 
 impl Entity for PubEncKeyData {
@@ -4343,7 +4343,7 @@ pub struct GroupKeyUpdateData {
 	#[serde(with = "serde_bytes")]
 	pub sessionKeyEncGroupKey: Vec<u8>,
 	pub sessionKeyEncGroupKeyVersion: i64,
-	pub pubEncBucketKeyData: undefined,
+	pub pubEncBucketKeyData: PubEncKeyData,
 }
 
 impl Entity for GroupKeyUpdateData {
@@ -4379,7 +4379,7 @@ impl Entity for GroupMembershipKeyData {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct MembershipPutIn {
 	pub _format: i64,
-	pub groupKeyUpdates: Vec<undefined>,
+	pub groupKeyUpdates: Vec<GroupMembershipKeyData>,
 }
 
 impl Entity for MembershipPutIn {
@@ -4438,7 +4438,7 @@ pub struct AffiliatePartnerKpiServiceGetOut {
 	pub accumulatedCommission: i64,
 	pub creditedCommission: i64,
 	pub promotionId: String,
-	pub kpis: Vec<undefined>,
+	pub kpis: Vec<AffiliatePartnerKpiMonthSummary>,
 }
 
 impl Entity for AffiliatePartnerKpiServiceGetOut {
@@ -4454,7 +4454,7 @@ impl Entity for AffiliatePartnerKpiServiceGetOut {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct UserGroupKeyRotationPostIn {
 	pub _format: i64,
-	pub userGroupKeyData: undefined,
+	pub userGroupKeyData: UserGroupKeyRotationData,
 }
 
 impl Entity for UserGroupKeyRotationPostIn {
@@ -4573,7 +4573,7 @@ impl Entity for CalendarAdvancedRepeatRule {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct AdminGroupKeyDistributionElement {
 	pub _id: Option<CustomId>,
-	pub distEncAdminGroupKey: undefined,
+	pub distEncAdminGroupKey: PubEncKeyData,
 	pub userGroupId: GeneratedId,
 }
 
@@ -4590,8 +4590,8 @@ impl Entity for AdminGroupKeyDistributionElement {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct AdminGroupKeyRotationPutIn {
 	pub _format: i64,
-	pub adminDistKeyPair: undefined,
-	pub distKeyMac: undefined,
+	pub adminDistKeyPair: KeyPair,
+	pub distKeyMac: KeyMac,
 }
 
 impl Entity for AdminGroupKeyRotationPutIn {
@@ -4611,7 +4611,7 @@ pub struct PubDistributionKey {
 	pub pubEccKey: Vec<u8>,
 	#[serde(with = "serde_bytes")]
 	pub pubKyberKey: Vec<u8>,
-	pub pubKeyMac: undefined,
+	pub pubKeyMac: KeyMac,
 	pub userGroupId: GeneratedId,
 }
 
@@ -4628,7 +4628,7 @@ impl Entity for PubDistributionKey {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct AdminGroupKeyRotationGetOut {
 	pub _format: i64,
-	pub distributionKeys: Vec<undefined>,
+	pub distributionKeys: Vec<PubDistributionKey>,
 	pub userGroupIdsMissingDistributionKeys: Vec<GeneratedId>,
 }
 

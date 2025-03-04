@@ -376,7 +376,7 @@ o.spec("InstanceMapper", function () {
 			o(result._format).equals("0")
 			o(result._ownerGroup).equals(null)
 			o(result._ownerEncSessionKey).equals(null)
-			o(utf8Uint8ArrayToString(aesDecrypt(sk, base64ToUint8Array(result.addresses[0].type)))).equals(contact.addresses[0].type)
+			o(utf8Uint8ArrayToString(aesDecrypt(sk, base64ToUint8Array(result.addresses[0].typeId)))).equals(contact.addresses[0].type)
 			o(utf8Uint8ArrayToString(aesDecrypt(sk, base64ToUint8Array(result.addresses[0].address)))).equals(contact.addresses[0].address)
 			o(utf8Uint8ArrayToString(aesDecrypt(sk, base64ToUint8Array(result.addresses[0].customTypeName)))).equals(contact.addresses[0].customTypeName)
 			o(utf8Uint8ArrayToString(aesDecrypt(sk, base64ToUint8Array(result.title)))).equals(contact.title)

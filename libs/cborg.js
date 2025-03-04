@@ -2374,11 +2374,11 @@ function mapSorter (e1, e2) {
   const keyToken2 = Array.isArray(e2[0]) ? e2[0][0] : e2[0];
 
   // different key types
-  if (keyToken1.type !== keyToken2.type) {
-    return keyToken1.type.compare(keyToken2.type)
+  if (keyToken1.typeId !== keyToken2.typeId) {
+    return keyToken1.typeId.compare(keyToken2.typeId)
   }
 
-  const major = keyToken1.type.major;
+  const major = keyToken1.typeId.major;
   // TODO: handle case where cmp === 0 but there are more keyToken e. complex type)
   const tcmp = cborEncoders[major].compareTokens(keyToken1, keyToken2);
   /* c8 ignore next 5 */
@@ -2402,7 +2402,7 @@ function tokensToEncoded (buf, tokens, encoders, options) {
       tokensToEncoded(buf, token, encoders, options);
     }
   } else {
-    encoders[tokens.type.major](buf, tokens, options);
+    encoders[tokens.typeId.major](buf, tokens, options);
   }
 }
 
@@ -2419,7 +2419,7 @@ function encodeCustom (data, encoders, options) {
     if (quickBytes) {
       return quickBytes
     }
-    const encoder = encoders[tokens.type.major];
+    const encoder = encoders[tokens.typeId.major];
     if (encoder.encodedSize) {
       const size = encoder.encodedSize(tokens, options);
       const buf = new Bl(size);

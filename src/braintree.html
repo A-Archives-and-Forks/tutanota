@@ -770,10 +770,10 @@
 					e = e("./enumerate");
 
 					function n(e) {
-						if (!n.types.hasOwnProperty(e.type)) throw new Error(e.type + " is not a valid type.");
+						if (!n.types.hasOwnProperty(e.typeId)) throw new Error(e.typeId + " is not a valid type.");
 						if (!e.code) throw new Error("Error code required.");
 						if (!e.message) throw new Error("Error message required.");
-						this.name = "BraintreeError", this.code = e.code, this.message = e.message, this.type = e.type, this.details = e.details
+						this.name = "BraintreeError", this.code = e.code, this.message = e.message, this.typeId = e.typeId, this.details = e.details
 					}
 
 					n.prototype = Object.create(Error.prototype), (n.prototype.constructor = n).types = e(["CUSTOMER", "MERCHANT", "NETWORK", "INTERNAL", "UNKNOWN"]), n.findRootError = function (e) {
@@ -829,7 +829,7 @@
 					var n = e("./braintree-error");
 					t.exports = function (e, t) {
 						return e instanceof n ? e : new n({
-							type: t.type,
+							type: t.typeId,
 							code: t.code,
 							message: t.message,
 							details: {originalError: e}
