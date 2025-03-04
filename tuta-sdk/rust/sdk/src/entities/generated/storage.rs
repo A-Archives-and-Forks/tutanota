@@ -10,7 +10,7 @@ pub struct BlobGetIn {
 	pub _format: i64,
 	pub archiveId: GeneratedId,
 	pub blobId: Option<GeneratedId>,
-	pub blobIds: Vec<BlobId>,
+	pub blobIds: Vec<undefined>,
 }
 
 impl Entity for BlobGetIn {
@@ -43,8 +43,8 @@ impl Entity for BlobWriteData {
 pub struct BlobAccessTokenPostIn {
 	pub _format: i64,
 	pub archiveDataType: Option<i64>,
-	pub read: Option<BlobReadData>,
-	pub write: Option<BlobWriteData>,
+	pub read: Option<undefined>,
+	pub write: Option<undefined>,
 }
 
 impl Entity for BlobAccessTokenPostIn {
@@ -60,7 +60,7 @@ impl Entity for BlobAccessTokenPostIn {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct BlobAccessTokenPostOut {
 	pub _format: i64,
-	pub blobAccessInfo: BlobServerAccessInfo,
+	pub blobAccessInfo: undefined,
 }
 
 impl Entity for BlobAccessTokenPostOut {
@@ -79,7 +79,7 @@ pub struct BlobReferencePutIn {
 	pub archiveDataType: i64,
 	pub instanceId: GeneratedId,
 	pub instanceListId: Option<GeneratedId>,
-	pub referenceTokens: Vec<super::sys::BlobReferenceTokenWrapper>,
+	pub referenceTokens: Vec<super::sys::undefined>,
 }
 
 impl Entity for BlobReferencePutIn {
@@ -98,7 +98,7 @@ pub struct BlobReferenceDeleteIn {
 	pub archiveDataType: i64,
 	pub instanceId: GeneratedId,
 	pub instanceListId: Option<GeneratedId>,
-	pub blobs: Vec<super::sys::Blob>,
+	pub blobs: Vec<super::sys::undefined>,
 }
 
 impl Entity for BlobReferenceDeleteIn {
@@ -115,7 +115,7 @@ impl Entity for BlobReferenceDeleteIn {
 pub struct BlobPostOut {
 	pub _format: i64,
 	pub blobReferenceToken: Option<String>,
-	pub blobReferenceTokens: Vec<super::sys::BlobReferenceTokenWrapper>,
+	pub blobReferenceTokens: Vec<super::sys::undefined>,
 }
 
 impl Entity for BlobPostOut {
@@ -185,7 +185,7 @@ pub struct BlobServerAccessInfo {
 	pub blobAccessToken: String,
 	pub expires: DateTime,
 	pub tokenKind: i64,
-	pub servers: Vec<BlobServerUrl>,
+	pub servers: Vec<undefined>,
 }
 
 impl Entity for BlobServerAccessInfo {
@@ -219,7 +219,7 @@ pub struct BlobReadData {
 	pub _id: Option<CustomId>,
 	pub archiveId: GeneratedId,
 	pub instanceListId: Option<GeneratedId>,
-	pub instanceIds: Vec<InstanceId>,
+	pub instanceIds: Vec<undefined>,
 }
 
 impl Entity for BlobReadData {

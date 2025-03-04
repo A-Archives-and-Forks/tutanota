@@ -601,7 +601,7 @@ o.spec("SendMailModel", function () {
 			await model.initWithTemplate({ to: recipients }, "somb", "", [], true, "a@b.c", false)
 			await model.handleEntityEvent({
 				application: app,
-				type,
+				typeId: type,
 				operation: OperationType.UPDATE,
 				instanceListId,
 				instanceId,
@@ -636,7 +636,7 @@ o.spec("SendMailModel", function () {
 			await model.initWithTemplate({ to: recipients }, "b", "c", [], true, "", false)
 			await model.handleEntityEvent({
 				application: app,
-				type,
+				typeId: type,
 				operation: OperationType.UPDATE,
 				instanceListId,
 				instanceId,
@@ -651,7 +651,7 @@ o.spec("SendMailModel", function () {
 			await model.initWithTemplate({ to: recipients }, "subj", "", [], true, "a@b.c", false)
 			await model.handleEntityEvent({
 				application: app,
-				type,
+				typeId: type,
 				operation: OperationType.DELETE,
 				instanceListId,
 				instanceId,

@@ -28,7 +28,7 @@ pub struct UsageTestMetricConfig {
 	pub name: String,
 	#[serde(rename = "type")]
 	pub r#type: i64,
-	pub configValues: Vec<UsageTestMetricConfigValue>,
+	pub configValues: Vec<undefined>,
 }
 
 impl Entity for UsageTestMetricConfig {
@@ -64,7 +64,7 @@ pub struct UsageTestStage {
 	pub maxPings: i64,
 	pub minPings: i64,
 	pub name: String,
-	pub metrics: Vec<UsageTestMetricConfig>,
+	pub metrics: Vec<undefined>,
 }
 
 impl Entity for UsageTestStage {
@@ -100,7 +100,7 @@ pub struct UsageTestAssignment {
 	pub sendPings: bool,
 	pub testId: GeneratedId,
 	pub variant: Option<i64>,
-	pub stages: Vec<UsageTestStage>,
+	pub stages: Vec<undefined>,
 }
 
 impl Entity for UsageTestAssignment {
@@ -117,7 +117,7 @@ impl Entity for UsageTestAssignment {
 pub struct UsageTestAssignmentOut {
 	pub _format: i64,
 	pub testDeviceId: GeneratedId,
-	pub assignments: Vec<UsageTestAssignment>,
+	pub assignments: Vec<undefined>,
 }
 
 impl Entity for UsageTestAssignmentOut {
@@ -136,7 +136,7 @@ pub struct UsageTestParticipationIn {
 	pub stage: i64,
 	pub testDeviceId: GeneratedId,
 	pub testId: GeneratedId,
-	pub metrics: Vec<UsageTestMetricData>,
+	pub metrics: Vec<undefined>,
 }
 
 impl Entity for UsageTestParticipationIn {

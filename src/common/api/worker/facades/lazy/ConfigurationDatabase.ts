@@ -1,5 +1,14 @@
 import { b64UserIdHash, DbFacade } from "../../search/DbFacade.js"
-import { assertNotNull, concat, downcast, isSameTypeRefByAttr, LazyLoaded, stringToUtf8Uint8Array, utf8Uint8ArrayToString } from "@tutao/tutanota-utils"
+import {
+	assertNotNull,
+	concat,
+	downcast,
+	isSameTypeRef,
+	isSameTypeRefByAttr,
+	LazyLoaded,
+	stringToUtf8Uint8Array,
+	utf8Uint8ArrayToString,
+} from "@tutao/tutanota-utils"
 import { User, UserTypeRef } from "../../../entities/sys/TypeRefs.js"
 import { ExternalImageRule, OperationType } from "../../../common/TutanotaConstants.js"
 import {
@@ -130,7 +139,7 @@ export class ConfigurationDatabase {
 	async onEntityEventsReceived(batch: QueuedBatch): Promise<any> {
 		const { events, groupId, batchId } = batch
 		for (const event of events) {
-			if (!(event.operation === OperationType.UPDATE && isSameTypeRefByAttr(UserTypeRef, event.application, event.type))) {
+			if (!(event.operation === OperationType.UPDATE && isSameTypeRef(UserTypeRef, event._type))) {
 				continue
 			}
 			const configDb = await this.db.getAsync()

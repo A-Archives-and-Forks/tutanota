@@ -66,11 +66,13 @@ export type ModelInfos = typeof modelInfos
  *
  * @param typeRef the typeRef for which we will return the typeModel.
  */
+
+// FIXME: do not use this function in offline storage or any other storage
 export async function resolveTypeReference(typeRef: TypeRef<any>): Promise<TypeModel> {
 	// @ts-ignore
 	const modelMap = typeModels[typeRef.app]
 
-	const typeModel = modelMap[typeRef.type]
+	const typeModel = modelMap[typeRef.typeId]
 	if (typeModel == null) {
 		throw new Error("Cannot find TypeRef: " + JSON.stringify(typeRef))
 	} else {

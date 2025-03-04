@@ -413,7 +413,7 @@ o.spec("CalendarViewModel", function () {
 			o(entityListeners.length).equals(1)("Listener was added")
 			const entityUpdate: EntityUpdateData = {
 				application: "tutanota",
-				type: "CalendarEvent",
+				typeId: "CalendarEvent",
 				instanceListId: getListId(eventToDrag),
 				instanceId: getElementId(eventToDrag),
 				operation: OperationType.CREATE,

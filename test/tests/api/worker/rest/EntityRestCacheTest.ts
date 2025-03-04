@@ -61,6 +61,7 @@ import { InterWindowEventFacadeSendDispatcher } from "../../../../../src/common/
 import { func, instance, matchers, object, replace, when } from "testdouble"
 import { SqlCipherFacade } from "../../../../../src/common/native/common/generatedipc/SqlCipherFacade.js"
 import { createTestEntity } from "../../../TestUtils.js"
+import { entityUpateToUpdateData } from "../../../../../src/common/api/common/utils/EntityUpdateUtils"
 
 const { anything } = matchers
 

@@ -35,7 +35,7 @@ pub struct CustomerAccountReturn {
 	pub _publicCryptoProtocolVersion: Option<i64>,
 	pub balance: i64,
 	pub outstandingBookingsPrice: i64,
-	pub postings: Vec<CustomerAccountPosting>,
+	pub postings: Vec<undefined>,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }

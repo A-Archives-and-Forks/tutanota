@@ -27,7 +27,7 @@ impl Entity for ReadCounterData {
 pub struct ReadCounterReturn {
 	pub _format: i64,
 	pub value: Option<i64>,
-	pub counterValues: Vec<CounterValue>,
+	pub counterValues: Vec<undefined>,
 }
 
 impl Entity for ReadCounterReturn {
@@ -142,8 +142,8 @@ impl Entity for ErrorReportData {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct ReportErrorIn {
 	pub _format: i64,
-	pub data: ErrorReportData,
-	pub files: Vec<ErrorReportFile>,
+	pub data: undefined,
+	pub files: Vec<undefined>,
 }
 
 impl Entity for ReportErrorIn {

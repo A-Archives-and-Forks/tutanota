@@ -33,7 +33,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "File",
+				"refTypeId": 13,
 				"dependency": null
 			}
 		},
@@ -148,7 +148,7 @@ export const typeModels = {
 				"since": 52,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "Blob",
+				"refTypeId": 1882,
 				"dependency": "sys"
 			},
 			"parent": {
@@ -158,7 +158,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "ZeroOrOne",
-				"refType": "File",
+				"refTypeId": 13,
 				"dependency": null
 			},
 			"subFiles": {
@@ -168,7 +168,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "AGGREGATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "Subfiles",
+				"refTypeId": 11,
 				"dependency": null
 			}
 		},
@@ -247,7 +247,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "File",
+				"refTypeId": 13,
 				"dependency": null
 			}
 		},
@@ -670,7 +670,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "ContactAddress",
+				"refTypeId": 54,
 				"dependency": null
 			},
 			"customDate": {
@@ -680,7 +680,7 @@ export const typeModels = {
 				"since": 67,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "ContactCustomDate",
+				"refTypeId": 1356,
 				"dependency": null
 			},
 			"mailAddresses": {
@@ -690,7 +690,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "ContactMailAddress",
+				"refTypeId": 44,
 				"dependency": null
 			},
 			"messengerHandles": {
@@ -700,7 +700,7 @@ export const typeModels = {
 				"since": 67,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "ContactMessengerHandle",
+				"refTypeId": 1371,
 				"dependency": null
 			},
 			"oldBirthdayAggregate": {
@@ -710,7 +710,7 @@ export const typeModels = {
 				"since": 23,
 				"type": "AGGREGATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "Birthday",
+				"refTypeId": 844,
 				"dependency": null
 			},
 			"phoneNumbers": {
@@ -720,7 +720,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "ContactPhoneNumber",
+				"refTypeId": 49,
 				"dependency": null
 			},
 			"photo": {
@@ -730,7 +730,7 @@ export const typeModels = {
 				"since": 23,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "ZeroOrOne",
-				"refType": "File",
+				"refTypeId": 13,
 				"dependency": null
 			},
 			"pronouns": {
@@ -740,7 +740,7 @@ export const typeModels = {
 				"since": 67,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "ContactPronouns",
+				"refTypeId": 1376,
 				"dependency": null
 			},
 			"relationships": {
@@ -750,7 +750,7 @@ export const typeModels = {
 				"since": 67,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "ContactRelationship",
+				"refTypeId": 1366,
 				"dependency": null
 			},
 			"socialIds": {
@@ -760,7 +760,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "ContactSocialId",
+				"refTypeId": 59,
 				"dependency": null
 			},
 			"websites": {
@@ -770,7 +770,7 @@ export const typeModels = {
 				"since": 67,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "ContactWebsite",
+				"refTypeId": 1361,
 				"dependency": null
 			}
 		},
@@ -849,7 +849,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "ZeroOrOne",
-				"refType": "Mail",
+				"refTypeId": 97,
 				"dependency": null
 			},
 			"previous": {
@@ -859,7 +859,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "ZeroOrOne",
-				"refType": "ConversationEntry",
+				"refTypeId": 84,
 				"dependency": null
 			}
 		},
@@ -911,7 +911,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "ZeroOrOne",
-				"refType": "Contact",
+				"refTypeId": 64,
 				"dependency": null
 			}
 		},
@@ -1116,7 +1116,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "Any",
-				"refType": "File",
+				"refTypeId": 13,
 				"dependency": null
 			},
 			"bucketKey": {
@@ -1126,7 +1126,7 @@ export const typeModels = {
 				"since": 58,
 				"type": "AGGREGATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "BucketKey",
+				"refTypeId": 2043,
 				"dependency": "sys"
 			},
 			"conversationEntry": {
@@ -1136,7 +1136,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "ConversationEntry",
+				"refTypeId": 84,
 				"dependency": null
 			},
 			"firstRecipient": {
@@ -1146,7 +1146,7 @@ export const typeModels = {
 				"since": 58,
 				"type": "AGGREGATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "MailAddress",
+				"refTypeId": 92,
 				"dependency": null
 			},
 			"mailDetails": {
@@ -1156,7 +1156,7 @@ export const typeModels = {
 				"since": 58,
 				"type": "BLOB_ELEMENT_ASSOCIATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "MailDetailsBlob",
+				"refTypeId": 1298,
 				"dependency": null
 			},
 			"mailDetailsDraft": {
@@ -1166,7 +1166,7 @@ export const typeModels = {
 				"since": 58,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "ZeroOrOne",
-				"refType": "MailDetailsDraft",
+				"refTypeId": 1290,
 				"dependency": null
 			},
 			"sender": {
@@ -1176,7 +1176,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "MailAddress",
+				"refTypeId": 92,
 				"dependency": null
 			},
 			"sets": {
@@ -1186,7 +1186,7 @@ export const typeModels = {
 				"since": 74,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "Any",
-				"refType": "MailFolder",
+				"refTypeId": 429,
 				"dependency": null
 			}
 		},
@@ -1274,7 +1274,7 @@ export const typeModels = {
 				"since": 74,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "MailBag",
+				"refTypeId": 1460,
 				"dependency": null
 			},
 			"currentMailBag": {
@@ -1284,7 +1284,7 @@ export const typeModels = {
 				"since": 74,
 				"type": "AGGREGATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "MailBag",
+				"refTypeId": 1460,
 				"dependency": null
 			},
 			"folders": {
@@ -1294,7 +1294,7 @@ export const typeModels = {
 				"since": 7,
 				"type": "AGGREGATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "MailFolderRef",
+				"refTypeId": 440,
 				"dependency": null
 			},
 			"importedAttachments": {
@@ -1304,7 +1304,7 @@ export const typeModels = {
 				"since": 79,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "File",
+				"refTypeId": 13,
 				"dependency": null
 			},
 			"mailDetailsDrafts": {
@@ -1314,7 +1314,7 @@ export const typeModels = {
 				"since": 60,
 				"type": "AGGREGATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "MailDetailsDraftsRef",
+				"refTypeId": 1315,
 				"dependency": null
 			},
 			"mailImportStates": {
@@ -1324,7 +1324,7 @@ export const typeModels = {
 				"since": 79,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "ImportMailState",
+				"refTypeId": 1559,
 				"dependency": null
 			},
 			"receivedAttachments": {
@@ -1334,7 +1334,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "File",
+				"refTypeId": 13,
 				"dependency": null
 			},
 			"sentAttachments": {
@@ -1344,7 +1344,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "File",
+				"refTypeId": 13,
 				"dependency": null
 			},
 			"spamResults": {
@@ -1354,7 +1354,7 @@ export const typeModels = {
 				"since": 48,
 				"type": "AGGREGATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "SpamResults",
+				"refTypeId": 1217,
 				"dependency": null
 			}
 		},
@@ -1546,7 +1546,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "CreateExternalUserGroupData",
+				"refTypeId": 138,
 				"dependency": null
 			}
 		},
@@ -1625,7 +1625,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "Contact",
+				"refTypeId": 64,
 				"dependency": null
 			},
 			"photos": {
@@ -1635,7 +1635,7 @@ export const typeModels = {
 				"since": 23,
 				"type": "AGGREGATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "PhotosRef",
+				"refTypeId": 853,
 				"dependency": null
 			}
 		},
@@ -1705,7 +1705,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "Mail",
+				"refTypeId": 97,
 				"dependency": null
 			}
 		},
@@ -1766,7 +1766,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "RemoteImapSyncInfo",
+				"refTypeId": 183,
 				"dependency": null
 			}
 		},
@@ -1827,7 +1827,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "ImapFolder",
+				"refTypeId": 190,
 				"dependency": null
 			}
 		},
@@ -1897,7 +1897,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "ELEMENT_ASSOCIATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "ImapSyncState",
+				"refTypeId": 196,
 				"dependency": null
 			}
 		},
@@ -2075,7 +2075,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "ImapSyncConfiguration",
+				"refTypeId": 209,
 				"dependency": null
 			},
 			"inboxRules": {
@@ -2085,7 +2085,7 @@ export const typeModels = {
 				"since": 12,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "InboxRule",
+				"refTypeId": 573,
 				"dependency": null
 			},
 			"lastPushedMail": {
@@ -2095,7 +2095,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "ZeroOrOne",
-				"refType": "Mail",
+				"refTypeId": 97,
 				"dependency": null
 			}
 		},
@@ -2197,7 +2197,7 @@ export const typeModels = {
 				"since": 19,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "ZeroOrOne",
-				"refType": "MailFolder",
+				"refTypeId": 429,
 				"dependency": null
 			},
 			"mails": {
@@ -2207,7 +2207,7 @@ export const typeModels = {
 				"since": 5,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "Any",
-				"refType": "Mail",
+				"refTypeId": 97,
 				"dependency": null
 			}
 		},
@@ -2313,7 +2313,7 @@ export const typeModels = {
 				"since": 74,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "MailSetEntry",
+				"refTypeId": 1450,
 				"dependency": null
 			},
 			"parentFolder": {
@@ -2323,7 +2323,7 @@ export const typeModels = {
 				"since": 7,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "ZeroOrOne",
-				"refType": "MailFolder",
+				"refTypeId": 429,
 				"dependency": null
 			}
 		},
@@ -2357,7 +2357,7 @@ export const typeModels = {
 				"since": 7,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "MailFolder",
+				"refTypeId": 429,
 				"dependency": null
 			}
 		},
@@ -2391,7 +2391,7 @@ export const typeModels = {
 				"since": 7,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "Any",
-				"refType": "Mail",
+				"refTypeId": 97,
 				"dependency": null
 			},
 			"sourceFolder": {
@@ -2401,7 +2401,7 @@ export const typeModels = {
 				"since": 74,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "MailFolder",
+				"refTypeId": 429,
 				"dependency": null
 			},
 			"targetFolder": {
@@ -2411,7 +2411,7 @@ export const typeModels = {
 				"since": 7,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "MailFolder",
+				"refTypeId": 429,
 				"dependency": null
 			}
 		},
@@ -2481,7 +2481,7 @@ export const typeModels = {
 				"since": 7,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "ZeroOrOne",
-				"refType": "MailFolder",
+				"refTypeId": 429,
 				"dependency": null
 			}
 		},
@@ -2515,7 +2515,7 @@ export const typeModels = {
 				"since": 7,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "MailFolder",
+				"refTypeId": 429,
 				"dependency": null
 			}
 		},
@@ -2549,7 +2549,7 @@ export const typeModels = {
 				"since": 7,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "Any",
-				"refType": "MailFolder",
+				"refTypeId": 429,
 				"dependency": null
 			}
 		},
@@ -2601,7 +2601,7 @@ export const typeModels = {
 				"since": 9,
 				"type": "ELEMENT_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "TutanotaProperties",
+				"refTypeId": 216,
 				"dependency": null
 			}
 		},
@@ -2703,7 +2703,7 @@ export const typeModels = {
 				"since": 52,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "BlobReferenceTokenWrapper",
+				"refTypeId": 1990,
 				"dependency": "sys"
 			}
 		},
@@ -2755,7 +2755,7 @@ export const typeModels = {
 				"since": 11,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "ZeroOrOne",
-				"refType": "File",
+				"refTypeId": 13,
 				"dependency": null
 			},
 			"newFile": {
@@ -2765,7 +2765,7 @@ export const typeModels = {
 				"since": 11,
 				"type": "AGGREGATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "NewDraftAttachment",
+				"refTypeId": 486,
 				"dependency": null
 			}
 		},
@@ -2862,7 +2862,7 @@ export const typeModels = {
 				"since": 11,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "DraftAttachment",
+				"refTypeId": 491,
 				"dependency": null
 			},
 			"bccRecipients": {
@@ -2872,7 +2872,7 @@ export const typeModels = {
 				"since": 11,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "DraftRecipient",
+				"refTypeId": 482,
 				"dependency": null
 			},
 			"ccRecipients": {
@@ -2882,7 +2882,7 @@ export const typeModels = {
 				"since": 11,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "DraftRecipient",
+				"refTypeId": 482,
 				"dependency": null
 			},
 			"removedAttachments": {
@@ -2892,7 +2892,7 @@ export const typeModels = {
 				"since": 11,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "Any",
-				"refType": "File",
+				"refTypeId": 13,
 				"dependency": null
 			},
 			"replyTos": {
@@ -2902,7 +2902,7 @@ export const typeModels = {
 				"since": 21,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "EncryptedMailAddress",
+				"refTypeId": 612,
 				"dependency": null
 			},
 			"toRecipients": {
@@ -2912,7 +2912,7 @@ export const typeModels = {
 				"since": 11,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "DraftRecipient",
+				"refTypeId": 482,
 				"dependency": null
 			}
 		},
@@ -2982,7 +2982,7 @@ export const typeModels = {
 				"since": 11,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "DraftData",
+				"refTypeId": 496,
 				"dependency": null
 			}
 		},
@@ -3016,7 +3016,7 @@ export const typeModels = {
 				"since": 11,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "Mail",
+				"refTypeId": 97,
 				"dependency": null
 			}
 		},
@@ -3050,7 +3050,7 @@ export const typeModels = {
 				"since": 11,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "Mail",
+				"refTypeId": 97,
 				"dependency": null
 			},
 			"draftData": {
@@ -3060,7 +3060,7 @@ export const typeModels = {
 				"since": 11,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "DraftData",
+				"refTypeId": 496,
 				"dependency": null
 			}
 		},
@@ -3094,7 +3094,7 @@ export const typeModels = {
 				"since": 11,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "Any",
-				"refType": "File",
+				"refTypeId": 13,
 				"dependency": null
 			}
 		},
@@ -3318,7 +3318,7 @@ export const typeModels = {
 				"since": 11,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "File",
+				"refTypeId": 13,
 				"dependency": null
 			}
 		},
@@ -3415,7 +3415,7 @@ export const typeModels = {
 				"since": 11,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "AttachmentKeyData",
+				"refTypeId": 542,
 				"dependency": null
 			},
 			"internalRecipientKeyData": {
@@ -3425,7 +3425,7 @@ export const typeModels = {
 				"since": 11,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "InternalRecipientKeyData",
+				"refTypeId": 527,
 				"dependency": null
 			},
 			"mail": {
@@ -3435,7 +3435,7 @@ export const typeModels = {
 				"since": 11,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "Mail",
+				"refTypeId": 97,
 				"dependency": null
 			},
 			"secureExternalRecipientKeyData": {
@@ -3445,7 +3445,7 @@ export const typeModels = {
 				"since": 11,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "SecureExternalRecipientKeyData",
+				"refTypeId": 532,
 				"dependency": null
 			},
 			"symEncInternalRecipientKeyData": {
@@ -3455,7 +3455,7 @@ export const typeModels = {
 				"since": 66,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "SymEncInternalRecipientKeyData",
+				"refTypeId": 1347,
 				"dependency": null
 			}
 		},
@@ -3507,7 +3507,7 @@ export const typeModels = {
 				"since": 11,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "NotificationMail",
+				"refTypeId": 223,
 				"dependency": null
 			},
 			"sentMail": {
@@ -3517,7 +3517,7 @@ export const typeModels = {
 				"since": 11,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "Mail",
+				"refTypeId": 97,
 				"dependency": null
 			}
 		},
@@ -3601,7 +3601,7 @@ export const typeModels = {
 				"since": 12,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "MailFolder",
+				"refTypeId": 429,
 				"dependency": null
 			}
 		},
@@ -3987,7 +3987,7 @@ export const typeModels = {
 				"since": 25,
 				"type": "ELEMENT_ASSOCIATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "Group",
+				"refTypeId": 5,
 				"dependency": null
 			}
 		},
@@ -4138,7 +4138,7 @@ export const typeModels = {
 				"since": 16,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "InternalGroupData",
+				"refTypeId": 642,
 				"dependency": null
 			},
 			"customerGroupData": {
@@ -4148,7 +4148,7 @@ export const typeModels = {
 				"since": 16,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "InternalGroupData",
+				"refTypeId": 642,
 				"dependency": null
 			},
 			"userData": {
@@ -4158,7 +4158,7 @@ export const typeModels = {
 				"since": 16,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "UserAccountUserData",
+				"refTypeId": 622,
 				"dependency": null
 			},
 			"userGroupData": {
@@ -4168,7 +4168,7 @@ export const typeModels = {
 				"since": 16,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "InternalGroupData",
+				"refTypeId": 642,
 				"dependency": null
 			}
 		},
@@ -4211,7 +4211,7 @@ export const typeModels = {
 				"since": 16,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "UserAccountUserData",
+				"refTypeId": 622,
 				"dependency": null
 			},
 			"userGroupData": {
@@ -4221,7 +4221,7 @@ export const typeModels = {
 				"since": 16,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "InternalGroupData",
+				"refTypeId": 642,
 				"dependency": null
 			}
 		},
@@ -4341,7 +4341,7 @@ export const typeModels = {
 				"since": 42,
 				"type": "AGGREGATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "CalendarEventUpdateList",
+				"refTypeId": 1113,
 				"dependency": null
 			},
 			"mailbox": {
@@ -4351,7 +4351,7 @@ export const typeModels = {
 				"since": 18,
 				"type": "ELEMENT_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "MailBox",
+				"refTypeId": 125,
 				"dependency": null
 			},
 			"mailboxProperties": {
@@ -4361,7 +4361,7 @@ export const typeModels = {
 				"since": 47,
 				"type": "ELEMENT_ASSOCIATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "MailboxProperties",
+				"refTypeId": 1195,
 				"dependency": null
 			},
 			"outOfOfficeNotification": {
@@ -4371,7 +4371,7 @@ export const typeModels = {
 				"since": 44,
 				"type": "ELEMENT_ASSOCIATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "OutOfOfficeNotification",
+				"refTypeId": 1131,
 				"dependency": null
 			},
 			"outOfOfficeNotificationRecipientList": {
@@ -4381,7 +4381,7 @@ export const typeModels = {
 				"since": 44,
 				"type": "AGGREGATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "OutOfOfficeNotificationRecipientList",
+				"refTypeId": 1147,
 				"dependency": null
 			},
 			"serverProperties": {
@@ -4391,7 +4391,7 @@ export const typeModels = {
 				"since": 18,
 				"type": "ELEMENT_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "MailboxServerProperties",
+				"refTypeId": 677,
 				"dependency": null
 			}
 		},
@@ -4452,7 +4452,7 @@ export const typeModels = {
 				"since": 19,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "InternalGroupData",
+				"refTypeId": 642,
 				"dependency": null
 			}
 		},
@@ -4495,7 +4495,7 @@ export const typeModels = {
 				"since": 19,
 				"type": "ELEMENT_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "Group",
+				"refTypeId": 5,
 				"dependency": null
 			}
 		},
@@ -4579,7 +4579,7 @@ export const typeModels = {
 				"since": 23,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "File",
+				"refTypeId": 13,
 				"dependency": null
 			}
 		},
@@ -4631,7 +4631,7 @@ export const typeModels = {
 				"since": 24,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "Mail",
+				"refTypeId": 97,
 				"dependency": null
 			}
 		},
@@ -4710,7 +4710,7 @@ export const typeModels = {
 				"since": 80,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "AdvancedRepeatRule",
+				"refTypeId": 1586,
 				"dependency": null
 			},
 			"excludedDates": {
@@ -4720,7 +4720,7 @@ export const typeModels = {
 				"since": 61,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "DateWrapper",
+				"refTypeId": 2073,
 				"dependency": "sys"
 			}
 		},
@@ -4889,7 +4889,7 @@ export const typeModels = {
 				"since": 33,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "Any",
-				"refType": "UserAlarmInfo",
+				"refTypeId": 1541,
 				"dependency": null
 			},
 			"attendees": {
@@ -4899,7 +4899,7 @@ export const typeModels = {
 				"since": 42,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "CalendarEventAttendee",
+				"refTypeId": 1084,
 				"dependency": null
 			},
 			"organizer": {
@@ -4909,7 +4909,7 @@ export const typeModels = {
 				"since": 42,
 				"type": "AGGREGATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "EncryptedMailAddress",
+				"refTypeId": 612,
 				"dependency": null
 			},
 			"repeatRule": {
@@ -4919,7 +4919,7 @@ export const typeModels = {
 				"since": 33,
 				"type": "AGGREGATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "CalendarRepeatRule",
+				"refTypeId": 926,
 				"dependency": null
 			}
 		},
@@ -4998,7 +4998,7 @@ export const typeModels = {
 				"since": 42,
 				"type": "AGGREGATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "CalendarEventIndexRef",
+				"refTypeId": 1100,
 				"dependency": null
 			},
 			"longEvents": {
@@ -5008,7 +5008,7 @@ export const typeModels = {
 				"since": 33,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "CalendarEvent",
+				"refTypeId": 933,
 				"dependency": null
 			},
 			"shortEvents": {
@@ -5018,7 +5018,7 @@ export const typeModels = {
 				"since": 33,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "CalendarEvent",
+				"refTypeId": 933,
 				"dependency": null
 			}
 		},
@@ -5124,7 +5124,7 @@ export const typeModels = {
 				"since": 33,
 				"type": "ELEMENT_ASSOCIATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "Group",
+				"refTypeId": 5,
 				"dependency": null
 			}
 		},
@@ -5158,7 +5158,7 @@ export const typeModels = {
 				"since": 33,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "UserAreaGroupData",
+				"refTypeId": 956,
 				"dependency": null
 			}
 		},
@@ -5219,7 +5219,7 @@ export const typeModels = {
 				"since": 74,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "DefaultAlarmInfo",
+				"refTypeId": 1446,
 				"dependency": null
 			},
 			"group": {
@@ -5229,7 +5229,7 @@ export const typeModels = {
 				"since": 34,
 				"type": "ELEMENT_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "Group",
+				"refTypeId": 5,
 				"dependency": null
 			}
 		},
@@ -5335,7 +5335,7 @@ export const typeModels = {
 				"since": 34,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "GroupSettings",
+				"refTypeId": 968,
 				"dependency": null
 			}
 		},
@@ -5369,7 +5369,7 @@ export const typeModels = {
 				"since": 34,
 				"type": "ELEMENT_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "CalendarGroupRoot",
+				"refTypeId": 947,
 				"dependency": null
 			}
 		},
@@ -5403,7 +5403,7 @@ export const typeModels = {
 				"since": 34,
 				"type": "ELEMENT_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "Group",
+				"refTypeId": 5,
 				"dependency": null
 			}
 		},
@@ -5541,7 +5541,7 @@ export const typeModels = {
 				"since": 38,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "InternalRecipientKeyData",
+				"refTypeId": 527,
 				"dependency": null
 			},
 			"sharedGroupData": {
@@ -5551,7 +5551,7 @@ export const typeModels = {
 				"since": 38,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "SharedGroupData",
+				"refTypeId": 992,
 				"dependency": null
 			}
 		},
@@ -5585,7 +5585,7 @@ export const typeModels = {
 				"since": 38,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "MailAddress",
+				"refTypeId": 92,
 				"dependency": null
 			},
 			"invalidMailAddresses": {
@@ -5595,7 +5595,7 @@ export const typeModels = {
 				"since": 38,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "MailAddress",
+				"refTypeId": 92,
 				"dependency": null
 			},
 			"invitedMailAddresses": {
@@ -5605,7 +5605,7 @@ export const typeModels = {
 				"since": 38,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "MailAddress",
+				"refTypeId": 92,
 				"dependency": null
 			}
 		},
@@ -5675,7 +5675,7 @@ export const typeModels = {
 				"since": 38,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "ReceivedGroupInvitation",
+				"refTypeId": 1602,
 				"dependency": null
 			}
 		},
@@ -5709,7 +5709,7 @@ export const typeModels = {
 				"since": 38,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "ReceivedGroupInvitation",
+				"refTypeId": 1602,
 				"dependency": null
 			}
 		},
@@ -5793,7 +5793,7 @@ export const typeModels = {
 				"since": 40,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "ReportedMailFieldMarker",
+				"refTypeId": 1023,
 				"dependency": null
 			}
 		},
@@ -5845,7 +5845,7 @@ export const typeModels = {
 				"since": 40,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "Mail",
+				"refTypeId": 97,
 				"dependency": null
 			}
 		},
@@ -5888,7 +5888,7 @@ export const typeModels = {
 				"since": 42,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "EncryptedMailAddress",
+				"refTypeId": 612,
 				"dependency": null
 			}
 		},
@@ -5949,7 +5949,7 @@ export const typeModels = {
 				"since": 62,
 				"type": "LIST_ELEMENT_ASSOCIATION_CUSTOM",
 				"cardinality": "Any",
-				"refType": "CalendarEvent",
+				"refTypeId": 933,
 				"dependency": null
 			},
 			"progenitor": {
@@ -5959,7 +5959,7 @@ export const typeModels = {
 				"since": 42,
 				"type": "LIST_ELEMENT_ASSOCIATION_CUSTOM",
 				"cardinality": "ZeroOrOne",
-				"refType": "CalendarEvent",
+				"refTypeId": 933,
 				"dependency": null
 			}
 		},
@@ -5993,7 +5993,7 @@ export const typeModels = {
 				"since": 42,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "CalendarEventUidIndex",
+				"refTypeId": 1093,
 				"dependency": null
 			}
 		},
@@ -6081,7 +6081,7 @@ export const typeModels = {
 				"since": 42,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "File",
+				"refTypeId": 13,
 				"dependency": null
 			}
 		},
@@ -6115,7 +6115,7 @@ export const typeModels = {
 				"since": 42,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "CalendarEventUpdate",
+				"refTypeId": 1104,
 				"dependency": null
 			}
 		},
@@ -6294,7 +6294,7 @@ export const typeModels = {
 				"since": 44,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "OutOfOfficeNotificationMessage",
+				"refTypeId": 1126,
 				"dependency": null
 			}
 		},
@@ -6328,7 +6328,7 @@ export const typeModels = {
 				"since": 44,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "OutOfOfficeNotificationRecipient",
+				"refTypeId": 1141,
 				"dependency": null
 			}
 		},
@@ -6466,7 +6466,7 @@ export const typeModels = {
 				"since": 45,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "EmailTemplateContent",
+				"refTypeId": 1154,
 				"dependency": null
 			}
 		},
@@ -6595,7 +6595,7 @@ export const typeModels = {
 				"since": 45,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "KnowledgeBaseEntryKeyword",
+				"refTypeId": 1168,
 				"dependency": null
 			}
 		},
@@ -6674,7 +6674,7 @@ export const typeModels = {
 				"since": 45,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "KnowledgeBaseEntry",
+				"refTypeId": 1171,
 				"dependency": null
 			},
 			"templates": {
@@ -6684,7 +6684,7 @@ export const typeModels = {
 				"since": 45,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "EmailTemplate",
+				"refTypeId": 1158,
 				"dependency": null
 			}
 		},
@@ -6718,7 +6718,7 @@ export const typeModels = {
 				"since": 45,
 				"type": "ELEMENT_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "Group",
+				"refTypeId": 5,
 				"dependency": null
 			}
 		},
@@ -6806,7 +6806,7 @@ export const typeModels = {
 				"since": 56,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "MailAddressProperties",
+				"refTypeId": 1263,
 				"dependency": null
 			}
 		},
@@ -6840,7 +6840,7 @@ export const typeModels = {
 				"since": 48,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "SpamResult",
+				"refTypeId": 1208,
 				"dependency": null
 			}
 		},
@@ -6915,7 +6915,7 @@ export const typeModels = {
 				"since": 55,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "NewsId",
+				"refTypeId": 1245,
 				"dependency": null
 			}
 		},
@@ -7104,7 +7104,7 @@ export const typeModels = {
 				"since": 58,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "MailAddress",
+				"refTypeId": 92,
 				"dependency": null
 			},
 			"ccRecipients": {
@@ -7114,7 +7114,7 @@ export const typeModels = {
 				"since": 58,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "MailAddress",
+				"refTypeId": 92,
 				"dependency": null
 			},
 			"toRecipients": {
@@ -7124,7 +7124,7 @@ export const typeModels = {
 				"since": 58,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "MailAddress",
+				"refTypeId": 92,
 				"dependency": null
 			}
 		},
@@ -7176,7 +7176,7 @@ export const typeModels = {
 				"since": 58,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "Body",
+				"refTypeId": 1273,
 				"dependency": null
 			},
 			"headers": {
@@ -7186,7 +7186,7 @@ export const typeModels = {
 				"since": 58,
 				"type": "AGGREGATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "Header",
+				"refTypeId": 1269,
 				"dependency": null
 			},
 			"recipients": {
@@ -7196,7 +7196,7 @@ export const typeModels = {
 				"since": 58,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "Recipients",
+				"refTypeId": 1277,
 				"dependency": null
 			},
 			"replyTos": {
@@ -7206,7 +7206,7 @@ export const typeModels = {
 				"since": 58,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "EncryptedMailAddress",
+				"refTypeId": 612,
 				"dependency": null
 			}
 		},
@@ -7285,7 +7285,7 @@ export const typeModels = {
 				"since": 58,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "MailDetails",
+				"refTypeId": 1282,
 				"dependency": null
 			}
 		},
@@ -7364,7 +7364,7 @@ export const typeModels = {
 				"since": 58,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "MailDetails",
+				"refTypeId": 1282,
 				"dependency": null
 			}
 		},
@@ -7398,7 +7398,7 @@ export const typeModels = {
 				"since": 59,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "MailFolder",
+				"refTypeId": 429,
 				"dependency": null
 			},
 			"newParent": {
@@ -7408,7 +7408,7 @@ export const typeModels = {
 				"since": 59,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "ZeroOrOne",
-				"refType": "MailFolder",
+				"refTypeId": 429,
 				"dependency": null
 			}
 		},
@@ -7442,7 +7442,7 @@ export const typeModels = {
 				"since": 60,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "MailDetailsDraft",
+				"refTypeId": 1290,
 				"dependency": null
 			}
 		},
@@ -7598,7 +7598,7 @@ export const typeModels = {
 				"since": 64,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "ContactListEntry",
+				"refTypeId": 1325,
 				"dependency": null
 			}
 		},
@@ -7659,7 +7659,7 @@ export const typeModels = {
 				"since": 66,
 				"type": "ELEMENT_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "Group",
+				"refTypeId": 5,
 				"dependency": null
 			}
 		},
@@ -8066,7 +8066,7 @@ export const typeModels = {
 				"since": 74,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "Mail",
+				"refTypeId": 97,
 				"dependency": null
 			}
 		},
@@ -8100,7 +8100,7 @@ export const typeModels = {
 				"since": 74,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "Mail",
+				"refTypeId": 97,
 				"dependency": null
 			}
 		},
@@ -8143,7 +8143,7 @@ export const typeModels = {
 				"since": 76,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "Any",
-				"refType": "Mail",
+				"refTypeId": 97,
 				"dependency": null
 			}
 		},
@@ -8186,7 +8186,7 @@ export const typeModels = {
 				"since": 76,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "Any",
-				"refType": "Mail",
+				"refTypeId": 97,
 				"dependency": null
 			}
 		},
@@ -8288,7 +8288,7 @@ export const typeModels = {
 				"since": 77,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "ManageLabelServiceLabelData",
+				"refTypeId": 1480,
 				"dependency": null
 			}
 		},
@@ -8322,7 +8322,7 @@ export const typeModels = {
 				"since": 77,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "MailFolder",
+				"refTypeId": 429,
 				"dependency": null
 			}
 		},
@@ -8356,7 +8356,7 @@ export const typeModels = {
 				"since": 77,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "Any",
-				"refType": "MailFolder",
+				"refTypeId": 429,
 				"dependency": null
 			},
 			"mails": {
@@ -8366,7 +8366,7 @@ export const typeModels = {
 				"since": 77,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "Any",
-				"refType": "Mail",
+				"refTypeId": 97,
 				"dependency": null
 			},
 			"removedLabels": {
@@ -8376,7 +8376,7 @@ export const typeModels = {
 				"since": 77,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "Any",
-				"refType": "MailFolder",
+				"refTypeId": 429,
 				"dependency": null
 			}
 		},
@@ -8487,7 +8487,7 @@ export const typeModels = {
 				"since": 79,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "BlobReferenceTokenWrapper",
+				"refTypeId": 1990,
 				"dependency": "sys"
 			}
 		},
@@ -8539,7 +8539,7 @@ export const typeModels = {
 				"since": 79,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "ZeroOrOne",
-				"refType": "File",
+				"refTypeId": 13,
 				"dependency": null
 			},
 			"newAttachment": {
@@ -8549,7 +8549,7 @@ export const typeModels = {
 				"since": 79,
 				"type": "AGGREGATION",
 				"cardinality": "ZeroOrOne",
-				"refType": "NewImportAttachment",
+				"refTypeId": 1516,
 				"dependency": null
 			}
 		},
@@ -8718,7 +8718,7 @@ export const typeModels = {
 				"since": 79,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "ImportAttachment",
+				"refTypeId": 1524,
 				"dependency": null
 			},
 			"recipients": {
@@ -8728,7 +8728,7 @@ export const typeModels = {
 				"since": 79,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "Recipients",
+				"refTypeId": 1277,
 				"dependency": null
 			},
 			"references": {
@@ -8738,7 +8738,7 @@ export const typeModels = {
 				"since": 79,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "ImportMailDataMailReference",
+				"refTypeId": 1513,
 				"dependency": null
 			},
 			"replyTos": {
@@ -8748,7 +8748,7 @@ export const typeModels = {
 				"since": 79,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "EncryptedMailAddress",
+				"refTypeId": 612,
 				"dependency": null
 			},
 			"sender": {
@@ -8758,7 +8758,7 @@ export const typeModels = {
 				"since": 79,
 				"type": "AGGREGATION",
 				"cardinality": "One",
-				"refType": "MailAddress",
+				"refTypeId": 92,
 				"dependency": null
 			}
 		},
@@ -8819,7 +8819,7 @@ export const typeModels = {
 				"since": 79,
 				"type": "LIST_ELEMENT_ASSOCIATION_CUSTOM",
 				"cardinality": "One",
-				"refType": "MailSetEntry",
+				"refTypeId": 1450,
 				"dependency": null
 			}
 		},
@@ -8916,7 +8916,7 @@ export const typeModels = {
 				"since": 79,
 				"type": "LIST_ASSOCIATION",
 				"cardinality": "One",
-				"refType": "ImportedMail",
+				"refTypeId": 1552,
 				"dependency": null
 			},
 			"targetFolder": {
@@ -8926,7 +8926,7 @@ export const typeModels = {
 				"since": 79,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "MailFolder",
+				"refTypeId": 429,
 				"dependency": null
 			}
 		},
@@ -8960,7 +8960,7 @@ export const typeModels = {
 				"since": 79,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "StringWrapper",
+				"refTypeId": 728,
 				"dependency": "sys"
 			},
 			"mailState": {
@@ -8970,7 +8970,7 @@ export const typeModels = {
 				"since": 79,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "ImportMailState",
+				"refTypeId": 1559,
 				"dependency": null
 			}
 		},
@@ -9072,7 +9072,7 @@ export const typeModels = {
 				"since": 80,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "MailFolder",
+				"refTypeId": 429,
 				"dependency": null
 			}
 		},
@@ -9147,7 +9147,7 @@ export const typeModels = {
 				"since": 80,
 				"type": "LIST_ELEMENT_ASSOCIATION_GENERATED",
 				"cardinality": "One",
-				"refType": "ImportMailState",
+				"refTypeId": 1559,
 				"dependency": null
 			}
 		},
@@ -9335,7 +9335,7 @@ export const typeModels = {
 				"since": 82,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "SupportTopic",
+				"refTypeId": 1618,
 				"dependency": null
 			}
 		},
@@ -9396,7 +9396,7 @@ export const typeModels = {
 				"since": 82,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "SupportCategory",
+				"refTypeId": 1626,
 				"dependency": null
 			}
 		},

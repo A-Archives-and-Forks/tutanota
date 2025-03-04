@@ -339,12 +339,11 @@ export class EventBusClient {
 	 */
 	private async removeUnknownTypes(eventBatch: EntityUpdate[]): Promise<EntityUpdate[]> {
 		return promiseFilter(eventBatch, async (entityUpdate) => {
-			const typeRef = new TypeRef(entityUpdate.application, entityUpdate.type)
 			try {
-				await resolveTypeReference(typeRef)
+				await resolveTypeReference(entityUpdate._type)
 				return true
 			} catch (_error) {
-				console.warn("ignoring entityEventUpdate for unknown type with typeId", getTypeId(typeRef))
+				console.warn("ignoring entityEventUpdate for unknown type with typeId", getTypeId(entityUpdate._type))
 				return false
 			}
 		})

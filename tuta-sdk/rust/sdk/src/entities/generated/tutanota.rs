@@ -34,9 +34,9 @@ pub struct TutanotaFile {
 	pub mimeType: Option<String>,
 	pub name: String,
 	pub size: i64,
-	pub blobs: Vec<super::sys::Blob>,
+	pub blobs: Vec<super::sys::undefined>,
 	pub parent: Option<IdTupleGenerated>,
-	pub subFiles: Option<Subfiles>,
+	pub subFiles: Option<undefined>,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -180,17 +180,17 @@ pub struct Contact {
 	pub presharedPassword: Option<String>,
 	pub role: String,
 	pub title: Option<String>,
-	pub addresses: Vec<ContactAddress>,
-	pub customDate: Vec<ContactCustomDate>,
-	pub mailAddresses: Vec<ContactMailAddress>,
-	pub messengerHandles: Vec<ContactMessengerHandle>,
-	pub oldBirthdayAggregate: Option<Birthday>,
-	pub phoneNumbers: Vec<ContactPhoneNumber>,
+	pub addresses: Vec<undefined>,
+	pub customDate: Vec<undefined>,
+	pub mailAddresses: Vec<undefined>,
+	pub messengerHandles: Vec<undefined>,
+	pub oldBirthdayAggregate: Option<undefined>,
+	pub phoneNumbers: Vec<undefined>,
 	pub photo: Option<IdTupleGenerated>,
-	pub pronouns: Vec<ContactPronouns>,
-	pub relationships: Vec<ContactRelationship>,
-	pub socialIds: Vec<ContactSocialId>,
-	pub websites: Vec<ContactWebsite>,
+	pub pronouns: Vec<undefined>,
+	pub relationships: Vec<undefined>,
+	pub socialIds: Vec<undefined>,
+	pub websites: Vec<undefined>,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -270,12 +270,12 @@ pub struct Mail {
 	pub subject: String,
 	pub unread: bool,
 	pub attachments: Vec<IdTupleGenerated>,
-	pub bucketKey: Option<super::sys::BucketKey>,
+	pub bucketKey: Option<super::sys::undefined>,
 	pub conversationEntry: IdTupleGenerated,
-	pub firstRecipient: Option<MailAddress>,
+	pub firstRecipient: Option<undefined>,
 	pub mailDetails: Option<IdTupleGenerated>,
 	pub mailDetailsDraft: Option<IdTupleGenerated>,
-	pub sender: MailAddress,
+	pub sender: undefined,
 	pub sets: Vec<IdTupleGenerated>,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
@@ -301,15 +301,15 @@ pub struct MailBox {
 	pub _ownerKeyVersion: Option<i64>,
 	pub _permissions: GeneratedId,
 	pub lastInfoDate: DateTime,
-	pub archivedMailBags: Vec<MailBag>,
-	pub currentMailBag: Option<MailBag>,
-	pub folders: Option<MailFolderRef>,
+	pub archivedMailBags: Vec<undefined>,
+	pub currentMailBag: Option<undefined>,
+	pub folders: Option<undefined>,
 	pub importedAttachments: GeneratedId,
-	pub mailDetailsDrafts: Option<MailDetailsDraftsRef>,
+	pub mailDetailsDrafts: Option<undefined>,
 	pub mailImportStates: GeneratedId,
 	pub receivedAttachments: GeneratedId,
 	pub sentAttachments: GeneratedId,
-	pub spamResults: Option<SpamResults>,
+	pub spamResults: Option<undefined>,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -368,7 +368,7 @@ pub struct ExternalUserData {
 	pub kdfVersion: i64,
 	#[serde(with = "serde_bytes")]
 	pub verifier: Vec<u8>,
-	pub userGroupData: CreateExternalUserGroupData,
+	pub userGroupData: undefined,
 }
 
 impl Entity for ExternalUserData {
@@ -391,7 +391,7 @@ pub struct ContactList {
 	pub _ownerKeyVersion: Option<i64>,
 	pub _permissions: GeneratedId,
 	pub contacts: GeneratedId,
-	pub photos: Option<PhotosRef>,
+	pub photos: Option<undefined>,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -451,7 +451,7 @@ pub struct ImapSyncState {
 	pub _id: Option<GeneratedId>,
 	pub _ownerGroup: Option<GeneratedId>,
 	pub _permissions: GeneratedId,
-	pub folders: Vec<ImapFolder>,
+	pub folders: Vec<undefined>,
 }
 
 impl Entity for ImapSyncState {
@@ -505,8 +505,8 @@ pub struct TutanotaProperties {
 	#[serde(with = "serde_bytes")]
 	pub userEncEntropy: Option<Vec<u8>>,
 	pub userKeyVersion: Option<i64>,
-	pub imapSyncConfig: Vec<ImapSyncConfiguration>,
-	pub inboxRules: Vec<InboxRule>,
+	pub imapSyncConfig: Vec<undefined>,
+	pub inboxRules: Vec<undefined>,
 	pub lastPushedMail: Option<IdTupleGenerated>,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
@@ -726,7 +726,7 @@ pub struct NewDraftAttachment {
 	pub encFileName: Vec<u8>,
 	#[serde(with = "serde_bytes")]
 	pub encMimeType: Vec<u8>,
-	pub referenceTokens: Vec<super::sys::BlobReferenceTokenWrapper>,
+	pub referenceTokens: Vec<super::sys::undefined>,
 }
 
 impl Entity for NewDraftAttachment {
@@ -746,7 +746,7 @@ pub struct DraftAttachment {
 	pub ownerEncFileSessionKey: Vec<u8>,
 	pub ownerKeyVersion: i64,
 	pub existingFile: Option<IdTupleGenerated>,
-	pub newFile: Option<NewDraftAttachment>,
+	pub newFile: Option<undefined>,
 }
 
 impl Entity for DraftAttachment {
@@ -769,12 +769,12 @@ pub struct DraftData {
 	pub senderMailAddress: String,
 	pub senderName: String,
 	pub subject: String,
-	pub addedAttachments: Vec<DraftAttachment>,
-	pub bccRecipients: Vec<DraftRecipient>,
-	pub ccRecipients: Vec<DraftRecipient>,
+	pub addedAttachments: Vec<undefined>,
+	pub bccRecipients: Vec<undefined>,
+	pub ccRecipients: Vec<undefined>,
 	pub removedAttachments: Vec<IdTupleGenerated>,
-	pub replyTos: Vec<EncryptedMailAddress>,
-	pub toRecipients: Vec<DraftRecipient>,
+	pub replyTos: Vec<undefined>,
+	pub toRecipients: Vec<undefined>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
 
@@ -796,7 +796,7 @@ pub struct DraftCreateData {
 	pub ownerEncSessionKey: Vec<u8>,
 	pub ownerKeyVersion: i64,
 	pub previousMessageId: Option<String>,
-	pub draftData: DraftData,
+	pub draftData: undefined,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -831,7 +831,7 @@ impl Entity for DraftCreateReturn {
 pub struct DraftUpdateData {
 	pub _format: i64,
 	pub draft: IdTupleGenerated,
-	pub draftData: DraftData,
+	pub draftData: undefined,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -947,11 +947,11 @@ pub struct SendDraftData {
 	pub senderNameUnencrypted: Option<String>,
 	#[serde(with = "serde_bytes")]
 	pub sessionEncEncryptionAuthStatus: Option<Vec<u8>>,
-	pub attachmentKeyData: Vec<AttachmentKeyData>,
-	pub internalRecipientKeyData: Vec<InternalRecipientKeyData>,
+	pub attachmentKeyData: Vec<undefined>,
+	pub internalRecipientKeyData: Vec<undefined>,
 	pub mail: IdTupleGenerated,
-	pub secureExternalRecipientKeyData: Vec<SecureExternalRecipientKeyData>,
-	pub symEncInternalRecipientKeyData: Vec<SymEncInternalRecipientKeyData>,
+	pub secureExternalRecipientKeyData: Vec<undefined>,
+	pub symEncInternalRecipientKeyData: Vec<undefined>,
 }
 
 impl Entity for SendDraftData {
@@ -969,7 +969,7 @@ pub struct SendDraftReturn {
 	pub _format: i64,
 	pub messageId: String,
 	pub sentDate: DateTime,
-	pub notifications: Vec<NotificationMail>,
+	pub notifications: Vec<undefined>,
 	pub sentMail: IdTupleGenerated,
 }
 
@@ -1148,10 +1148,10 @@ pub struct CustomerAccountCreateData {
 	pub userEncAccountGroupKey: Vec<u8>,
 	#[serde(with = "serde_bytes")]
 	pub userEncAdminGroupKey: Vec<u8>,
-	pub adminGroupData: InternalGroupData,
-	pub customerGroupData: InternalGroupData,
-	pub userData: UserAccountUserData,
-	pub userGroupData: InternalGroupData,
+	pub adminGroupData: undefined,
+	pub customerGroupData: undefined,
+	pub userData: undefined,
+	pub userGroupData: undefined,
 }
 
 impl Entity for CustomerAccountCreateData {
@@ -1168,8 +1168,8 @@ impl Entity for CustomerAccountCreateData {
 pub struct UserAccountCreateData {
 	pub _format: i64,
 	pub date: Option<DateTime>,
-	pub userData: UserAccountUserData,
-	pub userGroupData: InternalGroupData,
+	pub userData: undefined,
+	pub userGroupData: undefined,
 }
 
 impl Entity for UserAccountCreateData {
@@ -1207,11 +1207,11 @@ pub struct MailboxGroupRoot {
 	pub _id: Option<GeneratedId>,
 	pub _ownerGroup: Option<GeneratedId>,
 	pub _permissions: GeneratedId,
-	pub calendarEventUpdates: Option<CalendarEventUpdateList>,
+	pub calendarEventUpdates: Option<undefined>,
 	pub mailbox: GeneratedId,
 	pub mailboxProperties: Option<GeneratedId>,
 	pub outOfOfficeNotification: Option<GeneratedId>,
-	pub outOfOfficeNotificationRecipientList: Option<OutOfOfficeNotificationRecipientList>,
+	pub outOfOfficeNotificationRecipientList: Option<undefined>,
 	pub serverProperties: GeneratedId,
 }
 
@@ -1233,7 +1233,7 @@ pub struct CreateMailGroupData {
 	pub mailAddress: String,
 	#[serde(with = "serde_bytes")]
 	pub mailEncMailboxSessionKey: Vec<u8>,
-	pub groupData: InternalGroupData,
+	pub groupData: undefined,
 }
 
 impl Entity for CreateMailGroupData {
@@ -1323,8 +1323,8 @@ pub struct CalendarRepeatRule {
 	pub frequency: i64,
 	pub interval: i64,
 	pub timeZone: String,
-	pub advancedRules: Vec<AdvancedRepeatRule>,
-	pub excludedDates: Vec<super::sys::DateWrapper>,
+	pub advancedRules: Vec<undefined>,
+	pub excludedDates: Vec<super::sys::undefined>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
 
@@ -1359,9 +1359,9 @@ pub struct CalendarEvent {
 	pub summary: String,
 	pub uid: Option<String>,
 	pub alarmInfos: Vec<IdTupleGenerated>,
-	pub attendees: Vec<CalendarEventAttendee>,
-	pub organizer: Option<EncryptedMailAddress>,
-	pub repeatRule: Option<CalendarRepeatRule>,
+	pub attendees: Vec<undefined>,
+	pub organizer: Option<undefined>,
+	pub repeatRule: Option<undefined>,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -1385,7 +1385,7 @@ pub struct CalendarGroupRoot {
 	pub _ownerGroup: Option<GeneratedId>,
 	pub _ownerKeyVersion: Option<i64>,
 	pub _permissions: GeneratedId,
-	pub index: Option<CalendarEventIndexRef>,
+	pub index: Option<undefined>,
 	pub longEvents: GeneratedId,
 	pub shortEvents: GeneratedId,
 	pub _errors: Option<Errors>,
@@ -1434,7 +1434,7 @@ impl Entity for UserAreaGroupData {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct UserAreaGroupPostData {
 	pub _format: i64,
-	pub groupData: UserAreaGroupData,
+	pub groupData: undefined,
 }
 
 impl Entity for UserAreaGroupPostData {
@@ -1453,7 +1453,7 @@ pub struct GroupSettings {
 	pub color: String,
 	pub name: Option<String>,
 	pub sourceUrl: Option<String>,
-	pub defaultAlarmsList: Vec<DefaultAlarmInfo>,
+	pub defaultAlarmsList: Vec<undefined>,
 	pub group: GeneratedId,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -1480,7 +1480,7 @@ pub struct UserSettingsGroupRoot {
 	pub startOfTheWeek: i64,
 	pub timeFormat: i64,
 	pub usageDataOptedIn: Option<bool>,
-	pub groupSettings: Vec<GroupSettings>,
+	pub groupSettings: Vec<undefined>,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -1562,8 +1562,8 @@ impl Entity for SharedGroupData {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct GroupInvitationPostData {
 	pub _format: i64,
-	pub internalKeyData: Vec<InternalRecipientKeyData>,
-	pub sharedGroupData: SharedGroupData,
+	pub internalKeyData: Vec<undefined>,
+	pub sharedGroupData: undefined,
 }
 
 impl Entity for GroupInvitationPostData {
@@ -1579,9 +1579,9 @@ impl Entity for GroupInvitationPostData {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct GroupInvitationPostReturn {
 	pub _format: i64,
-	pub existingMailAddresses: Vec<MailAddress>,
-	pub invalidMailAddresses: Vec<MailAddress>,
-	pub invitedMailAddresses: Vec<MailAddress>,
+	pub existingMailAddresses: Vec<undefined>,
+	pub invalidMailAddresses: Vec<undefined>,
+	pub invitedMailAddresses: Vec<undefined>,
 }
 
 impl Entity for GroupInvitationPostReturn {
@@ -1653,7 +1653,7 @@ impl Entity for ReportedMailFieldMarker {
 pub struct PhishingMarkerWebsocketData {
 	pub _format: i64,
 	pub lastId: GeneratedId,
-	pub markers: Vec<ReportedMailFieldMarker>,
+	pub markers: Vec<undefined>,
 }
 
 impl Entity for PhishingMarkerWebsocketData {
@@ -1689,7 +1689,7 @@ impl Entity for ReportMailPostData {
 pub struct CalendarEventAttendee {
 	pub _id: Option<CustomId>,
 	pub status: i64,
-	pub address: EncryptedMailAddress,
+	pub address: undefined,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
 
@@ -1826,7 +1826,7 @@ pub struct OutOfOfficeNotification {
 	pub enabled: bool,
 	pub endDate: Option<DateTime>,
 	pub startDate: Option<DateTime>,
-	pub notifications: Vec<OutOfOfficeNotificationMessage>,
+	pub notifications: Vec<undefined>,
 }
 
 impl Entity for OutOfOfficeNotification {
@@ -1884,7 +1884,7 @@ pub struct EmailTemplate {
 	pub _permissions: GeneratedId,
 	pub tag: String,
 	pub title: String,
-	pub contents: Vec<EmailTemplateContent>,
+	pub contents: Vec<undefined>,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -1927,7 +1927,7 @@ pub struct KnowledgeBaseEntry {
 	pub _permissions: GeneratedId,
 	pub description: String,
 	pub title: String,
-	pub keywords: Vec<KnowledgeBaseEntryKeyword>,
+	pub keywords: Vec<undefined>,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -1993,7 +1993,7 @@ pub struct MailboxProperties {
 	pub _ownerKeyVersion: Option<i64>,
 	pub _permissions: GeneratedId,
 	pub reportMovedMails: i64,
-	pub mailAddressProperties: Vec<MailAddressProperties>,
+	pub mailAddressProperties: Vec<undefined>,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -2044,7 +2044,7 @@ impl Entity for NewsId {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct NewsOut {
 	pub _format: i64,
-	pub newsItemIds: Vec<NewsId>,
+	pub newsItemIds: Vec<undefined>,
 }
 
 impl Entity for NewsOut {
@@ -2130,9 +2130,9 @@ impl Entity for Body {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct Recipients {
 	pub _id: Option<CustomId>,
-	pub bccRecipients: Vec<MailAddress>,
-	pub ccRecipients: Vec<MailAddress>,
-	pub toRecipients: Vec<MailAddress>,
+	pub bccRecipients: Vec<undefined>,
+	pub ccRecipients: Vec<undefined>,
+	pub toRecipients: Vec<undefined>,
 }
 
 impl Entity for Recipients {
@@ -2150,10 +2150,10 @@ pub struct MailDetails {
 	pub _id: Option<CustomId>,
 	pub authStatus: i64,
 	pub sentDate: DateTime,
-	pub body: Body,
-	pub headers: Option<Header>,
-	pub recipients: Recipients,
-	pub replyTos: Vec<EncryptedMailAddress>,
+	pub body: undefined,
+	pub headers: Option<undefined>,
+	pub recipients: undefined,
+	pub replyTos: Vec<undefined>,
 }
 
 impl Entity for MailDetails {
@@ -2175,7 +2175,7 @@ pub struct MailDetailsDraft {
 	pub _ownerGroup: Option<GeneratedId>,
 	pub _ownerKeyVersion: Option<i64>,
 	pub _permissions: GeneratedId,
-	pub details: MailDetails,
+	pub details: undefined,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -2199,7 +2199,7 @@ pub struct MailDetailsBlob {
 	pub _ownerGroup: Option<GeneratedId>,
 	pub _ownerKeyVersion: Option<i64>,
 	pub _permissions: GeneratedId,
-	pub details: MailDetails,
+	pub details: undefined,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -2557,7 +2557,7 @@ pub struct ManageLabelServicePostIn {
 	pub ownerEncSessionKey: Vec<u8>,
 	pub ownerGroup: GeneratedId,
 	pub ownerKeyVersion: i64,
-	pub data: ManageLabelServiceLabelData,
+	pub data: undefined,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -2635,7 +2635,7 @@ pub struct NewImportAttachment {
 	pub encMimeType: Vec<u8>,
 	#[serde(with = "serde_bytes")]
 	pub ownerEncFileHashSessionKey: Option<Vec<u8>>,
-	pub referenceTokens: Vec<super::sys::BlobReferenceTokenWrapper>,
+	pub referenceTokens: Vec<super::sys::undefined>,
 }
 
 impl Entity for NewImportAttachment {
@@ -2655,7 +2655,7 @@ pub struct ImportAttachment {
 	pub ownerEncFileSessionKey: Vec<u8>,
 	pub ownerFileKeyVersion: i64,
 	pub existingAttachmentFile: Option<IdTupleGenerated>,
-	pub newAttachment: Option<NewImportAttachment>,
+	pub newAttachment: Option<undefined>,
 }
 
 impl Entity for ImportAttachment {
@@ -2687,11 +2687,11 @@ pub struct ImportMailData {
 	pub state: i64,
 	pub subject: String,
 	pub unread: bool,
-	pub importedAttachments: Vec<ImportAttachment>,
-	pub recipients: Recipients,
-	pub references: Vec<ImportMailDataMailReference>,
-	pub replyTos: Vec<EncryptedMailAddress>,
-	pub sender: MailAddress,
+	pub importedAttachments: Vec<undefined>,
+	pub recipients: undefined,
+	pub references: Vec<undefined>,
+	pub replyTos: Vec<undefined>,
+	pub sender: undefined,
 	pub _errors: Option<Errors>,
 	pub _finalIvs: HashMap<String, FinalIv>,
 }
@@ -2752,7 +2752,7 @@ impl Entity for ImportMailState {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct ImportMailPostIn {
 	pub _format: i64,
-	pub encImports: Vec<super::sys::StringWrapper>,
+	pub encImports: Vec<super::sys::undefined>,
 	pub mailState: IdTupleGenerated,
 }
 
@@ -2884,7 +2884,7 @@ pub struct SupportCategory {
 	pub introductionEN: String,
 	pub nameDE: String,
 	pub nameEN: String,
-	pub topics: Vec<SupportTopic>,
+	pub topics: Vec<undefined>,
 }
 
 impl Entity for SupportCategory {
@@ -2903,7 +2903,7 @@ pub struct SupportData {
 	pub _id: Option<GeneratedId>,
 	pub _ownerGroup: Option<GeneratedId>,
 	pub _permissions: GeneratedId,
-	pub categories: Vec<SupportCategory>,
+	pub categories: Vec<undefined>,
 }
 
 impl Entity for SupportData {

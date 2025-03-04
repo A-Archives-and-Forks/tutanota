@@ -92,7 +92,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "UsageTestMetricConfigValue",
+				"refTypeId": 8,
 				"dependency": null
 			}
 		},
@@ -194,7 +194,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "UsageTestMetricConfig",
+				"refTypeId": 12,
 				"dependency": null
 			}
 		},
@@ -296,7 +296,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "UsageTestStage",
+				"refTypeId": 35,
 				"dependency": null
 			}
 		},
@@ -339,7 +339,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "UsageTestAssignment",
+				"refTypeId": 56,
 				"dependency": null
 			}
 		},
@@ -400,7 +400,7 @@ export const typeModels = {
 				"since": 1,
 				"type": "AGGREGATION",
 				"cardinality": "Any",
-				"refType": "UsageTestMetricData",
+				"refTypeId": 17,
 				"dependency": null
 			}
 		},

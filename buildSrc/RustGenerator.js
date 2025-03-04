@@ -30,7 +30,7 @@ pub struct ${typeName} {\n`
 	}
 
 	for (let [associationName, associationProperties] of Object.entries(type.associations)) {
-		const innerRustType = rustAssociationType(associationProperties)
+		const innerRustType = rustAssociationType(associationProperties, modelName)
 		let rustType
 		switch (associationProperties.cardinality) {
 			case "ZeroOrOne":
@@ -205,7 +205,9 @@ function rustValueType(valueName, type, value) {
  * @param association {import("../src/common/api/common/EntityTypes.js").ModelAssociation}
  * @return {string}
  */
-function rustAssociationType(association) {
+function rustAssociationType(association, modelName) {
+	const dependentApp = mapTypeName(association.re)
+
 	if (association.type === AssociationType.Aggregation) {
 		if (association.dependency) {
 			return `super::${association.dependency}::${association.refType}`
