@@ -131,6 +131,7 @@ public let TUTA_MAIL_INTEROP_SCHEME = "tutamail"
 		let apsDict = userInfo["aps"] as! [String: Any]
 
 		let contentAvailable = apsDict["content-available"]
+		TUTSLog("Received background notification, content-available: \(String(describing: contentAvailable))")
 		if contentAvailable as? Int == 1 {
 			self.notificationsHandler.fetchMissedNotifications { result in
 				TUTSLog("Fetched missed notification after notification \(String(describing: result))")
