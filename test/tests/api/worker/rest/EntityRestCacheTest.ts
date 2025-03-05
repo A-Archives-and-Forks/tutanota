@@ -116,6 +116,7 @@ export function testEntityRestCache(name: string, getStorage: (userId: Id) => Pr
 			let eu = createTestEntity(EntityUpdateTypeRef)
 			eu.application = typeRef.app
 			eu.type = typeRef.typeId.toString()
+			eu.typeId = typeRef.typeId.toString()
 			eu.instanceListId = listId
 			eu.instanceId = id
 			eu.operation = operation

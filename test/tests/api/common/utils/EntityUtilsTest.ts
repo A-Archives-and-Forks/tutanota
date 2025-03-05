@@ -54,7 +54,7 @@ o.spec("EntityUtils", function () {
 	})
 
 	o("create new entity without error object ", function () {
-		const mailEntity = create(typeModels.Mail, MailTypeRef)
+		const mailEntity = create(typeModels[MailTypeRef.typeId], MailTypeRef)
 		o(mailEntity._errors).equals(undefined)
 		o(hasError(mailEntity)).equals(false)
 

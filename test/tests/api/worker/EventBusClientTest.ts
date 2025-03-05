@@ -164,9 +164,13 @@ o.spec("EventBusClientTest", function () {
 			restClient.addListInstances(batch)
 
 			const eventsReceivedDefer = defer()
-			when(cacheMock.entityEventsReceived({ events: [update], batchId: getElementId(batch), groupId: mailGroupId })).thenDo(() =>
-				eventsReceivedDefer.resolve(undefined),
-			)
+			when(
+				cacheMock.entityEventsReceived({
+					events: [update],
+					batchId: getElementId(batch),
+					groupId: mailGroupId,
+				}),
+			).thenDo(() => eventsReceivedDefer.resolve(undefined))
 
 			await ebc.connect(ConnectMode.Initial)
 			await socket.onopen?.(new Event("open"))
@@ -313,7 +317,7 @@ o.spec("EventBusClientTest", function () {
 		const unknownEntityUpdate = createTestEntity(EntityUpdateTypeRef, {
 			_id: "eventBatchId",
 			application: "sys",
-			typeId: 999999,
+			typeId: String(999999),
 			instanceListId: "listId2",
 			instanceId: "id1",
 			operation: OperationType.UPDATE,
@@ -424,7 +428,7 @@ o.spec("EventBusClientTest", function () {
 				createTestEntity(EntityUpdateTypeRef, {
 					_id: "eventBatchId",
 					application: "sys",
-					typeId: 999999,
+					typeId: String(999999),
 					instanceListId: "listId2",
 					instanceId: "id1",
 					operation: OperationType.UPDATE,

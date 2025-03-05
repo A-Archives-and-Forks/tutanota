@@ -2,6 +2,7 @@ import { ConversationEntry, ConversationEntryTypeRef, Mail, MailTypeRef } from "
 import { MailViewerViewModel } from "./MailViewerViewModel.js"
 import { CreateMailViewerOptions } from "./MailViewer.js"
 import { elementIdPart, firstBiggerThanSecond, getElementId, haveSameId, isSameId, listIdPart } from "../../../common/api/common/utils/EntityUtils.js"
+import { assertNotNull, findLastIndex, groupBy, isSameTypeRef, makeSingleUse, ofClass, TypeRef } from "@tutao/tutanota-utils"
 import { assertNotNull, findLast, findLastIndex, groupBy, makeSingleUse, memoizedWithHiddenArgument, ofClass } from "@tutao/tutanota-utils"
 import { EntityClient } from "../../../common/api/common/EntityClient.js"
 import { LoadingStateTracker } from "../../../common/offline/LoadingState.js"
@@ -17,7 +18,7 @@ import { isOfTypeOrSubfolderOf } from "../model/MailChecks.js"
 
 export type MailViewerViewModelFactory = (options: CreateMailViewerOptions) => MailViewerViewModel
 
-export type MailItem = { type: "mail"; viewModel: MailViewerViewModel; entryId: IdTuple }
+export type MailItem = { type_ref: TypeRef<Mail>; viewModel: MailViewerViewModel; entryId: IdTuple }
 export type ConversationItem = MailItem
 
 export interface ConversationPrefProvider {
@@ -98,7 +99,7 @@ export class ConversationViewModel {
 					return
 				}
 				const conversation = assertNotNull(this.conversation)
-				if (conversation.some((item) => item.type === "mail" && isSameId(item.viewModel.mail.conversationEntry, id))) {
+				if (conversation.some((item) => isSameTypeRef(item.type_ref, MailTypeRef) && isSameId(item.viewModel.mail.conversationEntry, id))) {
 					// already loaded
 					return
 				}
@@ -110,7 +111,7 @@ export class ConversationViewModel {
 					index = index + 1
 				}
 				conversation.splice(index, 0, {
-					type: "mail",
+                    type_ref: MailTypeRef,
 					viewModel: this.viewModelFactory({ ...this.options, mail }),
 					entryId: entry._id,
 				})
@@ -157,16 +158,16 @@ export class ConversationViewModel {
 			}
 		}
 
-		const oldItemIndex = conversation.findIndex((e) => e.type === "mail" && isSameId(e.viewModel.mail.conversationEntry, ceId))
+		const oldItemIndex = conversation.findIndex((e) => isSameTypeRef(e.type_ref, MailTypeRef) && isSameId(e.viewModel.mail.conversationEntry, ceId))
 		if (oldItemIndex === -1) {
 			return
 		}
 		const oldItem = conversation[oldItemIndex]
-		if (mail && oldItem.type === "mail" && haveSameId(oldItem.viewModel.mail, mail)) {
+		if (mail && isSameTypeRef(oldItem.type_ref, MailTypeRef) && haveSameId(oldItem.viewModel.mail, mail)) {
 			console.log("Noop entry update?", oldItem.viewModel.mail)
 			// nothing to do really, why do we get this update again?
 		} else {
-			if (oldItem.type === "mail") {
+			if (isSameTypeRef(oldItem.type_ref, MailTypeRef)) {
 				oldItem.viewModel.dispose()
 			}
 
@@ -176,7 +177,7 @@ export class ConversationViewModel {
 					conversation.splice(oldItemIndex, 1)
 				} else {
 					conversation[oldItemIndex] = {
-						type: "mail",
+						type_ref: MailTypeRef,
 						viewModel: this.viewModelFactory({ ...this.options, mail }),
 						entryId: conversationEntry._id,
 					}
@@ -235,7 +236,7 @@ export class ConversationViewModel {
 
 			if (mail) {
 				newConversation.push({
-					type: "mail",
+                    type_ref: MailTypeRef,
 					viewModel: isSameId(mail._id, this.options.mail._id)
 						? this._primaryViewModel
 						: this.viewModelFactory({
@@ -309,7 +310,7 @@ export class ConversationViewModel {
 	private conversationItemsForSelectedMailOnly(): ConversationItem[] {
 		return [
 			{
-				type: "mail",
+                type_ref: MailTypeRef,
 				viewModel: this._primaryViewModel,
 				entryId: this._primaryViewModel.mail.conversationEntry,
 			},
@@ -336,7 +337,7 @@ export class ConversationViewModel {
 		if (this.loadingState.isConnectionLost()) {
 			this.loadingState.trackPromise(
 				this.loadConversation().then(async () => {
-					const mails = (this.conversation?.filter((e) => e.typeId === "mail") ?? []) as Array<MailItem>
+					const mails = (this.conversation?.filter((e) => isSameTypeRef(e.type_ref, MailTypeRef)) ?? []) as Array<MailItem>
 					await Promise.all(mails.map((m) => m.viewModel.loadAll(Promise.resolve())))
 				}),
 			)
@@ -348,7 +349,7 @@ export class ConversationViewModel {
 		if (this.loadingPromise != null) {
 			this.eventController.removeEntityListener(this.onEntityEvent)
 			for (const item of this.conversationItems()) {
-				if (item.type === "mail") {
+				if (isSameTypeRef(item.type_ref, MailTypeRef)) {
 					item.viewModel.dispose()
 				}
 			}

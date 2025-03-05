@@ -235,6 +235,7 @@ mod tests {
 	use crate::date::DateTime;
 	use crate::entities::entity_facade::{EntityFacadeImpl, ID_FIELD};
 	use crate::entities::generated::tutanota::Mail;
+	use crate::entities::Entity;
 	use crate::entity_client::MockEntityClient;
 	use crate::instance_mapper::InstanceMapper;
 	use crate::metamodel::TypeModel;

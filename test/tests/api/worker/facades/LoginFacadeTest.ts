@@ -432,14 +432,15 @@ o.spec("LoginFacadeTest", function () {
 				user.accountType = AccountType.PAID
 				const connectionError = new ConnectionError("Oopsie 2")
 				when(restClientMock.request(anything(), HttpMethod.GET, anything())).thenDo(async () => {
+					console.log("pushing session service")
 					calls.push("sessionService")
 					throw connectionError
 				})
 
 				const result = await facade.resumeSession(credentials, { salt: user.salt!, kdfType: DEFAULT_KDF_TYPE }, dbKey, timeRangeDays)
 
-				// we expect async resume session so we have to pause current code execution.
-				await Promise.resolve()
+				// wait for async resume session
+				await result.asyncResumeSession
 
 				o(result.type).equals("success")
 				o(calls).deepEquals(["setUser", "sessionService"])
@@ -447,6 +448,10 @@ o.spec("LoginFacadeTest", function () {
 				// Did not finish login
 				verify(userFacade.unlockUserGroupKey(anything()), { times: 0 })
 			})
+
+			function sleep(ms) {
+				return new Promise((resolve) => setTimeout(resolve, ms))
+			}
 
 			o("When not using offline as free user with connection, sync login", async function () {
 				usingOfflineStorage = false

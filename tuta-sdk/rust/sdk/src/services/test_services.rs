@@ -42,6 +42,14 @@ pub const HELLO_OUTPUT_ENCRYPTED: &str = r#"{
 		"app": "test",
 		"version": "75"
 	}"#;
+impl Entity for HelloEncOutput {
+	fn type_ref() -> TypeRef {
+		TypeRef {
+			app: "test",
+			type_id: 458,
+		}
+	}
+}
 pub const HELLO_INPUT_ENCRYPTED: &str = r#"{
 		"name": "HelloEncInput",
 		"since": 7,
@@ -65,6 +73,14 @@ pub const HELLO_INPUT_ENCRYPTED: &str = r#"{
 		"app": "test",
 		"version": "75"
 	}"#;
+impl Entity for HelloEncInput {
+	fn type_ref() -> TypeRef {
+		TypeRef {
+			app: "test",
+			type_id: 358,
+		}
+	}
+}
 
 pub const HELLO_OUTPUT_UNENCRYPTED: &str = r#"{
 		"name": "HelloUnEncOutput",
@@ -98,6 +114,15 @@ pub const HELLO_OUTPUT_UNENCRYPTED: &str = r#"{
 		"app": "test",
 		"version": "75"
 	}"#;
+
+impl Entity for HelloUnEncOutput {
+	fn type_ref() -> TypeRef {
+		TypeRef {
+			app: "test",
+			type_id: 248,
+		}
+	}
+}
 pub const HELLO_INPUT_UNENCRYPTED: &str = r#"{
 		"name": "HelloUnEncInput",
 		"since": 7,
@@ -122,6 +147,15 @@ pub const HELLO_INPUT_UNENCRYPTED: &str = r#"{
 		"version": "75"
 	}"#;
 
+impl Entity for HelloUnEncInput {
+	fn type_ref() -> TypeRef {
+		TypeRef {
+			app: "test",
+			type_id: 148,
+		}
+	}
+}
+
 pub fn extend_model_resolver(model_resolver: &mut HashMap<AppName, HashMap<TypeId, TypeModel>>) {
 	assert!(model_resolver.get("test").is_none());
 
@@ -134,9 +168,12 @@ pub fn extend_model_resolver(model_resolver: &mut HashMap<AppName, HashMap<TypeI
 
 	let test_types = [
 		(HelloEncInput::type_ref().type_id, enc_input_type_model),
-		(HelloEncInput::type_ref().type_id, enc_output_type_model),
+		(HelloEncOutput::type_ref().type_id, enc_output_type_model),
 		(HelloUnEncInput::type_ref().type_id, unenc_input_type_model),
-		(HelloEncOutput::type_ref().type_id, unenc_output_type_model),
+		(
+			HelloUnEncOutput::type_ref().type_id,
+			unenc_output_type_model,
+		),
 	]
 	.into_iter()
 	.collect();
@@ -166,42 +203,6 @@ pub struct HelloUnEncInput {
 pub struct HelloUnEncOutput {
 	pub answer: String,
 	pub timestamp: DateTime,
-}
-
-impl Entity for HelloEncInput {
-	fn type_ref() -> TypeRef {
-		TypeRef {
-			app: "test",
-			type_id: 358,
-		}
-	}
-}
-
-impl Entity for HelloEncOutput {
-	fn type_ref() -> TypeRef {
-		TypeRef {
-			app: "test",
-			type_id: 458,
-		}
-	}
-}
-
-impl Entity for HelloUnEncInput {
-	fn type_ref() -> TypeRef {
-		TypeRef {
-			app: "test",
-			type_id: 148,
-		}
-	}
-}
-
-impl Entity for HelloUnEncOutput {
-	fn type_ref() -> TypeRef {
-		TypeRef {
-			app: "test",
-			type_id: 248,
-		}
-	}
 }
 
 service_impl!(

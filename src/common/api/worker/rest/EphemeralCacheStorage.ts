@@ -1,5 +1,5 @@
-import { BlobElementEntity, ElementEntity, ListElementEntity, SomeEntity, TypeModel } from "../../common/EntityTypes.js"
-import { EntityRestClient, typeRefToRestPath } from "./EntityRestClient.js"
+import { BlobElementEntity, ElementEntity, ListElementEntity, SomeEntity } from "../../common/EntityTypes.js"
+import { EntityRestClient } from "./EntityRestClient.js"
 import { firstBiggerThanSecond } from "../../common/utils/EntityUtils.js"
 import { CacheStorage, expandId, LastUpdateTime } from "./DefaultEntityRestCache.js"
 import { assertNotNull, clone, getFromMap, getTypeId, remove, TypeRef } from "@tutao/tutanota-utils"
@@ -254,7 +254,13 @@ export class EphemeralCacheStorage implements CacheStorage {
 		return result
 	}
 
-	async getRangeForList<T extends ListElementEntity>(typeRef: TypeRef<T>, listId: Id): Promise<{ lower: Id; upper: Id } | null> {
+	async getRangeForList<T extends ListElementEntity>(
+		typeRef: TypeRef<T>,
+		listId: Id,
+	): Promise<{
+		lower: Id
+		upper: Id
+	} | null> {
 		const listCache = this.lists.get(getTypeId(typeRef))?.get(listId)
 
 		if (listCache == null) {
