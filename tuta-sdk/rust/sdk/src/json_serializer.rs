@@ -109,7 +109,7 @@ impl JsonSerializer {
 					})?;
 			let association_type_ref = TypeRef {
 				app: association_type.dependency.unwrap_or(type_ref.app),
-				type_id: association_type.ref_type,
+				type_id: association_type.ref_type_id,
 			};
 			match (
 				&association_type.association_type,
@@ -338,7 +338,7 @@ impl JsonSerializer {
 			let association_type_ref = TypeRef {
 				// aggregates can be imported across app (e.g. SystemModel, etc.)
 				app: association_type.dependency.unwrap_or(type_ref.app),
-				type_id: association_type.ref_type,
+				type_id: association_type.ref_type_id,
 			};
 			let serialized_association = match (
 				&association_type.association_type,

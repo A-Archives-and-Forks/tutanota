@@ -6,7 +6,7 @@ import { typeModels } from "./TypeModels.js"
 export const CustomerAccountPostingTypeRef: TypeRef<CustomerAccountPosting> = new TypeRef("accounting", 79)
 
 export function createCustomerAccountPosting(values: StrippedEntity<CustomerAccountPosting>): CustomerAccountPosting {
-	return Object.assign(create(typeModels.CustomerAccountPosting, CustomerAccountPostingTypeRef), values)
+	return Object.assign(create(typeModels[CustomerAccountPostingTypeRef.typeId], CustomerAccountPostingTypeRef), values)
 }
 
 export type CustomerAccountPosting = {
@@ -21,7 +21,7 @@ export type CustomerAccountPosting = {
 export const CustomerAccountReturnTypeRef: TypeRef<CustomerAccountReturn> = new TypeRef("accounting", 86)
 
 export function createCustomerAccountReturn(values: StrippedEntity<CustomerAccountReturn>): CustomerAccountReturn {
-	return Object.assign(create(typeModels.CustomerAccountReturn, CustomerAccountReturnTypeRef), values)
+	return Object.assign(create(typeModels[CustomerAccountReturnTypeRef.typeId], CustomerAccountReturnTypeRef), values)
 }
 
 export type CustomerAccountReturn = {

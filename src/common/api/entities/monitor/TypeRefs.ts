@@ -6,7 +6,7 @@ import { typeModels } from "./TypeModels.js"
 export const ReadCounterDataTypeRef: TypeRef<ReadCounterData> = new TypeRef("monitor", 12)
 
 export function createReadCounterData(values: StrippedEntity<ReadCounterData>): ReadCounterData {
-	return Object.assign(create(typeModels.ReadCounterData, ReadCounterDataTypeRef), values)
+	return Object.assign(create(typeModels[ReadCounterDataTypeRef.typeId], ReadCounterDataTypeRef), values)
 }
 
 export type ReadCounterData = {
@@ -20,7 +20,7 @@ export type ReadCounterData = {
 export const ReadCounterReturnTypeRef: TypeRef<ReadCounterReturn> = new TypeRef("monitor", 16)
 
 export function createReadCounterReturn(values: StrippedEntity<ReadCounterReturn>): ReadCounterReturn {
-	return Object.assign(create(typeModels.ReadCounterReturn, ReadCounterReturnTypeRef), values)
+	return Object.assign(create(typeModels[ReadCounterReturnTypeRef.typeId], ReadCounterReturnTypeRef), values)
 }
 
 export type ReadCounterReturn = {
@@ -34,7 +34,7 @@ export type ReadCounterReturn = {
 export const WriteCounterDataTypeRef: TypeRef<WriteCounterData> = new TypeRef("monitor", 49)
 
 export function createWriteCounterData(values: StrippedEntity<WriteCounterData>): WriteCounterData {
-	return Object.assign(create(typeModels.WriteCounterData, WriteCounterDataTypeRef), values)
+	return Object.assign(create(typeModels[WriteCounterDataTypeRef.typeId], WriteCounterDataTypeRef), values)
 }
 
 export type WriteCounterData = {
@@ -49,7 +49,7 @@ export type WriteCounterData = {
 export const ApprovalMailTypeRef: TypeRef<ApprovalMail> = new TypeRef("monitor", 221)
 
 export function createApprovalMail(values: StrippedEntity<ApprovalMail>): ApprovalMail {
-	return Object.assign(create(typeModels.ApprovalMail, ApprovalMailTypeRef), values)
+	return Object.assign(create(typeModels[ApprovalMailTypeRef.typeId], ApprovalMailTypeRef), values)
 }
 
 export type ApprovalMail = {
@@ -68,7 +68,7 @@ export type ApprovalMail = {
 export const CounterValueTypeRef: TypeRef<CounterValue> = new TypeRef("monitor", 300)
 
 export function createCounterValue(values: StrippedEntity<CounterValue>): CounterValue {
-	return Object.assign(create(typeModels.CounterValue, CounterValueTypeRef), values)
+	return Object.assign(create(typeModels[CounterValueTypeRef.typeId], CounterValueTypeRef), values)
 }
 
 export type CounterValue = {
@@ -81,7 +81,7 @@ export type CounterValue = {
 export const ErrorReportFileTypeRef: TypeRef<ErrorReportFile> = new TypeRef("monitor", 305)
 
 export function createErrorReportFile(values: StrippedEntity<ErrorReportFile>): ErrorReportFile {
-	return Object.assign(create(typeModels.ErrorReportFile, ErrorReportFileTypeRef), values)
+	return Object.assign(create(typeModels[ErrorReportFileTypeRef.typeId], ErrorReportFileTypeRef), values)
 }
 
 export type ErrorReportFile = {
@@ -94,7 +94,7 @@ export type ErrorReportFile = {
 export const ErrorReportDataTypeRef: TypeRef<ErrorReportData> = new TypeRef("monitor", 316)
 
 export function createErrorReportData(values: StrippedEntity<ErrorReportData>): ErrorReportData {
-	return Object.assign(create(typeModels.ErrorReportData, ErrorReportDataTypeRef), values)
+	return Object.assign(create(typeModels[ErrorReportDataTypeRef.typeId], ErrorReportDataTypeRef), values)
 }
 
 export type ErrorReportData = {
@@ -114,7 +114,7 @@ export type ErrorReportData = {
 export const ReportErrorInTypeRef: TypeRef<ReportErrorIn> = new TypeRef("monitor", 335)
 
 export function createReportErrorIn(values: StrippedEntity<ReportErrorIn>): ReportErrorIn {
-	return Object.assign(create(typeModels.ReportErrorIn, ReportErrorInTypeRef), values)
+	return Object.assign(create(typeModels[ReportErrorInTypeRef.typeId], ReportErrorInTypeRef), values)
 }
 
 export type ReportErrorIn = {

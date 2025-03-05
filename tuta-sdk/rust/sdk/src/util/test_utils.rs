@@ -184,10 +184,10 @@ pub fn typed_entity_to_parsed_entity<T: Entity + serde::Serialize>(entity: T) ->
 fn create_test_entity_dict_with_provider(
 	provider: &TypeModelProvider,
 	app: &str,
-	type_: &str,
+	type_id: u64,
 ) -> ParsedEntity {
-	let Some(model) = provider.get_type_model(app, type_) else {
-		panic!("Failed to create test entity {app}/{type_}: not in model")
+	let Some(model) = provider.get_type_model(app, type_id) else {
+		panic!("Failed to create test entity {app}/{type_id}: not in model")
 	};
 	let mut object = ParsedEntity::new();
 
@@ -261,7 +261,7 @@ fn create_test_entity_dict_with_provider(
 					ElementValue::Dict(create_test_entity_dict_with_provider(
 						provider,
 						value.dependency.unwrap_or(app),
-						value.ref_type,
+						value.ref_type_id,
 					))
 				},
 				AssociationType::BlobElementAssociation => ElementValue::IdTupleGeneratedElementId(
@@ -285,10 +285,10 @@ fn create_test_entity_dict_with_provider(
 fn create_encrypted_test_entity_dict_with_provider(
 	provider: &TypeModelProvider,
 	app: &str,
-	type_: &str,
+	type_id: u64,
 ) -> ParsedEntity {
-	let Some(model) = provider.get_type_model(app, type_) else {
-		panic!("Failed to create test entity {app}/{type_}: not in model")
+	let Some(model) = provider.get_type_model(app, type_id) else {
+		panic!("Failed to create test entity {app}/{type_id}: not in model")
 	};
 	let mut object = ParsedEntity::new();
 
@@ -369,7 +369,7 @@ fn create_encrypted_test_entity_dict_with_provider(
 					ElementValue::Dict(create_encrypted_test_entity_dict_with_provider(
 						provider,
 						value.dependency.unwrap_or(app),
-						value.ref_type,
+						value.ref_type_id,
 					))
 				},
 				AssociationType::BlobElementAssociation => ElementValue::IdTupleGeneratedElementId(

@@ -38,7 +38,7 @@ import type { ListElementEntity, SomeEntity, TypeModel } from "../../common/Enti
 import { QueuedBatch } from "../EventQueue.js"
 import { ENTITY_EVENT_BATCH_EXPIRE_MS } from "../EventBusClient"
 import { CustomCacheHandlerMap } from "./CustomCacheHandler.js"
-import { containsEventOfType, entityUpateToUpdateData, getEventOfType } from "../../common/utils/EntityUpdateUtils.js"
+import { containsEventOfType, entityUpateToUpdateData, getEventOfType, isUpdateForTypeRef } from "../../common/utils/EntityUpdateUtils.js"
 import { isCustomIdType } from "../offline/OfflineStorage.js"
 
 assertWorkerOrNode()
@@ -712,8 +712,8 @@ export class DefaultEntityRestCache implements EntityRestCache {
 			if (
 				update.operation === OperationType.CREATE &&
 				getUpdateInstanceId(update).instanceListId != null &&
-				!isSameTypeRef(update._type, MailTypeRef) &&
-				!isSameTypeRef(update._type, MailSetEntryTypeRef)
+				!isUpdateForTypeRef(MailTypeRef, update) &&
+				!isUpdateForTypeRef(MailSetEntryTypeRef, update)
 			) {
 				createUpdatesForLETs.push(update)
 			} else {

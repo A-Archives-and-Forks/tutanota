@@ -10,7 +10,7 @@ pub type TypeId = u64;
 
 /// Contains a map between backend apps and entity/instance types within them
 pub struct TypeModelProvider {
-	app_models: HashMap<AppName, HashMap<TypeId, TypeModel>>,
+	pub app_models: HashMap<AppName, HashMap<TypeId, TypeModel>>,
 }
 
 impl TypeModelProvider {

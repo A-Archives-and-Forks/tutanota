@@ -1028,7 +1028,7 @@ o.spec("IndexerTest", () => {
 		function newUpdate<T>(typeRef: TypeRef<T>) {
 			let u = createTestEntity(EntityUpdateTypeRef)
 			u.application = typeRef.app
-			u.typeId = typeRef.typeId
+			u.typeId = typeRef.typeId.toString()
 			return u
 		}
 

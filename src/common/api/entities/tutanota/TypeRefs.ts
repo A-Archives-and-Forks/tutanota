@@ -1,16 +1,12 @@
-import { create, Stripped, StrippedEntity } from "../../common/utils/EntityUtils.js"
-import { TypeRef } from "@tutao/tutanota-utils"
-import { typeModels } from "./TypeModels.js"
-import { Blob } from '../sys/TypeRefs.js'
-import { BucketKey } from '../sys/TypeRefs.js'
-import { BlobReferenceTokenWrapper } from '../sys/TypeRefs.js'
-import { DateWrapper } from '../sys/TypeRefs.js'
-import { StringWrapper } from '../sys/TypeRefs.js'
+import {create, StrippedEntity} from "../../common/utils/EntityUtils.js"
+import {TypeRef} from "@tutao/tutanota-utils"
+import {typeModels} from "./TypeModels.js"
+import {Blob, BlobReferenceTokenWrapper, BucketKey, DateWrapper, StringWrapper} from '../sys/TypeRefs.js'
 
 export const SubfilesTypeRef: TypeRef<Subfiles> = new TypeRef("tutanota", 11)
 
 export function createSubfiles(values: StrippedEntity<Subfiles>): Subfiles {
-	return Object.assign(create(typeModels.Subfiles, SubfilesTypeRef), values)
+	return Object.assign(create(typeModels[SubfilesTypeRef.typeId], SubfilesTypeRef), values)
 }
 
 export type Subfiles = {
@@ -23,7 +19,7 @@ export type Subfiles = {
 export const FileTypeRef: TypeRef<File> = new TypeRef("tutanota", 13)
 
 export function createFile(values: StrippedEntity<File>): File {
-	return Object.assign(create(typeModels.File, FileTypeRef), values)
+	return Object.assign(create(typeModels[FileTypeRef.typeId], FileTypeRef), values)
 }
 
 export type File = {
@@ -48,7 +44,7 @@ export type File = {
 export const FileSystemTypeRef: TypeRef<FileSystem> = new TypeRef("tutanota", 28)
 
 export function createFileSystem(values: StrippedEntity<FileSystem>): FileSystem {
-	return Object.assign(create(typeModels.FileSystem, FileSystemTypeRef), values)
+	return Object.assign(create(typeModels[FileSystemTypeRef.typeId], FileSystemTypeRef), values)
 }
 
 export type FileSystem = {
@@ -67,7 +63,7 @@ export type FileSystem = {
 export const ContactMailAddressTypeRef: TypeRef<ContactMailAddress> = new TypeRef("tutanota", 44)
 
 export function createContactMailAddress(values: StrippedEntity<ContactMailAddress>): ContactMailAddress {
-	return Object.assign(create(typeModels.ContactMailAddress, ContactMailAddressTypeRef), values)
+	return Object.assign(create(typeModels[ContactMailAddressTypeRef.typeId], ContactMailAddressTypeRef), values)
 }
 
 export type ContactMailAddress = {
@@ -81,7 +77,7 @@ export type ContactMailAddress = {
 export const ContactPhoneNumberTypeRef: TypeRef<ContactPhoneNumber> = new TypeRef("tutanota", 49)
 
 export function createContactPhoneNumber(values: StrippedEntity<ContactPhoneNumber>): ContactPhoneNumber {
-	return Object.assign(create(typeModels.ContactPhoneNumber, ContactPhoneNumberTypeRef), values)
+	return Object.assign(create(typeModels[ContactPhoneNumberTypeRef.typeId], ContactPhoneNumberTypeRef), values)
 }
 
 export type ContactPhoneNumber = {
@@ -95,7 +91,7 @@ export type ContactPhoneNumber = {
 export const ContactAddressTypeRef: TypeRef<ContactAddress> = new TypeRef("tutanota", 54)
 
 export function createContactAddress(values: StrippedEntity<ContactAddress>): ContactAddress {
-	return Object.assign(create(typeModels.ContactAddress, ContactAddressTypeRef), values)
+	return Object.assign(create(typeModels[ContactAddressTypeRef.typeId], ContactAddressTypeRef), values)
 }
 
 export type ContactAddress = {
@@ -109,7 +105,7 @@ export type ContactAddress = {
 export const ContactSocialIdTypeRef: TypeRef<ContactSocialId> = new TypeRef("tutanota", 59)
 
 export function createContactSocialId(values: StrippedEntity<ContactSocialId>): ContactSocialId {
-	return Object.assign(create(typeModels.ContactSocialId, ContactSocialIdTypeRef), values)
+	return Object.assign(create(typeModels[ContactSocialIdTypeRef.typeId], ContactSocialIdTypeRef), values)
 }
 
 export type ContactSocialId = {
@@ -123,7 +119,7 @@ export type ContactSocialId = {
 export const ContactTypeRef: TypeRef<Contact> = new TypeRef("tutanota", 64)
 
 export function createContact(values: StrippedEntity<Contact>): Contact {
-	return Object.assign(create(typeModels.Contact, ContactTypeRef), values)
+	return Object.assign(create(typeModels[ContactTypeRef.typeId], ContactTypeRef), values)
 }
 
 export type Contact = {
@@ -168,7 +164,7 @@ export type Contact = {
 export const ConversationEntryTypeRef: TypeRef<ConversationEntry> = new TypeRef("tutanota", 84)
 
 export function createConversationEntry(values: StrippedEntity<ConversationEntry>): ConversationEntry {
-	return Object.assign(create(typeModels.ConversationEntry, ConversationEntryTypeRef), values)
+	return Object.assign(create(typeModels[ConversationEntryTypeRef.typeId], ConversationEntryTypeRef), values)
 }
 
 export type ConversationEntry = {
@@ -187,7 +183,7 @@ export type ConversationEntry = {
 export const MailAddressTypeRef: TypeRef<MailAddress> = new TypeRef("tutanota", 92)
 
 export function createMailAddress(values: StrippedEntity<MailAddress>): MailAddress {
-	return Object.assign(create(typeModels.MailAddress, MailAddressTypeRef), values)
+	return Object.assign(create(typeModels[MailAddressTypeRef.typeId], MailAddressTypeRef), values)
 }
 
 export type MailAddress = {
@@ -202,7 +198,7 @@ export type MailAddress = {
 export const MailTypeRef: TypeRef<Mail> = new TypeRef("tutanota", 97)
 
 export function createMail(values: StrippedEntity<Mail>): Mail {
-	return Object.assign(create(typeModels.Mail, MailTypeRef), values)
+	return Object.assign(create(typeModels[MailTypeRef.typeId], MailTypeRef), values)
 }
 
 export type Mail = {
@@ -242,7 +238,7 @@ export type Mail = {
 export const MailBoxTypeRef: TypeRef<MailBox> = new TypeRef("tutanota", 125)
 
 export function createMailBox(values: StrippedEntity<MailBox>): MailBox {
-	return Object.assign(create(typeModels.MailBox, MailBoxTypeRef), values)
+	return Object.assign(create(typeModels[MailBoxTypeRef.typeId], MailBoxTypeRef), values)
 }
 
 export type MailBox = {
@@ -270,7 +266,7 @@ export type MailBox = {
 export const CreateExternalUserGroupDataTypeRef: TypeRef<CreateExternalUserGroupData> = new TypeRef("tutanota", 138)
 
 export function createCreateExternalUserGroupData(values: StrippedEntity<CreateExternalUserGroupData>): CreateExternalUserGroupData {
-	return Object.assign(create(typeModels.CreateExternalUserGroupData, CreateExternalUserGroupDataTypeRef), values)
+	return Object.assign(create(typeModels[CreateExternalUserGroupDataTypeRef.typeId], CreateExternalUserGroupDataTypeRef), values)
 }
 
 export type CreateExternalUserGroupData = {
@@ -285,7 +281,7 @@ export type CreateExternalUserGroupData = {
 export const ExternalUserDataTypeRef: TypeRef<ExternalUserData> = new TypeRef("tutanota", 145)
 
 export function createExternalUserData(values: StrippedEntity<ExternalUserData>): ExternalUserData {
-	return Object.assign(create(typeModels.ExternalUserData, ExternalUserDataTypeRef), values)
+	return Object.assign(create(typeModels[ExternalUserDataTypeRef.typeId], ExternalUserDataTypeRef), values)
 }
 
 export type ExternalUserData = {
@@ -309,7 +305,7 @@ export type ExternalUserData = {
 export const ContactListTypeRef: TypeRef<ContactList> = new TypeRef("tutanota", 153)
 
 export function createContactList(values: StrippedEntity<ContactList>): ContactList {
-	return Object.assign(create(typeModels.ContactList, ContactListTypeRef), values)
+	return Object.assign(create(typeModels[ContactListTypeRef.typeId], ContactListTypeRef), values)
 }
 
 export type ContactList = {
@@ -329,7 +325,7 @@ export type ContactList = {
 export const RemoteImapSyncInfoTypeRef: TypeRef<RemoteImapSyncInfo> = new TypeRef("tutanota", 183)
 
 export function createRemoteImapSyncInfo(values: StrippedEntity<RemoteImapSyncInfo>): RemoteImapSyncInfo {
-	return Object.assign(create(typeModels.RemoteImapSyncInfo, RemoteImapSyncInfoTypeRef), values)
+	return Object.assign(create(typeModels[RemoteImapSyncInfoTypeRef.typeId], RemoteImapSyncInfoTypeRef), values)
 }
 
 export type RemoteImapSyncInfo = {
@@ -346,7 +342,7 @@ export type RemoteImapSyncInfo = {
 export const ImapFolderTypeRef: TypeRef<ImapFolder> = new TypeRef("tutanota", 190)
 
 export function createImapFolder(values: StrippedEntity<ImapFolder>): ImapFolder {
-	return Object.assign(create(typeModels.ImapFolder, ImapFolderTypeRef), values)
+	return Object.assign(create(typeModels[ImapFolderTypeRef.typeId], ImapFolderTypeRef), values)
 }
 
 export type ImapFolder = {
@@ -362,7 +358,7 @@ export type ImapFolder = {
 export const ImapSyncStateTypeRef: TypeRef<ImapSyncState> = new TypeRef("tutanota", 196)
 
 export function createImapSyncState(values: StrippedEntity<ImapSyncState>): ImapSyncState {
-	return Object.assign(create(typeModels.ImapSyncState, ImapSyncStateTypeRef), values)
+	return Object.assign(create(typeModels[ImapSyncStateTypeRef.typeId], ImapSyncStateTypeRef), values)
 }
 
 export type ImapSyncState = {
@@ -378,7 +374,7 @@ export type ImapSyncState = {
 export const ImapSyncConfigurationTypeRef: TypeRef<ImapSyncConfiguration> = new TypeRef("tutanota", 209)
 
 export function createImapSyncConfiguration(values: StrippedEntity<ImapSyncConfiguration>): ImapSyncConfiguration {
-	return Object.assign(create(typeModels.ImapSyncConfiguration, ImapSyncConfigurationTypeRef), values)
+	return Object.assign(create(typeModels[ImapSyncConfigurationTypeRef.typeId], ImapSyncConfigurationTypeRef), values)
 }
 
 export type ImapSyncConfiguration = {
@@ -395,7 +391,7 @@ export type ImapSyncConfiguration = {
 export const TutanotaPropertiesTypeRef: TypeRef<TutanotaProperties> = new TypeRef("tutanota", 216)
 
 export function createTutanotaProperties(values: StrippedEntity<TutanotaProperties>): TutanotaProperties {
-	return Object.assign(create(typeModels.TutanotaProperties, TutanotaPropertiesTypeRef), values)
+	return Object.assign(create(typeModels[TutanotaPropertiesTypeRef.typeId], TutanotaPropertiesTypeRef), values)
 }
 
 export type TutanotaProperties = {
@@ -427,7 +423,7 @@ export type TutanotaProperties = {
 export const NotificationMailTypeRef: TypeRef<NotificationMail> = new TypeRef("tutanota", 223)
 
 export function createNotificationMail(values: StrippedEntity<NotificationMail>): NotificationMail {
-	return Object.assign(create(typeModels.NotificationMail, NotificationMailTypeRef), values)
+	return Object.assign(create(typeModels[NotificationMailTypeRef.typeId], NotificationMailTypeRef), values)
 }
 
 export type NotificationMail = {
@@ -443,7 +439,7 @@ export type NotificationMail = {
 export const DeleteMailDataTypeRef: TypeRef<DeleteMailData> = new TypeRef("tutanota", 419)
 
 export function createDeleteMailData(values: StrippedEntity<DeleteMailData>): DeleteMailData {
-	return Object.assign(create(typeModels.DeleteMailData, DeleteMailDataTypeRef), values)
+	return Object.assign(create(typeModels[DeleteMailDataTypeRef.typeId], DeleteMailDataTypeRef), values)
 }
 
 export type DeleteMailData = {
@@ -457,7 +453,7 @@ export type DeleteMailData = {
 export const MailFolderTypeRef: TypeRef<MailFolder> = new TypeRef("tutanota", 429)
 
 export function createMailFolder(values: StrippedEntity<MailFolder>): MailFolder {
-	return Object.assign(create(typeModels.MailFolder, MailFolderTypeRef), values)
+	return Object.assign(create(typeModels[MailFolderTypeRef.typeId], MailFolderTypeRef), values)
 }
 
 export type MailFolder = {
@@ -480,7 +476,7 @@ export type MailFolder = {
 export const MailFolderRefTypeRef: TypeRef<MailFolderRef> = new TypeRef("tutanota", 440)
 
 export function createMailFolderRef(values: StrippedEntity<MailFolderRef>): MailFolderRef {
-	return Object.assign(create(typeModels.MailFolderRef, MailFolderRefTypeRef), values)
+	return Object.assign(create(typeModels[MailFolderRefTypeRef.typeId], MailFolderRefTypeRef), values)
 }
 
 export type MailFolderRef = {
@@ -493,7 +489,7 @@ export type MailFolderRef = {
 export const MoveMailDataTypeRef: TypeRef<MoveMailData> = new TypeRef("tutanota", 445)
 
 export function createMoveMailData(values: StrippedEntity<MoveMailData>): MoveMailData {
-	return Object.assign(create(typeModels.MoveMailData, MoveMailDataTypeRef), values)
+	return Object.assign(create(typeModels[MoveMailDataTypeRef.typeId], MoveMailDataTypeRef), values)
 }
 
 export type MoveMailData = {
@@ -508,7 +504,7 @@ export type MoveMailData = {
 export const CreateMailFolderDataTypeRef: TypeRef<CreateMailFolderData> = new TypeRef("tutanota", 450)
 
 export function createCreateMailFolderData(values: StrippedEntity<CreateMailFolderData>): CreateMailFolderData {
-	return Object.assign(create(typeModels.CreateMailFolderData, CreateMailFolderDataTypeRef), values)
+	return Object.assign(create(typeModels[CreateMailFolderDataTypeRef.typeId], CreateMailFolderDataTypeRef), values)
 }
 
 export type CreateMailFolderData = {
@@ -526,7 +522,7 @@ export type CreateMailFolderData = {
 export const CreateMailFolderReturnTypeRef: TypeRef<CreateMailFolderReturn> = new TypeRef("tutanota", 455)
 
 export function createCreateMailFolderReturn(values: StrippedEntity<CreateMailFolderReturn>): CreateMailFolderReturn {
-	return Object.assign(create(typeModels.CreateMailFolderReturn, CreateMailFolderReturnTypeRef), values)
+	return Object.assign(create(typeModels[CreateMailFolderReturnTypeRef.typeId], CreateMailFolderReturnTypeRef), values)
 }
 
 export type CreateMailFolderReturn = {
@@ -540,7 +536,7 @@ export type CreateMailFolderReturn = {
 export const DeleteMailFolderDataTypeRef: TypeRef<DeleteMailFolderData> = new TypeRef("tutanota", 458)
 
 export function createDeleteMailFolderData(values: StrippedEntity<DeleteMailFolderData>): DeleteMailFolderData {
-	return Object.assign(create(typeModels.DeleteMailFolderData, DeleteMailFolderDataTypeRef), values)
+	return Object.assign(create(typeModels[DeleteMailFolderDataTypeRef.typeId], DeleteMailFolderDataTypeRef), values)
 }
 
 export type DeleteMailFolderData = {
@@ -554,7 +550,7 @@ export type DeleteMailFolderData = {
 export const EncryptTutanotaPropertiesDataTypeRef: TypeRef<EncryptTutanotaPropertiesData> = new TypeRef("tutanota", 473)
 
 export function createEncryptTutanotaPropertiesData(values: StrippedEntity<EncryptTutanotaPropertiesData>): EncryptTutanotaPropertiesData {
-	return Object.assign(create(typeModels.EncryptTutanotaPropertiesData, EncryptTutanotaPropertiesDataTypeRef), values)
+	return Object.assign(create(typeModels[EncryptTutanotaPropertiesDataTypeRef.typeId], EncryptTutanotaPropertiesDataTypeRef), values)
 }
 
 export type EncryptTutanotaPropertiesData = {
@@ -569,7 +565,7 @@ export type EncryptTutanotaPropertiesData = {
 export const DraftRecipientTypeRef: TypeRef<DraftRecipient> = new TypeRef("tutanota", 482)
 
 export function createDraftRecipient(values: StrippedEntity<DraftRecipient>): DraftRecipient {
-	return Object.assign(create(typeModels.DraftRecipient, DraftRecipientTypeRef), values)
+	return Object.assign(create(typeModels[DraftRecipientTypeRef.typeId], DraftRecipientTypeRef), values)
 }
 
 export type DraftRecipient = {
@@ -582,7 +578,7 @@ export type DraftRecipient = {
 export const NewDraftAttachmentTypeRef: TypeRef<NewDraftAttachment> = new TypeRef("tutanota", 486)
 
 export function createNewDraftAttachment(values: StrippedEntity<NewDraftAttachment>): NewDraftAttachment {
-	return Object.assign(create(typeModels.NewDraftAttachment, NewDraftAttachmentTypeRef), values)
+	return Object.assign(create(typeModels[NewDraftAttachmentTypeRef.typeId], NewDraftAttachmentTypeRef), values)
 }
 
 export type NewDraftAttachment = {
@@ -598,7 +594,7 @@ export type NewDraftAttachment = {
 export const DraftAttachmentTypeRef: TypeRef<DraftAttachment> = new TypeRef("tutanota", 491)
 
 export function createDraftAttachment(values: StrippedEntity<DraftAttachment>): DraftAttachment {
-	return Object.assign(create(typeModels.DraftAttachment, DraftAttachmentTypeRef), values)
+	return Object.assign(create(typeModels[DraftAttachmentTypeRef.typeId], DraftAttachmentTypeRef), values)
 }
 
 export type DraftAttachment = {
@@ -614,7 +610,7 @@ export type DraftAttachment = {
 export const DraftDataTypeRef: TypeRef<DraftData> = new TypeRef("tutanota", 496)
 
 export function createDraftData(values: StrippedEntity<DraftData>): DraftData {
-	return Object.assign(create(typeModels.DraftData, DraftDataTypeRef), values)
+	return Object.assign(create(typeModels[DraftDataTypeRef.typeId], DraftDataTypeRef), values)
 }
 
 export type DraftData = {
@@ -639,7 +635,7 @@ export type DraftData = {
 export const DraftCreateDataTypeRef: TypeRef<DraftCreateData> = new TypeRef("tutanota", 508)
 
 export function createDraftCreateData(values: StrippedEntity<DraftCreateData>): DraftCreateData {
-	return Object.assign(create(typeModels.DraftCreateData, DraftCreateDataTypeRef), values)
+	return Object.assign(create(typeModels[DraftCreateDataTypeRef.typeId], DraftCreateDataTypeRef), values)
 }
 
 export type DraftCreateData = {
@@ -657,7 +653,7 @@ export type DraftCreateData = {
 export const DraftCreateReturnTypeRef: TypeRef<DraftCreateReturn> = new TypeRef("tutanota", 516)
 
 export function createDraftCreateReturn(values: StrippedEntity<DraftCreateReturn>): DraftCreateReturn {
-	return Object.assign(create(typeModels.DraftCreateReturn, DraftCreateReturnTypeRef), values)
+	return Object.assign(create(typeModels[DraftCreateReturnTypeRef.typeId], DraftCreateReturnTypeRef), values)
 }
 
 export type DraftCreateReturn = {
@@ -670,7 +666,7 @@ export type DraftCreateReturn = {
 export const DraftUpdateDataTypeRef: TypeRef<DraftUpdateData> = new TypeRef("tutanota", 519)
 
 export function createDraftUpdateData(values: StrippedEntity<DraftUpdateData>): DraftUpdateData {
-	return Object.assign(create(typeModels.DraftUpdateData, DraftUpdateDataTypeRef), values)
+	return Object.assign(create(typeModels[DraftUpdateDataTypeRef.typeId], DraftUpdateDataTypeRef), values)
 }
 
 export type DraftUpdateData = {
@@ -685,7 +681,7 @@ export type DraftUpdateData = {
 export const DraftUpdateReturnTypeRef: TypeRef<DraftUpdateReturn> = new TypeRef("tutanota", 523)
 
 export function createDraftUpdateReturn(values: StrippedEntity<DraftUpdateReturn>): DraftUpdateReturn {
-	return Object.assign(create(typeModels.DraftUpdateReturn, DraftUpdateReturnTypeRef), values)
+	return Object.assign(create(typeModels[DraftUpdateReturnTypeRef.typeId], DraftUpdateReturnTypeRef), values)
 }
 
 export type DraftUpdateReturn = {
@@ -699,7 +695,7 @@ export type DraftUpdateReturn = {
 export const InternalRecipientKeyDataTypeRef: TypeRef<InternalRecipientKeyData> = new TypeRef("tutanota", 527)
 
 export function createInternalRecipientKeyData(values: StrippedEntity<InternalRecipientKeyData>): InternalRecipientKeyData {
-	return Object.assign(create(typeModels.InternalRecipientKeyData, InternalRecipientKeyDataTypeRef), values)
+	return Object.assign(create(typeModels[InternalRecipientKeyDataTypeRef.typeId], InternalRecipientKeyDataTypeRef), values)
 }
 
 export type InternalRecipientKeyData = {
@@ -715,7 +711,7 @@ export type InternalRecipientKeyData = {
 export const SecureExternalRecipientKeyDataTypeRef: TypeRef<SecureExternalRecipientKeyData> = new TypeRef("tutanota", 532)
 
 export function createSecureExternalRecipientKeyData(values: StrippedEntity<SecureExternalRecipientKeyData>): SecureExternalRecipientKeyData {
-	return Object.assign(create(typeModels.SecureExternalRecipientKeyData, SecureExternalRecipientKeyDataTypeRef), values)
+	return Object.assign(create(typeModels[SecureExternalRecipientKeyDataTypeRef.typeId], SecureExternalRecipientKeyDataTypeRef), values)
 }
 
 export type SecureExternalRecipientKeyData = {
@@ -735,7 +731,7 @@ export type SecureExternalRecipientKeyData = {
 export const AttachmentKeyDataTypeRef: TypeRef<AttachmentKeyData> = new TypeRef("tutanota", 542)
 
 export function createAttachmentKeyData(values: StrippedEntity<AttachmentKeyData>): AttachmentKeyData {
-	return Object.assign(create(typeModels.AttachmentKeyData, AttachmentKeyDataTypeRef), values)
+	return Object.assign(create(typeModels[AttachmentKeyDataTypeRef.typeId], AttachmentKeyDataTypeRef), values)
 }
 
 export type AttachmentKeyData = {
@@ -750,7 +746,7 @@ export type AttachmentKeyData = {
 export const SendDraftDataTypeRef: TypeRef<SendDraftData> = new TypeRef("tutanota", 547)
 
 export function createSendDraftData(values: StrippedEntity<SendDraftData>): SendDraftData {
-	return Object.assign(create(typeModels.SendDraftData, SendDraftDataTypeRef), values)
+	return Object.assign(create(typeModels[SendDraftDataTypeRef.typeId], SendDraftDataTypeRef), values)
 }
 
 export type SendDraftData = {
@@ -774,7 +770,7 @@ export type SendDraftData = {
 export const SendDraftReturnTypeRef: TypeRef<SendDraftReturn> = new TypeRef("tutanota", 557)
 
 export function createSendDraftReturn(values: StrippedEntity<SendDraftReturn>): SendDraftReturn {
-	return Object.assign(create(typeModels.SendDraftReturn, SendDraftReturnTypeRef), values)
+	return Object.assign(create(typeModels[SendDraftReturnTypeRef.typeId], SendDraftReturnTypeRef), values)
 }
 
 export type SendDraftReturn = {
@@ -790,7 +786,7 @@ export type SendDraftReturn = {
 export const ReceiveInfoServiceDataTypeRef: TypeRef<ReceiveInfoServiceData> = new TypeRef("tutanota", 570)
 
 export function createReceiveInfoServiceData(values: StrippedEntity<ReceiveInfoServiceData>): ReceiveInfoServiceData {
-	return Object.assign(create(typeModels.ReceiveInfoServiceData, ReceiveInfoServiceDataTypeRef), values)
+	return Object.assign(create(typeModels[ReceiveInfoServiceDataTypeRef.typeId], ReceiveInfoServiceDataTypeRef), values)
 }
 
 export type ReceiveInfoServiceData = {
@@ -802,7 +798,7 @@ export type ReceiveInfoServiceData = {
 export const InboxRuleTypeRef: TypeRef<InboxRule> = new TypeRef("tutanota", 573)
 
 export function createInboxRule(values: StrippedEntity<InboxRule>): InboxRule {
-	return Object.assign(create(typeModels.InboxRule, InboxRuleTypeRef), values)
+	return Object.assign(create(typeModels[InboxRuleTypeRef.typeId], InboxRuleTypeRef), values)
 }
 
 export type InboxRule = {
@@ -817,7 +813,7 @@ export type InboxRule = {
 export const EncryptedMailAddressTypeRef: TypeRef<EncryptedMailAddress> = new TypeRef("tutanota", 612)
 
 export function createEncryptedMailAddress(values: StrippedEntity<EncryptedMailAddress>): EncryptedMailAddress {
-	return Object.assign(create(typeModels.EncryptedMailAddress, EncryptedMailAddressTypeRef), values)
+	return Object.assign(create(typeModels[EncryptedMailAddressTypeRef.typeId], EncryptedMailAddressTypeRef), values)
 }
 
 export type EncryptedMailAddress = {
@@ -830,7 +826,7 @@ export type EncryptedMailAddress = {
 export const UserAccountUserDataTypeRef: TypeRef<UserAccountUserData> = new TypeRef("tutanota", 622)
 
 export function createUserAccountUserData(values: StrippedEntity<UserAccountUserData>): UserAccountUserData {
-	return Object.assign(create(typeModels.UserAccountUserData, UserAccountUserDataTypeRef), values)
+	return Object.assign(create(typeModels[UserAccountUserDataTypeRef.typeId], UserAccountUserDataTypeRef), values)
 }
 
 export type UserAccountUserData = {
@@ -863,7 +859,7 @@ export type UserAccountUserData = {
 export const InternalGroupDataTypeRef: TypeRef<InternalGroupData> = new TypeRef("tutanota", 642)
 
 export function createInternalGroupData(values: StrippedEntity<InternalGroupData>): InternalGroupData {
-	return Object.assign(create(typeModels.InternalGroupData, InternalGroupDataTypeRef), values)
+	return Object.assign(create(typeModels[InternalGroupDataTypeRef.typeId], InternalGroupDataTypeRef), values)
 }
 
 export type InternalGroupData = {
@@ -886,7 +882,7 @@ export type InternalGroupData = {
 export const CustomerAccountCreateDataTypeRef: TypeRef<CustomerAccountCreateData> = new TypeRef("tutanota", 648)
 
 export function createCustomerAccountCreateData(values: StrippedEntity<CustomerAccountCreateData>): CustomerAccountCreateData {
-	return Object.assign(create(typeModels.CustomerAccountCreateData, CustomerAccountCreateDataTypeRef), values)
+	return Object.assign(create(typeModels[CustomerAccountCreateDataTypeRef.typeId], CustomerAccountCreateDataTypeRef), values)
 }
 
 export type CustomerAccountCreateData = {
@@ -915,7 +911,7 @@ export type CustomerAccountCreateData = {
 export const UserAccountCreateDataTypeRef: TypeRef<UserAccountCreateData> = new TypeRef("tutanota", 663)
 
 export function createUserAccountCreateData(values: StrippedEntity<UserAccountCreateData>): UserAccountCreateData {
-	return Object.assign(create(typeModels.UserAccountCreateData, UserAccountCreateDataTypeRef), values)
+	return Object.assign(create(typeModels[UserAccountCreateDataTypeRef.typeId], UserAccountCreateDataTypeRef), values)
 }
 
 export type UserAccountCreateData = {
@@ -930,7 +926,7 @@ export type UserAccountCreateData = {
 export const MailboxServerPropertiesTypeRef: TypeRef<MailboxServerProperties> = new TypeRef("tutanota", 677)
 
 export function createMailboxServerProperties(values: StrippedEntity<MailboxServerProperties>): MailboxServerProperties {
-	return Object.assign(create(typeModels.MailboxServerProperties, MailboxServerPropertiesTypeRef), values)
+	return Object.assign(create(typeModels[MailboxServerPropertiesTypeRef.typeId], MailboxServerPropertiesTypeRef), values)
 }
 
 export type MailboxServerProperties = {
@@ -945,7 +941,7 @@ export type MailboxServerProperties = {
 export const MailboxGroupRootTypeRef: TypeRef<MailboxGroupRoot> = new TypeRef("tutanota", 693)
 
 export function createMailboxGroupRoot(values: StrippedEntity<MailboxGroupRoot>): MailboxGroupRoot {
-	return Object.assign(create(typeModels.MailboxGroupRoot, MailboxGroupRootTypeRef), values)
+	return Object.assign(create(typeModels[MailboxGroupRootTypeRef.typeId], MailboxGroupRootTypeRef), values)
 }
 
 export type MailboxGroupRoot = {
@@ -966,7 +962,7 @@ export type MailboxGroupRoot = {
 export const CreateMailGroupDataTypeRef: TypeRef<CreateMailGroupData> = new TypeRef("tutanota", 707)
 
 export function createCreateMailGroupData(values: StrippedEntity<CreateMailGroupData>): CreateMailGroupData {
-	return Object.assign(create(typeModels.CreateMailGroupData, CreateMailGroupDataTypeRef), values)
+	return Object.assign(create(typeModels[CreateMailGroupDataTypeRef.typeId], CreateMailGroupDataTypeRef), values)
 }
 
 export type CreateMailGroupData = {
@@ -982,7 +978,7 @@ export type CreateMailGroupData = {
 export const DeleteGroupDataTypeRef: TypeRef<DeleteGroupData> = new TypeRef("tutanota", 713)
 
 export function createDeleteGroupData(values: StrippedEntity<DeleteGroupData>): DeleteGroupData {
-	return Object.assign(create(typeModels.DeleteGroupData, DeleteGroupDataTypeRef), values)
+	return Object.assign(create(typeModels[DeleteGroupDataTypeRef.typeId], DeleteGroupDataTypeRef), values)
 }
 
 export type DeleteGroupData = {
@@ -996,7 +992,7 @@ export type DeleteGroupData = {
 export const BirthdayTypeRef: TypeRef<Birthday> = new TypeRef("tutanota", 844)
 
 export function createBirthday(values: StrippedEntity<Birthday>): Birthday {
-	return Object.assign(create(typeModels.Birthday, BirthdayTypeRef), values)
+	return Object.assign(create(typeModels[BirthdayTypeRef.typeId], BirthdayTypeRef), values)
 }
 
 export type Birthday = {
@@ -1010,7 +1006,7 @@ export type Birthday = {
 export const PhotosRefTypeRef: TypeRef<PhotosRef> = new TypeRef("tutanota", 853)
 
 export function createPhotosRef(values: StrippedEntity<PhotosRef>): PhotosRef {
-	return Object.assign(create(typeModels.PhotosRef, PhotosRefTypeRef), values)
+	return Object.assign(create(typeModels[PhotosRefTypeRef.typeId], PhotosRefTypeRef), values)
 }
 
 export type PhotosRef = {
@@ -1023,7 +1019,7 @@ export type PhotosRef = {
 export const ListUnsubscribeDataTypeRef: TypeRef<ListUnsubscribeData> = new TypeRef("tutanota", 867)
 
 export function createListUnsubscribeData(values: StrippedEntity<ListUnsubscribeData>): ListUnsubscribeData {
-	return Object.assign(create(typeModels.ListUnsubscribeData, ListUnsubscribeDataTypeRef), values)
+	return Object.assign(create(typeModels[ListUnsubscribeDataTypeRef.typeId], ListUnsubscribeDataTypeRef), values)
 }
 
 export type ListUnsubscribeData = {
@@ -1038,7 +1034,7 @@ export type ListUnsubscribeData = {
 export const CalendarRepeatRuleTypeRef: TypeRef<CalendarRepeatRule> = new TypeRef("tutanota", 926)
 
 export function createCalendarRepeatRule(values: StrippedEntity<CalendarRepeatRule>): CalendarRepeatRule {
-	return Object.assign(create(typeModels.CalendarRepeatRule, CalendarRepeatRuleTypeRef), values)
+	return Object.assign(create(typeModels[CalendarRepeatRuleTypeRef.typeId], CalendarRepeatRuleTypeRef), values)
 }
 
 export type CalendarRepeatRule = {
@@ -1057,7 +1053,7 @@ export type CalendarRepeatRule = {
 export const CalendarEventTypeRef: TypeRef<CalendarEvent> = new TypeRef("tutanota", 933)
 
 export function createCalendarEvent(values: StrippedEntity<CalendarEvent>): CalendarEvent {
-	return Object.assign(create(typeModels.CalendarEvent, CalendarEventTypeRef), values)
+	return Object.assign(create(typeModels[CalendarEventTypeRef.typeId], CalendarEventTypeRef), values)
 }
 
 export type CalendarEvent = {
@@ -1089,7 +1085,7 @@ export type CalendarEvent = {
 export const CalendarGroupRootTypeRef: TypeRef<CalendarGroupRoot> = new TypeRef("tutanota", 947)
 
 export function createCalendarGroupRoot(values: StrippedEntity<CalendarGroupRoot>): CalendarGroupRoot {
-	return Object.assign(create(typeModels.CalendarGroupRoot, CalendarGroupRootTypeRef), values)
+	return Object.assign(create(typeModels[CalendarGroupRootTypeRef.typeId], CalendarGroupRootTypeRef), values)
 }
 
 export type CalendarGroupRoot = {
@@ -1110,7 +1106,7 @@ export type CalendarGroupRoot = {
 export const UserAreaGroupDataTypeRef: TypeRef<UserAreaGroupData> = new TypeRef("tutanota", 956)
 
 export function createUserAreaGroupData(values: StrippedEntity<UserAreaGroupData>): UserAreaGroupData {
-	return Object.assign(create(typeModels.UserAreaGroupData, UserAreaGroupDataTypeRef), values)
+	return Object.assign(create(typeModels[UserAreaGroupDataTypeRef.typeId], UserAreaGroupDataTypeRef), values)
 }
 
 export type UserAreaGroupData = {
@@ -1131,7 +1127,7 @@ export type UserAreaGroupData = {
 export const UserAreaGroupPostDataTypeRef: TypeRef<UserAreaGroupPostData> = new TypeRef("tutanota", 964)
 
 export function createUserAreaGroupPostData(values: StrippedEntity<UserAreaGroupPostData>): UserAreaGroupPostData {
-	return Object.assign(create(typeModels.UserAreaGroupPostData, UserAreaGroupPostDataTypeRef), values)
+	return Object.assign(create(typeModels[UserAreaGroupPostDataTypeRef.typeId], UserAreaGroupPostDataTypeRef), values)
 }
 
 export type UserAreaGroupPostData = {
@@ -1144,7 +1140,7 @@ export type UserAreaGroupPostData = {
 export const GroupSettingsTypeRef: TypeRef<GroupSettings> = new TypeRef("tutanota", 968)
 
 export function createGroupSettings(values: StrippedEntity<GroupSettings>): GroupSettings {
-	return Object.assign(create(typeModels.GroupSettings, GroupSettingsTypeRef), values)
+	return Object.assign(create(typeModels[GroupSettingsTypeRef.typeId], GroupSettingsTypeRef), values)
 }
 
 export type GroupSettings = {
@@ -1161,7 +1157,7 @@ export type GroupSettings = {
 export const UserSettingsGroupRootTypeRef: TypeRef<UserSettingsGroupRoot> = new TypeRef("tutanota", 972)
 
 export function createUserSettingsGroupRoot(values: StrippedEntity<UserSettingsGroupRoot>): UserSettingsGroupRoot {
-	return Object.assign(create(typeModels.UserSettingsGroupRoot, UserSettingsGroupRootTypeRef), values)
+	return Object.assign(create(typeModels[UserSettingsGroupRootTypeRef.typeId], UserSettingsGroupRootTypeRef), values)
 }
 
 export type UserSettingsGroupRoot = {
@@ -1183,7 +1179,7 @@ export type UserSettingsGroupRoot = {
 export const CalendarDeleteDataTypeRef: TypeRef<CalendarDeleteData> = new TypeRef("tutanota", 982)
 
 export function createCalendarDeleteData(values: StrippedEntity<CalendarDeleteData>): CalendarDeleteData {
-	return Object.assign(create(typeModels.CalendarDeleteData, CalendarDeleteDataTypeRef), values)
+	return Object.assign(create(typeModels[CalendarDeleteDataTypeRef.typeId], CalendarDeleteDataTypeRef), values)
 }
 
 export type CalendarDeleteData = {
@@ -1196,7 +1192,7 @@ export type CalendarDeleteData = {
 export const CreateGroupPostReturnTypeRef: TypeRef<CreateGroupPostReturn> = new TypeRef("tutanota", 985)
 
 export function createCreateGroupPostReturn(values: StrippedEntity<CreateGroupPostReturn>): CreateGroupPostReturn {
-	return Object.assign(create(typeModels.CreateGroupPostReturn, CreateGroupPostReturnTypeRef), values)
+	return Object.assign(create(typeModels[CreateGroupPostReturnTypeRef.typeId], CreateGroupPostReturnTypeRef), values)
 }
 
 export type CreateGroupPostReturn = {
@@ -1210,7 +1206,7 @@ export type CreateGroupPostReturn = {
 export const SharedGroupDataTypeRef: TypeRef<SharedGroupData> = new TypeRef("tutanota", 992)
 
 export function createSharedGroupData(values: StrippedEntity<SharedGroupData>): SharedGroupData {
-	return Object.assign(create(typeModels.SharedGroupData, SharedGroupDataTypeRef), values)
+	return Object.assign(create(typeModels[SharedGroupDataTypeRef.typeId], SharedGroupDataTypeRef), values)
 }
 
 export type SharedGroupData = {
@@ -1230,7 +1226,7 @@ export type SharedGroupData = {
 export const GroupInvitationPostDataTypeRef: TypeRef<GroupInvitationPostData> = new TypeRef("tutanota", 1002)
 
 export function createGroupInvitationPostData(values: StrippedEntity<GroupInvitationPostData>): GroupInvitationPostData {
-	return Object.assign(create(typeModels.GroupInvitationPostData, GroupInvitationPostDataTypeRef), values)
+	return Object.assign(create(typeModels[GroupInvitationPostDataTypeRef.typeId], GroupInvitationPostDataTypeRef), values)
 }
 
 export type GroupInvitationPostData = {
@@ -1244,7 +1240,7 @@ export type GroupInvitationPostData = {
 export const GroupInvitationPostReturnTypeRef: TypeRef<GroupInvitationPostReturn> = new TypeRef("tutanota", 1006)
 
 export function createGroupInvitationPostReturn(values: StrippedEntity<GroupInvitationPostReturn>): GroupInvitationPostReturn {
-	return Object.assign(create(typeModels.GroupInvitationPostReturn, GroupInvitationPostReturnTypeRef), values)
+	return Object.assign(create(typeModels[GroupInvitationPostReturnTypeRef.typeId], GroupInvitationPostReturnTypeRef), values)
 }
 
 export type GroupInvitationPostReturn = {
@@ -1259,7 +1255,7 @@ export type GroupInvitationPostReturn = {
 export const GroupInvitationPutDataTypeRef: TypeRef<GroupInvitationPutData> = new TypeRef("tutanota", 1011)
 
 export function createGroupInvitationPutData(values: StrippedEntity<GroupInvitationPutData>): GroupInvitationPutData {
-	return Object.assign(create(typeModels.GroupInvitationPutData, GroupInvitationPutDataTypeRef), values)
+	return Object.assign(create(typeModels[GroupInvitationPutDataTypeRef.typeId], GroupInvitationPutDataTypeRef), values)
 }
 
 export type GroupInvitationPutData = {
@@ -1276,7 +1272,7 @@ export type GroupInvitationPutData = {
 export const GroupInvitationDeleteDataTypeRef: TypeRef<GroupInvitationDeleteData> = new TypeRef("tutanota", 1016)
 
 export function createGroupInvitationDeleteData(values: StrippedEntity<GroupInvitationDeleteData>): GroupInvitationDeleteData {
-	return Object.assign(create(typeModels.GroupInvitationDeleteData, GroupInvitationDeleteDataTypeRef), values)
+	return Object.assign(create(typeModels[GroupInvitationDeleteDataTypeRef.typeId], GroupInvitationDeleteDataTypeRef), values)
 }
 
 export type GroupInvitationDeleteData = {
@@ -1289,7 +1285,7 @@ export type GroupInvitationDeleteData = {
 export const ReportedMailFieldMarkerTypeRef: TypeRef<ReportedMailFieldMarker> = new TypeRef("tutanota", 1023)
 
 export function createReportedMailFieldMarker(values: StrippedEntity<ReportedMailFieldMarker>): ReportedMailFieldMarker {
-	return Object.assign(create(typeModels.ReportedMailFieldMarker, ReportedMailFieldMarkerTypeRef), values)
+	return Object.assign(create(typeModels[ReportedMailFieldMarkerTypeRef.typeId], ReportedMailFieldMarkerTypeRef), values)
 }
 
 export type ReportedMailFieldMarker = {
@@ -1302,7 +1298,7 @@ export type ReportedMailFieldMarker = {
 export const PhishingMarkerWebsocketDataTypeRef: TypeRef<PhishingMarkerWebsocketData> = new TypeRef("tutanota", 1034)
 
 export function createPhishingMarkerWebsocketData(values: StrippedEntity<PhishingMarkerWebsocketData>): PhishingMarkerWebsocketData {
-	return Object.assign(create(typeModels.PhishingMarkerWebsocketData, PhishingMarkerWebsocketDataTypeRef), values)
+	return Object.assign(create(typeModels[PhishingMarkerWebsocketDataTypeRef.typeId], PhishingMarkerWebsocketDataTypeRef), values)
 }
 
 export type PhishingMarkerWebsocketData = {
@@ -1316,7 +1312,7 @@ export type PhishingMarkerWebsocketData = {
 export const ReportMailPostDataTypeRef: TypeRef<ReportMailPostData> = new TypeRef("tutanota", 1066)
 
 export function createReportMailPostData(values: StrippedEntity<ReportMailPostData>): ReportMailPostData {
-	return Object.assign(create(typeModels.ReportMailPostData, ReportMailPostDataTypeRef), values)
+	return Object.assign(create(typeModels[ReportMailPostDataTypeRef.typeId], ReportMailPostDataTypeRef), values)
 }
 
 export type ReportMailPostData = {
@@ -1331,7 +1327,7 @@ export type ReportMailPostData = {
 export const CalendarEventAttendeeTypeRef: TypeRef<CalendarEventAttendee> = new TypeRef("tutanota", 1084)
 
 export function createCalendarEventAttendee(values: StrippedEntity<CalendarEventAttendee>): CalendarEventAttendee {
-	return Object.assign(create(typeModels.CalendarEventAttendee, CalendarEventAttendeeTypeRef), values)
+	return Object.assign(create(typeModels[CalendarEventAttendeeTypeRef.typeId], CalendarEventAttendeeTypeRef), values)
 }
 
 export type CalendarEventAttendee = {
@@ -1345,7 +1341,7 @@ export type CalendarEventAttendee = {
 export const CalendarEventUidIndexTypeRef: TypeRef<CalendarEventUidIndex> = new TypeRef("tutanota", 1093)
 
 export function createCalendarEventUidIndex(values: StrippedEntity<CalendarEventUidIndex>): CalendarEventUidIndex {
-	return Object.assign(create(typeModels.CalendarEventUidIndex, CalendarEventUidIndexTypeRef), values)
+	return Object.assign(create(typeModels[CalendarEventUidIndexTypeRef.typeId], CalendarEventUidIndexTypeRef), values)
 }
 
 export type CalendarEventUidIndex = {
@@ -1362,7 +1358,7 @@ export type CalendarEventUidIndex = {
 export const CalendarEventIndexRefTypeRef: TypeRef<CalendarEventIndexRef> = new TypeRef("tutanota", 1100)
 
 export function createCalendarEventIndexRef(values: StrippedEntity<CalendarEventIndexRef>): CalendarEventIndexRef {
-	return Object.assign(create(typeModels.CalendarEventIndexRef, CalendarEventIndexRefTypeRef), values)
+	return Object.assign(create(typeModels[CalendarEventIndexRefTypeRef.typeId], CalendarEventIndexRefTypeRef), values)
 }
 
 export type CalendarEventIndexRef = {
@@ -1375,7 +1371,7 @@ export type CalendarEventIndexRef = {
 export const CalendarEventUpdateTypeRef: TypeRef<CalendarEventUpdate> = new TypeRef("tutanota", 1104)
 
 export function createCalendarEventUpdate(values: StrippedEntity<CalendarEventUpdate>): CalendarEventUpdate {
-	return Object.assign(create(typeModels.CalendarEventUpdate, CalendarEventUpdateTypeRef), values)
+	return Object.assign(create(typeModels[CalendarEventUpdateTypeRef.typeId], CalendarEventUpdateTypeRef), values)
 }
 
 export type CalendarEventUpdate = {
@@ -1395,7 +1391,7 @@ export type CalendarEventUpdate = {
 export const CalendarEventUpdateListTypeRef: TypeRef<CalendarEventUpdateList> = new TypeRef("tutanota", 1113)
 
 export function createCalendarEventUpdateList(values: StrippedEntity<CalendarEventUpdateList>): CalendarEventUpdateList {
-	return Object.assign(create(typeModels.CalendarEventUpdateList, CalendarEventUpdateListTypeRef), values)
+	return Object.assign(create(typeModels[CalendarEventUpdateListTypeRef.typeId], CalendarEventUpdateListTypeRef), values)
 }
 
 export type CalendarEventUpdateList = {
@@ -1408,7 +1404,7 @@ export type CalendarEventUpdateList = {
 export const EntropyDataTypeRef: TypeRef<EntropyData> = new TypeRef("tutanota", 1122)
 
 export function createEntropyData(values: StrippedEntity<EntropyData>): EntropyData {
-	return Object.assign(create(typeModels.EntropyData, EntropyDataTypeRef), values)
+	return Object.assign(create(typeModels[EntropyDataTypeRef.typeId], EntropyDataTypeRef), values)
 }
 
 export type EntropyData = {
@@ -1421,7 +1417,7 @@ export type EntropyData = {
 export const OutOfOfficeNotificationMessageTypeRef: TypeRef<OutOfOfficeNotificationMessage> = new TypeRef("tutanota", 1126)
 
 export function createOutOfOfficeNotificationMessage(values: StrippedEntity<OutOfOfficeNotificationMessage>): OutOfOfficeNotificationMessage {
-	return Object.assign(create(typeModels.OutOfOfficeNotificationMessage, OutOfOfficeNotificationMessageTypeRef), values)
+	return Object.assign(create(typeModels[OutOfOfficeNotificationMessageTypeRef.typeId], OutOfOfficeNotificationMessageTypeRef), values)
 }
 
 export type OutOfOfficeNotificationMessage = {
@@ -1435,7 +1431,7 @@ export type OutOfOfficeNotificationMessage = {
 export const OutOfOfficeNotificationTypeRef: TypeRef<OutOfOfficeNotification> = new TypeRef("tutanota", 1131)
 
 export function createOutOfOfficeNotification(values: StrippedEntity<OutOfOfficeNotification>): OutOfOfficeNotification {
-	return Object.assign(create(typeModels.OutOfOfficeNotification, OutOfOfficeNotificationTypeRef), values)
+	return Object.assign(create(typeModels[OutOfOfficeNotificationTypeRef.typeId], OutOfOfficeNotificationTypeRef), values)
 }
 
 export type OutOfOfficeNotification = {
@@ -1454,7 +1450,7 @@ export type OutOfOfficeNotification = {
 export const OutOfOfficeNotificationRecipientListTypeRef: TypeRef<OutOfOfficeNotificationRecipientList> = new TypeRef("tutanota", 1147)
 
 export function createOutOfOfficeNotificationRecipientList(values: StrippedEntity<OutOfOfficeNotificationRecipientList>): OutOfOfficeNotificationRecipientList {
-	return Object.assign(create(typeModels.OutOfOfficeNotificationRecipientList, OutOfOfficeNotificationRecipientListTypeRef), values)
+	return Object.assign(create(typeModels[OutOfOfficeNotificationRecipientListTypeRef.typeId], OutOfOfficeNotificationRecipientListTypeRef), values)
 }
 
 export type OutOfOfficeNotificationRecipientList = {
@@ -1467,7 +1463,7 @@ export type OutOfOfficeNotificationRecipientList = {
 export const EmailTemplateContentTypeRef: TypeRef<EmailTemplateContent> = new TypeRef("tutanota", 1154)
 
 export function createEmailTemplateContent(values: StrippedEntity<EmailTemplateContent>): EmailTemplateContent {
-	return Object.assign(create(typeModels.EmailTemplateContent, EmailTemplateContentTypeRef), values)
+	return Object.assign(create(typeModels[EmailTemplateContentTypeRef.typeId], EmailTemplateContentTypeRef), values)
 }
 
 export type EmailTemplateContent = {
@@ -1480,7 +1476,7 @@ export type EmailTemplateContent = {
 export const EmailTemplateTypeRef: TypeRef<EmailTemplate> = new TypeRef("tutanota", 1158)
 
 export function createEmailTemplate(values: StrippedEntity<EmailTemplate>): EmailTemplate {
-	return Object.assign(create(typeModels.EmailTemplate, EmailTemplateTypeRef), values)
+	return Object.assign(create(typeModels[EmailTemplateTypeRef.typeId], EmailTemplateTypeRef), values)
 }
 
 export type EmailTemplate = {
@@ -1501,7 +1497,7 @@ export type EmailTemplate = {
 export const KnowledgeBaseEntryKeywordTypeRef: TypeRef<KnowledgeBaseEntryKeyword> = new TypeRef("tutanota", 1168)
 
 export function createKnowledgeBaseEntryKeyword(values: StrippedEntity<KnowledgeBaseEntryKeyword>): KnowledgeBaseEntryKeyword {
-	return Object.assign(create(typeModels.KnowledgeBaseEntryKeyword, KnowledgeBaseEntryKeywordTypeRef), values)
+	return Object.assign(create(typeModels[KnowledgeBaseEntryKeywordTypeRef.typeId], KnowledgeBaseEntryKeywordTypeRef), values)
 }
 
 export type KnowledgeBaseEntryKeyword = {
@@ -1513,7 +1509,7 @@ export type KnowledgeBaseEntryKeyword = {
 export const KnowledgeBaseEntryTypeRef: TypeRef<KnowledgeBaseEntry> = new TypeRef("tutanota", 1171)
 
 export function createKnowledgeBaseEntry(values: StrippedEntity<KnowledgeBaseEntry>): KnowledgeBaseEntry {
-	return Object.assign(create(typeModels.KnowledgeBaseEntry, KnowledgeBaseEntryTypeRef), values)
+	return Object.assign(create(typeModels[KnowledgeBaseEntryTypeRef.typeId], KnowledgeBaseEntryTypeRef), values)
 }
 
 export type KnowledgeBaseEntry = {
@@ -1534,7 +1530,7 @@ export type KnowledgeBaseEntry = {
 export const TemplateGroupRootTypeRef: TypeRef<TemplateGroupRoot> = new TypeRef("tutanota", 1181)
 
 export function createTemplateGroupRoot(values: StrippedEntity<TemplateGroupRoot>): TemplateGroupRoot {
-	return Object.assign(create(typeModels.TemplateGroupRoot, TemplateGroupRootTypeRef), values)
+	return Object.assign(create(typeModels[TemplateGroupRootTypeRef.typeId], TemplateGroupRootTypeRef), values)
 }
 
 export type TemplateGroupRoot = {
@@ -1554,7 +1550,7 @@ export type TemplateGroupRoot = {
 export const UserAreaGroupDeleteDataTypeRef: TypeRef<UserAreaGroupDeleteData> = new TypeRef("tutanota", 1190)
 
 export function createUserAreaGroupDeleteData(values: StrippedEntity<UserAreaGroupDeleteData>): UserAreaGroupDeleteData {
-	return Object.assign(create(typeModels.UserAreaGroupDeleteData, UserAreaGroupDeleteDataTypeRef), values)
+	return Object.assign(create(typeModels[UserAreaGroupDeleteDataTypeRef.typeId], UserAreaGroupDeleteDataTypeRef), values)
 }
 
 export type UserAreaGroupDeleteData = {
@@ -1567,7 +1563,7 @@ export type UserAreaGroupDeleteData = {
 export const MailboxPropertiesTypeRef: TypeRef<MailboxProperties> = new TypeRef("tutanota", 1195)
 
 export function createMailboxProperties(values: StrippedEntity<MailboxProperties>): MailboxProperties {
-	return Object.assign(create(typeModels.MailboxProperties, MailboxPropertiesTypeRef), values)
+	return Object.assign(create(typeModels[MailboxPropertiesTypeRef.typeId], MailboxPropertiesTypeRef), values)
 }
 
 export type MailboxProperties = {
@@ -1587,7 +1583,7 @@ export type MailboxProperties = {
 export const SpamResultsTypeRef: TypeRef<SpamResults> = new TypeRef("tutanota", 1217)
 
 export function createSpamResults(values: StrippedEntity<SpamResults>): SpamResults {
-	return Object.assign(create(typeModels.SpamResults, SpamResultsTypeRef), values)
+	return Object.assign(create(typeModels[SpamResultsTypeRef.typeId], SpamResultsTypeRef), values)
 }
 
 export type SpamResults = {
@@ -1600,7 +1596,7 @@ export type SpamResults = {
 export const NewsIdTypeRef: TypeRef<NewsId> = new TypeRef("tutanota", 1245)
 
 export function createNewsId(values: StrippedEntity<NewsId>): NewsId {
-	return Object.assign(create(typeModels.NewsId, NewsIdTypeRef), values)
+	return Object.assign(create(typeModels[NewsIdTypeRef.typeId], NewsIdTypeRef), values)
 }
 
 export type NewsId = {
@@ -1613,7 +1609,7 @@ export type NewsId = {
 export const NewsOutTypeRef: TypeRef<NewsOut> = new TypeRef("tutanota", 1256)
 
 export function createNewsOut(values: StrippedEntity<NewsOut>): NewsOut {
-	return Object.assign(create(typeModels.NewsOut, NewsOutTypeRef), values)
+	return Object.assign(create(typeModels[NewsOutTypeRef.typeId], NewsOutTypeRef), values)
 }
 
 export type NewsOut = {
@@ -1626,7 +1622,7 @@ export type NewsOut = {
 export const NewsInTypeRef: TypeRef<NewsIn> = new TypeRef("tutanota", 1259)
 
 export function createNewsIn(values: StrippedEntity<NewsIn>): NewsIn {
-	return Object.assign(create(typeModels.NewsIn, NewsInTypeRef), values)
+	return Object.assign(create(typeModels[NewsInTypeRef.typeId], NewsInTypeRef), values)
 }
 
 export type NewsIn = {
@@ -1638,7 +1634,7 @@ export type NewsIn = {
 export const MailAddressPropertiesTypeRef: TypeRef<MailAddressProperties> = new TypeRef("tutanota", 1263)
 
 export function createMailAddressProperties(values: StrippedEntity<MailAddressProperties>): MailAddressProperties {
-	return Object.assign(create(typeModels.MailAddressProperties, MailAddressPropertiesTypeRef), values)
+	return Object.assign(create(typeModels[MailAddressPropertiesTypeRef.typeId], MailAddressPropertiesTypeRef), values)
 }
 
 export type MailAddressProperties = {
@@ -1651,7 +1647,7 @@ export type MailAddressProperties = {
 export const HeaderTypeRef: TypeRef<Header> = new TypeRef("tutanota", 1269)
 
 export function createHeader(values: StrippedEntity<Header>): Header {
-	return Object.assign(create(typeModels.Header, HeaderTypeRef), values)
+	return Object.assign(create(typeModels[HeaderTypeRef.typeId], HeaderTypeRef), values)
 }
 
 export type Header = {
@@ -1664,7 +1660,7 @@ export type Header = {
 export const BodyTypeRef: TypeRef<Body> = new TypeRef("tutanota", 1273)
 
 export function createBody(values: StrippedEntity<Body>): Body {
-	return Object.assign(create(typeModels.Body, BodyTypeRef), values)
+	return Object.assign(create(typeModels[BodyTypeRef.typeId], BodyTypeRef), values)
 }
 
 export type Body = {
@@ -1677,7 +1673,7 @@ export type Body = {
 export const RecipientsTypeRef: TypeRef<Recipients> = new TypeRef("tutanota", 1277)
 
 export function createRecipients(values: StrippedEntity<Recipients>): Recipients {
-	return Object.assign(create(typeModels.Recipients, RecipientsTypeRef), values)
+	return Object.assign(create(typeModels[RecipientsTypeRef.typeId], RecipientsTypeRef), values)
 }
 
 export type Recipients = {
@@ -1692,7 +1688,7 @@ export type Recipients = {
 export const MailDetailsTypeRef: TypeRef<MailDetails> = new TypeRef("tutanota", 1282)
 
 export function createMailDetails(values: StrippedEntity<MailDetails>): MailDetails {
-	return Object.assign(create(typeModels.MailDetails, MailDetailsTypeRef), values)
+	return Object.assign(create(typeModels[MailDetailsTypeRef.typeId], MailDetailsTypeRef), values)
 }
 
 export type MailDetails = {
@@ -1710,7 +1706,7 @@ export type MailDetails = {
 export const MailDetailsDraftTypeRef: TypeRef<MailDetailsDraft> = new TypeRef("tutanota", 1290)
 
 export function createMailDetailsDraft(values: StrippedEntity<MailDetailsDraft>): MailDetailsDraft {
-	return Object.assign(create(typeModels.MailDetailsDraft, MailDetailsDraftTypeRef), values)
+	return Object.assign(create(typeModels[MailDetailsDraftTypeRef.typeId], MailDetailsDraftTypeRef), values)
 }
 
 export type MailDetailsDraft = {
@@ -1729,7 +1725,7 @@ export type MailDetailsDraft = {
 export const MailDetailsBlobTypeRef: TypeRef<MailDetailsBlob> = new TypeRef("tutanota", 1298)
 
 export function createMailDetailsBlob(values: StrippedEntity<MailDetailsBlob>): MailDetailsBlob {
-	return Object.assign(create(typeModels.MailDetailsBlob, MailDetailsBlobTypeRef), values)
+	return Object.assign(create(typeModels[MailDetailsBlobTypeRef.typeId], MailDetailsBlobTypeRef), values)
 }
 
 export type MailDetailsBlob = {
@@ -1748,7 +1744,7 @@ export type MailDetailsBlob = {
 export const UpdateMailFolderDataTypeRef: TypeRef<UpdateMailFolderData> = new TypeRef("tutanota", 1311)
 
 export function createUpdateMailFolderData(values: StrippedEntity<UpdateMailFolderData>): UpdateMailFolderData {
-	return Object.assign(create(typeModels.UpdateMailFolderData, UpdateMailFolderDataTypeRef), values)
+	return Object.assign(create(typeModels[UpdateMailFolderDataTypeRef.typeId], UpdateMailFolderDataTypeRef), values)
 }
 
 export type UpdateMailFolderData = {
@@ -1762,7 +1758,7 @@ export type UpdateMailFolderData = {
 export const MailDetailsDraftsRefTypeRef: TypeRef<MailDetailsDraftsRef> = new TypeRef("tutanota", 1315)
 
 export function createMailDetailsDraftsRef(values: StrippedEntity<MailDetailsDraftsRef>): MailDetailsDraftsRef {
-	return Object.assign(create(typeModels.MailDetailsDraftsRef, MailDetailsDraftsRefTypeRef), values)
+	return Object.assign(create(typeModels[MailDetailsDraftsRefTypeRef.typeId], MailDetailsDraftsRefTypeRef), values)
 }
 
 export type MailDetailsDraftsRef = {
@@ -1775,7 +1771,7 @@ export type MailDetailsDraftsRef = {
 export const ContactListEntryTypeRef: TypeRef<ContactListEntry> = new TypeRef("tutanota", 1325)
 
 export function createContactListEntry(values: StrippedEntity<ContactListEntry>): ContactListEntry {
-	return Object.assign(create(typeModels.ContactListEntry, ContactListEntryTypeRef), values)
+	return Object.assign(create(typeModels[ContactListEntryTypeRef.typeId], ContactListEntryTypeRef), values)
 }
 
 export type ContactListEntry = {
@@ -1793,7 +1789,7 @@ export type ContactListEntry = {
 export const ContactListGroupRootTypeRef: TypeRef<ContactListGroupRoot> = new TypeRef("tutanota", 1333)
 
 export function createContactListGroupRoot(values: StrippedEntity<ContactListGroupRoot>): ContactListGroupRoot {
-	return Object.assign(create(typeModels.ContactListGroupRoot, ContactListGroupRootTypeRef), values)
+	return Object.assign(create(typeModels[ContactListGroupRootTypeRef.typeId], ContactListGroupRootTypeRef), values)
 }
 
 export type ContactListGroupRoot = {
@@ -1812,7 +1808,7 @@ export type ContactListGroupRoot = {
 export const SymEncInternalRecipientKeyDataTypeRef: TypeRef<SymEncInternalRecipientKeyData> = new TypeRef("tutanota", 1347)
 
 export function createSymEncInternalRecipientKeyData(values: StrippedEntity<SymEncInternalRecipientKeyData>): SymEncInternalRecipientKeyData {
-	return Object.assign(create(typeModels.SymEncInternalRecipientKeyData, SymEncInternalRecipientKeyDataTypeRef), values)
+	return Object.assign(create(typeModels[SymEncInternalRecipientKeyDataTypeRef.typeId], SymEncInternalRecipientKeyDataTypeRef), values)
 }
 
 export type SymEncInternalRecipientKeyData = {
@@ -1828,7 +1824,7 @@ export type SymEncInternalRecipientKeyData = {
 export const ContactCustomDateTypeRef: TypeRef<ContactCustomDate> = new TypeRef("tutanota", 1356)
 
 export function createContactCustomDate(values: StrippedEntity<ContactCustomDate>): ContactCustomDate {
-	return Object.assign(create(typeModels.ContactCustomDate, ContactCustomDateTypeRef), values)
+	return Object.assign(create(typeModels[ContactCustomDateTypeRef.typeId], ContactCustomDateTypeRef), values)
 }
 
 export type ContactCustomDate = {
@@ -1842,7 +1838,7 @@ export type ContactCustomDate = {
 export const ContactWebsiteTypeRef: TypeRef<ContactWebsite> = new TypeRef("tutanota", 1361)
 
 export function createContactWebsite(values: StrippedEntity<ContactWebsite>): ContactWebsite {
-	return Object.assign(create(typeModels.ContactWebsite, ContactWebsiteTypeRef), values)
+	return Object.assign(create(typeModels[ContactWebsiteTypeRef.typeId], ContactWebsiteTypeRef), values)
 }
 
 export type ContactWebsite = {
@@ -1856,7 +1852,7 @@ export type ContactWebsite = {
 export const ContactRelationshipTypeRef: TypeRef<ContactRelationship> = new TypeRef("tutanota", 1366)
 
 export function createContactRelationship(values: StrippedEntity<ContactRelationship>): ContactRelationship {
-	return Object.assign(create(typeModels.ContactRelationship, ContactRelationshipTypeRef), values)
+	return Object.assign(create(typeModels[ContactRelationshipTypeRef.typeId], ContactRelationshipTypeRef), values)
 }
 
 export type ContactRelationship = {
@@ -1870,7 +1866,7 @@ export type ContactRelationship = {
 export const ContactMessengerHandleTypeRef: TypeRef<ContactMessengerHandle> = new TypeRef("tutanota", 1371)
 
 export function createContactMessengerHandle(values: StrippedEntity<ContactMessengerHandle>): ContactMessengerHandle {
-	return Object.assign(create(typeModels.ContactMessengerHandle, ContactMessengerHandleTypeRef), values)
+	return Object.assign(create(typeModels[ContactMessengerHandleTypeRef.typeId], ContactMessengerHandleTypeRef), values)
 }
 
 export type ContactMessengerHandle = {
@@ -1884,7 +1880,7 @@ export type ContactMessengerHandle = {
 export const ContactPronounsTypeRef: TypeRef<ContactPronouns> = new TypeRef("tutanota", 1376)
 
 export function createContactPronouns(values: StrippedEntity<ContactPronouns>): ContactPronouns {
-	return Object.assign(create(typeModels.ContactPronouns, ContactPronounsTypeRef), values)
+	return Object.assign(create(typeModels[ContactPronounsTypeRef.typeId], ContactPronounsTypeRef), values)
 }
 
 export type ContactPronouns = {
@@ -1897,7 +1893,7 @@ export type ContactPronouns = {
 export const TranslationGetInTypeRef: TypeRef<TranslationGetIn> = new TypeRef("tutanota", 1436)
 
 export function createTranslationGetIn(values: StrippedEntity<TranslationGetIn>): TranslationGetIn {
-	return Object.assign(create(typeModels.TranslationGetIn, TranslationGetInTypeRef), values)
+	return Object.assign(create(typeModels[TranslationGetInTypeRef.typeId], TranslationGetInTypeRef), values)
 }
 
 export type TranslationGetIn = {
@@ -1909,7 +1905,7 @@ export type TranslationGetIn = {
 export const TranslationGetOutTypeRef: TypeRef<TranslationGetOut> = new TypeRef("tutanota", 1439)
 
 export function createTranslationGetOut(values: StrippedEntity<TranslationGetOut>): TranslationGetOut {
-	return Object.assign(create(typeModels.TranslationGetOut, TranslationGetOutTypeRef), values)
+	return Object.assign(create(typeModels[TranslationGetOutTypeRef.typeId], TranslationGetOutTypeRef), values)
 }
 
 export type TranslationGetOut = {
@@ -1922,7 +1918,7 @@ export type TranslationGetOut = {
 export const DefaultAlarmInfoTypeRef: TypeRef<DefaultAlarmInfo> = new TypeRef("tutanota", 1446)
 
 export function createDefaultAlarmInfo(values: StrippedEntity<DefaultAlarmInfo>): DefaultAlarmInfo {
-	return Object.assign(create(typeModels.DefaultAlarmInfo, DefaultAlarmInfoTypeRef), values)
+	return Object.assign(create(typeModels[DefaultAlarmInfoTypeRef.typeId], DefaultAlarmInfoTypeRef), values)
 }
 
 export type DefaultAlarmInfo = {
@@ -1934,7 +1930,7 @@ export type DefaultAlarmInfo = {
 export const MailSetEntryTypeRef: TypeRef<MailSetEntry> = new TypeRef("tutanota", 1450)
 
 export function createMailSetEntry(values: StrippedEntity<MailSetEntry>): MailSetEntry {
-	return Object.assign(create(typeModels.MailSetEntry, MailSetEntryTypeRef), values)
+	return Object.assign(create(typeModels[MailSetEntryTypeRef.typeId], MailSetEntryTypeRef), values)
 }
 
 export type MailSetEntry = {
@@ -1950,7 +1946,7 @@ export type MailSetEntry = {
 export const MailBagTypeRef: TypeRef<MailBag> = new TypeRef("tutanota", 1460)
 
 export function createMailBag(values: StrippedEntity<MailBag>): MailBag {
-	return Object.assign(create(typeModels.MailBag, MailBagTypeRef), values)
+	return Object.assign(create(typeModels[MailBagTypeRef.typeId], MailBagTypeRef), values)
 }
 
 export type MailBag = {
@@ -1963,7 +1959,7 @@ export type MailBag = {
 export const SimpleMoveMailPostInTypeRef: TypeRef<SimpleMoveMailPostIn> = new TypeRef("tutanota", 1469)
 
 export function createSimpleMoveMailPostIn(values: StrippedEntity<SimpleMoveMailPostIn>): SimpleMoveMailPostIn {
-	return Object.assign(create(typeModels.SimpleMoveMailPostIn, SimpleMoveMailPostInTypeRef), values)
+	return Object.assign(create(typeModels[SimpleMoveMailPostInTypeRef.typeId], SimpleMoveMailPostInTypeRef), values)
 }
 
 export type SimpleMoveMailPostIn = {
@@ -1977,7 +1973,7 @@ export type SimpleMoveMailPostIn = {
 export const UnreadMailStatePostInTypeRef: TypeRef<UnreadMailStatePostIn> = new TypeRef("tutanota", 1474)
 
 export function createUnreadMailStatePostIn(values: StrippedEntity<UnreadMailStatePostIn>): UnreadMailStatePostIn {
-	return Object.assign(create(typeModels.UnreadMailStatePostIn, UnreadMailStatePostInTypeRef), values)
+	return Object.assign(create(typeModels[UnreadMailStatePostInTypeRef.typeId], UnreadMailStatePostInTypeRef), values)
 }
 
 export type UnreadMailStatePostIn = {
@@ -1991,7 +1987,7 @@ export type UnreadMailStatePostIn = {
 export const ManageLabelServiceLabelDataTypeRef: TypeRef<ManageLabelServiceLabelData> = new TypeRef("tutanota", 1480)
 
 export function createManageLabelServiceLabelData(values: StrippedEntity<ManageLabelServiceLabelData>): ManageLabelServiceLabelData {
-	return Object.assign(create(typeModels.ManageLabelServiceLabelData, ManageLabelServiceLabelDataTypeRef), values)
+	return Object.assign(create(typeModels[ManageLabelServiceLabelDataTypeRef.typeId], ManageLabelServiceLabelDataTypeRef), values)
 }
 
 export type ManageLabelServiceLabelData = {
@@ -2004,7 +2000,7 @@ export type ManageLabelServiceLabelData = {
 export const ManageLabelServicePostInTypeRef: TypeRef<ManageLabelServicePostIn> = new TypeRef("tutanota", 1484)
 
 export function createManageLabelServicePostIn(values: StrippedEntity<ManageLabelServicePostIn>): ManageLabelServicePostIn {
-	return Object.assign(create(typeModels.ManageLabelServicePostIn, ManageLabelServicePostInTypeRef), values)
+	return Object.assign(create(typeModels[ManageLabelServicePostInTypeRef.typeId], ManageLabelServicePostInTypeRef), values)
 }
 
 export type ManageLabelServicePostIn = {
@@ -2021,7 +2017,7 @@ export type ManageLabelServicePostIn = {
 export const ManageLabelServiceDeleteInTypeRef: TypeRef<ManageLabelServiceDeleteIn> = new TypeRef("tutanota", 1500)
 
 export function createManageLabelServiceDeleteIn(values: StrippedEntity<ManageLabelServiceDeleteIn>): ManageLabelServiceDeleteIn {
-	return Object.assign(create(typeModels.ManageLabelServiceDeleteIn, ManageLabelServiceDeleteInTypeRef), values)
+	return Object.assign(create(typeModels[ManageLabelServiceDeleteInTypeRef.typeId], ManageLabelServiceDeleteInTypeRef), values)
 }
 
 export type ManageLabelServiceDeleteIn = {
@@ -2034,7 +2030,7 @@ export type ManageLabelServiceDeleteIn = {
 export const ApplyLabelServicePostInTypeRef: TypeRef<ApplyLabelServicePostIn> = new TypeRef("tutanota", 1504)
 
 export function createApplyLabelServicePostIn(values: StrippedEntity<ApplyLabelServicePostIn>): ApplyLabelServicePostIn {
-	return Object.assign(create(typeModels.ApplyLabelServicePostIn, ApplyLabelServicePostInTypeRef), values)
+	return Object.assign(create(typeModels[ApplyLabelServicePostInTypeRef.typeId], ApplyLabelServicePostInTypeRef), values)
 }
 
 export type ApplyLabelServicePostIn = {
@@ -2049,7 +2045,7 @@ export type ApplyLabelServicePostIn = {
 export const ImportMailDataMailReferenceTypeRef: TypeRef<ImportMailDataMailReference> = new TypeRef("tutanota", 1513)
 
 export function createImportMailDataMailReference(values: StrippedEntity<ImportMailDataMailReference>): ImportMailDataMailReference {
-	return Object.assign(create(typeModels.ImportMailDataMailReference, ImportMailDataMailReferenceTypeRef), values)
+	return Object.assign(create(typeModels[ImportMailDataMailReferenceTypeRef.typeId], ImportMailDataMailReferenceTypeRef), values)
 }
 
 export type ImportMailDataMailReference = {
@@ -2061,7 +2057,7 @@ export type ImportMailDataMailReference = {
 export const NewImportAttachmentTypeRef: TypeRef<NewImportAttachment> = new TypeRef("tutanota", 1516)
 
 export function createNewImportAttachment(values: StrippedEntity<NewImportAttachment>): NewImportAttachment {
-	return Object.assign(create(typeModels.NewImportAttachment, NewImportAttachmentTypeRef), values)
+	return Object.assign(create(typeModels[NewImportAttachmentTypeRef.typeId], NewImportAttachmentTypeRef), values)
 }
 
 export type NewImportAttachment = {
@@ -2079,7 +2075,7 @@ export type NewImportAttachment = {
 export const ImportAttachmentTypeRef: TypeRef<ImportAttachment> = new TypeRef("tutanota", 1524)
 
 export function createImportAttachment(values: StrippedEntity<ImportAttachment>): ImportAttachment {
-	return Object.assign(create(typeModels.ImportAttachment, ImportAttachmentTypeRef), values)
+	return Object.assign(create(typeModels[ImportAttachmentTypeRef.typeId], ImportAttachmentTypeRef), values)
 }
 
 export type ImportAttachment = {
@@ -2095,7 +2091,7 @@ export type ImportAttachment = {
 export const ImportMailDataTypeRef: TypeRef<ImportMailData> = new TypeRef("tutanota", 1530)
 
 export function createImportMailData(values: StrippedEntity<ImportMailData>): ImportMailData {
-	return Object.assign(create(typeModels.ImportMailData, ImportMailDataTypeRef), values)
+	return Object.assign(create(typeModels[ImportMailDataTypeRef.typeId], ImportMailDataTypeRef), values)
 }
 
 export type ImportMailData = {
@@ -2128,7 +2124,7 @@ export type ImportMailData = {
 export const ImportedMailTypeRef: TypeRef<ImportedMail> = new TypeRef("tutanota", 1552)
 
 export function createImportedMail(values: StrippedEntity<ImportedMail>): ImportedMail {
-	return Object.assign(create(typeModels.ImportedMail, ImportedMailTypeRef), values)
+	return Object.assign(create(typeModels[ImportedMailTypeRef.typeId], ImportedMailTypeRef), values)
 }
 
 export type ImportedMail = {
@@ -2144,7 +2140,7 @@ export type ImportedMail = {
 export const ImportMailStateTypeRef: TypeRef<ImportMailState> = new TypeRef("tutanota", 1559)
 
 export function createImportMailState(values: StrippedEntity<ImportMailState>): ImportMailState {
-	return Object.assign(create(typeModels.ImportMailState, ImportMailStateTypeRef), values)
+	return Object.assign(create(typeModels[ImportMailStateTypeRef.typeId], ImportMailStateTypeRef), values)
 }
 
 export type ImportMailState = {
@@ -2165,7 +2161,7 @@ export type ImportMailState = {
 export const ImportMailPostInTypeRef: TypeRef<ImportMailPostIn> = new TypeRef("tutanota", 1570)
 
 export function createImportMailPostIn(values: StrippedEntity<ImportMailPostIn>): ImportMailPostIn {
-	return Object.assign(create(typeModels.ImportMailPostIn, ImportMailPostInTypeRef), values)
+	return Object.assign(create(typeModels[ImportMailPostInTypeRef.typeId], ImportMailPostInTypeRef), values)
 }
 
 export type ImportMailPostIn = {
@@ -2179,7 +2175,7 @@ export type ImportMailPostIn = {
 export const ImportMailPostOutTypeRef: TypeRef<ImportMailPostOut> = new TypeRef("tutanota", 1579)
 
 export function createImportMailPostOut(values: StrippedEntity<ImportMailPostOut>): ImportMailPostOut {
-	return Object.assign(create(typeModels.ImportMailPostOut, ImportMailPostOutTypeRef), values)
+	return Object.assign(create(typeModels[ImportMailPostOutTypeRef.typeId], ImportMailPostOutTypeRef), values)
 }
 
 export type ImportMailPostOut = {
@@ -2190,7 +2186,7 @@ export type ImportMailPostOut = {
 export const ImportMailGetInTypeRef: TypeRef<ImportMailGetIn> = new TypeRef("tutanota", 1582)
 
 export function createImportMailGetIn(values: StrippedEntity<ImportMailGetIn>): ImportMailGetIn {
-	return Object.assign(create(typeModels.ImportMailGetIn, ImportMailGetInTypeRef), values)
+	return Object.assign(create(typeModels[ImportMailGetInTypeRef.typeId], ImportMailGetInTypeRef), values)
 }
 
 export type ImportMailGetIn = {
@@ -2209,7 +2205,7 @@ export type ImportMailGetIn = {
 export const AdvancedRepeatRuleTypeRef: TypeRef<AdvancedRepeatRule> = new TypeRef("tutanota", 1586)
 
 export function createAdvancedRepeatRule(values: StrippedEntity<AdvancedRepeatRule>): AdvancedRepeatRule {
-	return Object.assign(create(typeModels.AdvancedRepeatRule, AdvancedRepeatRuleTypeRef), values)
+	return Object.assign(create(typeModels[AdvancedRepeatRuleTypeRef.typeId], AdvancedRepeatRuleTypeRef), values)
 }
 
 export type AdvancedRepeatRule = {
@@ -2222,7 +2218,7 @@ export type AdvancedRepeatRule = {
 export const ImportMailGetOutTypeRef: TypeRef<ImportMailGetOut> = new TypeRef("tutanota", 1591)
 
 export function createImportMailGetOut(values: StrippedEntity<ImportMailGetOut>): ImportMailGetOut {
-	return Object.assign(create(typeModels.ImportMailGetOut, ImportMailGetOutTypeRef), values)
+	return Object.assign(create(typeModels[ImportMailGetOutTypeRef.typeId], ImportMailGetOutTypeRef), values)
 }
 
 export type ImportMailGetOut = {
@@ -2235,7 +2231,7 @@ export type ImportMailGetOut = {
 export const MailExportTokenServicePostOutTypeRef: TypeRef<MailExportTokenServicePostOut> = new TypeRef("tutanota", 1605)
 
 export function createMailExportTokenServicePostOut(values: StrippedEntity<MailExportTokenServicePostOut>): MailExportTokenServicePostOut {
-	return Object.assign(create(typeModels.MailExportTokenServicePostOut, MailExportTokenServicePostOutTypeRef), values)
+	return Object.assign(create(typeModels[MailExportTokenServicePostOutTypeRef.typeId], MailExportTokenServicePostOutTypeRef), values)
 }
 
 export type MailExportTokenServicePostOut = {
@@ -2247,7 +2243,7 @@ export type MailExportTokenServicePostOut = {
 export const SupportTopicTypeRef: TypeRef<SupportTopic> = new TypeRef("tutanota", 1618)
 
 export function createSupportTopic(values: StrippedEntity<SupportTopic>): SupportTopic {
-	return Object.assign(create(typeModels.SupportTopic, SupportTopicTypeRef), values)
+	return Object.assign(create(typeModels[SupportTopicTypeRef.typeId], SupportTopicTypeRef), values)
 }
 
 export type SupportTopic = {
@@ -2264,7 +2260,7 @@ export type SupportTopic = {
 export const SupportCategoryTypeRef: TypeRef<SupportCategory> = new TypeRef("tutanota", 1626)
 
 export function createSupportCategory(values: StrippedEntity<SupportCategory>): SupportCategory {
-	return Object.assign(create(typeModels.SupportCategory, SupportCategoryTypeRef), values)
+	return Object.assign(create(typeModels[SupportCategoryTypeRef.typeId], SupportCategoryTypeRef), values)
 }
 
 export type SupportCategory = {
@@ -2282,7 +2278,7 @@ export type SupportCategory = {
 export const SupportDataTypeRef: TypeRef<SupportData> = new TypeRef("tutanota", 1634)
 
 export function createSupportData(values: StrippedEntity<SupportData>): SupportData {
-	return Object.assign(create(typeModels.SupportData, SupportDataTypeRef), values)
+	return Object.assign(create(typeModels[SupportDataTypeRef.typeId], SupportDataTypeRef), values)
 }
 
 export type SupportData = {

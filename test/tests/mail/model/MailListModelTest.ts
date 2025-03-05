@@ -304,9 +304,9 @@ o.spec("MailListModelTest", () => {
 
 			o(model.getLabelsForMail(someMail.mail)[1]).notDeepEquals(labels[1])
 
-			const entityUpdateData = {
+			const entityUpdateData: EntityUpdateData = {
 				application: MailFolderTypeRef.app,
-				type: MailFolderTypeRef.typeId.toString(),
+				typeId: MailFolderTypeRef.typeId,
 				instanceListId: getListId(labels[1]),
 				instanceId: getElementId(labels[1]),
 				operation: OperationType.DELETE,
@@ -325,9 +325,9 @@ o.spec("MailListModelTest", () => {
 			await setUpTestData(PageSize, [labels[0]], false)
 			await model.loadInitial()
 
-			const entityUpdateData = {
+			const entityUpdateData: EntityUpdateData = {
 				application: MailFolderTypeRef.app,
-				type: MailFolderTypeRef.typeId.toString(),
+				typeId: MailFolderTypeRef.typeId,
 				instanceListId: getListId(labels[1]),
 				instanceId: getElementId(labels[1]),
 				operation: OperationType.DELETE,
@@ -344,9 +344,9 @@ o.spec("MailListModelTest", () => {
 			const someIndex = 22 // a random number
 			const someMail = model._loadedMails()[someIndex]
 
-			const entityUpdateData = {
+			const entityUpdateData: EntityUpdateData = {
 				application: MailSetEntryTypeRef.app,
-				type: MailSetEntryTypeRef.typeId.toString(),
+				typeId: MailSetEntryTypeRef.typeId,
 				instanceListId: getListId(someMail.mailSetEntry),
 				instanceId: getElementId(someMail.mailSetEntry),
 				operation: OperationType.DELETE,
@@ -378,9 +378,9 @@ o.spec("MailListModelTest", () => {
 				mail: newMail._id,
 			})
 
-			const entityUpdateData = {
+			const entityUpdateData: EntityUpdateData = {
 				application: MailSetEntryTypeRef.app,
-				type: MailSetEntryTypeRef.typeId.toString(),
+				typeId: MailSetEntryTypeRef.typeId,
 				instanceListId: getListId(newEntry),
 				instanceId: getElementId(newEntry),
 				operation: OperationType.CREATE,
@@ -433,9 +433,9 @@ o.spec("MailListModelTest", () => {
 			mail.subject = "hey it's a subject"
 			mail.sets = [mailSet._id] // remove all labels
 
-			const entityUpdateData = {
+			const entityUpdateData: EntityUpdateData = {
 				application: MailTypeRef.app,
-				type: MailTypeRef.typeId.toString(),
+				typeId: MailTypeRef.typeId,
 				instanceListId: getListId(mail),
 				instanceId: getElementId(mail),
 				operation: OperationType.UPDATE,
@@ -452,9 +452,9 @@ o.spec("MailListModelTest", () => {
 			await setUpTestData(PageSize, labels, false)
 			await model.loadInitial()
 			const mail = { ...model.items[2] }
-			const entityUpdateData = {
+			const entityUpdateData: EntityUpdateData = {
 				application: MailTypeRef.app,
-				type: MailTypeRef.typeId.toString(),
+				typeId: MailTypeRef.typeId,
 				instanceListId: getListId(mail),
 				instanceId: getElementId(mail),
 				operation: OperationType.UPDATE,
