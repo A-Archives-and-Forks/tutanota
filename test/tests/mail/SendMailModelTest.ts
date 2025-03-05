@@ -50,6 +50,7 @@ import { SendMailModel, TOO_MANY_VISIBLE_RECIPIENTS } from "../../../src/common/
 import { RecipientField } from "../../../src/common/mailFunctionality/SharedMailUtils.js"
 import { getContactDisplayName } from "../../../src/common/contactsFunctionality/ContactUtils.js"
 import { FolderSystem } from "../../../src/common/api/common/mail/FolderSystem.js"
+import { PartialRecipient } from "../../../src/common/api/common/recipients/Recipient"
 
 const { anything, argThat } = matchers
 
@@ -167,7 +168,7 @@ o.spec("SendMailModel", function () {
 				recipient.address,
 				recipient.name,
 				recipient.contact,
-				recipient.typeId,
+				recipient.type,
 				[INTERNAL_RECIPIENT_1.address],
 				[],
 				resolveMode,
@@ -601,7 +602,7 @@ o.spec("SendMailModel", function () {
 			await model.initWithTemplate({ to: recipients }, "somb", "", [], true, "a@b.c", false)
 			await model.handleEntityEvent({
 				application: app,
-				typeId: typeId,
+				typeId: typeId.toString(),
 				operation: OperationType.UPDATE,
 				instanceListId,
 				instanceId,
@@ -636,7 +637,7 @@ o.spec("SendMailModel", function () {
 			await model.initWithTemplate({ to: recipients }, "b", "c", [], true, "", false)
 			await model.handleEntityEvent({
 				application: app,
-				typeId: typeId,
+				typeId: typeId.toString(),
 				operation: OperationType.UPDATE,
 				instanceListId,
 				instanceId,
@@ -651,7 +652,7 @@ o.spec("SendMailModel", function () {
 			await model.initWithTemplate({ to: recipients }, "subj", "", [], true, "a@b.c", false)
 			await model.handleEntityEvent({
 				application: app,
-				typeId: typeId,
+				typeId: typeId.toString(),
 				operation: OperationType.DELETE,
 				instanceListId,
 				instanceId,

@@ -306,7 +306,7 @@ o.spec("MailListModelTest", () => {
 
 			const entityUpdateData = {
 				application: MailFolderTypeRef.app,
-				type: MailFolderTypeRef.typeId,
+				type: MailFolderTypeRef.typeId.toString(),
 				instanceListId: getListId(labels[1]),
 				instanceId: getElementId(labels[1]),
 				operation: OperationType.DELETE,
@@ -327,7 +327,7 @@ o.spec("MailListModelTest", () => {
 
 			const entityUpdateData = {
 				application: MailFolderTypeRef.app,
-				type: MailFolderTypeRef.typeId,
+				type: MailFolderTypeRef.typeId.toString(),
 				instanceListId: getListId(labels[1]),
 				instanceId: getElementId(labels[1]),
 				operation: OperationType.DELETE,
@@ -346,7 +346,7 @@ o.spec("MailListModelTest", () => {
 
 			const entityUpdateData = {
 				application: MailSetEntryTypeRef.app,
-				type: MailSetEntryTypeRef.typeId,
+				type: MailSetEntryTypeRef.typeId.toString(),
 				instanceListId: getListId(someMail.mailSetEntry),
 				instanceId: getElementId(someMail.mailSetEntry),
 				operation: OperationType.DELETE,
@@ -380,7 +380,7 @@ o.spec("MailListModelTest", () => {
 
 			const entityUpdateData = {
 				application: MailSetEntryTypeRef.app,
-				type: MailSetEntryTypeRef.typeId,
+				type: MailSetEntryTypeRef.typeId.toString(),
 				instanceListId: getListId(newEntry),
 				instanceId: getElementId(newEntry),
 				operation: OperationType.CREATE,
@@ -435,7 +435,7 @@ o.spec("MailListModelTest", () => {
 
 			const entityUpdateData = {
 				application: MailTypeRef.app,
-				type: MailTypeRef.typeId,
+				type: MailTypeRef.typeId.toString(),
 				instanceListId: getListId(mail),
 				instanceId: getElementId(mail),
 				operation: OperationType.UPDATE,
@@ -454,7 +454,7 @@ o.spec("MailListModelTest", () => {
 			const mail = { ...model.items[2] }
 			const entityUpdateData = {
 				application: MailTypeRef.app,
-				type: MailTypeRef.typeId,
+				type: MailTypeRef.typeId.toString(),
 				instanceListId: getListId(mail),
 				instanceId: getElementId(mail),
 				operation: OperationType.UPDATE,

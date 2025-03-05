@@ -175,7 +175,10 @@ o.spec("ConversationViewModel", function () {
 			const trashDraftMail = addMail("trashDraftMail")
 			trashDraftMail.state = MailState.DRAFT
 
-			const trash = createTestEntity(MailFolderTypeRef, { _id: [listId, "trashFolder"], folderType: MailSetKind.TRASH })
+			const trash = createTestEntity(MailFolderTypeRef, {
+				_id: [listId, "trashFolder"],
+				folderType: MailSetKind.TRASH,
+			})
 			entityRestClientMock.addListInstances(trash)
 
 			when(mailModel.getMailboxDetailsForMail(matchers.anything())).thenResolve(mailboxDetail)
@@ -197,7 +200,10 @@ o.spec("ConversationViewModel", function () {
 			const trashDraftMail = addMail("trashDraftMail")
 			trashDraftMail.state = MailState.DRAFT
 
-			const trash = createTestEntity(MailFolderTypeRef, { _id: [listId, "trashFolder"], folderType: MailSetKind.TRASH })
+			const trash = createTestEntity(MailFolderTypeRef, {
+				_id: [listId, "trashFolder"],
+				folderType: MailSetKind.TRASH,
+			})
 			entityRestClientMock.addListInstances(trash)
 
 			when(mailModel.getMailboxDetailsForMail(trashDraftMail)).thenResolve(mailboxDetail)
@@ -226,7 +232,7 @@ o.spec("ConversationViewModel", function () {
 				[
 					{
 						application: "tutanota",
-						typeId: "ConversationEntry",
+						typeId: ConversationEntryTypeRef.typeId.toString(),
 						operation: OperationType.CREATE,
 						instanceListId: listId,
 						instanceId: yetAnotherMail.conversationEntry[1],
@@ -264,7 +270,7 @@ o.spec("ConversationViewModel", function () {
 				[
 					{
 						application: "tutanota",
-						typeId: "ConversationEntry",
+						typeId: ConversationEntryTypeRef.typeId.toString(),
 						operation: OperationType.UPDATE,
 						instanceListId: listId,
 						instanceId: anotherMail.conversationEntry[1],
@@ -291,7 +297,7 @@ o.spec("ConversationViewModel", function () {
 				[
 					{
 						application: "tutanota",
-						typeId: "ConversationEntry",
+						typeId: ConversationEntryTypeRef.typeId.toString(),
 						operation: OperationType.CREATE,
 						instanceListId: listId,
 						instanceId: yetAnotherMail.conversationEntry[1],
@@ -313,7 +319,10 @@ o.spec("ConversationViewModel", function () {
 			await loadingDefer.promise
 
 			conversation.pop()
-			const trash = createTestEntity(MailFolderTypeRef, { _id: ["folderListId", "trashFolder"], folderType: MailSetKind.TRASH })
+			const trash = createTestEntity(MailFolderTypeRef, {
+				_id: ["folderListId", "trashFolder"],
+				folderType: MailSetKind.TRASH,
+			})
 			entityRestClientMock.addListInstances(trash)
 			// adding new mail (is the same mail, just moved to trash)
 			const newTrashDraftMail = addMail("trashDraftMail")
@@ -328,7 +337,7 @@ o.spec("ConversationViewModel", function () {
 				[
 					{
 						application: "tutanota",
-						typeId: "ConversationEntry",
+						typeId: ConversationEntryTypeRef.typeId.toString(),
 						operation: OperationType.UPDATE,
 						instanceListId: listId,
 						instanceId: trashDraftMail.conversationEntry[1],
