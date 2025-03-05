@@ -1,5 +1,3 @@
-import { resolveTypeReference } from "../../../src/common/api/common/EntityFunctions"
-
 /**
  * T should be restricted to Entity.
  */
@@ -17,10 +15,6 @@ export class TypeRef<T> {
 		this.app = app
 		this.typeId = typeId
 		Object.freeze(this)
-	}
-
-	async typeName() {
-		return (await resolveTypeReference(this)).name
 	}
 
 	/**
