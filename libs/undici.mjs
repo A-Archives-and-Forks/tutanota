@@ -2734,7 +2734,7 @@ utils.enumToMap = enumToMap;
 	    'transfer-encoding': HEADER_STATE.TRANSFER_ENCODING,
 	    'upgrade': HEADER_STATE.UPGRADE,
 	};
-
+	
 } (constants$4));
 
 var llhttpWasm;
@@ -3721,7 +3721,7 @@ function requireWebidl () {
 	webidl.errors.invalidArgument = function (context) {
 	  return webidl.errors.exception({
 	    header: context.prefix,
-	    message: `"${context.value}" is an invalid ${context.typeId}.`
+	    message: `"${context.value}" is an invalid ${context.type}.`
 	  })
 	};
 
@@ -6065,7 +6065,7 @@ function requireFile () {
 	    //    outside the range U+0020 to U+007E, then set t to the empty string
 	    //    and return from these substeps.
 	    //    TODO
-	    const t = options.typeId;
+	    const t = options.type;
 
 	    //    2. Convert every character in t to ASCII lowercase.
 	    //    TODO
@@ -6124,7 +6124,7 @@ function requireFile () {
 	  get type () {
 	    webidl.brandCheck(this, FileLike);
 
-	    return this[kState].blobLike.typeId
+	    return this[kState].blobLike.type
 	  }
 
 	  get name () {
@@ -7030,7 +7030,7 @@ function requireBody () {
 	        const chunk = textEncoder.encode(`${prefix}; name="${escape(normalizeLinefeeds(name))}"` +
 	          (value.name ? `; filename="${escape(value.name)}"` : '') + '\r\n' +
 	          `Content-Type: ${
-	            value.typeId || 'application/octet-stream'
+	            value.type || 'application/octet-stream'
 	          }\r\n\r\n`);
 	        blobParts.push(chunk, value, rn);
 	        if (typeof value.size === 'number') {
@@ -7076,8 +7076,8 @@ function requireBody () {
 
 	    // If object’s type attribute is not the empty byte sequence, set
 	    // type to its value.
-	    if (object.typeId) {
-	      type = object.typeId;
+	    if (object.type) {
+	      type = object.type;
 	    }
 	  } else if (typeof object[Symbol.asyncIterator] === 'function') {
 	    // If keepalive is true, then throw a TypeError.
@@ -8255,8 +8255,8 @@ function writeH1 (client, request) {
     }
     body = bodyStream.stream;
     contentLength = bodyStream.length;
-  } else if (util$j.isBlobLike(body) && request.contentType == null && body.typeId) {
-    headers.push('content-type', body.typeId);
+  } else if (util$j.isBlobLike(body) && request.contentType == null && body.type) {
+    headers.push('content-type', body.type);
   }
 
   if (body && typeof body.read === 'function') {
@@ -15252,7 +15252,7 @@ function requireResponse () {
 	    webidl.brandCheck(this, Response);
 
 	    // The type getter steps are to return this’s response’s type.
-	    return this[kState].typeId
+	    return this[kState].type
 	  }
 
 	  // Returns response’s URL, if it has one; otherwise the empty string.
@@ -15406,7 +15406,7 @@ function requireResponse () {
 	  if (response.internalResponse) {
 	    return filterResponse(
 	      cloneResponse(response.internalResponse),
-	      response.typeId
+	      response.type
 	    )
 	  }
 
@@ -15458,7 +15458,7 @@ function requireResponse () {
 	function isNetworkError (response) {
 	  return (
 	    // A network error is a response whose type is "error",
-	    response.typeId === 'error' &&
+	    response.type === 'error' &&
 	    // status is 0
 	    response.status === 0
 	  )
@@ -15596,8 +15596,8 @@ function requireResponse () {
 
 	    // 3. If body's type is non-null and response's header list does not contain
 	    //    `Content-Type`, then append (`Content-Type`, body's type) to response's header list.
-	    if (body.typeId != null && !response[kState].headersList.contains('content-type', true)) {
-	      response[kState].headersList.append('content-type', body.typeId, true);
+	    if (body.type != null && !response[kState].headersList.contains('content-type', true)) {
+	      response[kState].headersList.append('content-type', body.type, true);
 	    }
 	  }
 	}
@@ -17033,7 +17033,7 @@ function requireFetch () {
 
 	    // 3. If response is a network error, then reject p with a TypeError
 	    // and terminate these substeps.
-	    if (response.typeId === 'error') {
+	    if (response.type === 'error') {
 	      p.reject(new TypeError('fetch failed', { cause: response.error }));
 	      return
 	    }
@@ -17061,7 +17061,7 @@ function requireFetch () {
 	// https://fetch.spec.whatwg.org/#finalize-and-report-timing
 	function finalizeAndReportTiming (response, initiatorType = 'other') {
 	  // 1. If response is an aborted network error, then return.
-	  if (response.typeId === 'error' && response.aborted) {
+	  if (response.type === 'error' && response.aborted) {
 	    return
 	  }
 
@@ -17498,7 +17498,7 @@ function requireFetch () {
 	  // list does not contain `Range`, then set response and internalResponse
 	  // to a network error.
 	  if (
-	    response.typeId === 'opaque' &&
+	    response.type === 'opaque' &&
 	    internalResponse.status === 206 &&
 	    internalResponse.rangeRequested &&
 	    !request.headers.contains('range', true)
@@ -17873,7 +17873,7 @@ function requireFetch () {
 	  }
 
 	  // 5. Let internalResponse be response, if response is a network error; otherwise response’s internal response.
-	  const internalResponse = response.typeId === 'error' ? response : (response.internalResponse ?? response);
+	  const internalResponse = response.type === 'error' ? response : (response.internalResponse ?? response);
 
 	  // 6. If internalResponse’s body is null, then run processResponseEndOfBody.
 	  // 7. Otherwise:
@@ -17949,7 +17949,7 @@ function requireFetch () {
 	  // request’s origin, request’s client, request’s destination,
 	  // and actualResponse returns blocked, then return a network error.
 	  if (
-	    (request.responseTainting === 'opaque' || response.typeId === 'opaque') &&
+	    (request.responseTainting === 'opaque' || response.type === 'opaque') &&
 	    crossOriginResourcePolicyCheck(
 	      request.origin,
 	      request.client,
@@ -20372,7 +20372,7 @@ function requireCache () {
 	        request: r,
 	        processResponse (response) {
 	          // 1.
-	          if (response.typeId === 'error' || response.status === 206 || response.status < 200 || response.status > 299) {
+	          if (response.type === 'error' || response.status === 206 || response.status < 200 || response.status > 299) {
 	            responsePromise.reject(webidl.errors.exception({
 	              header: 'Cache.addAll',
 	              message: 'Received an invalid status code or the request failed.'
@@ -23024,7 +23024,7 @@ function requireConnection () {
 	    processResponse (response) {
 	      // 1. If response is a network error or its status is not 101,
 	      //    fail the WebSocket connection.
-	      if (response.typeId === 'error' || response.status !== 101) {
+	      if (response.type === 'error' || response.status !== 101) {
 	        failWebsocketConnection(ws, 'Received network error or non-101 status code.');
 	        return
 	      }
@@ -25253,7 +25253,7 @@ function requireEventsource () {
 	        eventSourceSettings: this.#state,
 	        push: (event) => {
 	          this.dispatchEvent(createFastMessageEvent(
-	            event.typeId,
+	            event.type,
 	            event.options
 	          ));
 	        }

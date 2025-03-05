@@ -59,7 +59,10 @@ fn typed_entity_to_encrypted_entity<T: Entity + serde::Serialize>(
 ) -> ParsedEntity {
 	let provider = init_type_model_provider();
 	let mut parsed = typed_entity_to_parsed_entity(entity);
-	let TypeRef { app, type_ } = T::type_ref();
+	let TypeRef {
+		app,
+		type_id: type_,
+	} = T::type_ref();
 	encrypt_test_entity_dict_with_provider(&mut parsed, &provider, app, type_, session_key, iv);
 	parsed
 }
