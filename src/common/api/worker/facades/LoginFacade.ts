@@ -55,7 +55,7 @@ import { TutanotaPropertiesTypeRef } from "../../entities/tutanota/TypeRefs.js"
 import { HttpMethod, MediaType, resolveTypeReference } from "../../common/EntityFunctions"
 import { assertWorkerOrNode, isAdminClient } from "../../common/Env"
 import { ConnectMode, EventBusClient } from "../EventBusClient"
-import { EntityRestClient, typeRefToPath } from "../rest/EntityRestClient"
+import { EntityRestClient, typeRefToRestPath } from "../rest/EntityRestClient"
 import { AccessExpiredError, ConnectionError, LockedError, NotAuthenticatedError, NotFoundError, SessionExpiredError } from "../../common/error/RestError"
 import { CancelledError } from "../../common/error/CancelledError"
 import { RestClient } from "../rest/RestClient"
@@ -850,7 +850,7 @@ export class LoginFacade {
 	 * @param pushIdentifier identifier associated with this device, if any, to delete PushIdentifier on the server
 	 */
 	async deleteSession(accessToken: Base64Url, pushIdentifier: string | null = null): Promise<void> {
-		let path = (await typeRefToPath(SessionTypeRef)) + "/" + this.getSessionListId(accessToken) + "/" + this.getSessionElementId(accessToken)
+		let path = (await typeRefToRestPath(SessionTypeRef)) + "/" + this.getSessionListId(accessToken) + "/" + this.getSessionElementId(accessToken)
 		const sessionTypeModel = await resolveTypeReference(SessionTypeRef)
 
 		const headers = {
@@ -890,7 +890,7 @@ export class LoginFacade {
 		userId: Id
 		accessKey: AesKey | null
 	}> {
-		const path = (await typeRefToPath(SessionTypeRef)) + "/" + this.getSessionListId(accessToken) + "/" + this.getSessionElementId(accessToken)
+		const path = (await typeRefToRestPath(SessionTypeRef)) + "/" + this.getSessionListId(accessToken) + "/" + this.getSessionElementId(accessToken)
 		const SessionTypeModel = await resolveTypeReference(SessionTypeRef)
 
 		let headers = {

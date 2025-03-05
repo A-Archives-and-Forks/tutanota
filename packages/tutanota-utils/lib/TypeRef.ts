@@ -31,6 +31,7 @@ export class TypeRef<T> {
 	}
 }
 
+//FIXME rename this
 export function getTypeId(typeRef: TypeRef<unknown>) {
 	return typeRef.app + "/" + typeRef.typeId
 }
