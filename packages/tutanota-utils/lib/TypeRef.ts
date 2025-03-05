@@ -1,3 +1,5 @@
+import { resolveTypeReference } from "../../../src/common/api/common/EntityFunctions"
+
 /**
  * T should be restricted to Entity.
  */
@@ -17,12 +19,15 @@ export class TypeRef<T> {
 		Object.freeze(this)
 	}
 
+	async typeName() {
+		return (await resolveTypeReference(this)).name
+	}
+
 	/**
 	 * breaks when the object passes worker barrier
 	 */
 	toString(): string {
-		// return `[TypeRef ${this.app} ${this.typeId}]`
-		throw new Error("TypeRef toString!")
+		return `[TypeRef ${this.app} ${this.typeId}]`
 	}
 }
 

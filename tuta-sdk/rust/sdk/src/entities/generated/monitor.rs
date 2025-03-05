@@ -17,7 +17,7 @@ impl Entity for ReadCounterData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "monitor",
-			type_: "ReadCounterData",
+			type_id: 12,
 		}
 	}
 }
@@ -34,7 +34,7 @@ impl Entity for ReadCounterReturn {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "monitor",
-			type_: "ReadCounterReturn",
+			type_id: 16,
 		}
 	}
 }
@@ -53,7 +53,7 @@ impl Entity for WriteCounterData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "monitor",
-			type_: "WriteCounterData",
+			type_id: 49,
 		}
 	}
 }
@@ -75,7 +75,7 @@ impl Entity for ApprovalMail {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "monitor",
-			type_: "ApprovalMail",
+			type_id: 221,
 		}
 	}
 }
@@ -92,7 +92,7 @@ impl Entity for CounterValue {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "monitor",
-			type_: "CounterValue",
+			type_id: 300,
 		}
 	}
 }
@@ -109,7 +109,7 @@ impl Entity for ErrorReportFile {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "monitor",
-			type_: "ErrorReportFile",
+			type_id: 305,
 		}
 	}
 }
@@ -133,7 +133,7 @@ impl Entity for ErrorReportData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "monitor",
-			type_: "ErrorReportData",
+			type_id: 316,
 		}
 	}
 }
@@ -150,7 +150,7 @@ impl Entity for ReportErrorIn {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "monitor",
-			type_: "ReportErrorIn",
+			type_id: 335,
 		}
 	}
 }

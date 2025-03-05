@@ -16,7 +16,7 @@ impl Entity for UsageTestMetricConfigValue {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "usage",
-			type_: "UsageTestMetricConfigValue",
+			type_id: 8,
 		}
 	}
 }
@@ -35,7 +35,7 @@ impl Entity for UsageTestMetricConfig {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "usage",
-			type_: "UsageTestMetricConfig",
+			type_id: 12,
 		}
 	}
 }
@@ -52,7 +52,7 @@ impl Entity for UsageTestMetricData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "usage",
-			type_: "UsageTestMetricData",
+			type_id: 17,
 		}
 	}
 }
@@ -71,7 +71,7 @@ impl Entity for UsageTestStage {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "usage",
-			type_: "UsageTestStage",
+			type_id: 35,
 		}
 	}
 }
@@ -87,7 +87,7 @@ impl Entity for UsageTestAssignmentIn {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "usage",
-			type_: "UsageTestAssignmentIn",
+			type_id: 53,
 		}
 	}
 }
@@ -107,7 +107,7 @@ impl Entity for UsageTestAssignment {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "usage",
-			type_: "UsageTestAssignment",
+			type_id: 56,
 		}
 	}
 }
@@ -124,7 +124,7 @@ impl Entity for UsageTestAssignmentOut {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "usage",
-			type_: "UsageTestAssignmentOut",
+			type_id: 63,
 		}
 	}
 }
@@ -143,7 +143,7 @@ impl Entity for UsageTestParticipationIn {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "usage",
-			type_: "UsageTestParticipationIn",
+			type_id: 80,
 		}
 	}
 }

@@ -15,7 +15,7 @@ impl Entity for Subfiles {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "Subfiles",
+			type_id: 11,
 		}
 	}
 }
@@ -45,7 +45,7 @@ impl Entity for TutanotaFile {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "TutanotaFile",
+			type_id: 13,
 		}
 	}
 }
@@ -69,7 +69,7 @@ impl Entity for FileSystem {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "FileSystem",
+			type_id: 28,
 		}
 	}
 }
@@ -89,7 +89,7 @@ impl Entity for ContactMailAddress {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ContactMailAddress",
+			type_id: 44,
 		}
 	}
 }
@@ -109,7 +109,7 @@ impl Entity for ContactPhoneNumber {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ContactPhoneNumber",
+			type_id: 49,
 		}
 	}
 }
@@ -129,7 +129,7 @@ impl Entity for ContactAddress {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ContactAddress",
+			type_id: 54,
 		}
 	}
 }
@@ -149,7 +149,7 @@ impl Entity for ContactSocialId {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ContactSocialId",
+			type_id: 59,
 		}
 	}
 }
@@ -199,7 +199,7 @@ impl Entity for Contact {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "Contact",
+			type_id: 64,
 		}
 	}
 }
@@ -221,7 +221,7 @@ impl Entity for ConversationEntry {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ConversationEntry",
+			type_id: 84,
 		}
 	}
 }
@@ -240,7 +240,7 @@ impl Entity for MailAddress {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "MailAddress",
+			type_id: 92,
 		}
 	}
 }
@@ -285,7 +285,7 @@ impl Entity for Mail {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "Mail",
+			type_id: 97,
 		}
 	}
 }
@@ -318,7 +318,7 @@ impl Entity for MailBox {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "MailBox",
+			type_id: 125,
 		}
 	}
 }
@@ -339,7 +339,7 @@ impl Entity for CreateExternalUserGroupData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "CreateExternalUserGroupData",
+			type_id: 138,
 		}
 	}
 }
@@ -375,7 +375,7 @@ impl Entity for ExternalUserData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ExternalUserData",
+			type_id: 145,
 		}
 	}
 }
@@ -400,7 +400,7 @@ impl Entity for ContactList {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ContactList",
+			type_id: 153,
 		}
 	}
 }
@@ -420,7 +420,7 @@ impl Entity for RemoteImapSyncInfo {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "RemoteImapSyncInfo",
+			type_id: 183,
 		}
 	}
 }
@@ -439,7 +439,7 @@ impl Entity for ImapFolder {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ImapFolder",
+			type_id: 190,
 		}
 	}
 }
@@ -458,7 +458,7 @@ impl Entity for ImapSyncState {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ImapSyncState",
+			type_id: 196,
 		}
 	}
 }
@@ -478,7 +478,7 @@ impl Entity for ImapSyncConfiguration {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ImapSyncConfiguration",
+			type_id: 209,
 		}
 	}
 }
@@ -516,7 +516,7 @@ impl Entity for TutanotaProperties {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "TutanotaProperties",
+			type_id: 216,
 		}
 	}
 }
@@ -536,7 +536,7 @@ impl Entity for NotificationMail {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "NotificationMail",
+			type_id: 223,
 		}
 	}
 }
@@ -553,7 +553,7 @@ impl Entity for DeleteMailData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "DeleteMailData",
+			type_id: 419,
 		}
 	}
 }
@@ -581,7 +581,7 @@ impl Entity for MailFolder {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "MailFolder",
+			type_id: 429,
 		}
 	}
 }
@@ -597,7 +597,7 @@ impl Entity for MailFolderRef {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "MailFolderRef",
+			type_id: 440,
 		}
 	}
 }
@@ -615,7 +615,7 @@ impl Entity for MoveMailData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "MoveMailData",
+			type_id: 445,
 		}
 	}
 }
@@ -638,7 +638,7 @@ impl Entity for CreateMailFolderData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "CreateMailFolderData",
+			type_id: 450,
 		}
 	}
 }
@@ -656,7 +656,7 @@ impl Entity for CreateMailFolderReturn {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "CreateMailFolderReturn",
+			type_id: 455,
 		}
 	}
 }
@@ -674,7 +674,7 @@ impl Entity for DeleteMailFolderData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "DeleteMailFolderData",
+			type_id: 458,
 		}
 	}
 }
@@ -693,7 +693,7 @@ impl Entity for EncryptTutanotaPropertiesData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "EncryptTutanotaPropertiesData",
+			type_id: 473,
 		}
 	}
 }
@@ -711,7 +711,7 @@ impl Entity for DraftRecipient {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "DraftRecipient",
+			type_id: 482,
 		}
 	}
 }
@@ -733,7 +733,7 @@ impl Entity for NewDraftAttachment {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "NewDraftAttachment",
+			type_id: 486,
 		}
 	}
 }
@@ -753,7 +753,7 @@ impl Entity for DraftAttachment {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "DraftAttachment",
+			type_id: 491,
 		}
 	}
 }
@@ -782,7 +782,7 @@ impl Entity for DraftData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "DraftData",
+			type_id: 496,
 		}
 	}
 }
@@ -805,7 +805,7 @@ impl Entity for DraftCreateData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "DraftCreateData",
+			type_id: 508,
 		}
 	}
 }
@@ -821,7 +821,7 @@ impl Entity for DraftCreateReturn {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "DraftCreateReturn",
+			type_id: 516,
 		}
 	}
 }
@@ -840,7 +840,7 @@ impl Entity for DraftUpdateData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "DraftUpdateData",
+			type_id: 519,
 		}
 	}
 }
@@ -858,7 +858,7 @@ impl Entity for DraftUpdateReturn {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "DraftUpdateReturn",
+			type_id: 523,
 		}
 	}
 }
@@ -879,7 +879,7 @@ impl Entity for InternalRecipientKeyData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "InternalRecipientKeyData",
+			type_id: 527,
 		}
 	}
 }
@@ -908,7 +908,7 @@ impl Entity for SecureExternalRecipientKeyData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "SecureExternalRecipientKeyData",
+			type_id: 532,
 		}
 	}
 }
@@ -928,7 +928,7 @@ impl Entity for AttachmentKeyData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "AttachmentKeyData",
+			type_id: 542,
 		}
 	}
 }
@@ -958,7 +958,7 @@ impl Entity for SendDraftData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "SendDraftData",
+			type_id: 547,
 		}
 	}
 }
@@ -977,7 +977,7 @@ impl Entity for SendDraftReturn {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "SendDraftReturn",
+			type_id: 557,
 		}
 	}
 }
@@ -993,7 +993,7 @@ impl Entity for ReceiveInfoServiceData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ReceiveInfoServiceData",
+			type_id: 570,
 		}
 	}
 }
@@ -1013,7 +1013,7 @@ impl Entity for InboxRule {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "InboxRule",
+			type_id: 573,
 		}
 	}
 }
@@ -1031,7 +1031,7 @@ impl Entity for EncryptedMailAddress {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "EncryptedMailAddress",
+			type_id: 612,
 		}
 	}
 }
@@ -1087,7 +1087,7 @@ impl Entity for UserAccountUserData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "UserAccountUserData",
+			type_id: 622,
 		}
 	}
 }
@@ -1121,7 +1121,7 @@ impl Entity for InternalGroupData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "InternalGroupData",
+			type_id: 642,
 		}
 	}
 }
@@ -1158,7 +1158,7 @@ impl Entity for CustomerAccountCreateData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "CustomerAccountCreateData",
+			type_id: 648,
 		}
 	}
 }
@@ -1176,7 +1176,7 @@ impl Entity for UserAccountCreateData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "UserAccountCreateData",
+			type_id: 663,
 		}
 	}
 }
@@ -1195,7 +1195,7 @@ impl Entity for MailboxServerProperties {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "MailboxServerProperties",
+			type_id: 677,
 		}
 	}
 }
@@ -1219,7 +1219,7 @@ impl Entity for MailboxGroupRoot {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "MailboxGroupRoot",
+			type_id: 693,
 		}
 	}
 }
@@ -1240,7 +1240,7 @@ impl Entity for CreateMailGroupData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "CreateMailGroupData",
+			type_id: 707,
 		}
 	}
 }
@@ -1257,7 +1257,7 @@ impl Entity for DeleteGroupData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "DeleteGroupData",
+			type_id: 713,
 		}
 	}
 }
@@ -1275,7 +1275,7 @@ impl Entity for Birthday {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "Birthday",
+			type_id: 844,
 		}
 	}
 }
@@ -1291,7 +1291,7 @@ impl Entity for PhotosRef {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "PhotosRef",
+			type_id: 853,
 		}
 	}
 }
@@ -1309,7 +1309,7 @@ impl Entity for ListUnsubscribeData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ListUnsubscribeData",
+			type_id: 867,
 		}
 	}
 }
@@ -1332,7 +1332,7 @@ impl Entity for CalendarRepeatRule {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "CalendarRepeatRule",
+			type_id: 926,
 		}
 	}
 }
@@ -1370,7 +1370,7 @@ impl Entity for CalendarEvent {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "CalendarEvent",
+			type_id: 933,
 		}
 	}
 }
@@ -1396,7 +1396,7 @@ impl Entity for CalendarGroupRoot {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "CalendarGroupRoot",
+			type_id: 947,
 		}
 	}
 }
@@ -1425,7 +1425,7 @@ impl Entity for UserAreaGroupData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "UserAreaGroupData",
+			type_id: 956,
 		}
 	}
 }
@@ -1441,7 +1441,7 @@ impl Entity for UserAreaGroupPostData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "UserAreaGroupPostData",
+			type_id: 964,
 		}
 	}
 }
@@ -1462,7 +1462,7 @@ impl Entity for GroupSettings {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "GroupSettings",
+			type_id: 968,
 		}
 	}
 }
@@ -1489,7 +1489,7 @@ impl Entity for UserSettingsGroupRoot {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "UserSettingsGroupRoot",
+			type_id: 972,
 		}
 	}
 }
@@ -1505,7 +1505,7 @@ impl Entity for CalendarDeleteData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "CalendarDeleteData",
+			type_id: 982,
 		}
 	}
 }
@@ -1523,7 +1523,7 @@ impl Entity for CreateGroupPostReturn {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "CreateGroupPostReturn",
+			type_id: 985,
 		}
 	}
 }
@@ -1553,7 +1553,7 @@ impl Entity for SharedGroupData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "SharedGroupData",
+			type_id: 992,
 		}
 	}
 }
@@ -1570,7 +1570,7 @@ impl Entity for GroupInvitationPostData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "GroupInvitationPostData",
+			type_id: 1002,
 		}
 	}
 }
@@ -1588,7 +1588,7 @@ impl Entity for GroupInvitationPostReturn {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "GroupInvitationPostReturn",
+			type_id: 1006,
 		}
 	}
 }
@@ -1610,7 +1610,7 @@ impl Entity for GroupInvitationPutData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "GroupInvitationPutData",
+			type_id: 1011,
 		}
 	}
 }
@@ -1626,7 +1626,7 @@ impl Entity for GroupInvitationDeleteData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "GroupInvitationDeleteData",
+			type_id: 1016,
 		}
 	}
 }
@@ -1643,7 +1643,7 @@ impl Entity for ReportedMailFieldMarker {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ReportedMailFieldMarker",
+			type_id: 1023,
 		}
 	}
 }
@@ -1660,7 +1660,7 @@ impl Entity for PhishingMarkerWebsocketData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "PhishingMarkerWebsocketData",
+			type_id: 1034,
 		}
 	}
 }
@@ -1679,7 +1679,7 @@ impl Entity for ReportMailPostData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ReportMailPostData",
+			type_id: 1066,
 		}
 	}
 }
@@ -1697,7 +1697,7 @@ impl Entity for CalendarEventAttendee {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "CalendarEventAttendee",
+			type_id: 1084,
 		}
 	}
 }
@@ -1717,7 +1717,7 @@ impl Entity for CalendarEventUidIndex {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "CalendarEventUidIndex",
+			type_id: 1093,
 		}
 	}
 }
@@ -1733,7 +1733,7 @@ impl Entity for CalendarEventIndexRef {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "CalendarEventIndexRef",
+			type_id: 1100,
 		}
 	}
 }
@@ -1758,7 +1758,7 @@ impl Entity for CalendarEventUpdate {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "CalendarEventUpdate",
+			type_id: 1104,
 		}
 	}
 }
@@ -1774,7 +1774,7 @@ impl Entity for CalendarEventUpdateList {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "CalendarEventUpdateList",
+			type_id: 1113,
 		}
 	}
 }
@@ -1792,7 +1792,7 @@ impl Entity for EntropyData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "EntropyData",
+			type_id: 1122,
 		}
 	}
 }
@@ -1811,7 +1811,7 @@ impl Entity for OutOfOfficeNotificationMessage {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "OutOfOfficeNotificationMessage",
+			type_id: 1126,
 		}
 	}
 }
@@ -1833,7 +1833,7 @@ impl Entity for OutOfOfficeNotification {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "OutOfOfficeNotification",
+			type_id: 1131,
 		}
 	}
 }
@@ -1849,7 +1849,7 @@ impl Entity for OutOfOfficeNotificationRecipientList {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "OutOfOfficeNotificationRecipientList",
+			type_id: 1147,
 		}
 	}
 }
@@ -1867,7 +1867,7 @@ impl Entity for EmailTemplateContent {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "EmailTemplateContent",
+			type_id: 1154,
 		}
 	}
 }
@@ -1893,7 +1893,7 @@ impl Entity for EmailTemplate {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "EmailTemplate",
+			type_id: 1158,
 		}
 	}
 }
@@ -1910,7 +1910,7 @@ impl Entity for KnowledgeBaseEntryKeyword {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "KnowledgeBaseEntryKeyword",
+			type_id: 1168,
 		}
 	}
 }
@@ -1936,7 +1936,7 @@ impl Entity for KnowledgeBaseEntry {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "KnowledgeBaseEntry",
+			type_id: 1171,
 		}
 	}
 }
@@ -1961,7 +1961,7 @@ impl Entity for TemplateGroupRoot {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "TemplateGroupRoot",
+			type_id: 1181,
 		}
 	}
 }
@@ -1977,7 +1977,7 @@ impl Entity for UserAreaGroupDeleteData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "UserAreaGroupDeleteData",
+			type_id: 1190,
 		}
 	}
 }
@@ -2002,7 +2002,7 @@ impl Entity for MailboxProperties {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "MailboxProperties",
+			type_id: 1195,
 		}
 	}
 }
@@ -2018,7 +2018,7 @@ impl Entity for SpamResults {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "SpamResults",
+			type_id: 1217,
 		}
 	}
 }
@@ -2035,7 +2035,7 @@ impl Entity for NewsId {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "NewsId",
+			type_id: 1245,
 		}
 	}
 }
@@ -2051,7 +2051,7 @@ impl Entity for NewsOut {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "NewsOut",
+			type_id: 1256,
 		}
 	}
 }
@@ -2067,7 +2067,7 @@ impl Entity for NewsIn {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "NewsIn",
+			type_id: 1259,
 		}
 	}
 }
@@ -2085,7 +2085,7 @@ impl Entity for MailAddressProperties {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "MailAddressProperties",
+			type_id: 1263,
 		}
 	}
 }
@@ -2103,7 +2103,7 @@ impl Entity for Header {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "Header",
+			type_id: 1269,
 		}
 	}
 }
@@ -2121,7 +2121,7 @@ impl Entity for Body {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "Body",
+			type_id: 1273,
 		}
 	}
 }
@@ -2139,7 +2139,7 @@ impl Entity for Recipients {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "Recipients",
+			type_id: 1277,
 		}
 	}
 }
@@ -2160,7 +2160,7 @@ impl Entity for MailDetails {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "MailDetails",
+			type_id: 1282,
 		}
 	}
 }
@@ -2184,7 +2184,7 @@ impl Entity for MailDetailsDraft {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "MailDetailsDraft",
+			type_id: 1290,
 		}
 	}
 }
@@ -2208,7 +2208,7 @@ impl Entity for MailDetailsBlob {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "MailDetailsBlob",
+			type_id: 1298,
 		}
 	}
 }
@@ -2225,7 +2225,7 @@ impl Entity for UpdateMailFolderData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "UpdateMailFolderData",
+			type_id: 1311,
 		}
 	}
 }
@@ -2241,7 +2241,7 @@ impl Entity for MailDetailsDraftsRef {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "MailDetailsDraftsRef",
+			type_id: 1315,
 		}
 	}
 }
@@ -2265,7 +2265,7 @@ impl Entity for ContactListEntry {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ContactListEntry",
+			type_id: 1325,
 		}
 	}
 }
@@ -2289,7 +2289,7 @@ impl Entity for ContactListGroupRoot {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ContactListGroupRoot",
+			type_id: 1333,
 		}
 	}
 }
@@ -2309,7 +2309,7 @@ impl Entity for SymEncInternalRecipientKeyData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "SymEncInternalRecipientKeyData",
+			type_id: 1347,
 		}
 	}
 }
@@ -2329,7 +2329,7 @@ impl Entity for ContactCustomDate {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ContactCustomDate",
+			type_id: 1356,
 		}
 	}
 }
@@ -2349,7 +2349,7 @@ impl Entity for ContactWebsite {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ContactWebsite",
+			type_id: 1361,
 		}
 	}
 }
@@ -2369,7 +2369,7 @@ impl Entity for ContactRelationship {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ContactRelationship",
+			type_id: 1366,
 		}
 	}
 }
@@ -2389,7 +2389,7 @@ impl Entity for ContactMessengerHandle {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ContactMessengerHandle",
+			type_id: 1371,
 		}
 	}
 }
@@ -2407,7 +2407,7 @@ impl Entity for ContactPronouns {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ContactPronouns",
+			type_id: 1376,
 		}
 	}
 }
@@ -2423,7 +2423,7 @@ impl Entity for TranslationGetIn {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "TranslationGetIn",
+			type_id: 1436,
 		}
 	}
 }
@@ -2440,7 +2440,7 @@ impl Entity for TranslationGetOut {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "TranslationGetOut",
+			type_id: 1439,
 		}
 	}
 }
@@ -2457,7 +2457,7 @@ impl Entity for DefaultAlarmInfo {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "DefaultAlarmInfo",
+			type_id: 1446,
 		}
 	}
 }
@@ -2476,7 +2476,7 @@ impl Entity for MailSetEntry {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "MailSetEntry",
+			type_id: 1450,
 		}
 	}
 }
@@ -2492,7 +2492,7 @@ impl Entity for MailBag {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "MailBag",
+			type_id: 1460,
 		}
 	}
 }
@@ -2509,7 +2509,7 @@ impl Entity for SimpleMoveMailPostIn {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "SimpleMoveMailPostIn",
+			type_id: 1469,
 		}
 	}
 }
@@ -2526,7 +2526,7 @@ impl Entity for UnreadMailStatePostIn {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "UnreadMailStatePostIn",
+			type_id: 1474,
 		}
 	}
 }
@@ -2544,7 +2544,7 @@ impl Entity for ManageLabelServiceLabelData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ManageLabelServiceLabelData",
+			type_id: 1480,
 		}
 	}
 }
@@ -2566,7 +2566,7 @@ impl Entity for ManageLabelServicePostIn {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ManageLabelServicePostIn",
+			type_id: 1484,
 		}
 	}
 }
@@ -2582,7 +2582,7 @@ impl Entity for ManageLabelServiceDeleteIn {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ManageLabelServiceDeleteIn",
+			type_id: 1500,
 		}
 	}
 }
@@ -2600,7 +2600,7 @@ impl Entity for ApplyLabelServicePostIn {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ApplyLabelServicePostIn",
+			type_id: 1504,
 		}
 	}
 }
@@ -2616,7 +2616,7 @@ impl Entity for ImportMailDataMailReference {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ImportMailDataMailReference",
+			type_id: 1513,
 		}
 	}
 }
@@ -2642,7 +2642,7 @@ impl Entity for NewImportAttachment {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "NewImportAttachment",
+			type_id: 1516,
 		}
 	}
 }
@@ -2662,7 +2662,7 @@ impl Entity for ImportAttachment {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ImportAttachment",
+			type_id: 1524,
 		}
 	}
 }
@@ -2700,7 +2700,7 @@ impl Entity for ImportMailData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ImportMailData",
+			type_id: 1530,
 		}
 	}
 }
@@ -2719,7 +2719,7 @@ impl Entity for ImportedMail {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ImportedMail",
+			type_id: 1552,
 		}
 	}
 }
@@ -2743,7 +2743,7 @@ impl Entity for ImportMailState {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ImportMailState",
+			type_id: 1559,
 		}
 	}
 }
@@ -2760,7 +2760,7 @@ impl Entity for ImportMailPostIn {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ImportMailPostIn",
+			type_id: 1570,
 		}
 	}
 }
@@ -2775,7 +2775,7 @@ impl Entity for ImportMailPostOut {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ImportMailPostOut",
+			type_id: 1579,
 		}
 	}
 }
@@ -2799,7 +2799,7 @@ impl Entity for ImportMailGetIn {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ImportMailGetIn",
+			type_id: 1582,
 		}
 	}
 }
@@ -2817,7 +2817,7 @@ impl Entity for AdvancedRepeatRule {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "AdvancedRepeatRule",
+			type_id: 1586,
 		}
 	}
 }
@@ -2833,7 +2833,7 @@ impl Entity for ImportMailGetOut {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "ImportMailGetOut",
+			type_id: 1591,
 		}
 	}
 }
@@ -2849,7 +2849,7 @@ impl Entity for MailExportTokenServicePostOut {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "MailExportTokenServicePostOut",
+			type_id: 1605,
 		}
 	}
 }
@@ -2870,7 +2870,7 @@ impl Entity for SupportTopic {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "SupportTopic",
+			type_id: 1618,
 		}
 	}
 }
@@ -2891,7 +2891,7 @@ impl Entity for SupportCategory {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "SupportCategory",
+			type_id: 1626,
 		}
 	}
 }
@@ -2910,7 +2910,7 @@ impl Entity for SupportData {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "tutanota",
-			type_: "SupportData",
+			type_id: 1634,
 		}
 	}
 }

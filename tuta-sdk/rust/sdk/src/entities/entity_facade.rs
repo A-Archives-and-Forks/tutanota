@@ -790,7 +790,7 @@ mod tests {
 		);
 		let type_ref = Mail::type_ref();
 		let type_model = type_model_provider
-			.get_type_model(type_ref.app, type_ref.type_)
+			.get_type_model(type_ref.app, type_ref.type_id)
 			.unwrap();
 
 		let decrypted_mail = entity_facade
@@ -1117,7 +1117,7 @@ mod tests {
 
 		let type_ref = Mail::type_ref();
 		let type_model = type_model_provider
-			.get_type_model(type_ref.app, type_ref.type_)
+			.get_type_model(type_ref.app, type_ref.type_id)
 			.unwrap();
 
 		let entity_facade = EntityFacadeImpl::new(
@@ -1251,7 +1251,7 @@ mod tests {
 		);
 		let type_ref = CustomerAccountTerminationRequest::type_ref();
 		let type_model = type_model_provider
-			.get_type_model(type_ref.app, type_ref.type_)
+			.get_type_model(type_ref.app, type_ref.type_id)
 			.unwrap();
 		let sk = GenericAesKey::from_bytes(rand::random::<[u8; 32]>().as_slice()).unwrap();
 
@@ -1284,7 +1284,7 @@ mod tests {
 		);
 		let type_ref = Mail::type_ref();
 		let type_model = type_model_provider
-			.get_type_model(type_ref.app, type_ref.type_)
+			.get_type_model(type_ref.app, type_ref.type_id)
 			.unwrap();
 		let sk = GenericAesKey::from_bytes(rand::random::<[u8; 32]>().as_slice()).unwrap();
 		let new_iv = Iv::from_bytes(&rand::random::<[u8; 16]>()).unwrap();
@@ -1354,7 +1354,7 @@ mod tests {
 		);
 		let type_ref = Mail::type_ref();
 		let type_model = type_model_provider
-			.get_type_model(type_ref.app, type_ref.type_)
+			.get_type_model(type_ref.app, type_ref.type_id)
 			.unwrap();
 		let sk = GenericAesKey::from_bytes(rand::random::<[u8; 32]>().as_slice()).unwrap();
 		let iv = Iv::from_bytes(&rand::random::<[u8; 16]>()).unwrap();

@@ -241,7 +241,7 @@ mod tests {
 	use crate::type_model_provider::{init_type_model_provider, TypeModelProvider};
 	use crate::util::entity_test_utils::generate_email_entity;
 	use crate::util::test_utils::leak;
-	use crate::{IdTupleGenerated, TypeRef};
+	use crate::IdTupleGenerated;
 	use rand::random;
 	use std::sync::Arc;
 
@@ -273,12 +273,8 @@ mod tests {
 			.assert_tuple_id_generated();
 		let mail_id =
 			IdTupleGenerated::new(raw_mail_id.list_id.clone(), raw_mail_id.element_id.clone());
-		let mail_type_ref = TypeRef {
-			app: "tutanota",
-			type_: "Mail",
-		};
 		let mail_type_model: &'static TypeModel = my_favorite_leak
-			.get_type_model(mail_type_ref.app, mail_type_ref.type_)
+			.resolve_type_ref(&Mail::type_ref())
 			.expect("Error in type_model_provider");
 
 		// Set up the mock of the plain unencrypted entity client

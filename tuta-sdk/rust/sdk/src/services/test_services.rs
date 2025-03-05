@@ -1,7 +1,7 @@
 use crate::date::DateTime;
 use crate::entities::{Entity, FinalIv};
 use crate::metamodel::TypeModel;
-use crate::type_model_provider::{AppName, TypeName};
+use crate::type_model_provider::{AppName, TypeId};
 use crate::{service_impl, TypeRef};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -70,7 +70,7 @@ pub const HELLO_OUTPUT_UNENCRYPTED: &str = r#"{
 		"name": "HelloUnEncOutput",
 		"since": 7,
 		"type": "DATA_TRANSFER_TYPE",
-		"id": 458,
+		"id": 248,
 		"rootId": "CHR1dGFub3RhAAHK",
 		"versioned": false,
 		"encrypted": false,
@@ -122,7 +122,7 @@ pub const HELLO_INPUT_UNENCRYPTED: &str = r#"{
 		"version": "75"
 	}"#;
 
-pub fn extend_model_resolver(model_resolver: &mut HashMap<AppName, HashMap<TypeName, TypeModel>>) {
+pub fn extend_model_resolver(model_resolver: &mut HashMap<AppName, HashMap<TypeId, TypeModel>>) {
 	assert!(model_resolver.get("test").is_none());
 
 	let enc_input_type_model = serde_json::from_str::<TypeModel>(HELLO_INPUT_ENCRYPTED).unwrap();
@@ -133,10 +133,10 @@ pub fn extend_model_resolver(model_resolver: &mut HashMap<AppName, HashMap<TypeN
 		serde_json::from_str::<TypeModel>(HELLO_OUTPUT_UNENCRYPTED).unwrap();
 
 	let test_types = [
-		("HelloEncInput", enc_input_type_model),
-		("HelloEncOutput", enc_output_type_model),
-		("HelloUnEncInput", unenc_input_type_model),
-		("HelloUnEncOutput", unenc_output_type_model),
+		(HelloEncInput::type_ref().type_id, enc_input_type_model),
+		(HelloEncInput::type_ref().type_id, enc_output_type_model),
+		(HelloUnEncInput::type_ref().type_id, unenc_input_type_model),
+		(HelloEncOutput::type_ref().type_id, unenc_output_type_model),
 	]
 	.into_iter()
 	.collect();
@@ -172,7 +172,7 @@ impl Entity for HelloEncInput {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "test",
-			type_: "HelloEncInput",
+			type_id: 358,
 		}
 	}
 }
@@ -181,7 +181,7 @@ impl Entity for HelloEncOutput {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "test",
-			type_: "HelloEncOutput",
+			type_id: 458,
 		}
 	}
 }
@@ -190,7 +190,7 @@ impl Entity for HelloUnEncInput {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "test",
-			type_: "HelloUnEncInput",
+			type_id: 148,
 		}
 	}
 }
@@ -199,7 +199,7 @@ impl Entity for HelloUnEncOutput {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "test",
-			type_: "HelloUnEncOutput",
+			type_id: 248,
 		}
 	}
 }

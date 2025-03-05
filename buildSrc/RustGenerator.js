@@ -13,6 +13,7 @@ import { AssociationType, Type, ValueType } from "../src/common/api/common/Entit
  */
 export function generateRustType(models, type, modelName) {
 	let typeName = mapTypeName(type.name, modelName)
+	let typeId = type.id
 	let buf = `#[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct ${typeName} {\n`
@@ -68,7 +69,7 @@ impl Entity for ${typeName} {
 	fn type_ref() -> TypeRef {
 		TypeRef {
 			app: "${modelName}",
-			type_: "${typeName}",
+			type_id: ${typeId},
 		}
 	}
 }`

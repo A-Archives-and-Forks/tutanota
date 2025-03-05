@@ -109,7 +109,7 @@ pub struct ModelAssociation {
 	pub association_type: AssociationType,
 	pub cardinality: Cardinality,
 	/// Name of the type it is referencing
-	pub ref_type: &'static str,
+	pub ref_type: u64,
 	/// Can it be changed
 	#[serde(rename = "final")]
 	pub is_final: bool,
