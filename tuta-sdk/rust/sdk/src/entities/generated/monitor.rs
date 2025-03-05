@@ -7,10 +7,10 @@ use serde::{Deserialize, Serialize};
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct ReadCounterData {
+	pub 14: String,
+	pub 15: Option<GeneratedId>,
+	pub 299: i64,
 	pub _format: i64,
-	pub columnName: Option<GeneratedId>,
-	pub counterType: i64,
-	pub rowName: String,
 }
 
 impl Entity for ReadCounterData {
@@ -25,9 +25,9 @@ impl Entity for ReadCounterData {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct ReadCounterReturn {
+	pub 18: Option<i64>,
 	pub _format: i64,
-	pub value: Option<i64>,
-	pub counterValues: Vec<CounterValue>,
+	pub 304: Vec<CounterValue>,
 }
 
 impl Entity for ReadCounterReturn {
@@ -42,11 +42,11 @@ impl Entity for ReadCounterReturn {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct WriteCounterData {
+	pub 51: String,
+	pub 52: GeneratedId,
+	pub 53: i64,
+	pub 215: Option<i64>,
 	pub _format: i64,
-	pub column: GeneratedId,
-	pub counterType: Option<i64>,
-	pub row: String,
-	pub value: i64,
 }
 
 impl Entity for WriteCounterData {
@@ -61,14 +61,14 @@ impl Entity for WriteCounterData {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct ApprovalMail {
+	pub 227: Option<String>,
+	pub 228: Option<DateTime>,
+	pub 229: String,
 	pub _format: i64,
 	pub _id: Option<IdTupleCustom>,
 	pub _ownerGroup: Option<GeneratedId>,
 	pub _permissions: GeneratedId,
-	pub date: Option<DateTime>,
-	pub range: Option<String>,
-	pub text: String,
-	pub customer: Option<GeneratedId>,
+	pub 230: Option<GeneratedId>,
 }
 
 impl Entity for ApprovalMail {
@@ -83,9 +83,9 @@ impl Entity for ApprovalMail {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct CounterValue {
+	pub 302: GeneratedId,
+	pub 303: i64,
 	pub _id: Option<CustomId>,
-	pub counterId: GeneratedId,
-	pub value: i64,
 }
 
 impl Entity for CounterValue {
@@ -100,9 +100,9 @@ impl Entity for CounterValue {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct ErrorReportFile {
+	pub 307: String,
+	pub 308: String,
 	pub _id: Option<CustomId>,
-	pub content: String,
-	pub name: String,
 }
 
 impl Entity for ErrorReportFile {
@@ -117,16 +117,16 @@ impl Entity for ErrorReportFile {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct ErrorReportData {
+	pub 318: DateTime,
+	pub 319: String,
+	pub 320: i64,
+	pub 321: Option<String>,
+	pub 322: String,
+	pub 323: Option<String>,
+	pub 324: String,
+	pub 325: Option<String>,
+	pub 326: String,
 	pub _id: Option<CustomId>,
-	pub additionalInfo: String,
-	pub appVersion: String,
-	pub clientType: i64,
-	pub errorClass: String,
-	pub errorMessage: Option<String>,
-	pub stackTrace: String,
-	pub time: DateTime,
-	pub userId: Option<String>,
-	pub userMessage: Option<String>,
 }
 
 impl Entity for ErrorReportData {
@@ -142,8 +142,8 @@ impl Entity for ErrorReportData {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct ReportErrorIn {
 	pub _format: i64,
-	pub data: ErrorReportData,
-	pub files: Vec<ErrorReportFile>,
+	pub 337: ErrorReportData,
+	pub 338: Vec<ErrorReportFile>,
 }
 
 impl Entity for ReportErrorIn {

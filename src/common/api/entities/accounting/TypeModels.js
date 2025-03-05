@@ -15,34 +15,7 @@ export const typeModels = {
 		"versioned": false,
 		"encrypted": false,
 		"values": {
-			"_id": {
-				"final": true,
-				"name": "_id",
-				"id": 80,
-				"since": 3,
-				"type": "CustomId",
-				"cardinality": "One",
-				"encrypted": false
-			},
-			"amount": {
-				"final": true,
-				"name": "amount",
-				"id": 84,
-				"since": 3,
-				"type": "Number",
-				"cardinality": "One",
-				"encrypted": true
-			},
-			"invoiceNumber": {
-				"final": true,
-				"name": "invoiceNumber",
-				"id": 83,
-				"since": 3,
-				"type": "String",
-				"cardinality": "ZeroOrOne",
-				"encrypted": true
-			},
-			"type": {
+			"81": {
 				"final": true,
 				"name": "type",
 				"id": 81,
@@ -51,7 +24,7 @@ export const typeModels = {
 				"cardinality": "One",
 				"encrypted": true
 			},
-			"valueDate": {
+			"82": {
 				"final": true,
 				"name": "valueDate",
 				"id": 82,
@@ -59,6 +32,33 @@ export const typeModels = {
 				"type": "Date",
 				"cardinality": "One",
 				"encrypted": true
+			},
+			"83": {
+				"final": true,
+				"name": "invoiceNumber",
+				"id": 83,
+				"since": 3,
+				"type": "String",
+				"cardinality": "ZeroOrOne",
+				"encrypted": true
+			},
+			"84": {
+				"final": true,
+				"name": "amount",
+				"id": 84,
+				"since": 3,
+				"type": "Number",
+				"cardinality": "One",
+				"encrypted": true
+			},
+			"_id": {
+				"final": true,
+				"name": "_id",
+				"id": 80,
+				"since": 3,
+				"type": "CustomId",
+				"cardinality": "One",
+				"encrypted": false
 			}
 		},
 		"associations": {},
@@ -74,6 +74,24 @@ export const typeModels = {
 		"versioned": false,
 		"encrypted": true,
 		"values": {
+			"92": {
+				"final": false,
+				"name": "outstandingBookingsPrice",
+				"id": 92,
+				"since": 4,
+				"type": "Number",
+				"cardinality": "One",
+				"encrypted": false
+			},
+			"94": {
+				"final": true,
+				"name": "balance",
+				"id": 94,
+				"since": 5,
+				"type": "Number",
+				"cardinality": "One",
+				"encrypted": true
+			},
 			"_format": {
 				"final": false,
 				"name": "_format",
@@ -109,28 +127,10 @@ export const typeModels = {
 				"type": "Number",
 				"cardinality": "ZeroOrOne",
 				"encrypted": false
-			},
-			"balance": {
-				"final": true,
-				"name": "balance",
-				"id": 94,
-				"since": 5,
-				"type": "Number",
-				"cardinality": "One",
-				"encrypted": true
-			},
-			"outstandingBookingsPrice": {
-				"final": false,
-				"name": "outstandingBookingsPrice",
-				"id": 92,
-				"since": 4,
-				"type": "Number",
-				"cardinality": "One",
-				"encrypted": false
 			}
 		},
 		"associations": {
-			"postings": {
+			"90": {
 				"final": false,
 				"name": "postings",
 				"id": 90,
