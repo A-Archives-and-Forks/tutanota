@@ -50,7 +50,7 @@ import {
 	SymEncInternalRecipientKeyData,
 	TutanotaPropertiesTypeRef,
 } from "../../entities/tutanota/TypeRefs.js"
-import { typeRefToPath } from "../rest/EntityRestClient"
+import { typeRefToRestPath } from "../rest/EntityRestClient"
 import { LockedError, NotFoundError, PayloadTooLargeError, TooManyRequestsError } from "../../common/error/RestError"
 import { SessionKeyNotFoundError } from "../../common/error/SessionKeyNotFoundError"
 import { birthdayToIsoDate, oldBirthdayToBirthday } from "../../common/utils/BirthdayUtils"
@@ -848,7 +848,7 @@ export class CryptoFacade {
 	): Promise<void> {
 		this.setOwnerEncSessionKeyUnmapped(instance as UnmappedOwnerGroupInstance, encryptKeyWithVersionedKey(ownerGroupKey, sessionKey))
 		// we have to call the rest client directly because instance is still the encrypted server-side version
-		const typePath = await typeRefToPath(new TypeRef(typeModel.app, typeModel.id))
+		const typePath = await typeRefToRestPath(new TypeRef(typeModel.app, typeModel.id))
 		const path = typePath + "/" + (instance._id instanceof Array ? instance._id.join("/") : instance._id)
 		const headers = this.userFacade.createAuthHeaders()
 		headers.v = typeModel.version

@@ -67,7 +67,8 @@ export type ModelInfos = typeof modelInfos
  * @param typeRef the typeRef for which we will return the typeModel.
  */
 
-// FIXME: do not use this function in offline storage or any other storage
+// FIXME: go through offline storage or any other storage before finishing this story :)
+// FIXME: can we remove async? It is not used in a async context somewhere.
 export async function resolveTypeReference(typeRef: TypeRef<any>): Promise<TypeModel> {
 	// @ts-ignore
 	const modelMap = typeModels[typeRef.app]

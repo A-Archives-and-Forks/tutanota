@@ -28,7 +28,7 @@ import {
 	RootInstanceTypeRef,
 	UserTypeRef,
 } from "../../../../../src/common/api/entities/sys/TypeRefs.js"
-import { CacheMode, EntityRestClient, typeRefToPath } from "../../../../../src/common/api/worker/rest/EntityRestClient.js"
+import { CacheMode, EntityRestClient, typeRefToRestPath } from "../../../../../src/common/api/worker/rest/EntityRestClient.js"
 import { QueuedBatch } from "../../../../../src/common/api/worker/EventQueue.js"
 import {
 	CacheStorage,
@@ -171,7 +171,7 @@ export function testEntityRestCache(name: string, getStorage: (userId: Id) => Pr
 		})
 
 		o.spec("entityEventsReceived", function () {
-			const path = typeRefToPath(ContactTypeRef)
+			const path = typeRefToRestPath(ContactTypeRef)
 			const contactListId1 = "contactListId1"
 			const contactListId2 = "contactListId2"
 			const id1 = "id1"

@@ -149,7 +149,7 @@ export function typeRefToTypeInfo(typeRef: TypeRef<any>): TypeInfo {
 	const typeInfo = app[typeRef.typeId]
 
 	if (!typeInfo) {
-		throw new Error(`No TypeInfo for TypeRef ${typeRef.app} : ${typeRef.typeId}`)
+		throw new Error(`No TypeInfo for TypeRef ${typeRef.toString()}`)
 	}
 
 	return typeInfo
