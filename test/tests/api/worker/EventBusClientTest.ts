@@ -14,6 +14,7 @@ import {
 	WebsocketEntityData,
 	WebsocketEntityDataTypeRef,
 } from "../../../../src/common/api/entities/sys/TypeRefs.js"
+import { MailTypeRef } from "../../../../src/common/api/entities/tutanota/TypeRefs.js"
 import { EntityRestClientMock } from "./rest/EntityRestClientMock.js"
 import { EntityClient } from "../../../../src/common/api/common/EntityClient.js"
 import { defer, noOp, TypeRef } from "@tutao/tutanota-utils"
@@ -151,7 +152,7 @@ o.spec("EventBusClientTest", function () {
 			when(cacheMock.getLastEntityEventBatchForGroup(mailGroupId)).thenResolve("------------")
 			when(cacheMock.timeSinceLastSyncMs()).thenResolve(1)
 			const update = createTestEntity(EntityUpdateTypeRef, {
-				typeId: "Mail",
+				typeId: MailTypeRef.typeId.toString(),
 				application: "tutanota",
 				instanceListId: mailGroupId,
 				instanceId: "newBatchId",
@@ -253,7 +254,7 @@ o.spec("EventBusClientTest", function () {
 			createTestEntity(EntityUpdateTypeRef, {
 				_id: "eventBatchId",
 				application: "tutanota",
-				typeId: "Mail",
+				typeId: MailTypeRef.typeId.toString(),
 				instanceListId: "listId1",
 				instanceId: "id1",
 				operation: OperationType.UPDATE,
@@ -304,7 +305,7 @@ o.spec("EventBusClientTest", function () {
 		const mailEntityUpdate = createTestEntity(EntityUpdateTypeRef, {
 			_id: "eventBatchId",
 			application: "tutanota",
-			typeId: "Mail",
+			typeId: MailTypeRef.typeId.toString(),
 			instanceListId: "listId1",
 			instanceId: "id1",
 			operation: OperationType.UPDATE,
@@ -312,7 +313,7 @@ o.spec("EventBusClientTest", function () {
 		const unknownEntityUpdate = createTestEntity(EntityUpdateTypeRef, {
 			_id: "eventBatchId",
 			application: "sys",
-			typeId: "UnknownType",
+			typeId: 999999,
 			instanceListId: "listId2",
 			instanceId: "id1",
 			operation: OperationType.UPDATE,
@@ -415,7 +416,7 @@ o.spec("EventBusClientTest", function () {
 				createTestEntity(EntityUpdateTypeRef, {
 					_id: "eventBatchId",
 					application: "tutanota",
-					typeId: "Mail",
+					typeId: MailTypeRef.typeId.toString(),
 					instanceListId: "listId1",
 					instanceId: "id1",
 					operation: OperationType.UPDATE,
@@ -423,7 +424,7 @@ o.spec("EventBusClientTest", function () {
 				createTestEntity(EntityUpdateTypeRef, {
 					_id: "eventBatchId",
 					application: "sys",
-					typeId: "UnknownType",
+					typeId: 999999,
 					instanceListId: "listId2",
 					instanceId: "id1",
 					operation: OperationType.UPDATE,
@@ -441,7 +442,7 @@ o.spec("EventBusClientTest", function () {
 				createTestEntity(EntityUpdateTypeRef, {
 					_id: "eventbatchid",
 					application: "tutanota",
-					typeId: "Mail",
+					typeId: MailTypeRef.typeId.toString(),
 					instanceListId: "listId1",
 					instanceId: "id1",
 					operation: OperationType.UPDATE,

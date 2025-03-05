@@ -4,7 +4,7 @@ import { EntityUpdate, EntityUpdateTypeRef, GroupTypeRef } from "../../../../../
 import { OperationType } from "../../../../../src/common/api/common/TutanotaConstants.js"
 import { defer, delay } from "@tutao/tutanota-utils"
 import { ConnectionError } from "../../../../../src/common/api/common/error/RestError.js"
-import { MailboxGroupRootTypeRef, MailTypeRef } from "../../../../../src/common/api/entities/tutanota/TypeRefs.js"
+import { ContactTypeRef, MailboxGroupRootTypeRef, MailTypeRef } from "../../../../../src/common/api/entities/tutanota/TypeRefs.js"
 import { spy } from "@tutao/tutanota-test-utils"
 import { createTestEntity } from "../../../TestUtils.js"
 
@@ -339,7 +339,7 @@ o.spec("EventQueueTest", function () {
 					[
 						createTestEntity(EntityUpdateTypeRef, {
 							application: "tutanota",
-							typeId: "mail",
+							typeId: MailTypeRef.typeId.toString(),
 							operation: OperationType.CREATE,
 							instanceId,
 							instanceListId,
@@ -347,7 +347,7 @@ o.spec("EventQueueTest", function () {
 					],
 					createTestEntity(EntityUpdateTypeRef, {
 						application: "tutanota",
-						typeId: "mail",
+						typeId: MailTypeRef.typeId.toString(),
 						operation: OperationType.CREATE,
 						instanceId,
 						instanceListId,
@@ -363,14 +363,14 @@ o.spec("EventQueueTest", function () {
 					[
 						createTestEntity(EntityUpdateTypeRef, {
 							application: "tutanota",
-							typeId: "mail",
+							typeId: MailTypeRef.typeId.toString(),
 							operation: OperationType.DELETE,
 							instanceId: "instanceId2",
 							instanceListId,
 						}),
 						createTestEntity(EntityUpdateTypeRef, {
 							application: "tutanota",
-							typeId: "mail",
+							typeId: MailTypeRef.typeId.toString(),
 							operation: OperationType.CREATE,
 							instanceId,
 							instanceListId,
@@ -378,7 +378,7 @@ o.spec("EventQueueTest", function () {
 					],
 					createTestEntity(EntityUpdateTypeRef, {
 						application: "tutanota",
-						typeId: "mail",
+						typeId: MailTypeRef.typeId.toString(),
 						operation: OperationType.CREATE,
 						instanceId,
 						instanceListId,
@@ -394,14 +394,14 @@ o.spec("EventQueueTest", function () {
 					[
 						createTestEntity(EntityUpdateTypeRef, {
 							application: "tutanota",
-							typeId: "mail",
+							typeId: MailTypeRef.typeId.toString(),
 							operation: OperationType.DELETE,
 							instanceId,
 							instanceListId: "instanceListId2",
 						}),
 						createTestEntity(EntityUpdateTypeRef, {
 							application: "tutanota",
-							typeId: "mail",
+							typeId: MailTypeRef.typeId.toString(),
 							operation: OperationType.CREATE,
 							instanceId,
 							instanceListId,
@@ -409,7 +409,7 @@ o.spec("EventQueueTest", function () {
 					],
 					createTestEntity(EntityUpdateTypeRef, {
 						application: "tutanota",
-						typeId: "mail",
+						typeId: MailTypeRef.typeId.toString(),
 						operation: OperationType.CREATE,
 						instanceId,
 						instanceListId,
@@ -425,14 +425,14 @@ o.spec("EventQueueTest", function () {
 					[
 						createTestEntity(EntityUpdateTypeRef, {
 							application: "tutanota",
-							typeId: "contact",
+							typeId: ContactTypeRef.typeId.toString(),
 							operation: OperationType.DELETE,
 							instanceId,
 							instanceListId,
 						}),
 						createTestEntity(EntityUpdateTypeRef, {
 							application: "tutanota",
-							typeId: "mail",
+							typeId: MailTypeRef.typeId.toString(),
 							operation: OperationType.CREATE,
 							instanceId,
 							instanceListId,
@@ -440,7 +440,7 @@ o.spec("EventQueueTest", function () {
 					],
 					createTestEntity(EntityUpdateTypeRef, {
 						application: "tutanota",
-						typeId: "mail",
+						typeId: MailTypeRef.typeId.toString(),
 						operation: OperationType.CREATE,
 						instanceId,
 						instanceListId,
@@ -456,7 +456,7 @@ o.spec("EventQueueTest", function () {
 					[
 						createTestEntity(EntityUpdateTypeRef, {
 							application: "tutanota",
-							typeId: "mail",
+							typeId: MailTypeRef.typeId.toString(),
 							operation: OperationType.CREATE,
 							instanceId,
 							instanceListId,
@@ -464,7 +464,7 @@ o.spec("EventQueueTest", function () {
 					],
 					createTestEntity(EntityUpdateTypeRef, {
 						application: "tutanota",
-						typeId: "mail",
+						typeId: MailTypeRef.typeId.toString(),
 						operation: OperationType.DELETE,
 						instanceId,
 						instanceListId,
