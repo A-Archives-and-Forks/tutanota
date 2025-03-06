@@ -26,16 +26,16 @@ export type File = {
 	_type: TypeRef<File>;
 	_errors: Object;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerEncSessionKey: null | Uint8Array;
 	name: string;
 	size: NumberString;
 	mimeType: null | string;
-	cid: null | string;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
 	_ownerGroup: null | Id;
+	cid: null | string;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
 
 	parent: null | IdTuple;
 	subFiles: null | Subfiles;
@@ -51,12 +51,12 @@ export type FileSystem = {
 	_type: TypeRef<FileSystem>;
 	_errors: Object;
 
-	_format: NumberString;
 	_id: Id;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
-	_ownerKeyVersion: null | NumberString;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
+	_ownerKeyVersion: null | NumberString;
 
 	files: Id;
 }
@@ -69,10 +69,10 @@ export function createContactMailAddress(values: StrippedEntity<ContactMailAddre
 export type ContactMailAddress = {
 	_type: TypeRef<ContactMailAddress>;
 
+	_id: Id;
 	type: NumberString;
 	address: string;
 	customTypeName: string;
-	_id: Id;
 }
 export const ContactPhoneNumberTypeRef: TypeRef<ContactPhoneNumber> = new TypeRef("tutanota", 49)
 
@@ -83,10 +83,10 @@ export function createContactPhoneNumber(values: StrippedEntity<ContactPhoneNumb
 export type ContactPhoneNumber = {
 	_type: TypeRef<ContactPhoneNumber>;
 
+	_id: Id;
 	type: NumberString;
 	number: string;
 	customTypeName: string;
-	_id: Id;
 }
 export const ContactAddressTypeRef: TypeRef<ContactAddress> = new TypeRef("tutanota", 54)
 
@@ -97,10 +97,10 @@ export function createContactAddress(values: StrippedEntity<ContactAddress>): Co
 export type ContactAddress = {
 	_type: TypeRef<ContactAddress>;
 
+	_id: Id;
 	type: NumberString;
 	address: string;
 	customTypeName: string;
-	_id: Id;
 }
 export const ContactSocialIdTypeRef: TypeRef<ContactSocialId> = new TypeRef("tutanota", 59)
 
@@ -111,10 +111,10 @@ export function createContactSocialId(values: StrippedEntity<ContactSocialId>): 
 export type ContactSocialId = {
 	_type: TypeRef<ContactSocialId>;
 
+	_id: Id;
 	type: NumberString;
 	socialId: string;
 	customTypeName: string;
-	_id: Id;
 }
 export const ContactTypeRef: TypeRef<Contact> = new TypeRef("tutanota", 64)
 
@@ -126,6 +126,10 @@ export type Contact = {
 	_type: TypeRef<Contact>;
 	_errors: Object;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerEncSessionKey: null | Uint8Array;
 	firstName: string;
 	lastName: string;
 	company: string;
@@ -133,6 +137,7 @@ export type Contact = {
 	oldBirthdayDate: null | Date;
 	comment: string;
 	presharedPassword: null | string;
+	_ownerGroup: null | Id;
 	nickname: null | string;
 	title: null | string;
 	birthdayIso: null | string;
@@ -142,12 +147,7 @@ export type Contact = {
 	phoneticMiddle: null | string;
 	phoneticLast: null | string;
 	department: null | string;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
 
 	mailAddresses: ContactMailAddress[];
 	phoneNumbers: ContactPhoneNumber[];
@@ -170,12 +170,12 @@ export function createConversationEntry(values: StrippedEntity<ConversationEntry
 export type ConversationEntry = {
 	_type: TypeRef<ConversationEntry>;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
 	messageId: string;
 	conversationType: NumberString;
-	_format: NumberString;
-	_id: IdTuple;
 	_ownerGroup: null | Id;
-	_permissions: Id;
 
 	previous: null | IdTuple;
 	mail: null | IdTuple;
@@ -189,9 +189,9 @@ export function createMailAddress(values: StrippedEntity<MailAddress>): MailAddr
 export type MailAddress = {
 	_type: TypeRef<MailAddress>;
 
+	_id: Id;
 	name: string;
 	address: string;
-	_id: Id;
 
 	contact: null | IdTuple;
 }
@@ -205,12 +205,17 @@ export type Mail = {
 	_type: TypeRef<Mail>;
 	_errors: Object;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerEncSessionKey: null | Uint8Array;
 	subject: string;
 	receivedDate: Date;
 	state: NumberString;
 	unread: boolean;
 	confidential: boolean;
 	replyType: NumberString;
+	_ownerGroup: null | Id;
 	differentEnvelopeSender: null | string;
 	listUnsubscribe: boolean;
 	movedTime: null | Date;
@@ -219,12 +224,7 @@ export type Mail = {
 	method: NumberString;
 	recipientCount: NumberString;
 	encryptionAuthStatus: null | NumberString;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
 
 	sender: MailAddress;
 	attachments: IdTuple[];
@@ -245,13 +245,13 @@ export type MailBox = {
 	_type: TypeRef<MailBox>;
 	_errors: Object;
 
-	lastInfoDate: Date;
-	_format: NumberString;
 	_id: Id;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
-	_ownerKeyVersion: null | NumberString;
 	_permissions: Id;
+	_format: NumberString;
+	lastInfoDate: Date;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
+	_ownerKeyVersion: null | NumberString;
 
 	sentAttachments: Id;
 	receivedAttachments: Id;
@@ -272,11 +272,11 @@ export function createCreateExternalUserGroupData(values: StrippedEntity<CreateE
 export type CreateExternalUserGroupData = {
 	_type: TypeRef<CreateExternalUserGroupData>;
 
+	_id: Id;
 	mailAddress: string;
 	externalPwEncUserGroupKey: Uint8Array;
 	internalUserEncUserGroupKey: Uint8Array;
 	internalUserGroupKeyVersion: NumberString;
-	_id: Id;
 }
 export const ExternalUserDataTypeRef: TypeRef<ExternalUserData> = new TypeRef("tutanota", 145)
 
@@ -287,6 +287,7 @@ export function createExternalUserData(values: StrippedEntity<ExternalUserData>)
 export type ExternalUserData = {
 	_type: TypeRef<ExternalUserData>;
 
+	_format: NumberString;
 	externalUserEncMailGroupKey: Uint8Array;
 	verifier: Uint8Array;
 	externalUserEncUserGroupInfoSessionKey: Uint8Array;
@@ -298,7 +299,6 @@ export type ExternalUserData = {
 	externalMailEncMailBoxSessionKey: Uint8Array;
 	kdfVersion: NumberString;
 	internalMailGroupKeyVersion: NumberString;
-	_format: NumberString;
 
 	userGroupData: CreateExternalUserGroupData;
 }
@@ -312,12 +312,12 @@ export type ContactList = {
 	_type: TypeRef<ContactList>;
 	_errors: Object;
 
-	_format: NumberString;
 	_id: Id;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
-	_ownerKeyVersion: null | NumberString;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
+	_ownerKeyVersion: null | NumberString;
 
 	contacts: Id;
 	photos: null | PhotosRef;
@@ -331,11 +331,11 @@ export function createRemoteImapSyncInfo(values: StrippedEntity<RemoteImapSyncIn
 export type RemoteImapSyncInfo = {
 	_type: TypeRef<RemoteImapSyncInfo>;
 
-	seen: boolean;
-	_format: NumberString;
 	_id: IdTuple;
-	_ownerGroup: null | Id;
 	_permissions: Id;
+	_format: NumberString;
+	seen: boolean;
+	_ownerGroup: null | Id;
 
 	message: IdTuple;
 }
@@ -348,10 +348,10 @@ export function createImapFolder(values: StrippedEntity<ImapFolder>): ImapFolder
 export type ImapFolder = {
 	_type: TypeRef<ImapFolder>;
 
+	_id: Id;
 	name: string;
 	lastseenuid: string;
 	uidvalidity: string;
-	_id: Id;
 
 	syncInfo: Id;
 }
@@ -364,10 +364,10 @@ export function createImapSyncState(values: StrippedEntity<ImapSyncState>): Imap
 export type ImapSyncState = {
 	_type: TypeRef<ImapSyncState>;
 
-	_format: NumberString;
 	_id: Id;
-	_ownerGroup: null | Id;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 
 	folders: ImapFolder[];
 }
@@ -380,11 +380,11 @@ export function createImapSyncConfiguration(values: StrippedEntity<ImapSyncConfi
 export type ImapSyncConfiguration = {
 	_type: TypeRef<ImapSyncConfiguration>;
 
+	_id: Id;
 	host: string;
 	port: NumberString;
 	user: string;
 	password: string;
-	_id: Id;
 
 	imapSyncState: null | Id;
 }
@@ -398,6 +398,9 @@ export type TutanotaProperties = {
 	_type: TypeRef<TutanotaProperties>;
 	_errors: Object;
 
+	_id: Id;
+	_permissions: Id;
+	_format: NumberString;
 	userEncEntropy: null | Uint8Array;
 	notificationMailLanguage: null | string;
 	defaultSender: null | string;
@@ -405,16 +408,13 @@ export type TutanotaProperties = {
 	customEmailSignature: string;
 	emailSignatureType: NumberString;
 	noAutomaticContacts: boolean;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
 	sendPlaintextOnly: boolean;
 	lastSeenAnnouncement: NumberString;
+	_ownerKeyVersion: null | NumberString;
 	userKeyVersion: null | NumberString;
 	defaultLabelCreated: boolean;
-	_format: NumberString;
-	_id: Id;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
-	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
 
 	lastPushedMail: null | IdTuple;
 	imapSyncConfig: ImapSyncConfiguration[];
@@ -429,12 +429,12 @@ export function createNotificationMail(values: StrippedEntity<NotificationMail>)
 export type NotificationMail = {
 	_type: TypeRef<NotificationMail>;
 
+	_id: Id;
 	subject: string;
 	bodyText: string;
 	recipientMailAddress: string;
 	recipientName: string;
 	mailboxLink: string;
-	_id: Id;
 }
 export const DeleteMailDataTypeRef: TypeRef<DeleteMailData> = new TypeRef("tutanota", 419)
 
@@ -460,15 +460,15 @@ export type MailFolder = {
 	_type: TypeRef<MailFolder>;
 	_errors: Object;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerEncSessionKey: null | Uint8Array;
 	name: string;
 	folderType: NumberString;
-	color: null | string;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
 	_ownerGroup: null | Id;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
+	color: null | string;
 
 	parentFolder: null | IdTuple;
 	entries: Id;
@@ -511,11 +511,11 @@ export type CreateMailFolderData = {
 	_type: TypeRef<CreateMailFolderData>;
 	_errors: Object;
 
+	_format: NumberString;
 	folderName: string;
 	ownerEncSessionKey: Uint8Array;
 	ownerGroup: null | Id;
 	ownerKeyVersion: NumberString;
-	_format: NumberString;
 
 	parentFolder: null | IdTuple;
 }
@@ -556,9 +556,9 @@ export function createEncryptTutanotaPropertiesData(values: StrippedEntity<Encry
 export type EncryptTutanotaPropertiesData = {
 	_type: TypeRef<EncryptTutanotaPropertiesData>;
 
+	_format: NumberString;
 	symEncSessionKey: Uint8Array;
 	symKeyVersion: NumberString;
-	_format: NumberString;
 
 	properties: Id;
 }
@@ -571,9 +571,9 @@ export function createDraftRecipient(values: StrippedEntity<DraftRecipient>): Dr
 export type DraftRecipient = {
 	_type: TypeRef<DraftRecipient>;
 
+	_id: Id;
 	name: string;
 	mailAddress: string;
-	_id: Id;
 }
 export const NewDraftAttachmentTypeRef: TypeRef<NewDraftAttachment> = new TypeRef("tutanota", 486)
 
@@ -584,10 +584,10 @@ export function createNewDraftAttachment(values: StrippedEntity<NewDraftAttachme
 export type NewDraftAttachment = {
 	_type: TypeRef<NewDraftAttachment>;
 
+	_id: Id;
 	encFileName: Uint8Array;
 	encMimeType: Uint8Array;
 	encCid: null | Uint8Array;
-	_id: Id;
 
 	referenceTokens: BlobReferenceTokenWrapper[];
 }
@@ -600,9 +600,9 @@ export function createDraftAttachment(values: StrippedEntity<DraftAttachment>): 
 export type DraftAttachment = {
 	_type: TypeRef<DraftAttachment>;
 
+	_id: Id;
 	ownerEncFileSessionKey: Uint8Array;
 	ownerKeyVersion: NumberString;
-	_id: Id;
 
 	newFile: null | NewDraftAttachment;
 	existingFile: null | IdTuple;
@@ -616,6 +616,7 @@ export function createDraftData(values: StrippedEntity<DraftData>): DraftData {
 export type DraftData = {
 	_type: TypeRef<DraftData>;
 
+	_id: Id;
 	subject: string;
 	bodyText: string;
 	senderMailAddress: string;
@@ -623,7 +624,6 @@ export type DraftData = {
 	confidential: boolean;
 	method: NumberString;
 	compressedBodyText: null | string;
-	_id: Id;
 
 	toRecipients: DraftRecipient[];
 	ccRecipients: DraftRecipient[];
@@ -642,11 +642,11 @@ export type DraftCreateData = {
 	_type: TypeRef<DraftCreateData>;
 	_errors: Object;
 
+	_format: NumberString;
 	previousMessageId: null | string;
 	conversationType: NumberString;
 	ownerEncSessionKey: Uint8Array;
 	ownerKeyVersion: NumberString;
-	_format: NumberString;
 
 	draftData: DraftData;
 }
@@ -701,12 +701,12 @@ export function createInternalRecipientKeyData(values: StrippedEntity<InternalRe
 export type InternalRecipientKeyData = {
 	_type: TypeRef<InternalRecipientKeyData>;
 
+	_id: Id;
 	mailAddress: string;
 	pubEncBucketKey: Uint8Array;
 	recipientKeyVersion: NumberString;
 	protocolVersion: NumberString;
 	senderKeyVersion: null | NumberString;
-	_id: Id;
 }
 export const SecureExternalRecipientKeyDataTypeRef: TypeRef<SecureExternalRecipientKeyData> = new TypeRef("tutanota", 532)
 
@@ -717,6 +717,7 @@ export function createSecureExternalRecipientKeyData(values: StrippedEntity<Secu
 export type SecureExternalRecipientKeyData = {
 	_type: TypeRef<SecureExternalRecipientKeyData>;
 
+	_id: Id;
 	mailAddress: string;
 	passwordVerifier: Uint8Array;
 	salt: null | Uint8Array;
@@ -726,7 +727,6 @@ export type SecureExternalRecipientKeyData = {
 	kdfVersion: NumberString;
 	ownerKeyVersion: NumberString;
 	userGroupKeyVersion: NumberString;
-	_id: Id;
 }
 export const AttachmentKeyDataTypeRef: TypeRef<AttachmentKeyData> = new TypeRef("tutanota", 542)
 
@@ -737,9 +737,9 @@ export function createAttachmentKeyData(values: StrippedEntity<AttachmentKeyData
 export type AttachmentKeyData = {
 	_type: TypeRef<AttachmentKeyData>;
 
+	_id: Id;
 	bucketEncFileSessionKey: null | Uint8Array;
 	fileSessionKey: null | Uint8Array;
-	_id: Id;
 
 	file: IdTuple;
 }
@@ -752,6 +752,7 @@ export function createSendDraftData(values: StrippedEntity<SendDraftData>): Send
 export type SendDraftData = {
 	_type: TypeRef<SendDraftData>;
 
+	_format: NumberString;
 	language: string;
 	mailSessionKey: null | Uint8Array;
 	bucketEncMailSessionKey: null | Uint8Array;
@@ -759,7 +760,6 @@ export type SendDraftData = {
 	plaintext: boolean;
 	calendarMethod: boolean;
 	sessionEncEncryptionAuthStatus: null | Uint8Array;
-	_format: NumberString;
 
 	internalRecipientKeyData: InternalRecipientKeyData[];
 	secureExternalRecipientKeyData: SecureExternalRecipientKeyData[];
@@ -776,9 +776,9 @@ export function createSendDraftReturn(values: StrippedEntity<SendDraftReturn>): 
 export type SendDraftReturn = {
 	_type: TypeRef<SendDraftReturn>;
 
+	_format: NumberString;
 	messageId: string;
 	sentDate: Date;
-	_format: NumberString;
 
 	notifications: NotificationMail[];
 	sentMail: IdTuple;
@@ -792,8 +792,8 @@ export function createReceiveInfoServiceData(values: StrippedEntity<ReceiveInfoS
 export type ReceiveInfoServiceData = {
 	_type: TypeRef<ReceiveInfoServiceData>;
 
-	language: string;
 	_format: NumberString;
+	language: string;
 }
 export const InboxRuleTypeRef: TypeRef<InboxRule> = new TypeRef("tutanota", 573)
 
@@ -804,9 +804,9 @@ export function createInboxRule(values: StrippedEntity<InboxRule>): InboxRule {
 export type InboxRule = {
 	_type: TypeRef<InboxRule>;
 
+	_id: Id;
 	type: string;
 	value: string;
-	_id: Id;
 
 	targetFolder: IdTuple;
 }
@@ -819,9 +819,9 @@ export function createEncryptedMailAddress(values: StrippedEntity<EncryptedMailA
 export type EncryptedMailAddress = {
 	_type: TypeRef<EncryptedMailAddress>;
 
+	_id: Id;
 	name: string;
 	address: string;
-	_id: Id;
 }
 export const UserAccountUserDataTypeRef: TypeRef<UserAccountUserData> = new TypeRef("tutanota", 622)
 
@@ -832,6 +832,7 @@ export function createUserAccountUserData(values: StrippedEntity<UserAccountUser
 export type UserAccountUserData = {
 	_type: TypeRef<UserAccountUserData>;
 
+	_id: Id;
 	mailAddress: string;
 	encryptedName: Uint8Array;
 	salt: Uint8Array;
@@ -854,7 +855,6 @@ export type UserAccountUserData = {
 	recoverCodeVerifier: Uint8Array;
 	kdfVersion: NumberString;
 	customerKeyVersion: NumberString;
-	_id: Id;
 }
 export const InternalGroupDataTypeRef: TypeRef<InternalGroupData> = new TypeRef("tutanota", 642)
 
@@ -865,6 +865,7 @@ export function createInternalGroupData(values: StrippedEntity<InternalGroupData
 export type InternalGroupData = {
 	_type: TypeRef<InternalGroupData>;
 
+	_id: Id;
 	pubRsaKey: null | Uint8Array;
 	groupEncPrivRsaKey: null | Uint8Array;
 	adminEncGroupKey: Uint8Array;
@@ -875,7 +876,6 @@ export type InternalGroupData = {
 	groupEncPrivKyberKey: null | Uint8Array;
 	adminKeyVersion: NumberString;
 	ownerKeyVersion: NumberString;
-	_id: Id;
 
 	adminGroup: null | Id;
 }
@@ -888,6 +888,7 @@ export function createCustomerAccountCreateData(values: StrippedEntity<CustomerA
 export type CustomerAccountCreateData = {
 	_type: TypeRef<CustomerAccountCreateData>;
 
+	_format: NumberString;
 	authToken: string;
 	date: null | Date;
 	lang: string;
@@ -901,7 +902,6 @@ export type CustomerAccountCreateData = {
 	accountGroupKeyVersion: NumberString;
 	systemAdminPubKeyVersion: NumberString;
 	app: NumberString;
-	_format: NumberString;
 
 	userData: UserAccountUserData;
 	userGroupData: InternalGroupData;
@@ -917,8 +917,8 @@ export function createUserAccountCreateData(values: StrippedEntity<UserAccountCr
 export type UserAccountCreateData = {
 	_type: TypeRef<UserAccountCreateData>;
 
-	date: null | Date;
 	_format: NumberString;
+	date: null | Date;
 
 	userData: UserAccountUserData;
 	userGroupData: InternalGroupData;
@@ -932,11 +932,11 @@ export function createMailboxServerProperties(values: StrippedEntity<MailboxServ
 export type MailboxServerProperties = {
 	_type: TypeRef<MailboxServerProperties>;
 
-	whitelistProtectionEnabled: boolean;
-	_format: NumberString;
 	_id: Id;
-	_ownerGroup: null | Id;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	whitelistProtectionEnabled: boolean;
 }
 export const MailboxGroupRootTypeRef: TypeRef<MailboxGroupRoot> = new TypeRef("tutanota", 693)
 
@@ -947,10 +947,10 @@ export function createMailboxGroupRoot(values: StrippedEntity<MailboxGroupRoot>)
 export type MailboxGroupRoot = {
 	_type: TypeRef<MailboxGroupRoot>;
 
-	_format: NumberString;
 	_id: Id;
-	_ownerGroup: null | Id;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 
 	mailbox: Id;
 	serverProperties: Id;
@@ -968,10 +968,10 @@ export function createCreateMailGroupData(values: StrippedEntity<CreateMailGroup
 export type CreateMailGroupData = {
 	_type: TypeRef<CreateMailGroupData>;
 
+	_format: NumberString;
 	mailAddress: string;
 	encryptedName: Uint8Array;
 	mailEncMailboxSessionKey: Uint8Array;
-	_format: NumberString;
 
 	groupData: InternalGroupData;
 }
@@ -984,8 +984,8 @@ export function createDeleteGroupData(values: StrippedEntity<DeleteGroupData>): 
 export type DeleteGroupData = {
 	_type: TypeRef<DeleteGroupData>;
 
-	restore: boolean;
 	_format: NumberString;
+	restore: boolean;
 
 	group: Id;
 }
@@ -998,10 +998,10 @@ export function createBirthday(values: StrippedEntity<Birthday>): Birthday {
 export type Birthday = {
 	_type: TypeRef<Birthday>;
 
+	_id: Id;
 	day: NumberString;
 	month: NumberString;
 	year: null | NumberString;
-	_id: Id;
 }
 export const PhotosRefTypeRef: TypeRef<PhotosRef> = new TypeRef("tutanota", 853)
 
@@ -1025,9 +1025,9 @@ export function createListUnsubscribeData(values: StrippedEntity<ListUnsubscribe
 export type ListUnsubscribeData = {
 	_type: TypeRef<ListUnsubscribeData>;
 
+	_format: NumberString;
 	recipient: string;
 	headers: string;
-	_format: NumberString;
 
 	mail: IdTuple;
 }
@@ -1040,12 +1040,12 @@ export function createCalendarRepeatRule(values: StrippedEntity<CalendarRepeatRu
 export type CalendarRepeatRule = {
 	_type: TypeRef<CalendarRepeatRule>;
 
+	_id: Id;
 	frequency: NumberString;
 	endType: NumberString;
 	endValue: null | NumberString;
 	interval: NumberString;
 	timeZone: string;
-	_id: Id;
 
 	excludedDates: DateWrapper[];
 	advancedRules: AdvancedRepeatRule[];
@@ -1060,6 +1060,11 @@ export type CalendarEvent = {
 	_type: TypeRef<CalendarEvent>;
 	_errors: Object;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
 	summary: string;
 	description: string;
 	startTime: Date;
@@ -1070,12 +1075,7 @@ export type CalendarEvent = {
 	sequence: NumberString;
 	invitedConfidentially: null | boolean;
 	recurrenceId: null | Date;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
 
 	repeatRule: null | CalendarRepeatRule;
 	alarmInfos: IdTuple[];
@@ -1092,12 +1092,12 @@ export type CalendarGroupRoot = {
 	_type: TypeRef<CalendarGroupRoot>;
 	_errors: Object;
 
-	_format: NumberString;
 	_id: Id;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
-	_ownerKeyVersion: null | NumberString;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
+	_ownerKeyVersion: null | NumberString;
 
 	shortEvents: Id;
 	longEvents: Id;
@@ -1112,6 +1112,7 @@ export function createUserAreaGroupData(values: StrippedEntity<UserAreaGroupData
 export type UserAreaGroupData = {
 	_type: TypeRef<UserAreaGroupData>;
 
+	_id: Id;
 	groupEncGroupRootSessionKey: Uint8Array;
 	adminEncGroupKey: null | Uint8Array;
 	customerEncGroupInfoSessionKey: Uint8Array;
@@ -1120,7 +1121,6 @@ export type UserAreaGroupData = {
 	adminKeyVersion: null | NumberString;
 	customerKeyVersion: NumberString;
 	userKeyVersion: NumberString;
-	_id: Id;
 
 	adminGroup: null | Id;
 }
@@ -1146,10 +1146,10 @@ export function createGroupSettings(values: StrippedEntity<GroupSettings>): Grou
 export type GroupSettings = {
 	_type: TypeRef<GroupSettings>;
 
+	_id: Id;
 	color: string;
 	name: null | string;
 	sourceUrl: null | string;
-	_id: Id;
 
 	group: Id;
 	defaultAlarmsList: DefaultAlarmInfo[];
@@ -1164,15 +1164,15 @@ export type UserSettingsGroupRoot = {
 	_type: TypeRef<UserSettingsGroupRoot>;
 	_errors: Object;
 
+	_id: Id;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
 	timeFormat: NumberString;
 	startOfTheWeek: NumberString;
 	usageDataOptedIn: null | boolean;
-	_format: NumberString;
-	_id: Id;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
 
 	groupSettings: GroupSettings[];
 }
@@ -1212,6 +1212,7 @@ export function createSharedGroupData(values: StrippedEntity<SharedGroupData>): 
 export type SharedGroupData = {
 	_type: TypeRef<SharedGroupData>;
 
+	_id: Id;
 	capability: NumberString;
 	sessionEncSharedGroupKey: Uint8Array;
 	sessionEncSharedGroupName: Uint8Array;
@@ -1221,7 +1222,6 @@ export type SharedGroupData = {
 	sharedGroupEncSharedGroupInfoKey: Uint8Array;
 	sharedGroup: Id;
 	sharedGroupKeyVersion: NumberString;
-	_id: Id;
 }
 export const GroupInvitationPostDataTypeRef: TypeRef<GroupInvitationPostData> = new TypeRef("tutanota", 1002)
 
@@ -1261,11 +1261,11 @@ export function createGroupInvitationPutData(values: StrippedEntity<GroupInvitat
 export type GroupInvitationPutData = {
 	_type: TypeRef<GroupInvitationPutData>;
 
+	_format: NumberString;
 	userGroupEncGroupKey: Uint8Array;
 	sharedGroupEncInviteeGroupInfoKey: Uint8Array;
 	userGroupKeyVersion: NumberString;
 	sharedGroupKeyVersion: NumberString;
-	_format: NumberString;
 
 	receivedInvitation: IdTuple;
 }
@@ -1291,9 +1291,9 @@ export function createReportedMailFieldMarker(values: StrippedEntity<ReportedMai
 export type ReportedMailFieldMarker = {
 	_type: TypeRef<ReportedMailFieldMarker>;
 
+	_id: Id;
 	marker: string;
 	status: NumberString;
-	_id: Id;
 }
 export const PhishingMarkerWebsocketDataTypeRef: TypeRef<PhishingMarkerWebsocketData> = new TypeRef("tutanota", 1034)
 
@@ -1304,8 +1304,8 @@ export function createPhishingMarkerWebsocketData(values: StrippedEntity<Phishin
 export type PhishingMarkerWebsocketData = {
 	_type: TypeRef<PhishingMarkerWebsocketData>;
 
-	lastId: Id;
 	_format: NumberString;
+	lastId: Id;
 
 	markers: ReportedMailFieldMarker[];
 }
@@ -1318,9 +1318,9 @@ export function createReportMailPostData(values: StrippedEntity<ReportMailPostDa
 export type ReportMailPostData = {
 	_type: TypeRef<ReportMailPostData>;
 
+	_format: NumberString;
 	mailSessionKey: Uint8Array;
 	reportType: NumberString;
-	_format: NumberString;
 
 	mailId: IdTuple;
 }
@@ -1333,8 +1333,8 @@ export function createCalendarEventAttendee(values: StrippedEntity<CalendarEvent
 export type CalendarEventAttendee = {
 	_type: TypeRef<CalendarEventAttendee>;
 
-	status: NumberString;
 	_id: Id;
+	status: NumberString;
 
 	address: EncryptedMailAddress;
 }
@@ -1347,10 +1347,10 @@ export function createCalendarEventUidIndex(values: StrippedEntity<CalendarEvent
 export type CalendarEventUidIndex = {
 	_type: TypeRef<CalendarEventUidIndex>;
 
-	_format: NumberString;
 	_id: IdTuple;
-	_ownerGroup: null | Id;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 
 	progenitor: null | IdTuple;
 	alteredInstances: IdTuple[];
@@ -1378,13 +1378,13 @@ export type CalendarEventUpdate = {
 	_type: TypeRef<CalendarEventUpdate>;
 	_errors: Object;
 
-	sender: string;
-	_format: NumberString;
 	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
-	_ownerKeyVersion: null | NumberString;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
+	sender: string;
+	_ownerKeyVersion: null | NumberString;
 
 	file: IdTuple;
 }
@@ -1410,9 +1410,9 @@ export function createEntropyData(values: StrippedEntity<EntropyData>): EntropyD
 export type EntropyData = {
 	_type: TypeRef<EntropyData>;
 
+	_format: NumberString;
 	userEncEntropy: Uint8Array;
 	userKeyVersion: NumberString;
-	_format: NumberString;
 }
 export const OutOfOfficeNotificationMessageTypeRef: TypeRef<OutOfOfficeNotificationMessage> = new TypeRef("tutanota", 1126)
 
@@ -1423,10 +1423,10 @@ export function createOutOfOfficeNotificationMessage(values: StrippedEntity<OutO
 export type OutOfOfficeNotificationMessage = {
 	_type: TypeRef<OutOfOfficeNotificationMessage>;
 
+	_id: Id;
 	subject: string;
 	message: string;
 	type: NumberString;
-	_id: Id;
 }
 export const OutOfOfficeNotificationTypeRef: TypeRef<OutOfOfficeNotification> = new TypeRef("tutanota", 1131)
 
@@ -1437,13 +1437,13 @@ export function createOutOfOfficeNotification(values: StrippedEntity<OutOfOffice
 export type OutOfOfficeNotification = {
 	_type: TypeRef<OutOfOfficeNotification>;
 
+	_id: Id;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 	enabled: boolean;
 	startDate: null | Date;
 	endDate: null | Date;
-	_format: NumberString;
-	_id: Id;
-	_ownerGroup: null | Id;
-	_permissions: Id;
 
 	notifications: OutOfOfficeNotificationMessage[];
 }
@@ -1469,9 +1469,9 @@ export function createEmailTemplateContent(values: StrippedEntity<EmailTemplateC
 export type EmailTemplateContent = {
 	_type: TypeRef<EmailTemplateContent>;
 
+	_id: Id;
 	text: string;
 	languageCode: string;
-	_id: Id;
 }
 export const EmailTemplateTypeRef: TypeRef<EmailTemplate> = new TypeRef("tutanota", 1158)
 
@@ -1483,14 +1483,14 @@ export type EmailTemplate = {
 	_type: TypeRef<EmailTemplate>;
 	_errors: Object;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
 	title: string;
 	tag: string;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
 
 	contents: EmailTemplateContent[];
 }
@@ -1503,8 +1503,8 @@ export function createKnowledgeBaseEntryKeyword(values: StrippedEntity<Knowledge
 export type KnowledgeBaseEntryKeyword = {
 	_type: TypeRef<KnowledgeBaseEntryKeyword>;
 
-	keyword: string;
 	_id: Id;
+	keyword: string;
 }
 export const KnowledgeBaseEntryTypeRef: TypeRef<KnowledgeBaseEntry> = new TypeRef("tutanota", 1171)
 
@@ -1516,14 +1516,14 @@ export type KnowledgeBaseEntry = {
 	_type: TypeRef<KnowledgeBaseEntry>;
 	_errors: Object;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
 	title: string;
 	description: string;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
 
 	keywords: KnowledgeBaseEntryKeyword[];
 }
@@ -1537,12 +1537,12 @@ export type TemplateGroupRoot = {
 	_type: TypeRef<TemplateGroupRoot>;
 	_errors: Object;
 
-	_format: NumberString;
 	_id: Id;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
-	_ownerKeyVersion: null | NumberString;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
+	_ownerKeyVersion: null | NumberString;
 
 	templates: Id;
 	knowledgeBase: Id;
@@ -1570,13 +1570,13 @@ export type MailboxProperties = {
 	_type: TypeRef<MailboxProperties>;
 	_errors: Object;
 
-	reportMovedMails: NumberString;
-	_format: NumberString;
 	_id: Id;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
-	_ownerKeyVersion: null | NumberString;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
+	reportMovedMails: NumberString;
+	_ownerKeyVersion: null | NumberString;
 
 	mailAddressProperties: MailAddressProperties[];
 }
@@ -1602,9 +1602,9 @@ export function createNewsId(values: StrippedEntity<NewsId>): NewsId {
 export type NewsId = {
 	_type: TypeRef<NewsId>;
 
+	_id: Id;
 	newsItemName: string;
 	newsItemId: Id;
-	_id: Id;
 }
 export const NewsOutTypeRef: TypeRef<NewsOut> = new TypeRef("tutanota", 1256)
 
@@ -1628,8 +1628,8 @@ export function createNewsIn(values: StrippedEntity<NewsIn>): NewsIn {
 export type NewsIn = {
 	_type: TypeRef<NewsIn>;
 
-	newsItemId: null | Id;
 	_format: NumberString;
+	newsItemId: null | Id;
 }
 export const MailAddressPropertiesTypeRef: TypeRef<MailAddressProperties> = new TypeRef("tutanota", 1263)
 
@@ -1640,9 +1640,9 @@ export function createMailAddressProperties(values: StrippedEntity<MailAddressPr
 export type MailAddressProperties = {
 	_type: TypeRef<MailAddressProperties>;
 
+	_id: Id;
 	mailAddress: string;
 	senderName: string;
-	_id: Id;
 }
 export const HeaderTypeRef: TypeRef<Header> = new TypeRef("tutanota", 1269)
 
@@ -1653,9 +1653,9 @@ export function createHeader(values: StrippedEntity<Header>): Header {
 export type Header = {
 	_type: TypeRef<Header>;
 
+	_id: Id;
 	headers: null | string;
 	compressedHeaders: null | string;
-	_id: Id;
 }
 export const BodyTypeRef: TypeRef<Body> = new TypeRef("tutanota", 1273)
 
@@ -1666,9 +1666,9 @@ export function createBody(values: StrippedEntity<Body>): Body {
 export type Body = {
 	_type: TypeRef<Body>;
 
+	_id: Id;
 	text: null | string;
 	compressedText: null | string;
-	_id: Id;
 }
 export const RecipientsTypeRef: TypeRef<Recipients> = new TypeRef("tutanota", 1277)
 
@@ -1694,9 +1694,9 @@ export function createMailDetails(values: StrippedEntity<MailDetails>): MailDeta
 export type MailDetails = {
 	_type: TypeRef<MailDetails>;
 
+	_id: Id;
 	sentDate: Date;
 	authStatus: NumberString;
-	_id: Id;
 
 	replyTos: EncryptedMailAddress[];
 	recipients: Recipients;
@@ -1713,12 +1713,12 @@ export type MailDetailsDraft = {
 	_type: TypeRef<MailDetailsDraft>;
 	_errors: Object;
 
-	_format: NumberString;
 	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
-	_ownerKeyVersion: null | NumberString;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
+	_ownerKeyVersion: null | NumberString;
 
 	details: MailDetails;
 }
@@ -1732,12 +1732,12 @@ export type MailDetailsBlob = {
 	_type: TypeRef<MailDetailsBlob>;
 	_errors: Object;
 
-	_format: NumberString;
 	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
-	_ownerKeyVersion: null | NumberString;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
+	_ownerKeyVersion: null | NumberString;
 
 	details: MailDetails;
 }
@@ -1778,13 +1778,13 @@ export type ContactListEntry = {
 	_type: TypeRef<ContactListEntry>;
 	_errors: Object;
 
-	emailAddress: string;
-	_format: NumberString;
 	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
-	_ownerKeyVersion: null | NumberString;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
+	emailAddress: string;
+	_ownerKeyVersion: null | NumberString;
 }
 export const ContactListGroupRootTypeRef: TypeRef<ContactListGroupRoot> = new TypeRef("tutanota", 1333)
 
@@ -1796,12 +1796,12 @@ export type ContactListGroupRoot = {
 	_type: TypeRef<ContactListGroupRoot>;
 	_errors: Object;
 
-	_format: NumberString;
 	_id: Id;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
-	_ownerKeyVersion: null | NumberString;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
+	_ownerKeyVersion: null | NumberString;
 
 	entries: Id;
 }
@@ -1814,10 +1814,10 @@ export function createSymEncInternalRecipientKeyData(values: StrippedEntity<SymE
 export type SymEncInternalRecipientKeyData = {
 	_type: TypeRef<SymEncInternalRecipientKeyData>;
 
+	_id: Id;
 	mailAddress: string;
 	symEncBucketKey: Uint8Array;
 	symKeyVersion: NumberString;
-	_id: Id;
 
 	keyGroup: Id;
 }
@@ -1830,10 +1830,10 @@ export function createContactCustomDate(values: StrippedEntity<ContactCustomDate
 export type ContactCustomDate = {
 	_type: TypeRef<ContactCustomDate>;
 
+	_id: Id;
 	type: NumberString;
 	customTypeName: string;
 	dateIso: string;
-	_id: Id;
 }
 export const ContactWebsiteTypeRef: TypeRef<ContactWebsite> = new TypeRef("tutanota", 1361)
 
@@ -1844,10 +1844,10 @@ export function createContactWebsite(values: StrippedEntity<ContactWebsite>): Co
 export type ContactWebsite = {
 	_type: TypeRef<ContactWebsite>;
 
+	_id: Id;
 	type: NumberString;
 	customTypeName: string;
 	url: string;
-	_id: Id;
 }
 export const ContactRelationshipTypeRef: TypeRef<ContactRelationship> = new TypeRef("tutanota", 1366)
 
@@ -1858,10 +1858,10 @@ export function createContactRelationship(values: StrippedEntity<ContactRelation
 export type ContactRelationship = {
 	_type: TypeRef<ContactRelationship>;
 
+	_id: Id;
 	type: NumberString;
 	customTypeName: string;
 	person: string;
-	_id: Id;
 }
 export const ContactMessengerHandleTypeRef: TypeRef<ContactMessengerHandle> = new TypeRef("tutanota", 1371)
 
@@ -1872,10 +1872,10 @@ export function createContactMessengerHandle(values: StrippedEntity<ContactMesse
 export type ContactMessengerHandle = {
 	_type: TypeRef<ContactMessengerHandle>;
 
+	_id: Id;
 	type: NumberString;
 	customTypeName: string;
 	handle: string;
-	_id: Id;
 }
 export const ContactPronounsTypeRef: TypeRef<ContactPronouns> = new TypeRef("tutanota", 1376)
 
@@ -1886,9 +1886,9 @@ export function createContactPronouns(values: StrippedEntity<ContactPronouns>): 
 export type ContactPronouns = {
 	_type: TypeRef<ContactPronouns>;
 
+	_id: Id;
 	language: string;
 	pronouns: string;
-	_id: Id;
 }
 export const TranslationGetInTypeRef: TypeRef<TranslationGetIn> = new TypeRef("tutanota", 1436)
 
@@ -1899,8 +1899,8 @@ export function createTranslationGetIn(values: StrippedEntity<TranslationGetIn>)
 export type TranslationGetIn = {
 	_type: TypeRef<TranslationGetIn>;
 
-	lang: string;
 	_format: NumberString;
+	lang: string;
 }
 export const TranslationGetOutTypeRef: TypeRef<TranslationGetOut> = new TypeRef("tutanota", 1439)
 
@@ -1911,9 +1911,9 @@ export function createTranslationGetOut(values: StrippedEntity<TranslationGetOut
 export type TranslationGetOut = {
 	_type: TypeRef<TranslationGetOut>;
 
+	_format: NumberString;
 	giftCardSubject: string;
 	invitationSubject: string;
-	_format: NumberString;
 }
 export const DefaultAlarmInfoTypeRef: TypeRef<DefaultAlarmInfo> = new TypeRef("tutanota", 1446)
 
@@ -1924,8 +1924,8 @@ export function createDefaultAlarmInfo(values: StrippedEntity<DefaultAlarmInfo>)
 export type DefaultAlarmInfo = {
 	_type: TypeRef<DefaultAlarmInfo>;
 
-	trigger: string;
 	_id: Id;
+	trigger: string;
 }
 export const MailSetEntryTypeRef: TypeRef<MailSetEntry> = new TypeRef("tutanota", 1450)
 
@@ -1936,10 +1936,10 @@ export function createMailSetEntry(values: StrippedEntity<MailSetEntry>): MailSe
 export type MailSetEntry = {
 	_type: TypeRef<MailSetEntry>;
 
-	_format: NumberString;
 	_id: IdTuple;
-	_ownerGroup: null | Id;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 
 	mail: IdTuple;
 }
@@ -1965,8 +1965,8 @@ export function createSimpleMoveMailPostIn(values: StrippedEntity<SimpleMoveMail
 export type SimpleMoveMailPostIn = {
 	_type: TypeRef<SimpleMoveMailPostIn>;
 
-	destinationSetType: NumberString;
 	_format: NumberString;
+	destinationSetType: NumberString;
 
 	mails: IdTuple[];
 }
@@ -1979,8 +1979,8 @@ export function createUnreadMailStatePostIn(values: StrippedEntity<UnreadMailSta
 export type UnreadMailStatePostIn = {
 	_type: TypeRef<UnreadMailStatePostIn>;
 
-	unread: boolean;
 	_format: NumberString;
+	unread: boolean;
 
 	mails: IdTuple[];
 }
@@ -1993,9 +1993,9 @@ export function createManageLabelServiceLabelData(values: StrippedEntity<ManageL
 export type ManageLabelServiceLabelData = {
 	_type: TypeRef<ManageLabelServiceLabelData>;
 
+	_id: Id;
 	name: string;
 	color: string;
-	_id: Id;
 }
 export const ManageLabelServicePostInTypeRef: TypeRef<ManageLabelServicePostIn> = new TypeRef("tutanota", 1484)
 
@@ -2007,10 +2007,10 @@ export type ManageLabelServicePostIn = {
 	_type: TypeRef<ManageLabelServicePostIn>;
 	_errors: Object;
 
+	_format: NumberString;
 	ownerEncSessionKey: Uint8Array;
 	ownerKeyVersion: NumberString;
 	ownerGroup: Id;
-	_format: NumberString;
 
 	data: ManageLabelServiceLabelData;
 }
@@ -2051,8 +2051,8 @@ export function createImportMailDataMailReference(values: StrippedEntity<ImportM
 export type ImportMailDataMailReference = {
 	_type: TypeRef<ImportMailDataMailReference>;
 
-	reference: string;
 	_id: Id;
+	reference: string;
 }
 export const NewImportAttachmentTypeRef: TypeRef<NewImportAttachment> = new TypeRef("tutanota", 1516)
 
@@ -2063,12 +2063,12 @@ export function createNewImportAttachment(values: StrippedEntity<NewImportAttach
 export type NewImportAttachment = {
 	_type: TypeRef<NewImportAttachment>;
 
+	_id: Id;
 	ownerEncFileHashSessionKey: null | Uint8Array;
 	encFileHash: null | Uint8Array;
 	encFileName: Uint8Array;
 	encMimeType: Uint8Array;
 	encCid: null | Uint8Array;
-	_id: Id;
 
 	referenceTokens: BlobReferenceTokenWrapper[];
 }
@@ -2081,9 +2081,9 @@ export function createImportAttachment(values: StrippedEntity<ImportAttachment>)
 export type ImportAttachment = {
 	_type: TypeRef<ImportAttachment>;
 
+	_id: Id;
 	ownerEncFileSessionKey: Uint8Array;
 	ownerFileKeyVersion: NumberString;
-	_id: Id;
 
 	newAttachment: null | NewImportAttachment;
 	existingAttachmentFile: null | IdTuple;
@@ -2098,6 +2098,7 @@ export type ImportMailData = {
 	_type: TypeRef<ImportMailData>;
 	_errors: Object;
 
+	_format: NumberString;
 	ownerEncSessionKey: Uint8Array;
 	ownerKeyVersion: NumberString;
 	subject: string;
@@ -2113,7 +2114,6 @@ export type ImportMailData = {
 	differentEnvelopeSender: null | string;
 	phishingStatus: NumberString;
 	compressedHeaders: string;
-	_format: NumberString;
 
 	references: ImportMailDataMailReference[];
 	sender: MailAddress;
@@ -2130,10 +2130,10 @@ export function createImportedMail(values: StrippedEntity<ImportedMail>): Import
 export type ImportedMail = {
 	_type: TypeRef<ImportedMail>;
 
-	_format: NumberString;
 	_id: IdTuple;
-	_ownerGroup: null | Id;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 
 	mailSetEntry: IdTuple;
 }
@@ -2146,14 +2146,14 @@ export function createImportMailState(values: StrippedEntity<ImportMailState>): 
 export type ImportMailState = {
 	_type: TypeRef<ImportMailState>;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 	status: NumberString;
 	successfulMails: NumberString;
 	failedMails: NumberString;
 	totalMails: NumberString;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerGroup: null | Id;
-	_permissions: Id;
 
 	importedMails: Id;
 	targetFolder: IdTuple;
@@ -2193,12 +2193,12 @@ export type ImportMailGetIn = {
 	_type: TypeRef<ImportMailGetIn>;
 	_errors: Object;
 
+	_format: NumberString;
 	ownerGroup: Id;
 	ownerKeyVersion: NumberString;
 	ownerEncSessionKey: Uint8Array;
 	newImportedMailSetName: string;
 	totalMails: NumberString;
-	_format: NumberString;
 
 	targetMailFolder: IdTuple;
 }
@@ -2211,9 +2211,9 @@ export function createAdvancedRepeatRule(values: StrippedEntity<AdvancedRepeatRu
 export type AdvancedRepeatRule = {
 	_type: TypeRef<AdvancedRepeatRule>;
 
+	_id: Id;
 	ruleType: NumberString;
 	interval: string;
-	_id: Id;
 }
 export const ImportMailGetOutTypeRef: TypeRef<ImportMailGetOut> = new TypeRef("tutanota", 1591)
 
@@ -2237,8 +2237,8 @@ export function createMailExportTokenServicePostOut(values: StrippedEntity<MailE
 export type MailExportTokenServicePostOut = {
 	_type: TypeRef<MailExportTokenServicePostOut>;
 
-	mailExportToken: string;
 	_format: NumberString;
+	mailExportToken: string;
 }
 export const SupportTopicTypeRef: TypeRef<SupportTopic> = new TypeRef("tutanota", 1618)
 
@@ -2249,13 +2249,13 @@ export function createSupportTopic(values: StrippedEntity<SupportTopic>): Suppor
 export type SupportTopic = {
 	_type: TypeRef<SupportTopic>;
 
+	_id: Id;
 	lastUpdated: Date;
 	issueEN: string;
 	issueDE: string;
 	solutionHtmlEN: string;
 	solutionHtmlDE: string;
 	visibility: NumberString;
-	_id: Id;
 }
 export const SupportCategoryTypeRef: TypeRef<SupportCategory> = new TypeRef("tutanota", 1626)
 
@@ -2266,12 +2266,12 @@ export function createSupportCategory(values: StrippedEntity<SupportCategory>): 
 export type SupportCategory = {
 	_type: TypeRef<SupportCategory>;
 
+	_id: Id;
 	nameEN: string;
 	nameDE: string;
 	introductionEN: string;
 	introductionDE: string;
 	icon: string;
-	_id: Id;
 
 	topics: SupportTopic[];
 }
@@ -2284,10 +2284,10 @@ export function createSupportData(values: StrippedEntity<SupportData>): SupportD
 export type SupportData = {
 	_type: TypeRef<SupportData>;
 
-	_format: NumberString;
 	_id: Id;
-	_ownerGroup: null | Id;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 
 	categories: SupportCategory[];
 }

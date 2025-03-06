@@ -12,10 +12,10 @@ export function createReadCounterData(values: StrippedEntity<ReadCounterData>): 
 export type ReadCounterData = {
 	_type: TypeRef<ReadCounterData>;
 
+	_format: NumberString;
 	rowName: string;
 	columnName: null | Id;
 	counterType: NumberString;
-	_format: NumberString;
 }
 export const ReadCounterReturnTypeRef: TypeRef<ReadCounterReturn> = new TypeRef("monitor", 16)
 
@@ -26,8 +26,8 @@ export function createReadCounterReturn(values: StrippedEntity<ReadCounterReturn
 export type ReadCounterReturn = {
 	_type: TypeRef<ReadCounterReturn>;
 
-	value: null | NumberString;
 	_format: NumberString;
+	value: null | NumberString;
 
 	counterValues: CounterValue[];
 }
@@ -40,11 +40,11 @@ export function createWriteCounterData(values: StrippedEntity<WriteCounterData>)
 export type WriteCounterData = {
 	_type: TypeRef<WriteCounterData>;
 
+	_format: NumberString;
 	row: string;
 	column: Id;
 	value: NumberString;
 	counterType: null | NumberString;
-	_format: NumberString;
 }
 export const ApprovalMailTypeRef: TypeRef<ApprovalMail> = new TypeRef("monitor", 221)
 
@@ -55,13 +55,13 @@ export function createApprovalMail(values: StrippedEntity<ApprovalMail>): Approv
 export type ApprovalMail = {
 	_type: TypeRef<ApprovalMail>;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 	range: null | string;
 	date: null | Date;
 	text: string;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerGroup: null | Id;
-	_permissions: Id;
 
 	customer: null | Id;
 }
@@ -74,9 +74,9 @@ export function createCounterValue(values: StrippedEntity<CounterValue>): Counte
 export type CounterValue = {
 	_type: TypeRef<CounterValue>;
 
+	_id: Id;
 	counterId: Id;
 	value: NumberString;
-	_id: Id;
 }
 export const ErrorReportFileTypeRef: TypeRef<ErrorReportFile> = new TypeRef("monitor", 305)
 
@@ -87,9 +87,9 @@ export function createErrorReportFile(values: StrippedEntity<ErrorReportFile>): 
 export type ErrorReportFile = {
 	_type: TypeRef<ErrorReportFile>;
 
+	_id: Id;
 	name: string;
 	content: string;
-	_id: Id;
 }
 export const ErrorReportDataTypeRef: TypeRef<ErrorReportData> = new TypeRef("monitor", 316)
 
@@ -100,6 +100,7 @@ export function createErrorReportData(values: StrippedEntity<ErrorReportData>): 
 export type ErrorReportData = {
 	_type: TypeRef<ErrorReportData>;
 
+	_id: Id;
 	time: Date;
 	appVersion: string;
 	clientType: NumberString;
@@ -109,7 +110,6 @@ export type ErrorReportData = {
 	stackTrace: string;
 	userMessage: null | string;
 	additionalInfo: string;
-	_id: Id;
 }
 export const ReportErrorInTypeRef: TypeRef<ReportErrorIn> = new TypeRef("monitor", 335)
 

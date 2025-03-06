@@ -12,11 +12,11 @@ export function createCustomerAccountPosting(values: StrippedEntity<CustomerAcco
 export type CustomerAccountPosting = {
 	_type: TypeRef<CustomerAccountPosting>;
 
+	_id: Id;
 	type: NumberString;
 	valueDate: Date;
 	invoiceNumber: null | string;
 	amount: NumberString;
-	_id: Id;
 }
 export const CustomerAccountReturnTypeRef: TypeRef<CustomerAccountReturn> = new TypeRef("accounting", 86)
 
@@ -28,11 +28,11 @@ export type CustomerAccountReturn = {
 	_type: TypeRef<CustomerAccountReturn>;
 	_errors: Object;
 
-	outstandingBookingsPrice: NumberString;
-	balance: NumberString;
 	_format: NumberString;
 	_ownerGroup: null | Id;
 	_ownerPublicEncSessionKey: null | Uint8Array;
+	outstandingBookingsPrice: NumberString;
+	balance: NumberString;
 	_publicCryptoProtocolVersion: null | NumberString;
 
 	postings: CustomerAccountPosting[];

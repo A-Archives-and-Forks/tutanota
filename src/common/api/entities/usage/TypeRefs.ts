@@ -12,9 +12,9 @@ export function createUsageTestMetricConfigValue(values: StrippedEntity<UsageTes
 export type UsageTestMetricConfigValue = {
 	_type: TypeRef<UsageTestMetricConfigValue>;
 
+	_id: Id;
 	key: string;
 	value: string;
-	_id: Id;
 }
 export const UsageTestMetricConfigTypeRef: TypeRef<UsageTestMetricConfig> = new TypeRef("usage", 12)
 
@@ -25,9 +25,9 @@ export function createUsageTestMetricConfig(values: StrippedEntity<UsageTestMetr
 export type UsageTestMetricConfig = {
 	_type: TypeRef<UsageTestMetricConfig>;
 
+	_id: Id;
 	name: string;
 	type: NumberString;
-	_id: Id;
 
 	configValues: UsageTestMetricConfigValue[];
 }
@@ -40,9 +40,9 @@ export function createUsageTestMetricData(values: StrippedEntity<UsageTestMetric
 export type UsageTestMetricData = {
 	_type: TypeRef<UsageTestMetricData>;
 
+	_id: Id;
 	name: string;
 	value: string;
-	_id: Id;
 }
 export const UsageTestStageTypeRef: TypeRef<UsageTestStage> = new TypeRef("usage", 35)
 
@@ -53,10 +53,10 @@ export function createUsageTestStage(values: StrippedEntity<UsageTestStage>): Us
 export type UsageTestStage = {
 	_type: TypeRef<UsageTestStage>;
 
+	_id: Id;
 	name: string;
 	minPings: NumberString;
 	maxPings: NumberString;
-	_id: Id;
 
 	metrics: UsageTestMetricConfig[];
 }
@@ -69,8 +69,8 @@ export function createUsageTestAssignmentIn(values: StrippedEntity<UsageTestAssi
 export type UsageTestAssignmentIn = {
 	_type: TypeRef<UsageTestAssignmentIn>;
 
-	testDeviceId: null | Id;
 	_format: NumberString;
+	testDeviceId: null | Id;
 }
 export const UsageTestAssignmentTypeRef: TypeRef<UsageTestAssignment> = new TypeRef("usage", 56)
 
@@ -81,11 +81,11 @@ export function createUsageTestAssignment(values: StrippedEntity<UsageTestAssign
 export type UsageTestAssignment = {
 	_type: TypeRef<UsageTestAssignment>;
 
+	_id: Id;
 	testId: Id;
 	name: string;
 	variant: null | NumberString;
 	sendPings: boolean;
-	_id: Id;
 
 	stages: UsageTestStage[];
 }
@@ -98,8 +98,8 @@ export function createUsageTestAssignmentOut(values: StrippedEntity<UsageTestAss
 export type UsageTestAssignmentOut = {
 	_type: TypeRef<UsageTestAssignmentOut>;
 
-	testDeviceId: Id;
 	_format: NumberString;
+	testDeviceId: Id;
 
 	assignments: UsageTestAssignment[];
 }
@@ -112,10 +112,10 @@ export function createUsageTestParticipationIn(values: StrippedEntity<UsageTestP
 export type UsageTestParticipationIn = {
 	_type: TypeRef<UsageTestParticipationIn>;
 
+	_format: NumberString;
 	testId: Id;
 	stage: NumberString;
 	testDeviceId: Id;
-	_format: NumberString;
 
 	metrics: UsageTestMetricData[];
 }

@@ -12,13 +12,13 @@ export function createKeyPair(values: StrippedEntity<KeyPair>): KeyPair {
 export type KeyPair = {
 	_type: TypeRef<KeyPair>;
 
+	_id: Id;
 	pubRsaKey: null | Uint8Array;
 	symEncPrivRsaKey: null | Uint8Array;
 	pubEccKey: null | Uint8Array;
 	symEncPrivEccKey: null | Uint8Array;
 	pubKyberKey: null | Uint8Array;
 	symEncPrivKyberKey: null | Uint8Array;
-	_id: Id;
 }
 export const GroupTypeRef: TypeRef<Group> = new TypeRef("sys", 5)
 
@@ -29,16 +29,16 @@ export function createGroup(values: StrippedEntity<Group>): Group {
 export type Group = {
 	_type: TypeRef<Group>;
 
+	_id: Id;
+	_permissions: Id;
+	_format: NumberString;
 	type: NumberString;
 	adminGroupEncGKey: null | Uint8Array;
 	enabled: boolean;
+	_ownerGroup: null | Id;
 	external: boolean;
 	adminGroupKeyVersion: null | NumberString;
 	groupKeyVersion: NumberString;
-	_format: NumberString;
-	_id: Id;
-	_ownerGroup: null | Id;
-	_permissions: Id;
 
 	currentKeys: null | KeyPair;
 	admin: null | Id;
@@ -62,18 +62,18 @@ export type GroupInfo = {
 	_type: TypeRef<GroupInfo>;
 	_errors: Object;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_listEncSessionKey: null | Uint8Array;
 	name: string;
 	mailAddress: null | string;
 	created: Date;
 	deleted: null | Date;
-	groupType: null | NumberString;
-	_format: NumberString;
-	_id: IdTuple;
-	_listEncSessionKey: null | Uint8Array;
-	_ownerEncSessionKey: null | Uint8Array;
 	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
+	groupType: null | NumberString;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
 
 	group: Id;
 	mailAddressAliases: MailAddressAlias[];
@@ -87,13 +87,13 @@ export function createGroupMembership(values: StrippedEntity<GroupMembership>): 
 export type GroupMembership = {
 	_type: TypeRef<GroupMembership>;
 
+	_id: Id;
 	symEncGKey: Uint8Array;
 	admin: boolean;
 	groupType: null | NumberString;
 	capability: null | NumberString;
 	groupKeyVersion: NumberString;
 	symKeyVersion: NumberString;
-	_id: Id;
 
 	group: Id;
 	groupInfo: IdTuple;
@@ -108,14 +108,14 @@ export function createCustomer(values: StrippedEntity<Customer>): Customer {
 export type Customer = {
 	_type: TypeRef<Customer>;
 
+	_id: Id;
+	_permissions: Id;
+	_format: NumberString;
 	type: NumberString;
 	approvalStatus: NumberString;
+	_ownerGroup: null | Id;
 	orderProcessingAgreementNeeded: boolean;
 	businessUse: boolean;
-	_format: NumberString;
-	_id: Id;
-	_ownerGroup: null | Id;
-	_permissions: Id;
 
 	adminGroup: Id;
 	customerGroup: Id;
@@ -144,10 +144,10 @@ export function createAuthenticatedDevice(values: StrippedEntity<AuthenticatedDe
 export type AuthenticatedDevice = {
 	_type: TypeRef<AuthenticatedDevice>;
 
+	_id: Id;
 	authType: NumberString;
 	deviceToken: string;
 	deviceKey: Uint8Array;
-	_id: Id;
 }
 export const LoginTypeRef: TypeRef<Login> = new TypeRef("sys", 48)
 
@@ -158,11 +158,11 @@ export function createLogin(values: StrippedEntity<Login>): Login {
 export type Login = {
 	_type: TypeRef<Login>;
 
-	time: Date;
-	_format: NumberString;
 	_id: IdTuple;
-	_ownerGroup: null | Id;
 	_permissions: Id;
+	_format: NumberString;
+	time: Date;
+	_ownerGroup: null | Id;
 }
 export const SecondFactorAuthenticationTypeRef: TypeRef<SecondFactorAuthentication> = new TypeRef("sys", 54)
 
@@ -173,14 +173,14 @@ export function createSecondFactorAuthentication(values: StrippedEntity<SecondFa
 export type SecondFactorAuthentication = {
 	_type: TypeRef<SecondFactorAuthentication>;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
 	code: string;
 	verifyCount: NumberString;
 	finished: boolean;
 	service: string;
-	_format: NumberString;
-	_id: IdTuple;
 	_ownerGroup: null | Id;
-	_permissions: Id;
 }
 export const VariableExternalAuthInfoTypeRef: TypeRef<VariableExternalAuthInfo> = new TypeRef("sys", 66)
 
@@ -191,16 +191,16 @@ export function createVariableExternalAuthInfo(values: StrippedEntity<VariableEx
 export type VariableExternalAuthInfo = {
 	_type: TypeRef<VariableExternalAuthInfo>;
 
+	_id: Id;
+	_permissions: Id;
+	_format: NumberString;
 	loggedInVerifier: null | Uint8Array;
 	loggedInTimestamp: null | Date;
 	loggedInIpAddressHash: null | Uint8Array;
 	sentCount: NumberString;
 	lastSentTimestamp: Date;
 	authUpdateCounter: NumberString;
-	_format: NumberString;
-	_id: Id;
 	_ownerGroup: null | Id;
-	_permissions: Id;
 }
 export const UserExternalAuthInfoTypeRef: TypeRef<UserExternalAuthInfo> = new TypeRef("sys", 77)
 
@@ -211,11 +211,11 @@ export function createUserExternalAuthInfo(values: StrippedEntity<UserExternalAu
 export type UserExternalAuthInfo = {
 	_type: TypeRef<UserExternalAuthInfo>;
 
+	_id: Id;
 	autoAuthenticationId: Id;
 	latestSaltHash: null | Uint8Array;
 	autoTransmitPassword: null | string;
 	authUpdateCounter: NumberString;
-	_id: Id;
 
 	variableAuthInfo: Id;
 }
@@ -228,16 +228,16 @@ export function createUser(values: StrippedEntity<User>): User {
 export type User = {
 	_type: TypeRef<User>;
 
+	_id: Id;
+	_permissions: Id;
+	_format: NumberString;
 	salt: null | Uint8Array;
 	verifier: Uint8Array;
 	accountType: NumberString;
 	enabled: boolean;
+	_ownerGroup: null | Id;
 	requirePasswordUpdate: boolean;
 	kdfVersion: NumberString;
-	_format: NumberString;
-	_id: Id;
-	_ownerGroup: null | Id;
-	_permissions: Id;
 
 	userGroup: GroupMembership;
 	memberships: GroupMembership[];
@@ -260,10 +260,10 @@ export function createExternalUserReference(values: StrippedEntity<ExternalUserR
 export type ExternalUserReference = {
 	_type: TypeRef<ExternalUserReference>;
 
-	_format: NumberString;
 	_id: IdTuple;
-	_ownerGroup: null | Id;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 
 	user: Id;
 	userGroup: Id;
@@ -277,10 +277,10 @@ export function createGroupRoot(values: StrippedEntity<GroupRoot>): GroupRoot {
 export type GroupRoot = {
 	_type: TypeRef<GroupRoot>;
 
-	_format: NumberString;
 	_id: Id;
-	_ownerGroup: null | Id;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 
 	externalGroupInfos: Id;
 	externalUserReferences: Id;
@@ -295,19 +295,19 @@ export function createBucketPermission(values: StrippedEntity<BucketPermission>)
 export type BucketPermission = {
 	_type: TypeRef<BucketPermission>;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
 	type: NumberString;
 	symEncBucketKey: null | Uint8Array;
 	pubEncBucketKey: null | Uint8Array;
 	pubKeyVersion: null | NumberString;
+	_ownerGroup: null | Id;
 	ownerEncBucketKey: null | Uint8Array;
 	protocolVersion: NumberString;
 	ownerKeyVersion: null | NumberString;
 	symKeyVersion: null | NumberString;
 	senderKeyVersion: null | NumberString;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerGroup: null | Id;
-	_permissions: Id;
 
 	group: Id;
 }
@@ -333,19 +333,19 @@ export function createPermission(values: StrippedEntity<Permission>): Permission
 export type Permission = {
 	_type: TypeRef<Permission>;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
 	type: NumberString;
 	symEncSessionKey: null | Uint8Array;
 	bucketEncSessionKey: null | Uint8Array;
 	ops: null | string;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
 	listElementTypeId: null | NumberString;
 	listElementApplication: null | string;
-	symKeyVersion: null | NumberString;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
+	symKeyVersion: null | NumberString;
 
 	group: null | Id;
 	bucket: null | Bucket;
@@ -360,6 +360,9 @@ export type AccountingInfo = {
 	_type: TypeRef<AccountingInfo>;
 	_errors: Object;
 
+	_id: Id;
+	_permissions: Id;
+	_format: NumberString;
 	lastInvoiceTimestamp: null | Date;
 	lastInvoiceNbrOfSentSms: NumberString;
 	invoiceName: string;
@@ -371,15 +374,12 @@ export type AccountingInfo = {
 	paymentMethodInfo: null | string;
 	paymentInterval: NumberString;
 	paymentProviderCustomerId: null | string;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
 	paymentAccountIdentifier: null | string;
 	paypalBillingAgreement: null | string;
-	_format: NumberString;
-	_id: Id;
 	_modified: Date;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
 
 	invoiceInfo: null | Id;
 	appStoreSubscription: null | IdTuple;
@@ -393,6 +393,9 @@ export function createCustomerInfo(values: StrippedEntity<CustomerInfo>): Custom
 export type CustomerInfo = {
 	_type: TypeRef<CustomerInfo>;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
 	company: null | string;
 	domain: string;
 	creationTime: Date;
@@ -405,16 +408,13 @@ export type CustomerInfo = {
 	source: string;
 	promotionEmailAliases: NumberString;
 	usedSharedEmailAliases: NumberString;
+	_ownerGroup: null | Id;
 	includedEmailAliases: NumberString;
 	includedStorageCapacity: NumberString;
 	erased: boolean;
 	perUserStorageCapacity: NumberString;
 	perUserAliasCount: NumberString;
 	plan: NumberString;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerGroup: null | Id;
-	_permissions: Id;
 
 	customer: Id;
 	accountingInfo: Id;
@@ -436,12 +436,12 @@ export function createSentGroupInvitation(values: StrippedEntity<SentGroupInvita
 export type SentGroupInvitation = {
 	_type: TypeRef<SentGroupInvitation>;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 	inviteeMailAddress: string;
 	capability: NumberString;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerGroup: null | Id;
-	_permissions: Id;
 
 	sharedGroup: Id;
 	receivedInvitation: null | IdTuple;
@@ -455,10 +455,10 @@ export function createMailAddressToGroup(values: StrippedEntity<MailAddressToGro
 export type MailAddressToGroup = {
 	_type: TypeRef<MailAddressToGroup>;
 
-	_format: NumberString;
 	_id: Id;
-	_ownerGroup: null | Id;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 
 	internalGroup: null | Id;
 }
@@ -471,11 +471,11 @@ export function createGroupMember(values: StrippedEntity<GroupMember>): GroupMem
 export type GroupMember = {
 	_type: TypeRef<GroupMember>;
 
-	capability: null | NumberString;
-	_format: NumberString;
 	_id: IdTuple;
-	_ownerGroup: null | Id;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	capability: null | NumberString;
 
 	userGroupInfo: IdTuple;
 	group: Id;
@@ -490,11 +490,11 @@ export function createRootInstance(values: StrippedEntity<RootInstance>): RootIn
 export type RootInstance = {
 	_type: TypeRef<RootInstance>;
 
-	reference: Id;
-	_format: NumberString;
 	_id: IdTuple;
-	_ownerGroup: null | Id;
 	_permissions: Id;
+	_format: NumberString;
+	reference: Id;
+	_ownerGroup: null | Id;
 }
 export const VersionInfoTypeRef: TypeRef<VersionInfo> = new TypeRef("sys", 237)
 
@@ -505,16 +505,16 @@ export function createVersionInfo(values: StrippedEntity<VersionInfo>): VersionI
 export type VersionInfo = {
 	_type: TypeRef<VersionInfo>;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
 	app: string;
 	type: NumberString;
 	referenceList: null | Id;
 	timestamp: Date;
 	operation: string;
 	versionData: null | Uint8Array;
-	_format: NumberString;
-	_id: IdTuple;
 	_ownerGroup: null | Id;
-	_permissions: Id;
 
 	author: Id;
 	authorGroupInfo: IdTuple;
@@ -528,6 +528,7 @@ export function createSystemKeysReturn(values: StrippedEntity<SystemKeysReturn>)
 export type SystemKeysReturn = {
 	_type: TypeRef<SystemKeysReturn>;
 
+	_format: NumberString;
 	systemAdminPubRsaKey: null | Uint8Array;
 	systemAdminPubKeyVersion: NumberString;
 	freeGroupKey: Uint8Array;
@@ -536,7 +537,6 @@ export type SystemKeysReturn = {
 	systemAdminPubKyberKey: null | Uint8Array;
 	freeGroupKeyVersion: NumberString;
 	premiumGroupKeyVersion: NumberString;
-	_format: NumberString;
 
 	freeGroup: null | Id;
 	premiumGroup: null | Id;
@@ -550,9 +550,9 @@ export function createRegistrationServiceData(values: StrippedEntity<Registratio
 export type RegistrationServiceData = {
 	_type: TypeRef<RegistrationServiceData>;
 
+	_format: NumberString;
 	state: NumberString;
 	source: null | string;
-	_format: NumberString;
 }
 export const RegistrationReturnTypeRef: TypeRef<RegistrationReturn> = new TypeRef("sys", 326)
 
@@ -563,8 +563,8 @@ export function createRegistrationReturn(values: StrippedEntity<RegistrationRetu
 export type RegistrationReturn = {
 	_type: TypeRef<RegistrationReturn>;
 
-	authToken: string;
 	_format: NumberString;
+	authToken: string;
 }
 export const SendRegistrationCodeDataTypeRef: TypeRef<SendRegistrationCodeData> = new TypeRef("sys", 341)
 
@@ -575,11 +575,11 @@ export function createSendRegistrationCodeData(values: StrippedEntity<SendRegist
 export type SendRegistrationCodeData = {
 	_type: TypeRef<SendRegistrationCodeData>;
 
+	_format: NumberString;
 	authToken: string;
 	language: string;
 	accountType: NumberString;
 	mobilePhoneNumber: string;
-	_format: NumberString;
 }
 export const SendRegistrationCodeReturnTypeRef: TypeRef<SendRegistrationCodeReturn> = new TypeRef("sys", 347)
 
@@ -590,8 +590,8 @@ export function createSendRegistrationCodeReturn(values: StrippedEntity<SendRegi
 export type SendRegistrationCodeReturn = {
 	_type: TypeRef<SendRegistrationCodeReturn>;
 
-	authToken: string;
 	_format: NumberString;
+	authToken: string;
 }
 export const VerifyRegistrationCodeDataTypeRef: TypeRef<VerifyRegistrationCodeData> = new TypeRef("sys", 351)
 
@@ -602,9 +602,9 @@ export function createVerifyRegistrationCodeData(values: StrippedEntity<VerifyRe
 export type VerifyRegistrationCodeData = {
 	_type: TypeRef<VerifyRegistrationCodeData>;
 
+	_format: NumberString;
 	authToken: string;
 	code: string;
-	_format: NumberString;
 }
 export const UserDataDeleteTypeRef: TypeRef<UserDataDelete> = new TypeRef("sys", 404)
 
@@ -615,9 +615,9 @@ export function createUserDataDelete(values: StrippedEntity<UserDataDelete>): Us
 export type UserDataDelete = {
 	_type: TypeRef<UserDataDelete>;
 
+	_format: NumberString;
 	restore: boolean;
 	date: null | Date;
-	_format: NumberString;
 
 	user: Id;
 }
@@ -630,10 +630,10 @@ export function createPublicKeyGetIn(values: StrippedEntity<PublicKeyGetIn>): Pu
 export type PublicKeyGetIn = {
 	_type: TypeRef<PublicKeyGetIn>;
 
+	_format: NumberString;
 	identifier: string;
 	version: null | NumberString;
 	identifierType: NumberString;
-	_format: NumberString;
 }
 export const PublicKeyGetOutTypeRef: TypeRef<PublicKeyGetOut> = new TypeRef("sys", 412)
 
@@ -644,11 +644,11 @@ export function createPublicKeyGetOut(values: StrippedEntity<PublicKeyGetOut>): 
 export type PublicKeyGetOut = {
 	_type: TypeRef<PublicKeyGetOut>;
 
+	_format: NumberString;
 	pubRsaKey: null | Uint8Array;
 	pubKeyVersion: NumberString;
 	pubEccKey: null | Uint8Array;
 	pubKyberKey: null | Uint8Array;
-	_format: NumberString;
 }
 export const SaltDataTypeRef: TypeRef<SaltData> = new TypeRef("sys", 417)
 
@@ -659,8 +659,8 @@ export function createSaltData(values: StrippedEntity<SaltData>): SaltData {
 export type SaltData = {
 	_type: TypeRef<SaltData>;
 
-	mailAddress: string;
 	_format: NumberString;
+	mailAddress: string;
 }
 export const SaltReturnTypeRef: TypeRef<SaltReturn> = new TypeRef("sys", 420)
 
@@ -671,9 +671,9 @@ export function createSaltReturn(values: StrippedEntity<SaltReturn>): SaltReturn
 export type SaltReturn = {
 	_type: TypeRef<SaltReturn>;
 
+	_format: NumberString;
 	salt: Uint8Array;
 	kdfVersion: NumberString;
-	_format: NumberString;
 }
 export const AutoLoginDataGetTypeRef: TypeRef<AutoLoginDataGet> = new TypeRef("sys", 431)
 
@@ -684,8 +684,8 @@ export function createAutoLoginDataGet(values: StrippedEntity<AutoLoginDataGet>)
 export type AutoLoginDataGet = {
 	_type: TypeRef<AutoLoginDataGet>;
 
-	deviceToken: string;
 	_format: NumberString;
+	deviceToken: string;
 
 	userId: Id;
 }
@@ -698,8 +698,8 @@ export function createAutoLoginDataDelete(values: StrippedEntity<AutoLoginDataDe
 export type AutoLoginDataDelete = {
 	_type: TypeRef<AutoLoginDataDelete>;
 
-	deviceToken: string;
 	_format: NumberString;
+	deviceToken: string;
 }
 export const AutoLoginDataReturnTypeRef: TypeRef<AutoLoginDataReturn> = new TypeRef("sys", 438)
 
@@ -710,8 +710,8 @@ export function createAutoLoginDataReturn(values: StrippedEntity<AutoLoginDataRe
 export type AutoLoginDataReturn = {
 	_type: TypeRef<AutoLoginDataReturn>;
 
-	deviceKey: Uint8Array;
 	_format: NumberString;
+	deviceKey: Uint8Array;
 }
 export const AutoLoginPostReturnTypeRef: TypeRef<AutoLoginPostReturn> = new TypeRef("sys", 441)
 
@@ -722,8 +722,8 @@ export function createAutoLoginPostReturn(values: StrippedEntity<AutoLoginPostRe
 export type AutoLoginPostReturn = {
 	_type: TypeRef<AutoLoginPostReturn>;
 
-	deviceToken: string;
 	_format: NumberString;
+	deviceToken: string;
 }
 export const UpdatePermissionKeyDataTypeRef: TypeRef<UpdatePermissionKeyData> = new TypeRef("sys", 445)
 
@@ -734,9 +734,9 @@ export function createUpdatePermissionKeyData(values: StrippedEntity<UpdatePermi
 export type UpdatePermissionKeyData = {
 	_type: TypeRef<UpdatePermissionKeyData>;
 
+	_format: NumberString;
 	ownerEncSessionKey: Uint8Array;
 	ownerKeyVersion: NumberString;
-	_format: NumberString;
 
 	permission: IdTuple;
 	bucketPermission: IdTuple;
@@ -750,10 +750,10 @@ export function createAuthentication(values: StrippedEntity<Authentication>): Au
 export type Authentication = {
 	_type: TypeRef<Authentication>;
 
+	_id: Id;
 	authVerifier: null | string;
 	externalAuthToken: null | string;
 	accessToken: null | string;
-	_id: Id;
 
 	userId: Id;
 }
@@ -766,10 +766,10 @@ export function createChat(values: StrippedEntity<Chat>): Chat {
 export type Chat = {
 	_type: TypeRef<Chat>;
 
+	_id: Id;
 	sender: Id;
 	recipient: Id;
 	text: string;
-	_id: Id;
 }
 export const EntityUpdateTypeRef: TypeRef<EntityUpdate> = new TypeRef("sys", 462)
 
@@ -780,13 +780,13 @@ export function createEntityUpdate(values: StrippedEntity<EntityUpdate>): Entity
 export type EntityUpdate = {
 	_type: TypeRef<EntityUpdate>;
 
+	_id: Id;
 	application: string;
 	type: string;
 	instanceListId: string;
 	instanceId: string;
 	operation: NumberString;
 	typeId: NumberString;
-	_id: Id;
 }
 export const ExceptionTypeRef: TypeRef<Exception> = new TypeRef("sys", 468)
 
@@ -797,9 +797,9 @@ export function createException(values: StrippedEntity<Exception>): Exception {
 export type Exception = {
 	_type: TypeRef<Exception>;
 
+	_id: Id;
 	type: string;
 	msg: string;
-	_id: Id;
 }
 export const VersionTypeRef: TypeRef<Version> = new TypeRef("sys", 480)
 
@@ -810,10 +810,10 @@ export function createVersion(values: StrippedEntity<Version>): Version {
 export type Version = {
 	_type: TypeRef<Version>;
 
+	_id: Id;
 	version: Id;
 	timestamp: Date;
 	operation: string;
-	_id: Id;
 
 	author: Id;
 	authorGroupInfo: IdTuple;
@@ -827,11 +827,11 @@ export function createVersionData(values: StrippedEntity<VersionData>): VersionD
 export type VersionData = {
 	_type: TypeRef<VersionData>;
 
+	_format: NumberString;
 	application: string;
 	typeId: NumberString;
 	id: Id;
 	listId: null | Id;
-	_format: NumberString;
 }
 export const VersionReturnTypeRef: TypeRef<VersionReturn> = new TypeRef("sys", 493)
 
@@ -855,10 +855,10 @@ export function createMembershipAddData(values: StrippedEntity<MembershipAddData
 export type MembershipAddData = {
 	_type: TypeRef<MembershipAddData>;
 
+	_format: NumberString;
 	symEncGKey: Uint8Array;
 	symKeyVersion: NumberString;
 	groupKeyVersion: NumberString;
-	_format: NumberString;
 
 	user: Id;
 	group: Id;
@@ -872,6 +872,7 @@ export function createChangePasswordPostIn(values: StrippedEntity<ChangePassword
 export type ChangePasswordPostIn = {
 	_type: TypeRef<ChangePasswordPostIn>;
 
+	_format: NumberString;
 	verifier: Uint8Array;
 	salt: Uint8Array;
 	pwEncUserGroupKey: Uint8Array;
@@ -880,7 +881,6 @@ export type ChangePasswordPostIn = {
 	recoverCodeVerifier: null | Uint8Array;
 	kdfVersion: NumberString;
 	userGroupKeyVersion: NumberString;
-	_format: NumberString;
 }
 export const SecondFactorAuthDataTypeRef: TypeRef<SecondFactorAuthData> = new TypeRef("sys", 541)
 
@@ -891,9 +891,9 @@ export function createSecondFactorAuthData(values: StrippedEntity<SecondFactorAu
 export type SecondFactorAuthData = {
 	_type: TypeRef<SecondFactorAuthData>;
 
+	_format: NumberString;
 	type: null | NumberString;
 	otpCode: null | NumberString;
-	_format: NumberString;
 
 	u2f: null | U2fResponseData;
 	session: null | IdTuple;
@@ -908,8 +908,8 @@ export function createSecondFactorAuthAllowedReturn(values: StrippedEntity<Secon
 export type SecondFactorAuthAllowedReturn = {
 	_type: TypeRef<SecondFactorAuthAllowedReturn>;
 
-	allowed: boolean;
 	_format: NumberString;
+	allowed: boolean;
 }
 export const ResetPasswordPostInTypeRef: TypeRef<ResetPasswordPostIn> = new TypeRef("sys", 584)
 
@@ -920,12 +920,12 @@ export function createResetPasswordPostIn(values: StrippedEntity<ResetPasswordPo
 export type ResetPasswordPostIn = {
 	_type: TypeRef<ResetPasswordPostIn>;
 
+	_format: NumberString;
 	verifier: Uint8Array;
 	salt: Uint8Array;
 	pwEncUserGroupKey: Uint8Array;
 	kdfVersion: NumberString;
 	userGroupKeyVersion: NumberString;
-	_format: NumberString;
 
 	user: Id;
 }
@@ -938,8 +938,8 @@ export function createDomainMailAddressAvailabilityData(values: StrippedEntity<D
 export type DomainMailAddressAvailabilityData = {
 	_type: TypeRef<DomainMailAddressAvailabilityData>;
 
-	mailAddress: string;
 	_format: NumberString;
+	mailAddress: string;
 }
 export const DomainMailAddressAvailabilityReturnTypeRef: TypeRef<DomainMailAddressAvailabilityReturn> = new TypeRef("sys", 602)
 
@@ -950,8 +950,8 @@ export function createDomainMailAddressAvailabilityReturn(values: StrippedEntity
 export type DomainMailAddressAvailabilityReturn = {
 	_type: TypeRef<DomainMailAddressAvailabilityReturn>;
 
-	available: boolean;
 	_format: NumberString;
+	available: boolean;
 }
 export const PushIdentifierTypeRef: TypeRef<PushIdentifier> = new TypeRef("sys", 625)
 
@@ -963,22 +963,22 @@ export type PushIdentifier = {
 	_type: TypeRef<PushIdentifier>;
 	_errors: Object;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_owner: Id;
+	_area: NumberString;
 	pushServiceType: NumberString;
 	identifier: string;
 	language: string;
+	_ownerGroup: null | Id;
 	lastNotificationDate: null | Date;
 	disabled: boolean;
+	_ownerEncSessionKey: null | Uint8Array;
 	displayName: string;
 	lastUsageTime: Date;
-	app: NumberString;
-	_area: NumberString;
-	_format: NumberString;
-	_id: IdTuple;
-	_owner: Id;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
+	app: NumberString;
 }
 export const PushIdentifierListTypeRef: TypeRef<PushIdentifierList> = new TypeRef("sys", 635)
 
@@ -1002,11 +1002,11 @@ export function createDeleteCustomerData(values: StrippedEntity<DeleteCustomerDa
 export type DeleteCustomerData = {
 	_type: TypeRef<DeleteCustomerData>;
 
+	_format: NumberString;
 	undelete: boolean;
 	reason: null | string;
 	takeoverMailAddress: null | string;
 	authVerifier: null | Uint8Array;
-	_format: NumberString;
 
 	customer: Id;
 	surveyData: null | SurveyData;
@@ -1020,13 +1020,13 @@ export function createCustomerProperties(values: StrippedEntity<CustomerProperti
 export type CustomerProperties = {
 	_type: TypeRef<CustomerProperties>;
 
+	_id: Id;
+	_permissions: Id;
+	_format: NumberString;
 	externalUserWelcomeMessage: string;
 	lastUpgradeReminder: null | Date;
-	usageDataOptedOut: boolean;
-	_format: NumberString;
-	_id: Id;
 	_ownerGroup: null | Id;
-	_permissions: Id;
+	usageDataOptedOut: boolean;
 
 	smallLogo: null | File;
 	bigLogo: null | File;
@@ -1041,9 +1041,9 @@ export function createExternalPropertiesReturn(values: StrippedEntity<ExternalPr
 export type ExternalPropertiesReturn = {
 	_type: TypeRef<ExternalPropertiesReturn>;
 
+	_format: NumberString;
 	message: string;
 	accountType: NumberString;
-	_format: NumberString;
 
 	smallLogo: null | File;
 	bigLogo: null | File;
@@ -1057,9 +1057,9 @@ export function createRegistrationCaptchaServiceData(values: StrippedEntity<Regi
 export type RegistrationCaptchaServiceData = {
 	_type: TypeRef<RegistrationCaptchaServiceData>;
 
+	_format: NumberString;
 	token: string;
 	response: string;
-	_format: NumberString;
 }
 export const RegistrationCaptchaServiceReturnTypeRef: TypeRef<RegistrationCaptchaServiceReturn> = new TypeRef("sys", 678)
 
@@ -1070,9 +1070,9 @@ export function createRegistrationCaptchaServiceReturn(values: StrippedEntity<Re
 export type RegistrationCaptchaServiceReturn = {
 	_type: TypeRef<RegistrationCaptchaServiceReturn>;
 
+	_format: NumberString;
 	token: string;
 	challenge: null | Uint8Array;
-	_format: NumberString;
 }
 export const MailAddressAliasTypeRef: TypeRef<MailAddressAlias> = new TypeRef("sys", 684)
 
@@ -1083,9 +1083,9 @@ export function createMailAddressAlias(values: StrippedEntity<MailAddressAlias>)
 export type MailAddressAlias = {
 	_type: TypeRef<MailAddressAlias>;
 
+	_id: Id;
 	mailAddress: string;
 	enabled: boolean;
-	_id: Id;
 }
 export const MailAddressAliasServiceDataTypeRef: TypeRef<MailAddressAliasServiceData> = new TypeRef("sys", 688)
 
@@ -1096,8 +1096,8 @@ export function createMailAddressAliasServiceData(values: StrippedEntity<MailAdd
 export type MailAddressAliasServiceData = {
 	_type: TypeRef<MailAddressAliasServiceData>;
 
-	mailAddress: string;
 	_format: NumberString;
+	mailAddress: string;
 
 	group: Id;
 }
@@ -1110,11 +1110,11 @@ export function createMailAddressAliasServiceReturn(values: StrippedEntity<MailA
 export type MailAddressAliasServiceReturn = {
 	_type: TypeRef<MailAddressAliasServiceReturn>;
 
+	_format: NumberString;
 	nbrOfFreeAliases: NumberString;
 	totalAliases: NumberString;
 	usedAliases: NumberString;
 	enabledAliases: NumberString;
-	_format: NumberString;
 }
 export const DomainInfoTypeRef: TypeRef<DomainInfo> = new TypeRef("sys", 696)
 
@@ -1125,8 +1125,8 @@ export function createDomainInfo(values: StrippedEntity<DomainInfo>): DomainInfo
 export type DomainInfo = {
 	_type: TypeRef<DomainInfo>;
 
-	domain: string;
 	_id: Id;
+	domain: string;
 
 	catchAllMailGroup: null | Id;
 	whitelabelConfig: null | Id;
@@ -1140,6 +1140,7 @@ export function createBookingItem(values: StrippedEntity<BookingItem>): BookingI
 export type BookingItem = {
 	_type: TypeRef<BookingItem>;
 
+	_id: Id;
 	featureType: NumberString;
 	currentCount: NumberString;
 	maxCount: NumberString;
@@ -1147,7 +1148,6 @@ export type BookingItem = {
 	currentInvoicedCount: NumberString;
 	price: NumberString;
 	priceType: NumberString;
-	_id: Id;
 }
 export const BookingTypeRef: TypeRef<Booking> = new TypeRef("sys", 709)
 
@@ -1158,17 +1158,17 @@ export function createBooking(values: StrippedEntity<Booking>): Booking {
 export type Booking = {
 	_type: TypeRef<Booking>;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_owner: Id;
+	_area: NumberString;
 	createDate: Date;
 	paymentMonths: NumberString;
 	endDate: null | Date;
 	paymentInterval: NumberString;
-	bonusMonth: NumberString;
-	_area: NumberString;
-	_format: NumberString;
-	_id: IdTuple;
-	_owner: Id;
 	_ownerGroup: null | Id;
-	_permissions: Id;
+	bonusMonth: NumberString;
 
 	items: BookingItem[];
 }
@@ -1194,8 +1194,8 @@ export function createStringWrapper(values: StrippedEntity<StringWrapper>): Stri
 export type StringWrapper = {
 	_type: TypeRef<StringWrapper>;
 
-	value: string;
 	_id: Id;
+	value: string;
 }
 export const CustomDomainReturnTypeRef: TypeRef<CustomDomainReturn> = new TypeRef("sys", 731)
 
@@ -1206,8 +1206,8 @@ export function createCustomDomainReturn(values: StrippedEntity<CustomDomainRetu
 export type CustomDomainReturn = {
 	_type: TypeRef<CustomDomainReturn>;
 
-	validationResult: NumberString;
 	_format: NumberString;
+	validationResult: NumberString;
 
 	invalidDnsRecords: StringWrapper[];
 }
@@ -1220,8 +1220,8 @@ export function createCustomDomainData(values: StrippedEntity<CustomDomainData>)
 export type CustomDomainData = {
 	_type: TypeRef<CustomDomainData>;
 
-	domain: string;
 	_format: NumberString;
+	domain: string;
 
 	catchAllMailGroup: null | Id;
 }
@@ -1234,9 +1234,13 @@ export function createInvoiceInfo(values: StrippedEntity<InvoiceInfo>): InvoiceI
 export type InvoiceInfo = {
 	_type: TypeRef<InvoiceInfo>;
 
+	_id: Id;
+	_permissions: Id;
+	_format: NumberString;
 	specialPriceUserTotal: null | NumberString;
 	specialPriceUserSingle: null | NumberString;
 	publishInvoices: boolean;
+	_ownerGroup: null | Id;
 	specialPriceBrandingPerUser: null | NumberString;
 	specialPriceSharedGroupSingle: null | NumberString;
 	specialPriceContactFormSingle: null | NumberString;
@@ -1246,10 +1250,6 @@ export type InvoiceInfo = {
 	persistentPaymentPeriodExtension: boolean;
 	specialPriceBusinessPerUser: null | NumberString;
 	discountPercentage: null | NumberString;
-	_format: NumberString;
-	_id: Id;
-	_ownerGroup: null | Id;
-	_permissions: Id;
 
 	paymentErrorInfo: null | PaymentErrorInfo;
 }
@@ -1262,13 +1262,13 @@ export function createSwitchAccountTypePostIn(values: StrippedEntity<SwitchAccou
 export type SwitchAccountTypePostIn = {
 	_type: TypeRef<SwitchAccountTypePostIn>;
 
+	_format: NumberString;
 	accountType: NumberString;
 	date: null | Date;
 	plan: NumberString;
 	customer: null | Id;
 	specialPriceUserSingle: null | NumberString;
 	app: null | NumberString;
-	_format: NumberString;
 
 	referralCode: null | Id;
 	surveyData: null | SurveyData;
@@ -1282,9 +1282,9 @@ export function createMailAddressAliasServiceDataDelete(values: StrippedEntity<M
 export type MailAddressAliasServiceDataDelete = {
 	_type: TypeRef<MailAddressAliasServiceDataDelete>;
 
+	_format: NumberString;
 	mailAddress: string;
 	restore: boolean;
-	_format: NumberString;
 
 	group: Id;
 }
@@ -1297,8 +1297,8 @@ export function createPaymentDataServiceGetReturn(values: StrippedEntity<Payment
 export type PaymentDataServiceGetReturn = {
 	_type: TypeRef<PaymentDataServiceGetReturn>;
 
-	loginUrl: string;
 	_format: NumberString;
+	loginUrl: string;
 }
 export const PaymentDataServicePutDataTypeRef: TypeRef<PaymentDataServicePutData> = new TypeRef("sys", 793)
 
@@ -1310,6 +1310,7 @@ export type PaymentDataServicePutData = {
 	_type: TypeRef<PaymentDataServicePutData>;
 	_errors: Object;
 
+	_format: NumberString;
 	invoiceName: string;
 	invoiceAddress: string;
 	invoiceCountry: string;
@@ -1319,7 +1320,6 @@ export type PaymentDataServicePutData = {
 	paymentInterval: NumberString;
 	paymentToken: null | string;
 	confirmedCountry: null | string;
-	_format: NumberString;
 
 	creditCard: null | CreditCard;
 }
@@ -1332,8 +1332,8 @@ export function createPaymentDataServicePutReturn(values: StrippedEntity<Payment
 export type PaymentDataServicePutReturn = {
 	_type: TypeRef<PaymentDataServicePutReturn>;
 
-	result: NumberString;
 	_format: NumberString;
+	result: NumberString;
 
 	braintree3dsRequest: null | Braintree3ds2Request;
 }
@@ -1346,13 +1346,13 @@ export function createPriceRequestData(values: StrippedEntity<PriceRequestData>)
 export type PriceRequestData = {
 	_type: TypeRef<PriceRequestData>;
 
+	_id: Id;
 	featureType: NumberString;
 	count: NumberString;
 	business: null | boolean;
 	paymentInterval: null | NumberString;
 	accountType: null | NumberString;
 	reactivate: boolean;
-	_id: Id;
 }
 export const PriceServiceDataTypeRef: TypeRef<PriceServiceData> = new TypeRef("sys", 843)
 
@@ -1363,8 +1363,8 @@ export function createPriceServiceData(values: StrippedEntity<PriceServiceData>)
 export type PriceServiceData = {
 	_type: TypeRef<PriceServiceData>;
 
-	date: null | Date;
 	_format: NumberString;
+	date: null | Date;
 
 	priceRequest: null | PriceRequestData;
 }
@@ -1377,11 +1377,11 @@ export function createPriceItemData(values: StrippedEntity<PriceItemData>): Pric
 export type PriceItemData = {
 	_type: TypeRef<PriceItemData>;
 
+	_id: Id;
 	featureType: NumberString;
 	count: NumberString;
 	price: NumberString;
 	singleType: boolean;
-	_id: Id;
 }
 export const PriceDataTypeRef: TypeRef<PriceData> = new TypeRef("sys", 853)
 
@@ -1392,10 +1392,10 @@ export function createPriceData(values: StrippedEntity<PriceData>): PriceData {
 export type PriceData = {
 	_type: TypeRef<PriceData>;
 
+	_id: Id;
 	price: NumberString;
 	taxIncluded: boolean;
 	paymentInterval: NumberString;
-	_id: Id;
 
 	items: PriceItemData[];
 }
@@ -1408,9 +1408,9 @@ export function createPriceServiceReturn(values: StrippedEntity<PriceServiceRetu
 export type PriceServiceReturn = {
 	_type: TypeRef<PriceServiceReturn>;
 
+	_format: NumberString;
 	periodEndDate: Date;
 	currentPeriodAddedPrice: null | NumberString;
-	_format: NumberString;
 
 	currentPriceThisPeriod: null | PriceData;
 	currentPriceNextPeriod: null | PriceData;
@@ -1439,10 +1439,10 @@ export function createFile(values: StrippedEntity<File>): File {
 export type File = {
 	_type: TypeRef<File>;
 
+	_id: Id;
 	name: string;
 	mimeType: string;
 	data: Uint8Array;
-	_id: Id;
 }
 export const EmailSenderListElementTypeRef: TypeRef<EmailSenderListElement> = new TypeRef("sys", 949)
 
@@ -1453,11 +1453,11 @@ export function createEmailSenderListElement(values: StrippedEntity<EmailSenderL
 export type EmailSenderListElement = {
 	_type: TypeRef<EmailSenderListElement>;
 
+	_id: Id;
 	hashedValue: string;
 	value: string;
 	type: NumberString;
 	field: NumberString;
-	_id: Id;
 }
 export const CustomerServerPropertiesTypeRef: TypeRef<CustomerServerProperties> = new TypeRef("sys", 954)
 
@@ -1469,14 +1469,14 @@ export type CustomerServerProperties = {
 	_type: TypeRef<CustomerServerProperties>;
 	_errors: Object;
 
+	_id: Id;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
 	requirePasswordUpdateAfterReset: boolean;
 	saveEncryptedIpAddressInSession: boolean;
-	_format: NumberString;
-	_id: Id;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
 
 	emailSenderList: EmailSenderListElement[];
 }
@@ -1489,9 +1489,9 @@ export function createCreateCustomerServerPropertiesData(values: StrippedEntity<
 export type CreateCustomerServerPropertiesData = {
 	_type: TypeRef<CreateCustomerServerPropertiesData>;
 
+	_format: NumberString;
 	adminGroupEncSessionKey: Uint8Array;
 	adminGroupKeyVersion: NumberString;
-	_format: NumberString;
 }
 export const CreateCustomerServerPropertiesReturnTypeRef: TypeRef<CreateCustomerServerPropertiesReturn> = new TypeRef("sys", 964)
 
@@ -1539,10 +1539,10 @@ export function createEntityEventBatch(values: StrippedEntity<EntityEventBatch>)
 export type EntityEventBatch = {
 	_type: TypeRef<EntityEventBatch>;
 
-	_format: NumberString;
 	_id: IdTuple;
-	_ownerGroup: null | Id;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 
 	events: EntityUpdate[];
 }
@@ -1556,17 +1556,17 @@ export type AuditLogEntry = {
 	_type: TypeRef<AuditLogEntry>;
 	_errors: Object;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
 	actorMailAddress: string;
 	actorIpAddress: null | string;
 	action: string;
 	modifiedEntity: string;
 	date: Date;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
 
 	groupInfo: null | IdTuple;
 	modifiedGroupInfo: null | IdTuple;
@@ -1593,16 +1593,16 @@ export function createWhitelabelConfig(values: StrippedEntity<WhitelabelConfig>)
 export type WhitelabelConfig = {
 	_type: TypeRef<WhitelabelConfig>;
 
+	_id: Id;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 	jsonTheme: string;
 	metaTags: string;
 	germanLanguageCode: null | string;
 	imprintUrl: null | string;
 	privacyStatementUrl: null | string;
 	whitelabelCode: string;
-	_format: NumberString;
-	_id: Id;
-	_ownerGroup: null | Id;
-	_permissions: Id;
 
 	bootstrapCustomizations: BootstrapFeature[];
 	whitelabelRegistrationDomains: StringWrapper[];
@@ -1616,13 +1616,13 @@ export function createBrandingDomainData(values: StrippedEntity<BrandingDomainDa
 export type BrandingDomainData = {
 	_type: TypeRef<BrandingDomainData>;
 
+	_format: NumberString;
 	domain: string;
 	sessionEncPemCertificateChain: null | Uint8Array;
 	sessionEncPemPrivateKey: null | Uint8Array;
 	systemAdminPubEncSessionKey: Uint8Array;
 	systemAdminPublicProtocolVersion: NumberString;
 	systemAdminPubKeyVersion: NumberString;
-	_format: NumberString;
 }
 export const BrandingDomainDeleteDataTypeRef: TypeRef<BrandingDomainDeleteData> = new TypeRef("sys", 1155)
 
@@ -1633,8 +1633,8 @@ export function createBrandingDomainDeleteData(values: StrippedEntity<BrandingDo
 export type BrandingDomainDeleteData = {
 	_type: TypeRef<BrandingDomainDeleteData>;
 
-	domain: string;
 	_format: NumberString;
+	domain: string;
 }
 export const U2fRegisteredDeviceTypeRef: TypeRef<U2fRegisteredDevice> = new TypeRef("sys", 1162)
 
@@ -1645,12 +1645,12 @@ export function createU2fRegisteredDevice(values: StrippedEntity<U2fRegisteredDe
 export type U2fRegisteredDevice = {
 	_type: TypeRef<U2fRegisteredDevice>;
 
+	_id: Id;
 	keyHandle: Uint8Array;
 	appId: string;
 	publicKey: Uint8Array;
 	counter: NumberString;
 	compromised: boolean;
-	_id: Id;
 }
 export const SecondFactorTypeRef: TypeRef<SecondFactor> = new TypeRef("sys", 1169)
 
@@ -1661,13 +1661,13 @@ export function createSecondFactor(values: StrippedEntity<SecondFactor>): Second
 export type SecondFactor = {
 	_type: TypeRef<SecondFactor>;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 	type: NumberString;
 	name: string;
 	otpSecret: null | Uint8Array;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerGroup: null | Id;
-	_permissions: Id;
 
 	u2f: null | U2fRegisteredDevice;
 }
@@ -1680,9 +1680,9 @@ export function createU2fKey(values: StrippedEntity<U2fKey>): U2fKey {
 export type U2fKey = {
 	_type: TypeRef<U2fKey>;
 
+	_id: Id;
 	keyHandle: Uint8Array;
 	appId: string;
-	_id: Id;
 
 	secondFactor: IdTuple;
 }
@@ -1695,8 +1695,8 @@ export function createU2fChallenge(values: StrippedEntity<U2fChallenge>): U2fCha
 export type U2fChallenge = {
 	_type: TypeRef<U2fChallenge>;
 
-	challenge: Uint8Array;
 	_id: Id;
+	challenge: Uint8Array;
 
 	keys: U2fKey[];
 }
@@ -1709,8 +1709,8 @@ export function createChallenge(values: StrippedEntity<Challenge>): Challenge {
 export type Challenge = {
 	_type: TypeRef<Challenge>;
 
-	type: NumberString;
 	_id: Id;
+	type: NumberString;
 
 	u2f: null | U2fChallenge;
 	otp: null | OtpChallenge;
@@ -1725,18 +1725,18 @@ export type Session = {
 	_type: TypeRef<Session>;
 	_errors: Object;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
 	clientIdentifier: string;
 	loginTime: Date;
 	loginIpAddress: null | string;
 	lastAccessTime: Date;
 	accessKey: null | Uint8Array;
 	state: NumberString;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
 
 	challenges: Challenge[];
 	user: Id;
@@ -1765,13 +1765,13 @@ export function createCreateSessionData(values: StrippedEntity<CreateSessionData
 export type CreateSessionData = {
 	_type: TypeRef<CreateSessionData>;
 
+	_format: NumberString;
 	mailAddress: null | string;
 	authVerifier: null | string;
 	clientIdentifier: string;
 	accessKey: null | Uint8Array;
 	authToken: null | string;
 	recoverCodeVerifier: null | string;
-	_format: NumberString;
 
 	user: null | Id;
 }
@@ -1784,8 +1784,8 @@ export function createCreateSessionReturn(values: StrippedEntity<CreateSessionRe
 export type CreateSessionReturn = {
 	_type: TypeRef<CreateSessionReturn>;
 
-	accessToken: string;
 	_format: NumberString;
+	accessToken: string;
 
 	challenges: Challenge[];
 	user: Id;
@@ -1799,10 +1799,10 @@ export function createU2fResponseData(values: StrippedEntity<U2fResponseData>): 
 export type U2fResponseData = {
 	_type: TypeRef<U2fResponseData>;
 
+	_id: Id;
 	keyHandle: string;
 	clientData: string;
 	signatureData: string;
-	_id: Id;
 }
 export const SecondFactorAuthGetDataTypeRef: TypeRef<SecondFactorAuthGetData> = new TypeRef("sys", 1233)
 
@@ -1813,8 +1813,8 @@ export function createSecondFactorAuthGetData(values: StrippedEntity<SecondFacto
 export type SecondFactorAuthGetData = {
 	_type: TypeRef<SecondFactorAuthGetData>;
 
-	accessToken: string;
 	_format: NumberString;
+	accessToken: string;
 }
 export const SecondFactorAuthGetReturnTypeRef: TypeRef<SecondFactorAuthGetReturn> = new TypeRef("sys", 1236)
 
@@ -1825,8 +1825,8 @@ export function createSecondFactorAuthGetReturn(values: StrippedEntity<SecondFac
 export type SecondFactorAuthGetReturn = {
 	_type: TypeRef<SecondFactorAuthGetReturn>;
 
-	secondFactorPending: boolean;
 	_format: NumberString;
+	secondFactorPending: boolean;
 }
 export const OtpChallengeTypeRef: TypeRef<OtpChallenge> = new TypeRef("sys", 1244)
 
@@ -1850,8 +1850,8 @@ export function createBootstrapFeature(values: StrippedEntity<BootstrapFeature>)
 export type BootstrapFeature = {
 	_type: TypeRef<BootstrapFeature>;
 
-	feature: NumberString;
 	_id: Id;
+	feature: NumberString;
 }
 export const FeatureTypeRef: TypeRef<Feature> = new TypeRef("sys", 1253)
 
@@ -1862,8 +1862,8 @@ export function createFeature(values: StrippedEntity<Feature>): Feature {
 export type Feature = {
 	_type: TypeRef<Feature>;
 
-	feature: NumberString;
 	_id: Id;
+	feature: NumberString;
 }
 export const WhitelabelChildTypeRef: TypeRef<WhitelabelChild> = new TypeRef("sys", 1257)
 
@@ -1875,16 +1875,16 @@ export type WhitelabelChild = {
 	_type: TypeRef<WhitelabelChild>;
 	_errors: Object;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
 	mailAddress: string;
 	createdDate: Date;
 	deletedDate: null | Date;
 	comment: string;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
 
 	customer: Id;
 }
@@ -1924,12 +1924,12 @@ export function createCreditCard(values: StrippedEntity<CreditCard>): CreditCard
 export type CreditCard = {
 	_type: TypeRef<CreditCard>;
 
+	_id: Id;
 	cardHolderName: string;
 	number: string;
 	cvv: string;
 	expirationMonth: string;
 	expirationYear: string;
-	_id: Id;
 }
 export const LocationServiceGetReturnTypeRef: TypeRef<LocationServiceGetReturn> = new TypeRef("sys", 1321)
 
@@ -1940,8 +1940,8 @@ export function createLocationServiceGetReturn(values: StrippedEntity<LocationSe
 export type LocationServiceGetReturn = {
 	_type: TypeRef<LocationServiceGetReturn>;
 
-	country: string;
 	_format: NumberString;
+	country: string;
 }
 export const OrderProcessingAgreementTypeRef: TypeRef<OrderProcessingAgreement> = new TypeRef("sys", 1326)
 
@@ -1953,15 +1953,15 @@ export type OrderProcessingAgreement = {
 	_type: TypeRef<OrderProcessingAgreement>;
 	_errors: Object;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
 	version: string;
 	customerAddress: string;
 	signatureDate: Date;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
 
 	signerUserGroupInfo: IdTuple;
 	customer: Id;
@@ -1975,9 +1975,9 @@ export function createSignOrderProcessingAgreementData(values: StrippedEntity<Si
 export type SignOrderProcessingAgreementData = {
 	_type: TypeRef<SignOrderProcessingAgreementData>;
 
+	_format: NumberString;
 	version: string;
 	customerAddress: string;
-	_format: NumberString;
 }
 export const GeneratedIdWrapperTypeRef: TypeRef<GeneratedIdWrapper> = new TypeRef("sys", 1349)
 
@@ -1988,8 +1988,8 @@ export function createGeneratedIdWrapper(values: StrippedEntity<GeneratedIdWrapp
 export type GeneratedIdWrapper = {
 	_type: TypeRef<GeneratedIdWrapper>;
 
-	value: Id;
 	_id: Id;
+	value: Id;
 }
 export const SseConnectDataTypeRef: TypeRef<SseConnectData> = new TypeRef("sys", 1352)
 
@@ -2000,8 +2000,8 @@ export function createSseConnectData(values: StrippedEntity<SseConnectData>): Ss
 export type SseConnectData = {
 	_type: TypeRef<SseConnectData>;
 
-	identifier: string;
 	_format: NumberString;
+	identifier: string;
 
 	userIds: GeneratedIdWrapper[];
 }
@@ -2014,9 +2014,9 @@ export function createNotificationInfo(values: StrippedEntity<NotificationInfo>)
 export type NotificationInfo = {
 	_type: TypeRef<NotificationInfo>;
 
+	_id: Id;
 	mailAddress: string;
 	userId: Id;
-	_id: Id;
 
 	mailId: null | IdTupleWrapper;
 }
@@ -2029,14 +2029,14 @@ export function createRecoverCode(values: StrippedEntity<RecoverCode>): RecoverC
 export type RecoverCode = {
 	_type: TypeRef<RecoverCode>;
 
+	_id: Id;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 	userEncRecoverCode: Uint8Array;
 	recoverCodeEncUserGroupKey: Uint8Array;
 	verifier: Uint8Array;
 	userKeyVersion: NumberString;
-	_format: NumberString;
-	_id: Id;
-	_ownerGroup: null | Id;
-	_permissions: Id;
 }
 export const ResetFactorsDeleteDataTypeRef: TypeRef<ResetFactorsDeleteData> = new TypeRef("sys", 1419)
 
@@ -2047,10 +2047,10 @@ export function createResetFactorsDeleteData(values: StrippedEntity<ResetFactors
 export type ResetFactorsDeleteData = {
 	_type: TypeRef<ResetFactorsDeleteData>;
 
+	_format: NumberString;
 	mailAddress: string;
 	authVerifier: string;
 	recoverCodeVerifier: string;
-	_format: NumberString;
 }
 export const UpgradePriceServiceDataTypeRef: TypeRef<UpgradePriceServiceData> = new TypeRef("sys", 1456)
 
@@ -2061,9 +2061,9 @@ export function createUpgradePriceServiceData(values: StrippedEntity<UpgradePric
 export type UpgradePriceServiceData = {
 	_type: TypeRef<UpgradePriceServiceData>;
 
+	_format: NumberString;
 	date: null | Date;
 	campaign: null | string;
-	_format: NumberString;
 
 	referralCode: null | Id;
 }
@@ -2076,6 +2076,7 @@ export function createPlanPrices(values: StrippedEntity<PlanPrices>): PlanPrices
 export type PlanPrices = {
 	_type: TypeRef<PlanPrices>;
 
+	_id: Id;
 	monthlyReferencePrice: NumberString;
 	monthlyPrice: NumberString;
 	firstYearDiscount: NumberString;
@@ -2088,7 +2089,6 @@ export type PlanPrices = {
 	customDomains: NumberString;
 	planName: string;
 	businessPlan: boolean;
-	_id: Id;
 
 	planConfiguration: PlanConfiguration;
 }
@@ -2101,10 +2101,10 @@ export function createUpgradePriceServiceReturn(values: StrippedEntity<UpgradePr
 export type UpgradePriceServiceReturn = {
 	_type: TypeRef<UpgradePriceServiceReturn>;
 
+	_format: NumberString;
 	messageTextId: null | string;
 	business: boolean;
 	bonusMonthsForYearlyPlan: NumberString;
-	_format: NumberString;
 
 	premiumPrices: PlanPrices;
 	proPrices: PlanPrices;
@@ -2128,12 +2128,12 @@ export function createRegistrationCaptchaServiceGetData(values: StrippedEntity<R
 export type RegistrationCaptchaServiceGetData = {
 	_type: TypeRef<RegistrationCaptchaServiceGetData>;
 
+	_format: NumberString;
 	token: null | string;
 	mailAddress: string;
 	signupToken: null | string;
 	paidSubscriptionSelected: boolean;
 	businessUseSelected: boolean;
-	_format: NumberString;
 }
 export const WebsocketEntityDataTypeRef: TypeRef<WebsocketEntityData> = new TypeRef("sys", 1483)
 
@@ -2144,9 +2144,9 @@ export function createWebsocketEntityData(values: StrippedEntity<WebsocketEntity
 export type WebsocketEntityData = {
 	_type: TypeRef<WebsocketEntityData>;
 
+	_format: NumberString;
 	eventBatchId: Id;
 	eventBatchOwner: Id;
-	_format: NumberString;
 
 	eventBatch: EntityUpdate[];
 }
@@ -2159,9 +2159,9 @@ export function createWebsocketCounterValue(values: StrippedEntity<WebsocketCoun
 export type WebsocketCounterValue = {
 	_type: TypeRef<WebsocketCounterValue>;
 
+	_id: Id;
 	counterId: Id;
 	count: NumberString;
-	_id: Id;
 }
 export const WebsocketCounterDataTypeRef: TypeRef<WebsocketCounterData> = new TypeRef("sys", 1492)
 
@@ -2172,8 +2172,8 @@ export function createWebsocketCounterData(values: StrippedEntity<WebsocketCount
 export type WebsocketCounterData = {
 	_type: TypeRef<WebsocketCounterData>;
 
-	mailGroup: Id;
 	_format: NumberString;
+	mailGroup: Id;
 
 	counterValues: WebsocketCounterValue[];
 }
@@ -2186,10 +2186,10 @@ export function createCertificateInfo(values: StrippedEntity<CertificateInfo>): 
 export type CertificateInfo = {
 	_type: TypeRef<CertificateInfo>;
 
+	_id: Id;
 	expiryDate: null | Date;
 	state: NumberString;
 	type: NumberString;
-	_id: Id;
 
 	certificate: null | Id;
 }
@@ -2202,10 +2202,10 @@ export function createNotificationMailTemplate(values: StrippedEntity<Notificati
 export type NotificationMailTemplate = {
 	_type: TypeRef<NotificationMailTemplate>;
 
+	_id: Id;
 	language: string;
 	body: string;
 	subject: string;
-	_id: Id;
 }
 export const CalendarEventRefTypeRef: TypeRef<CalendarEventRef> = new TypeRef("sys", 1532)
 
@@ -2216,9 +2216,9 @@ export function createCalendarEventRef(values: StrippedEntity<CalendarEventRef>)
 export type CalendarEventRef = {
 	_type: TypeRef<CalendarEventRef>;
 
+	_id: Id;
 	elementId: Id;
 	listId: Id;
-	_id: Id;
 }
 export const AlarmInfoTypeRef: TypeRef<AlarmInfo> = new TypeRef("sys", 1536)
 
@@ -2229,9 +2229,9 @@ export function createAlarmInfo(values: StrippedEntity<AlarmInfo>): AlarmInfo {
 export type AlarmInfo = {
 	_type: TypeRef<AlarmInfo>;
 
+	_id: Id;
 	trigger: string;
 	alarmIdentifier: string;
-	_id: Id;
 
 	calendarRef: CalendarEventRef;
 }
@@ -2245,12 +2245,12 @@ export type UserAlarmInfo = {
 	_type: TypeRef<UserAlarmInfo>;
 	_errors: Object;
 
-	_format: NumberString;
 	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
-	_ownerKeyVersion: null | NumberString;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
+	_ownerKeyVersion: null | NumberString;
 
 	alarmInfo: AlarmInfo;
 }
@@ -2276,8 +2276,8 @@ export function createNotificationSessionKey(values: StrippedEntity<Notification
 export type NotificationSessionKey = {
 	_type: TypeRef<NotificationSessionKey>;
 
-	pushIdentifierSessionEncSessionKey: Uint8Array;
 	_id: Id;
+	pushIdentifierSessionEncSessionKey: Uint8Array;
 
 	pushIdentifier: IdTuple;
 }
@@ -2290,12 +2290,12 @@ export function createRepeatRule(values: StrippedEntity<RepeatRule>): RepeatRule
 export type RepeatRule = {
 	_type: TypeRef<RepeatRule>;
 
+	_id: Id;
 	frequency: NumberString;
 	endType: NumberString;
 	endValue: null | NumberString;
 	interval: NumberString;
 	timeZone: string;
-	_id: Id;
 
 	excludedDates: DateWrapper[];
 	advancedRules: CalendarAdvancedRepeatRule[];
@@ -2309,11 +2309,11 @@ export function createAlarmNotification(values: StrippedEntity<AlarmNotification
 export type AlarmNotification = {
 	_type: TypeRef<AlarmNotification>;
 
+	_id: Id;
 	operation: NumberString;
 	summary: string;
 	eventStart: Date;
 	eventEnd: Date;
-	_id: Id;
 
 	alarmInfo: AlarmInfo;
 	repeatRule: null | RepeatRule;
@@ -2343,10 +2343,10 @@ export function createDnsRecord(values: StrippedEntity<DnsRecord>): DnsRecord {
 export type DnsRecord = {
 	_type: TypeRef<DnsRecord>;
 
+	_id: Id;
 	subdomain: null | string;
 	type: NumberString;
 	value: string;
-	_id: Id;
 }
 export const CustomDomainCheckGetInTypeRef: TypeRef<CustomDomainCheckGetIn> = new TypeRef("sys", 1586)
 
@@ -2357,8 +2357,8 @@ export function createCustomDomainCheckGetIn(values: StrippedEntity<CustomDomain
 export type CustomDomainCheckGetIn = {
 	_type: TypeRef<CustomDomainCheckGetIn>;
 
-	domain: string;
 	_format: NumberString;
+	domain: string;
 
 	customer: null | Id;
 }
@@ -2371,8 +2371,8 @@ export function createCustomDomainCheckGetOut(values: StrippedEntity<CustomDomai
 export type CustomDomainCheckGetOut = {
 	_type: TypeRef<CustomDomainCheckGetOut>;
 
-	checkResult: NumberString;
 	_format: NumberString;
+	checkResult: NumberString;
 
 	missingRecords: DnsRecord[];
 	invalidRecords: DnsRecord[];
@@ -2387,8 +2387,8 @@ export function createCloseSessionServicePost(values: StrippedEntity<CloseSessio
 export type CloseSessionServicePost = {
 	_type: TypeRef<CloseSessionServicePost>;
 
-	accessToken: string;
 	_format: NumberString;
+	accessToken: string;
 
 	sessionId: IdTuple;
 }
@@ -2402,6 +2402,11 @@ export type ReceivedGroupInvitation = {
 	_type: TypeRef<ReceivedGroupInvitation>;
 	_errors: Object;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
 	sharedGroupKey: Uint8Array;
 	sharedGroupName: string;
 	inviterMailAddress: string;
@@ -2409,13 +2414,8 @@ export type ReceivedGroupInvitation = {
 	inviteeMailAddress: string;
 	capability: NumberString;
 	groupType: null | NumberString;
-	sharedGroupKeyVersion: NumberString;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
+	sharedGroupKeyVersion: NumberString;
 
 	sharedGroup: Id;
 	sentInvitation: IdTuple;
@@ -2429,10 +2429,10 @@ export function createUserGroupRoot(values: StrippedEntity<UserGroupRoot>): User
 export type UserGroupRoot = {
 	_type: TypeRef<UserGroupRoot>;
 
-	_format: NumberString;
 	_id: Id;
-	_ownerGroup: null | Id;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 
 	invitations: Id;
 	keyRotations: null | KeyRotationsRef;
@@ -2447,10 +2447,10 @@ export function createPaymentErrorInfo(values: StrippedEntity<PaymentErrorInfo>)
 export type PaymentErrorInfo = {
 	_type: TypeRef<PaymentErrorInfo>;
 
+	_id: Id;
 	errorTime: Date;
 	errorCode: string;
 	thirdPartyErrorId: string;
-	_id: Id;
 }
 export const InvoiceItemTypeRef: TypeRef<InvoiceItem> = new TypeRef("sys", 1641)
 
@@ -2461,6 +2461,7 @@ export function createInvoiceItem(values: StrippedEntity<InvoiceItem>): InvoiceI
 export type InvoiceItem = {
 	_type: TypeRef<InvoiceItem>;
 
+	_id: Id;
 	amount: NumberString;
 	type: NumberString;
 	singlePrice: null | NumberString;
@@ -2468,7 +2469,6 @@ export type InvoiceItem = {
 	startDate: null | Date;
 	endDate: null | Date;
 	singleType: boolean;
-	_id: Id;
 }
 export const InvoiceTypeRef: TypeRef<Invoice> = new TypeRef("sys", 1650)
 
@@ -2480,6 +2480,11 @@ export type Invoice = {
 	_type: TypeRef<Invoice>;
 	_errors: Object;
 
+	_id: Id;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
 	type: NumberString;
 	date: Date;
 	paymentMethod: NumberString;
@@ -2493,12 +2498,7 @@ export type Invoice = {
 	grandTotal: NumberString;
 	adminUser: null | string;
 	reason: null | string;
-	_format: NumberString;
-	_id: Id;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
 
 	items: InvoiceItem[];
 	customer: Id;
@@ -2514,13 +2514,13 @@ export type MissedNotification = {
 	_type: TypeRef<MissedNotification>;
 	_errors: Object;
 
-	lastProcessedNotificationId: null | Id;
-	_format: NumberString;
 	_id: Id;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
-	_ownerKeyVersion: null | NumberString;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
+	lastProcessedNotificationId: null | Id;
+	_ownerKeyVersion: null | NumberString;
 
 	notificationInfos: NotificationInfo[];
 	alarmNotifications: AlarmNotification[];
@@ -2547,15 +2547,15 @@ export function createRejectedSender(values: StrippedEntity<RejectedSender>): Re
 export type RejectedSender = {
 	_type: TypeRef<RejectedSender>;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 	senderMailAddress: string;
 	senderIp: string;
 	senderHostname: string;
 	recipientMailAddress: string;
 	reason: string;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerGroup: null | Id;
-	_permissions: Id;
 }
 export const RejectedSendersRefTypeRef: TypeRef<RejectedSendersRef> = new TypeRef("sys", 1747)
 
@@ -2592,11 +2592,11 @@ export function createTakeOverDeletedAddressData(values: StrippedEntity<TakeOver
 export type TakeOverDeletedAddressData = {
 	_type: TypeRef<TakeOverDeletedAddressData>;
 
+	_format: NumberString;
 	mailAddress: string;
 	authVerifier: string;
 	recoverCodeVerifier: null | string;
 	targetAccountMailAddress: string;
-	_format: NumberString;
 }
 export const WebsocketLeaderStatusTypeRef: TypeRef<WebsocketLeaderStatus> = new TypeRef("sys", 1766)
 
@@ -2607,8 +2607,8 @@ export function createWebsocketLeaderStatus(values: StrippedEntity<WebsocketLead
 export type WebsocketLeaderStatus = {
 	_type: TypeRef<WebsocketLeaderStatus>;
 
-	leaderStatus: boolean;
 	_format: NumberString;
+	leaderStatus: boolean;
 }
 export const GiftCardTypeRef: TypeRef<GiftCard> = new TypeRef("sys", 1769)
 
@@ -2620,17 +2620,17 @@ export type GiftCard = {
 	_type: TypeRef<GiftCard>;
 	_errors: Object;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
 	status: NumberString;
 	value: NumberString;
 	message: string;
 	orderDate: Date;
 	migrated: boolean;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
 	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
 }
 export const GiftCardsRefTypeRef: TypeRef<GiftCardsRef> = new TypeRef("sys", 1791)
 
@@ -2654,8 +2654,8 @@ export function createGiftCardOption(values: StrippedEntity<GiftCardOption>): Gi
 export type GiftCardOption = {
 	_type: TypeRef<GiftCardOption>;
 
-	value: NumberString;
 	_id: Id;
+	value: NumberString;
 }
 export const GiftCardGetReturnTypeRef: TypeRef<GiftCardGetReturn> = new TypeRef("sys", 1798)
 
@@ -2666,9 +2666,9 @@ export function createGiftCardGetReturn(values: StrippedEntity<GiftCardGetReturn
 export type GiftCardGetReturn = {
 	_type: TypeRef<GiftCardGetReturn>;
 
+	_format: NumberString;
 	maxPerPeriod: NumberString;
 	period: NumberString;
-	_format: NumberString;
 
 	options: GiftCardOption[];
 }
@@ -2682,12 +2682,12 @@ export type GiftCardCreateData = {
 	_type: TypeRef<GiftCardCreateData>;
 	_errors: Object;
 
+	_format: NumberString;
 	message: string;
 	ownerEncSessionKey: Uint8Array;
 	value: NumberString;
 	keyHash: Uint8Array;
 	ownerKeyVersion: NumberString;
-	_format: NumberString;
 }
 export const GiftCardDeleteDataTypeRef: TypeRef<GiftCardDeleteData> = new TypeRef("sys", 1810)
 
@@ -2724,9 +2724,9 @@ export function createGiftCardRedeemData(values: StrippedEntity<GiftCardRedeemDa
 export type GiftCardRedeemData = {
 	_type: TypeRef<GiftCardRedeemData>;
 
+	_format: NumberString;
 	keyHash: Uint8Array;
 	countryCode: string;
-	_format: NumberString;
 
 	giftCardInfo: Id;
 }
@@ -2740,9 +2740,9 @@ export type GiftCardRedeemGetReturn = {
 	_type: TypeRef<GiftCardRedeemGetReturn>;
 	_errors: Object;
 
+	_format: NumberString;
 	message: string;
 	value: NumberString;
-	_format: NumberString;
 
 	giftCard: IdTuple;
 }
@@ -2755,10 +2755,10 @@ export function createBraintree3ds2Request(values: StrippedEntity<Braintree3ds2R
 export type Braintree3ds2Request = {
 	_type: TypeRef<Braintree3ds2Request>;
 
+	_id: Id;
 	clientToken: string;
 	nonce: string;
 	bin: string;
-	_id: Id;
 }
 export const Braintree3ds2ResponseTypeRef: TypeRef<Braintree3ds2Response> = new TypeRef("sys", 1833)
 
@@ -2769,9 +2769,9 @@ export function createBraintree3ds2Response(values: StrippedEntity<Braintree3ds2
 export type Braintree3ds2Response = {
 	_type: TypeRef<Braintree3ds2Response>;
 
+	_id: Id;
 	clientToken: string;
 	nonce: string;
-	_id: Id;
 }
 export const PaymentDataServicePostDataTypeRef: TypeRef<PaymentDataServicePostData> = new TypeRef("sys", 1837)
 
@@ -2795,8 +2795,8 @@ export function createPaymentDataServiceGetData(values: StrippedEntity<PaymentDa
 export type PaymentDataServiceGetData = {
 	_type: TypeRef<PaymentDataServiceGetData>;
 
-	clientType: null | NumberString;
 	_format: NumberString;
+	clientType: null | NumberString;
 }
 export const TypeInfoTypeRef: TypeRef<TypeInfo> = new TypeRef("sys", 1869)
 
@@ -2807,9 +2807,9 @@ export function createTypeInfo(values: StrippedEntity<TypeInfo>): TypeInfo {
 export type TypeInfo = {
 	_type: TypeRef<TypeInfo>;
 
+	_id: Id;
 	application: string;
 	typeId: NumberString;
-	_id: Id;
 }
 export const ArchiveRefTypeRef: TypeRef<ArchiveRef> = new TypeRef("sys", 1873)
 
@@ -2820,8 +2820,8 @@ export function createArchiveRef(values: StrippedEntity<ArchiveRef>): ArchiveRef
 export type ArchiveRef = {
 	_type: TypeRef<ArchiveRef>;
 
-	archiveId: Id;
 	_id: Id;
+	archiveId: Id;
 }
 export const ArchiveTypeTypeRef: TypeRef<ArchiveType> = new TypeRef("sys", 1876)
 
@@ -2847,10 +2847,10 @@ export function createBlob(values: StrippedEntity<Blob>): Blob {
 export type Blob = {
 	_type: TypeRef<Blob>;
 
+	_id: Id;
 	archiveId: Id;
 	size: NumberString;
 	blobId: Id;
-	_id: Id;
 }
 export const WebauthnResponseDataTypeRef: TypeRef<WebauthnResponseData> = new TypeRef("sys", 1899)
 
@@ -2861,11 +2861,11 @@ export function createWebauthnResponseData(values: StrippedEntity<WebauthnRespon
 export type WebauthnResponseData = {
 	_type: TypeRef<WebauthnResponseData>;
 
+	_id: Id;
 	keyHandle: Uint8Array;
 	clientData: Uint8Array;
 	authenticatorData: Uint8Array;
 	signature: Uint8Array;
-	_id: Id;
 }
 export const BlobReferenceTokenWrapperTypeRef: TypeRef<BlobReferenceTokenWrapper> = new TypeRef("sys", 1990)
 
@@ -2876,8 +2876,8 @@ export function createBlobReferenceTokenWrapper(values: StrippedEntity<BlobRefer
 export type BlobReferenceTokenWrapper = {
 	_type: TypeRef<BlobReferenceTokenWrapper>;
 
-	blobReferenceToken: string;
 	_id: Id;
+	blobReferenceToken: string;
 }
 export const CustomerAccountTerminationRequestTypeRef: TypeRef<CustomerAccountTerminationRequest> = new TypeRef("sys", 2005)
 
@@ -2888,12 +2888,12 @@ export function createCustomerAccountTerminationRequest(values: StrippedEntity<C
 export type CustomerAccountTerminationRequest = {
 	_type: TypeRef<CustomerAccountTerminationRequest>;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 	terminationDate: Date;
 	terminationRequestDate: Date;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerGroup: null | Id;
-	_permissions: Id;
 
 	customer: Id;
 }
@@ -2906,8 +2906,8 @@ export function createCustomerAccountTerminationPostIn(values: StrippedEntity<Cu
 export type CustomerAccountTerminationPostIn = {
 	_type: TypeRef<CustomerAccountTerminationPostIn>;
 
-	terminationDate: null | Date;
 	_format: NumberString;
+	terminationDate: null | Date;
 
 	surveyData: null | SurveyData;
 }
@@ -2933,9 +2933,9 @@ export function createMailAddressAvailability(values: StrippedEntity<MailAddress
 export type MailAddressAvailability = {
 	_type: TypeRef<MailAddressAvailability>;
 
+	_id: Id;
 	mailAddress: string;
 	available: boolean;
-	_id: Id;
 }
 export const MultipleMailAddressAvailabilityDataTypeRef: TypeRef<MultipleMailAddressAvailabilityData> = new TypeRef("sys", 2030)
 
@@ -2972,12 +2972,12 @@ export function createInstanceSessionKey(values: StrippedEntity<InstanceSessionK
 export type InstanceSessionKey = {
 	_type: TypeRef<InstanceSessionKey>;
 
+	_id: Id;
 	instanceList: Id;
 	instanceId: Id;
 	symEncSessionKey: Uint8Array;
 	encryptionAuthStatus: null | Uint8Array;
 	symKeyVersion: NumberString;
-	_id: Id;
 
 	typeInfo: TypeInfo;
 }
@@ -2990,12 +2990,12 @@ export function createBucketKey(values: StrippedEntity<BucketKey>): BucketKey {
 export type BucketKey = {
 	_type: TypeRef<BucketKey>;
 
+	_id: Id;
 	pubEncBucketKey: null | Uint8Array;
 	groupEncBucketKey: null | Uint8Array;
 	protocolVersion: NumberString;
 	recipientKeyVersion: NumberString;
 	senderKeyVersion: null | NumberString;
-	_id: Id;
 
 	keyGroup: null | Id;
 	bucketEncSessionKeys: InstanceSessionKey[];
@@ -3059,8 +3059,8 @@ export function createDateWrapper(values: StrippedEntity<DateWrapper>): DateWrap
 export type DateWrapper = {
 	_type: TypeRef<DateWrapper>;
 
-	date: Date;
 	_id: Id;
+	date: Date;
 }
 export const MailAddressAliasGetInTypeRef: TypeRef<MailAddressAliasGetIn> = new TypeRef("sys", 2095)
 
@@ -3084,6 +3084,7 @@ export function createPlanConfiguration(values: StrippedEntity<PlanConfiguration
 export type PlanConfiguration = {
 	_type: TypeRef<PlanConfiguration>;
 
+	_id: Id;
 	nbrOfAliases: NumberString;
 	storageGb: NumberString;
 	sharing: boolean;
@@ -3095,7 +3096,6 @@ export type PlanConfiguration = {
 	autoResponder: boolean;
 	contactList: boolean;
 	maxLabels: NumberString;
-	_id: Id;
 }
 export const PlanServiceGetOutTypeRef: TypeRef<PlanServiceGetOut> = new TypeRef("sys", 2115)
 
@@ -3119,9 +3119,9 @@ export function createPublicKeyPutIn(values: StrippedEntity<PublicKeyPutIn>): Pu
 export type PublicKeyPutIn = {
 	_type: TypeRef<PublicKeyPutIn>;
 
+	_format: NumberString;
 	pubEccKey: Uint8Array;
 	symEncPrivEccKey: Uint8Array;
-	_format: NumberString;
 
 	keyGroup: Id;
 }
@@ -3134,13 +3134,13 @@ export function createInvoiceDataItem(values: StrippedEntity<InvoiceDataItem>): 
 export type InvoiceDataItem = {
 	_type: TypeRef<InvoiceDataItem>;
 
+	_id: Id;
 	amount: NumberString;
 	itemType: NumberString;
 	singlePrice: null | NumberString;
 	totalPrice: NumberString;
 	startDate: null | Date;
 	endDate: null | Date;
-	_id: Id;
 }
 export const InvoiceDataGetOutTypeRef: TypeRef<InvoiceDataGetOut> = new TypeRef("sys", 2170)
 
@@ -3151,6 +3151,7 @@ export function createInvoiceDataGetOut(values: StrippedEntity<InvoiceDataGetOut
 export type InvoiceDataGetOut = {
 	_type: TypeRef<InvoiceDataGetOut>;
 
+	_format: NumberString;
 	invoiceId: Id;
 	invoiceType: NumberString;
 	date: Date;
@@ -3163,7 +3164,6 @@ export type InvoiceDataGetOut = {
 	subTotal: NumberString;
 	grandTotal: NumberString;
 	vatType: NumberString;
-	_format: NumberString;
 
 	items: InvoiceDataItem[];
 }
@@ -3176,8 +3176,8 @@ export function createInvoiceDataGetIn(values: StrippedEntity<InvoiceDataGetIn>)
 export type InvoiceDataGetIn = {
 	_type: TypeRef<InvoiceDataGetIn>;
 
-	invoiceNumber: string;
 	_format: NumberString;
+	invoiceNumber: string;
 }
 export const ChangeKdfPostInTypeRef: TypeRef<ChangeKdfPostIn> = new TypeRef("sys", 2198)
 
@@ -3188,13 +3188,13 @@ export function createChangeKdfPostIn(values: StrippedEntity<ChangeKdfPostIn>): 
 export type ChangeKdfPostIn = {
 	_type: TypeRef<ChangeKdfPostIn>;
 
+	_format: NumberString;
 	verifier: Uint8Array;
 	salt: Uint8Array;
 	pwEncUserGroupKey: Uint8Array;
 	oldVerifier: Uint8Array;
 	kdfVersion: NumberString;
 	userGroupKeyVersion: NumberString;
-	_format: NumberString;
 }
 export const GroupKeyTypeRef: TypeRef<GroupKey> = new TypeRef("sys", 2255)
 
@@ -3205,14 +3205,14 @@ export function createGroupKey(values: StrippedEntity<GroupKey>): GroupKey {
 export type GroupKey = {
 	_type: TypeRef<GroupKey>;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 	ownerEncGKey: Uint8Array;
 	ownerKeyVersion: NumberString;
 	adminGroupEncGKey: null | Uint8Array;
 	adminGroupKeyVersion: null | NumberString;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerGroup: null | Id;
-	_permissions: Id;
 
 	keyPair: null | KeyPair;
 	pubAdminGroupEncGKey: null | PubEncKeyData;
@@ -3239,12 +3239,12 @@ export function createKeyRotation(values: StrippedEntity<KeyRotation>): KeyRotat
 export type KeyRotation = {
 	_type: TypeRef<KeyRotation>;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 	targetKeyVersion: NumberString;
 	groupKeyRotationType: NumberString;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerGroup: null | Id;
-	_permissions: Id;
 
 	adminPubKeyMac: null | KeyMac;
 	distEncAdminGroupSymKey: null | PubEncKeyData;
@@ -3273,11 +3273,11 @@ export function createSurveyData(values: StrippedEntity<SurveyData>): SurveyData
 export type SurveyData = {
 	_type: TypeRef<SurveyData>;
 
+	_id: Id;
 	category: NumberString;
 	reason: NumberString;
 	details: null | string;
 	version: NumberString;
-	_id: Id;
 }
 export const IdTupleWrapperTypeRef: TypeRef<IdTupleWrapper> = new TypeRef("sys", 2315)
 
@@ -3288,9 +3288,9 @@ export function createIdTupleWrapper(values: StrippedEntity<IdTupleWrapper>): Id
 export type IdTupleWrapper = {
 	_type: TypeRef<IdTupleWrapper>;
 
+	_id: Id;
 	listId: Id;
 	listElementId: Id;
-	_id: Id;
 }
 export const UserGroupKeyDistributionTypeRef: TypeRef<UserGroupKeyDistribution> = new TypeRef("sys", 2320)
 
@@ -3301,12 +3301,12 @@ export function createUserGroupKeyDistribution(values: StrippedEntity<UserGroupK
 export type UserGroupKeyDistribution = {
 	_type: TypeRef<UserGroupKeyDistribution>;
 
+	_id: Id;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 	distributionEncUserGroupKey: Uint8Array;
 	userGroupKeyVersion: NumberString;
-	_format: NumberString;
-	_id: Id;
-	_ownerGroup: null | Id;
-	_permissions: Id;
 }
 export const GroupKeyRotationDataTypeRef: TypeRef<GroupKeyRotationData> = new TypeRef("sys", 2328)
 
@@ -3317,11 +3317,11 @@ export function createGroupKeyRotationData(values: StrippedEntity<GroupKeyRotati
 export type GroupKeyRotationData = {
 	_type: TypeRef<GroupKeyRotationData>;
 
+	_id: Id;
 	groupKeyVersion: NumberString;
 	groupEncPreviousGroupKey: Uint8Array;
 	adminGroupEncGroupKey: null | Uint8Array;
 	adminGroupKeyVersion: null | NumberString;
-	_id: Id;
 
 	group: Id;
 	keyPair: null | KeyPair;
@@ -3350,8 +3350,8 @@ export function createGroupKeyRotationInfoGetOut(values: StrippedEntity<GroupKey
 export type GroupKeyRotationInfoGetOut = {
 	_type: TypeRef<GroupKeyRotationInfoGetOut>;
 
-	userOrAdminGroupKeyRotationScheduled: boolean;
 	_format: NumberString;
+	userOrAdminGroupKeyRotationScheduled: boolean;
 
 	groupKeyUpdates: IdTuple[];
 }
@@ -3364,11 +3364,11 @@ export function createRecoverCodeData(values: StrippedEntity<RecoverCodeData>): 
 export type RecoverCodeData = {
 	_type: TypeRef<RecoverCodeData>;
 
+	_id: Id;
 	userKeyVersion: NumberString;
 	recoveryCodeEncUserGroupKey: Uint8Array;
 	userEncRecoveryCode: Uint8Array;
 	recoveryCodeVerifier: Uint8Array;
-	_id: Id;
 }
 export const UserGroupKeyRotationDataTypeRef: TypeRef<UserGroupKeyRotationData> = new TypeRef("sys", 2352)
 
@@ -3379,6 +3379,7 @@ export function createUserGroupKeyRotationData(values: StrippedEntity<UserGroupK
 export type UserGroupKeyRotationData = {
 	_type: TypeRef<UserGroupKeyRotationData>;
 
+	_id: Id;
 	passphraseEncUserGroupKey: Uint8Array;
 	distributionKeyEncUserGroupKey: Uint8Array;
 	userGroupKeyVersion: NumberString;
@@ -3387,7 +3388,6 @@ export type UserGroupKeyRotationData = {
 	adminGroupKeyVersion: NumberString;
 	authVerifier: Uint8Array;
 	userGroupEncAdminGroupKey: null | Uint8Array;
-	_id: Id;
 
 	keyPair: KeyPair;
 	group: Id;
@@ -3420,14 +3420,14 @@ export type GroupKeyUpdate = {
 	_type: TypeRef<GroupKeyUpdate>;
 	_errors: Object;
 
+	_id: IdTuple;
+	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
+	_ownerEncSessionKey: null | Uint8Array;
+	_ownerKeyVersion: null | NumberString;
 	groupKey: Uint8Array;
 	groupKeyVersion: NumberString;
-	_format: NumberString;
-	_id: IdTuple;
-	_ownerEncSessionKey: null | Uint8Array;
-	_ownerGroup: null | Id;
-	_ownerKeyVersion: null | NumberString;
-	_permissions: Id;
 
 	bucketKey: BucketKey;
 }
@@ -3453,6 +3453,7 @@ export function createPubEncKeyData(values: StrippedEntity<PubEncKeyData>): PubE
 export type PubEncKeyData = {
 	_type: TypeRef<PubEncKeyData>;
 
+	_id: Id;
 	recipientIdentifier: string;
 	pubEncSymKey: Uint8Array;
 	recipientKeyVersion: NumberString;
@@ -3461,7 +3462,6 @@ export type PubEncKeyData = {
 	recipientIdentifierType: NumberString;
 	senderIdentifier: null | string;
 	senderIdentifierType: null | NumberString;
-	_id: Id;
 
 	symKeyMac: null | KeyMac;
 }
@@ -3474,10 +3474,10 @@ export function createGroupKeyUpdateData(values: StrippedEntity<GroupKeyUpdateDa
 export type GroupKeyUpdateData = {
 	_type: TypeRef<GroupKeyUpdateData>;
 
+	_id: Id;
 	sessionKeyEncGroupKeyVersion: NumberString;
 	sessionKeyEncGroupKey: Uint8Array;
 	bucketKeyEncSessionKey: Uint8Array;
-	_id: Id;
 
 	pubEncBucketKeyData: PubEncKeyData;
 }
@@ -3490,10 +3490,10 @@ export function createGroupMembershipKeyData(values: StrippedEntity<GroupMembers
 export type GroupMembershipKeyData = {
 	_type: TypeRef<GroupMembershipKeyData>;
 
+	_id: Id;
 	groupKeyVersion: NumberString;
 	symKeyVersion: NumberString;
 	symEncGKey: Uint8Array;
-	_id: Id;
 
 	group: Id;
 }
@@ -3519,9 +3519,9 @@ export function createGroupMembershipUpdateData(values: StrippedEntity<GroupMemb
 export type GroupMembershipUpdateData = {
 	_type: TypeRef<GroupMembershipUpdateData>;
 
+	_id: Id;
 	userEncGroupKey: Uint8Array;
 	userKeyVersion: NumberString;
-	_id: Id;
 
 	userId: Id;
 }
@@ -3534,13 +3534,13 @@ export function createAffiliatePartnerKpiMonthSummary(values: StrippedEntity<Aff
 export type AffiliatePartnerKpiMonthSummary = {
 	_type: TypeRef<AffiliatePartnerKpiMonthSummary>;
 
+	_id: Id;
 	monthTimestamp: NumberString;
 	newFree: NumberString;
 	newPaid: NumberString;
 	totalFree: NumberString;
 	totalPaid: NumberString;
 	commission: NumberString;
-	_id: Id;
 }
 export const AffiliatePartnerKpiServiceGetOutTypeRef: TypeRef<AffiliatePartnerKpiServiceGetOut> = new TypeRef("sys", 2461)
 
@@ -3551,10 +3551,10 @@ export function createAffiliatePartnerKpiServiceGetOut(values: StrippedEntity<Af
 export type AffiliatePartnerKpiServiceGetOut = {
 	_type: TypeRef<AffiliatePartnerKpiServiceGetOut>;
 
+	_format: NumberString;
 	promotionId: string;
 	accumulatedCommission: NumberString;
 	creditedCommission: NumberString;
-	_format: NumberString;
 
 	kpis: AffiliatePartnerKpiMonthSummary[];
 }
@@ -3580,10 +3580,10 @@ export function createKeyMac(values: StrippedEntity<KeyMac>): KeyMac {
 export type KeyMac = {
 	_type: TypeRef<KeyMac>;
 
+	_id: Id;
 	taggedKeyVersion: NumberString;
 	tag: Uint8Array;
 	taggingKeyVersion: NumberString;
-	_id: Id;
 
 	taggingGroup: Id;
 }
@@ -3596,8 +3596,8 @@ export function createAppStoreSubscriptionGetOut(values: StrippedEntity<AppStore
 export type AppStoreSubscriptionGetOut = {
 	_type: TypeRef<AppStoreSubscriptionGetOut>;
 
-	app: NumberString;
 	_format: NumberString;
+	app: NumberString;
 }
 export const AppStoreSubscriptionGetInTypeRef: TypeRef<AppStoreSubscriptionGetIn> = new TypeRef("sys", 2500)
 
@@ -3608,8 +3608,8 @@ export function createAppStoreSubscriptionGetIn(values: StrippedEntity<AppStoreS
 export type AppStoreSubscriptionGetIn = {
 	_type: TypeRef<AppStoreSubscriptionGetIn>;
 
-	subscriptionId: string;
 	_format: NumberString;
+	subscriptionId: string;
 }
 export const VerifierTokenServiceOutTypeRef: TypeRef<VerifierTokenServiceOut> = new TypeRef("sys", 2510)
 
@@ -3620,8 +3620,8 @@ export function createVerifierTokenServiceOut(values: StrippedEntity<VerifierTok
 export type VerifierTokenServiceOut = {
 	_type: TypeRef<VerifierTokenServiceOut>;
 
-	token: string;
 	_format: NumberString;
+	token: string;
 }
 export const VerifierTokenServiceInTypeRef: TypeRef<VerifierTokenServiceIn> = new TypeRef("sys", 2517)
 
@@ -3632,8 +3632,8 @@ export function createVerifierTokenServiceIn(values: StrippedEntity<VerifierToke
 export type VerifierTokenServiceIn = {
 	_type: TypeRef<VerifierTokenServiceIn>;
 
-	authVerifier: Uint8Array;
 	_format: NumberString;
+	authVerifier: Uint8Array;
 }
 export const CalendarAdvancedRepeatRuleTypeRef: TypeRef<CalendarAdvancedRepeatRule> = new TypeRef("sys", 2521)
 
@@ -3644,9 +3644,9 @@ export function createCalendarAdvancedRepeatRule(values: StrippedEntity<Calendar
 export type CalendarAdvancedRepeatRule = {
 	_type: TypeRef<CalendarAdvancedRepeatRule>;
 
+	_id: Id;
 	ruleType: NumberString;
 	interval: string;
-	_id: Id;
 }
 export const AdminGroupKeyDistributionElementTypeRef: TypeRef<AdminGroupKeyDistributionElement> = new TypeRef("sys", 2531)
 
@@ -3685,9 +3685,9 @@ export function createPubDistributionKey(values: StrippedEntity<PubDistributionK
 export type PubDistributionKey = {
 	_type: TypeRef<PubDistributionKey>;
 
+	_id: Id;
 	pubEccKey: Uint8Array;
 	pubKyberKey: Uint8Array;
-	_id: Id;
 
 	userGroupId: Id;
 	pubKeyMac: KeyMac;

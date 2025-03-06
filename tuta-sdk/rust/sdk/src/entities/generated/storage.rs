@@ -7,10 +7,10 @@ use serde::{Deserialize, Serialize};
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct BlobGetIn {
-	pub 52: GeneratedId,
-	pub 110: Option<GeneratedId>,
 	pub _format: i64,
-	pub 193: Vec<BlobId>,
+	pub archiveId: GeneratedId,
+	pub blobId: Option<GeneratedId>,
+	pub blobIds: Vec<BlobId>,
 }
 
 impl Entity for BlobGetIn {
@@ -25,8 +25,8 @@ impl Entity for BlobGetIn {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct BlobWriteData {
-	pub 75: GeneratedId,
 	pub _id: Option<CustomId>,
+	pub archiveOwnerGroup: GeneratedId,
 }
 
 impl Entity for BlobWriteData {
@@ -41,10 +41,10 @@ impl Entity for BlobWriteData {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct BlobAccessTokenPostIn {
-	pub 180: Option<i64>,
 	pub _format: i64,
-	pub 80: Option<BlobWriteData>,
-	pub 181: Option<BlobReadData>,
+	pub archiveDataType: Option<i64>,
+	pub write: Option<BlobWriteData>,
+	pub read: Option<BlobReadData>,
 }
 
 impl Entity for BlobAccessTokenPostIn {
@@ -60,7 +60,7 @@ impl Entity for BlobAccessTokenPostIn {
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct BlobAccessTokenPostOut {
 	pub _format: i64,
-	pub 161: BlobServerAccessInfo,
+	pub blobAccessInfo: BlobServerAccessInfo,
 }
 
 impl Entity for BlobAccessTokenPostOut {
@@ -75,11 +75,11 @@ impl Entity for BlobAccessTokenPostOut {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct BlobReferencePutIn {
-	pub 97: Option<GeneratedId>,
-	pub 107: GeneratedId,
-	pub 123: i64,
 	pub _format: i64,
-	pub 122: Vec<super::sys::BlobReferenceTokenWrapper>,
+	pub instanceListId: Option<GeneratedId>,
+	pub instanceId: GeneratedId,
+	pub archiveDataType: i64,
+	pub referenceTokens: Vec<super::sys::BlobReferenceTokenWrapper>,
 }
 
 impl Entity for BlobReferencePutIn {
@@ -94,11 +94,11 @@ impl Entity for BlobReferencePutIn {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct BlobReferenceDeleteIn {
-	pub 102: Option<GeneratedId>,
-	pub 103: GeneratedId,
-	pub 124: i64,
 	pub _format: i64,
-	pub 105: Vec<super::sys::Blob>,
+	pub instanceListId: Option<GeneratedId>,
+	pub instanceId: GeneratedId,
+	pub archiveDataType: i64,
+	pub blobs: Vec<super::sys::Blob>,
 }
 
 impl Entity for BlobReferenceDeleteIn {
@@ -113,9 +113,9 @@ impl Entity for BlobReferenceDeleteIn {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct BlobPostOut {
-	pub 127: Option<String>,
 	pub _format: i64,
-	pub 208: Vec<super::sys::BlobReferenceTokenWrapper>,
+	pub blobReferenceToken: Option<String>,
+	pub blobReferenceTokens: Vec<super::sys::BlobReferenceTokenWrapper>,
 }
 
 impl Entity for BlobPostOut {
@@ -130,11 +130,11 @@ impl Entity for BlobPostOut {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct BlobArchiveRef {
-	pub _format: i64,
 	pub _id: Option<IdTupleGenerated>,
-	pub _ownerGroup: Option<GeneratedId>,
 	pub _permissions: GeneratedId,
-	pub 135: GeneratedId,
+	pub _format: i64,
+	pub _ownerGroup: Option<GeneratedId>,
+	pub archive: GeneratedId,
 }
 
 impl Entity for BlobArchiveRef {
@@ -149,8 +149,8 @@ impl Entity for BlobArchiveRef {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct BlobId {
-	pub 146: GeneratedId,
 	pub _id: Option<CustomId>,
+	pub blobId: GeneratedId,
 }
 
 impl Entity for BlobId {
@@ -165,8 +165,8 @@ impl Entity for BlobId {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct BlobServerUrl {
-	pub 156: String,
 	pub _id: Option<CustomId>,
+	pub url: String,
 }
 
 impl Entity for BlobServerUrl {
@@ -181,11 +181,11 @@ impl Entity for BlobServerUrl {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct BlobServerAccessInfo {
-	pub 159: String,
-	pub 192: DateTime,
-	pub 209: i64,
 	pub _id: Option<CustomId>,
-	pub 160: Vec<BlobServerUrl>,
+	pub blobAccessToken: String,
+	pub expires: DateTime,
+	pub tokenKind: i64,
+	pub servers: Vec<BlobServerUrl>,
 }
 
 impl Entity for BlobServerAccessInfo {
@@ -200,8 +200,8 @@ impl Entity for BlobServerAccessInfo {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct InstanceId {
-	pub 174: Option<GeneratedId>,
 	pub _id: Option<CustomId>,
+	pub instanceId: Option<GeneratedId>,
 }
 
 impl Entity for InstanceId {
@@ -216,10 +216,10 @@ impl Entity for InstanceId {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct BlobReadData {
-	pub 177: GeneratedId,
-	pub 178: Option<GeneratedId>,
 	pub _id: Option<CustomId>,
-	pub 179: Vec<InstanceId>,
+	pub archiveId: GeneratedId,
+	pub instanceListId: Option<GeneratedId>,
+	pub instanceIds: Vec<InstanceId>,
 }
 
 impl Entity for BlobReadData {

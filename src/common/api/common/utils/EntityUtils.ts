@@ -109,7 +109,8 @@ export type StrippedEntity<T extends Entity> =
  * @return True if firstId is bigger than secondId, false otherwise.
  */
 export function firstBiggerThanSecond(firstId: Id, secondId: Id, typeModel?: TypeModel): boolean {
-	if (typeModel?.values._id.type === ValueType.CustomId) {
+	const _idValue = get_IdValue(typeModel)
+	if (_idValue && _idValue.type === ValueType.CustomId) {
 		return firstBiggerThanSecondCustomId(firstId, secondId)
 	} else {
 		// if the number of digits is bigger, then the id is bigger, otherwise we can use the lexicographical comparison
@@ -120,6 +121,12 @@ export function firstBiggerThanSecond(firstId: Id, secondId: Id, typeModel?: Typ
 		} else {
 			return firstId > secondId
 		}
+	}
+}
+
+export function get_IdValue(typeModel?: TypeModel): ModelValue | undefined {
+	if (typeModel) {
+		return Object.values(typeModel.values).find((valueType) => valueType.name === "_id")
 	}
 }
 
@@ -252,13 +259,15 @@ export function create<T>(typeModel: TypeModel, typeRef: TypeRef<T>, createDefau
 		_type: typeRef,
 	}
 
-	for (let valueName of Object.keys(typeModel.values)) {
-		let value = typeModel.values[valueName]
+	for (let valueId of Object.keys(typeModel.values).map(Number)) {
+		let value = typeModel.values[valueId]
+		let valueName = value.name
 		i[valueName] = createDefaultValue(valueName, value)
 	}
 
-	for (let associationName of Object.keys(typeModel.associations)) {
-		let association = typeModel.associations[associationName]
+	for (let associationId of Object.keys(typeModel.associations).map(Number)) {
+		let association = typeModel.associations[associationId]
+		let associationName = association.name
 
 		if (association.cardinality === Cardinality.Any) {
 			i[associationName] = []
@@ -277,7 +286,7 @@ function _getDefaultValue(valueName: string, value: ModelValue): any {
 	if (valueName === "_format") {
 		return "0"
 	} else if (valueName === "_id") {
-		return null // aggregate ids are set in the worker, list ids must be set explicitely and element ids are created on the server
+		return null // aggregate ids are set in the worker, list ids must be set explicitly and element ids are created on the server
 	} else if (valueName === "_permissions") {
 		return null
 	} else if (value.cardinality === Cardinality.ZeroOrOne) {
@@ -483,3 +492,7 @@ export const LEGACY_TO_RECIPIENTS_ID = 112
 export const LEGACY_CC_RECIPIENTS_ID = 113
 export const LEGACY_BCC_RECIPIENTS_ID = 114
 export const LEGACY_BODY_ID = 116
+
+export const SUBJECT_ID = 105
+export const SENDER_ID = 111
+export const ATTACHMENTS_ID = 115

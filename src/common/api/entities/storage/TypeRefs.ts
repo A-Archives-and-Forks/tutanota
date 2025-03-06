@@ -13,9 +13,9 @@ export function createBlobGetIn(values: StrippedEntity<BlobGetIn>): BlobGetIn {
 export type BlobGetIn = {
 	_type: TypeRef<BlobGetIn>;
 
+	_format: NumberString;
 	archiveId: Id;
 	blobId: null | Id;
-	_format: NumberString;
 
 	blobIds: BlobId[];
 }
@@ -28,8 +28,8 @@ export function createBlobWriteData(values: StrippedEntity<BlobWriteData>): Blob
 export type BlobWriteData = {
 	_type: TypeRef<BlobWriteData>;
 
-	archiveOwnerGroup: Id;
 	_id: Id;
+	archiveOwnerGroup: Id;
 }
 export const BlobAccessTokenPostInTypeRef: TypeRef<BlobAccessTokenPostIn> = new TypeRef("storage", 77)
 
@@ -40,8 +40,8 @@ export function createBlobAccessTokenPostIn(values: StrippedEntity<BlobAccessTok
 export type BlobAccessTokenPostIn = {
 	_type: TypeRef<BlobAccessTokenPostIn>;
 
-	archiveDataType: null | NumberString;
 	_format: NumberString;
+	archiveDataType: null | NumberString;
 
 	write: null | BlobWriteData;
 	read: null | BlobReadData;
@@ -68,10 +68,10 @@ export function createBlobReferencePutIn(values: StrippedEntity<BlobReferencePut
 export type BlobReferencePutIn = {
 	_type: TypeRef<BlobReferencePutIn>;
 
+	_format: NumberString;
 	instanceListId: null | Id;
 	instanceId: Id;
 	archiveDataType: NumberString;
-	_format: NumberString;
 
 	referenceTokens: BlobReferenceTokenWrapper[];
 }
@@ -84,10 +84,10 @@ export function createBlobReferenceDeleteIn(values: StrippedEntity<BlobReference
 export type BlobReferenceDeleteIn = {
 	_type: TypeRef<BlobReferenceDeleteIn>;
 
+	_format: NumberString;
 	instanceListId: null | Id;
 	instanceId: Id;
 	archiveDataType: NumberString;
-	_format: NumberString;
 
 	blobs: Blob[];
 }
@@ -100,8 +100,8 @@ export function createBlobPostOut(values: StrippedEntity<BlobPostOut>): BlobPost
 export type BlobPostOut = {
 	_type: TypeRef<BlobPostOut>;
 
-	blobReferenceToken: null | string;
 	_format: NumberString;
+	blobReferenceToken: null | string;
 
 	blobReferenceTokens: BlobReferenceTokenWrapper[];
 }
@@ -114,10 +114,10 @@ export function createBlobArchiveRef(values: StrippedEntity<BlobArchiveRef>): Bl
 export type BlobArchiveRef = {
 	_type: TypeRef<BlobArchiveRef>;
 
-	_format: NumberString;
 	_id: IdTuple;
-	_ownerGroup: null | Id;
 	_permissions: Id;
+	_format: NumberString;
+	_ownerGroup: null | Id;
 
 	archive: Id;
 }
@@ -130,8 +130,8 @@ export function createBlobId(values: StrippedEntity<BlobId>): BlobId {
 export type BlobId = {
 	_type: TypeRef<BlobId>;
 
-	blobId: Id;
 	_id: Id;
+	blobId: Id;
 }
 export const BlobServerUrlTypeRef: TypeRef<BlobServerUrl> = new TypeRef("storage", 154)
 
@@ -142,8 +142,8 @@ export function createBlobServerUrl(values: StrippedEntity<BlobServerUrl>): Blob
 export type BlobServerUrl = {
 	_type: TypeRef<BlobServerUrl>;
 
-	url: string;
 	_id: Id;
+	url: string;
 }
 export const BlobServerAccessInfoTypeRef: TypeRef<BlobServerAccessInfo> = new TypeRef("storage", 157)
 
@@ -154,10 +154,10 @@ export function createBlobServerAccessInfo(values: StrippedEntity<BlobServerAcce
 export type BlobServerAccessInfo = {
 	_type: TypeRef<BlobServerAccessInfo>;
 
+	_id: Id;
 	blobAccessToken: string;
 	expires: Date;
 	tokenKind: NumberString;
-	_id: Id;
 
 	servers: BlobServerUrl[];
 }
@@ -170,8 +170,8 @@ export function createInstanceId(values: StrippedEntity<InstanceId>): InstanceId
 export type InstanceId = {
 	_type: TypeRef<InstanceId>;
 
-	instanceId: null | Id;
 	_id: Id;
+	instanceId: null | Id;
 }
 export const BlobReadDataTypeRef: TypeRef<BlobReadData> = new TypeRef("storage", 175)
 
@@ -182,9 +182,9 @@ export function createBlobReadData(values: StrippedEntity<BlobReadData>): BlobRe
 export type BlobReadData = {
 	_type: TypeRef<BlobReadData>;
 
+	_id: Id;
 	archiveId: Id;
 	instanceListId: null | Id;
-	_id: Id;
 
 	instanceIds: InstanceId[];
 }

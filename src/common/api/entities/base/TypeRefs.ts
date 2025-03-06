@@ -12,7 +12,7 @@ export function createPersistenceResourcePostReturn(values: StrippedEntity<Persi
 export type PersistenceResourcePostReturn = {
 	_type: TypeRef<PersistenceResourcePostReturn>;
 
+	_format: NumberString;
 	generatedId: null | Id;
 	permissionListId: Id;
-	_format: NumberString;
 }

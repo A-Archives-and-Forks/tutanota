@@ -15,6 +15,15 @@ export const typeModels = {
 		"versioned": false,
 		"encrypted": false,
 		"values": {
+			"1": {
+				"final": false,
+				"name": "_format",
+				"id": 1,
+				"since": 1,
+				"type": "Number",
+				"cardinality": "One",
+				"encrypted": false
+			},
 			"2": {
 				"final": false,
 				"name": "generatedId",
@@ -30,15 +39,6 @@ export const typeModels = {
 				"id": 3,
 				"since": 1,
 				"type": "GeneratedId",
-				"cardinality": "One",
-				"encrypted": false
-			},
-			"_format": {
-				"final": false,
-				"name": "_format",
-				"id": 1,
-				"since": 1,
-				"type": "Number",
 				"cardinality": "One",
 				"encrypted": false
 			}

@@ -7,9 +7,9 @@ use serde::{Deserialize, Serialize};
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct UsageTestMetricConfigValue {
-	pub 10: String,
-	pub 11: String,
 	pub _id: Option<CustomId>,
+	pub key: String,
+	pub value: String,
 }
 
 impl Entity for UsageTestMetricConfigValue {
@@ -24,10 +24,11 @@ impl Entity for UsageTestMetricConfigValue {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct UsageTestMetricConfig {
-	pub 14: String,
-	pub 15: i64,
 	pub _id: Option<CustomId>,
-	pub 16: Vec<UsageTestMetricConfigValue>,
+	pub name: String,
+	#[serde(rename = "type")]
+	pub r#type: i64,
+	pub configValues: Vec<UsageTestMetricConfigValue>,
 }
 
 impl Entity for UsageTestMetricConfig {
@@ -42,9 +43,9 @@ impl Entity for UsageTestMetricConfig {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct UsageTestMetricData {
-	pub 19: String,
-	pub 20: String,
 	pub _id: Option<CustomId>,
+	pub name: String,
+	pub value: String,
 }
 
 impl Entity for UsageTestMetricData {
@@ -59,11 +60,11 @@ impl Entity for UsageTestMetricData {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct UsageTestStage {
-	pub 37: String,
-	pub 87: i64,
-	pub 88: i64,
 	pub _id: Option<CustomId>,
-	pub 38: Vec<UsageTestMetricConfig>,
+	pub name: String,
+	pub minPings: i64,
+	pub maxPings: i64,
+	pub metrics: Vec<UsageTestMetricConfig>,
 }
 
 impl Entity for UsageTestStage {
@@ -78,8 +79,8 @@ impl Entity for UsageTestStage {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct UsageTestAssignmentIn {
-	pub 55: Option<GeneratedId>,
 	pub _format: i64,
+	pub testDeviceId: Option<GeneratedId>,
 }
 
 impl Entity for UsageTestAssignmentIn {
@@ -94,12 +95,12 @@ impl Entity for UsageTestAssignmentIn {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct UsageTestAssignment {
-	pub 58: GeneratedId,
-	pub 59: String,
-	pub 60: Option<i64>,
-	pub 61: bool,
 	pub _id: Option<CustomId>,
-	pub 62: Vec<UsageTestStage>,
+	pub testId: GeneratedId,
+	pub name: String,
+	pub variant: Option<i64>,
+	pub sendPings: bool,
+	pub stages: Vec<UsageTestStage>,
 }
 
 impl Entity for UsageTestAssignment {
@@ -114,9 +115,9 @@ impl Entity for UsageTestAssignment {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct UsageTestAssignmentOut {
-	pub 65: GeneratedId,
 	pub _format: i64,
-	pub 66: Vec<UsageTestAssignment>,
+	pub testDeviceId: GeneratedId,
+	pub assignments: Vec<UsageTestAssignment>,
 }
 
 impl Entity for UsageTestAssignmentOut {
@@ -131,11 +132,11 @@ impl Entity for UsageTestAssignmentOut {
 #[derive(uniffi::Record, Clone, Serialize, Deserialize)]
 #[cfg_attr(any(test, feature = "testing"), derive(PartialEq, Debug))]
 pub struct UsageTestParticipationIn {
-	pub 82: GeneratedId,
-	pub 83: i64,
-	pub 84: GeneratedId,
 	pub _format: i64,
-	pub 85: Vec<UsageTestMetricData>,
+	pub testId: GeneratedId,
+	pub stage: i64,
+	pub testDeviceId: GeneratedId,
+	pub metrics: Vec<UsageTestMetricData>,
 }
 
 impl Entity for UsageTestParticipationIn {

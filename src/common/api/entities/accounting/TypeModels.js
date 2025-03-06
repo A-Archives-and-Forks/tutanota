@@ -15,6 +15,15 @@ export const typeModels = {
 		"versioned": false,
 		"encrypted": false,
 		"values": {
+			"80": {
+				"final": true,
+				"name": "_id",
+				"id": 80,
+				"since": 3,
+				"type": "CustomId",
+				"cardinality": "One",
+				"encrypted": false
+			},
 			"81": {
 				"final": true,
 				"name": "type",
@@ -50,15 +59,6 @@ export const typeModels = {
 				"type": "Number",
 				"cardinality": "One",
 				"encrypted": true
-			},
-			"_id": {
-				"final": true,
-				"name": "_id",
-				"id": 80,
-				"since": 3,
-				"type": "CustomId",
-				"cardinality": "One",
-				"encrypted": false
 			}
 		},
 		"associations": {},
@@ -74,6 +74,33 @@ export const typeModels = {
 		"versioned": false,
 		"encrypted": true,
 		"values": {
+			"87": {
+				"final": false,
+				"name": "_format",
+				"id": 87,
+				"since": 3,
+				"type": "Number",
+				"cardinality": "One",
+				"encrypted": false
+			},
+			"88": {
+				"final": true,
+				"name": "_ownerGroup",
+				"id": 88,
+				"since": 3,
+				"type": "GeneratedId",
+				"cardinality": "ZeroOrOne",
+				"encrypted": false
+			},
+			"89": {
+				"final": true,
+				"name": "_ownerPublicEncSessionKey",
+				"id": 89,
+				"since": 3,
+				"type": "Bytes",
+				"cardinality": "ZeroOrOne",
+				"encrypted": false
+			},
 			"92": {
 				"final": false,
 				"name": "outstandingBookingsPrice",
@@ -92,34 +119,7 @@ export const typeModels = {
 				"cardinality": "One",
 				"encrypted": true
 			},
-			"_format": {
-				"final": false,
-				"name": "_format",
-				"id": 87,
-				"since": 3,
-				"type": "Number",
-				"cardinality": "One",
-				"encrypted": false
-			},
-			"_ownerGroup": {
-				"final": true,
-				"name": "_ownerGroup",
-				"id": 88,
-				"since": 3,
-				"type": "GeneratedId",
-				"cardinality": "ZeroOrOne",
-				"encrypted": false
-			},
-			"_ownerPublicEncSessionKey": {
-				"final": true,
-				"name": "_ownerPublicEncSessionKey",
-				"id": 89,
-				"since": 3,
-				"type": "Bytes",
-				"cardinality": "ZeroOrOne",
-				"encrypted": false
-			},
-			"_publicCryptoProtocolVersion": {
+			"96": {
 				"final": true,
 				"name": "_publicCryptoProtocolVersion",
 				"id": 96,
