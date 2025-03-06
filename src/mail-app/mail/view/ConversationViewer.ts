@@ -148,8 +148,8 @@ export class ConversationViewer implements Component<ConversationViewerAttrs> {
 
 	private renderItems(viewModel: ConversationViewModel, entries: readonly ConversationItem[]): Children {
 		return entries.map((entry, position) => {
-			switch (entry.type_ref) {
-				case MailTypeRef: {
+			switch (entry.type_ref.typeId) {
+				case MailTypeRef.typeId: {
 					const mailViewModel = entry.viewModel
 					const isPrimary = mailViewModel === viewModel.primaryViewModel()
 					// only pass in position if we do have an actual conversation position

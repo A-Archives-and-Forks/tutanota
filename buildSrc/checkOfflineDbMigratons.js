@@ -50,9 +50,9 @@ Please add them to ${MIGRATIONS_DIRECTORY}`)
 ${unusedMigrations.map((m) => "\t" + m).join("\n")}
 Please use them in ${MIGRATOR_PATH}`)
 	}
-	//
-	// if (messages.length) {
-	// 	const errorMessage = ["Failed check for offline db migrations! Errors:", ...messages].join("\n")
-	// 	throw new Error(errorMessage)
-	// }
+
+	if (messages.length) {
+		const errorMessage = ["Failed check for offline db migrations! Errors:", ...messages].join("\n")
+		throw new Error(errorMessage)
+	}
 }

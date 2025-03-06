@@ -2,8 +2,17 @@ import { ConversationEntry, ConversationEntryTypeRef, Mail, MailTypeRef } from "
 import { MailViewerViewModel } from "./MailViewerViewModel.js"
 import { CreateMailViewerOptions } from "./MailViewer.js"
 import { elementIdPart, firstBiggerThanSecond, getElementId, haveSameId, isSameId, listIdPart } from "../../../common/api/common/utils/EntityUtils.js"
-import { assertNotNull, findLastIndex, groupBy, isSameTypeRef, makeSingleUse, ofClass, TypeRef } from "@tutao/tutanota-utils"
-import { assertNotNull, findLast, findLastIndex, groupBy, makeSingleUse, memoizedWithHiddenArgument, ofClass } from "@tutao/tutanota-utils"
+import {
+	assertNotNull,
+	findLast,
+	findLastIndex,
+	groupBy,
+	isSameTypeRef,
+	makeSingleUse,
+	memoizedWithHiddenArgument,
+	ofClass,
+	TypeRef,
+} from "@tutao/tutanota-utils"
 import { EntityClient } from "../../../common/api/common/EntityClient.js"
 import { LoadingStateTracker } from "../../../common/offline/LoadingState.js"
 import { EntityEventsListener, EventController } from "../../../common/api/main/EventController.js"
@@ -111,7 +120,7 @@ export class ConversationViewModel {
 					index = index + 1
 				}
 				conversation.splice(index, 0, {
-                    type_ref: MailTypeRef,
+					type_ref: MailTypeRef,
 					viewModel: this.viewModelFactory({ ...this.options, mail }),
 					entryId: entry._id,
 				})
@@ -236,7 +245,7 @@ export class ConversationViewModel {
 
 			if (mail) {
 				newConversation.push({
-                    type_ref: MailTypeRef,
+					type_ref: MailTypeRef,
 					viewModel: isSameId(mail._id, this.options.mail._id)
 						? this._primaryViewModel
 						: this.viewModelFactory({
@@ -310,7 +319,7 @@ export class ConversationViewModel {
 	private conversationItemsForSelectedMailOnly(): ConversationItem[] {
 		return [
 			{
-                type_ref: MailTypeRef,
+				type_ref: MailTypeRef,
 				viewModel: this._primaryViewModel,
 				entryId: this._primaryViewModel.mail.conversationEntry,
 			},

@@ -344,7 +344,7 @@ export class EventBusClient {
 				await resolveTypeReference(typeRef)
 				return true
 			} catch (_error) {
-				console.warn("ignoring entityEventUpdate for unknown type with typeId", typeRef)
+				console.warn("ignoring entityEventUpdate for unknown type with typeId", typeRef.toString())
 				return false
 			}
 		})

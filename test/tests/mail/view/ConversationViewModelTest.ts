@@ -158,7 +158,7 @@ o.spec("ConversationViewModel", function () {
 			viewModel.init(Promise.resolve())
 			await loadingDefer.promise
 
-			const numMailsDisplayed = viewModel.conversationItems().filter((i) => i.type === "mail").length
+			const numMailsDisplayed = viewModel.conversationItems().filter((i) => isSameTypeRef(i.type_ref, MailTypeRef)).length
 			o(numMailsDisplayed).equals(1)(`Wrong number of mails in conversationItems, got ${numMailsDisplayed} should be 1`)
 		})
 
@@ -339,7 +339,7 @@ o.spec("ConversationViewModel", function () {
 				[
 					{
 						application: "tutanota",
-						type: "ConversationEntry",
+						typeId: ConversationEntryTypeRef.typeId,
 						operation: OperationType.CREATE,
 						instanceListId: listId,
 						instanceId: yetAnotherMail.conversationEntry[1],
@@ -348,7 +348,7 @@ o.spec("ConversationViewModel", function () {
 				"mailGroupId",
 			)
 
-			const numMailsDisplayed = viewModel.conversationItems().filter((i) => i.type === "mail").length
+			const numMailsDisplayed = viewModel.conversationItems().filter((i) => isSameTypeRef(i.type_ref, MailTypeRef)).length
 			o(numMailsDisplayed).equals(1)(`Wrong number of mails in conversationItems, got ${numMailsDisplayed} should be 1`)
 		})
 
