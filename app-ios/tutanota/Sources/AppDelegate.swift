@@ -48,7 +48,9 @@ public let TUTA_MAIL_INTEROP_SCHEME = "tutamail"
 			alarmScheduler: SystemAlarmScheduler(),
 			alarmCalculator: alarmModel
 		)
-		self.notificationsHandler = NotificationsHandler(alarmManager: self.alarmManager, notificationStorage: notificationStorage)
+		// FIXME
+		let httpClient = URLSessionHttpClient(session: observableUrlSession())
+		self.notificationsHandler = NotificationsHandler(alarmManager: self.alarmManager, notificationStorage: notificationStorage, httpClient: httpClient)
 		self.window = UIWindow(frame: UIScreen.main.bounds)
 
 		let credentialsDb = try! CredentialsDatabase(dbPath: credentialsDatabasePath().absoluteString)

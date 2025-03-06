@@ -3,18 +3,19 @@ import Foundation
 private let MISSED_NOTIFICATION_TTL_SEC: Int64 = 30 * 24 * 60 * 60  // 30 days
 
 /// Downlaods notifications and dispatches them to AlarmManager
-class NotificationsHandler {
+public class NotificationsHandler {
 	private let alarmManager: AlarmManager
 	private let notificationStorage: NotificationStorage
-	private let urlSession = observableUrlSession()
+	private let httpClient: HttpClient
 	private let taskQueue = AsyncQueue()
 
-	init(alarmManager: AlarmManager, notificationStorage: NotificationStorage) {
+	public init(alarmManager: AlarmManager, notificationStorage: NotificationStorage, httpClient: HttpClient) {
 		self.alarmManager = alarmManager
 		self.notificationStorage = notificationStorage
+		self.httpClient = httpClient
 	}
 
-	func initialize() {
+	public func initialize() {
 		if self.hasNotificationTTLExpired() {
 			self.alarmManager.resetStoredState()
 		} else {
@@ -39,15 +40,29 @@ class NotificationsHandler {
 	}
 
 	/// Fetch and process missed notification. Will execute fetch operations one by one if it's queued multiple times.  Will wait for suspension if necessary.
-	func fetchMissedNotifications(_ completionHandler: @escaping ResponseCallback<Void>) {
+	public func fetchMissedNotifications(_ completionHandler: @escaping ResponseCallback<Void>) {
 		TUTSLog("Adding fetch notification operation to queue")
+		let receiveTime = Date.now
 		self.taskQueue.enqueue { [weak self] in
 			let void: Void = ()
 			guard let self else {
+				TUTSLog("Handler is gone, skipping task")
 				completionHandler(.success(void))
 				return
 			}
-			do { try await self.doFetchMissedNotifications() } catch { TUTSLog("Failed to fetch missed notificaiton: \(error)") }
+
+			// If we received notification before we started a newer download we can safely ignore this notification as we already downloaded the data for it.
+			if let lastMissedNotificationCheckTime = notificationStorage.lastMissedNotificationCheckTime, lastMissedNotificationCheckTime > receiveTime {
+				completionHandler(.success(void))
+				return
+			}
+			do {
+				try await self.doFetchMissedNotifications()
+				completionHandler(.success(void))
+			} catch {
+				TUTSLog("Failed to fetch missed notificaiton: \(error)")
+				completionHandler(.failure(error))
+			}
 		}
 	}
 
@@ -63,23 +78,20 @@ class NotificationsHandler {
 			self.alarmManager.unscheduleAllAlarms(userId: nil)
 			return
 		}
+		let requestTime = Date.now
 
 		let url = self.missedNotificationUrl(origin: sseInfo.sseOrigin, pushIdentifier: sseInfo.pushIdentifier)
-
-		var request = URLRequest(url: url)
-		request.addSysModelHeader()
-
-		let userId: String = sseInfo.userIds[0]
-		request.setValue(userId, forHTTPHeaderField: "userIds")
-
+		var userId = sseInfo.userIds[0]
+		var headers: [String : String] = [
+			"userIds" : sseInfo.userIds[0],
+		]
+		addSystemModelHeaders(to: &headers)
 		if let lastNotificationId = self.notificationStorage.lastProcessedNotificationId {
-			request.setValue(lastNotificationId, forHTTPHeaderField: "lastProcessedNotificationId")
+			headers["lastProcessedNotificationId"] = lastNotificationId
 		}
 
 		TUTSLog("Downloading missed notification with userId \(userId)")
-
-		let (data, response) = try await self.urlSession.data(for: request)
-		let httpResponse = response as! HTTPURLResponse
+		let (data, httpResponse) = try await self.httpClient.fetch(url: url, headers: headers)
 		TUTSLog("Fetched missed notifications with status code \(httpResponse.statusCode)")
 
 		switch HttpStatusCode(rawValue: httpResponse.statusCode) {
@@ -95,7 +107,7 @@ class NotificationsHandler {
 			try await self.doFetchMissedNotifications()
 		case .notFound: return
 		case .ok:
-			self.notificationStorage.lastMissedNotificationCheckTime = Date()
+			self.notificationStorage.lastMissedNotificationCheckTime = requestTime
 			let missedNotification: MissedNotification
 			do { missedNotification = try JSONDecoder().decode(MissedNotification.self, from: data) } catch {
 				throw TUTErrorFactory.createError("Failed to parse response for the missed notificaiton, \(error)")
@@ -117,20 +129,4 @@ class NotificationsHandler {
 		let base64UrlId = stringToCustomId(customId: pushIdentifier)
 		return URL(string: "\(origin)/rest/sys/missednotification/\(base64UrlId)")!
 	}
-}
-
-private func observableUrlSession() -> URLSession {
-	class Metrics: NSObject, URLSessionDataDelegate {
-		var requestNum = 0
-		func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
-			for metric in metrics.transactionMetrics {
-				print("\(requestNum). protocol: \(metric.networkProtocolName!), reused: \(metric.isReusedConnection)")
-				requestNum += 1
-			}
-		}
-	}
-	let metrics = Metrics()
-
-	let configuration = URLSessionConfiguration.ephemeral
-	return URLSession(configuration: configuration, delegate: metrics, delegateQueue: nil)
 }

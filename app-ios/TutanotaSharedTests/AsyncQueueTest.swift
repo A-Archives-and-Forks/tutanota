@@ -4,7 +4,7 @@ import Testing
 
 struct AsyncQueueTest {
 	@Test func testAsyncQueue() async throws {
-		let queue = AsyncStreamQueue()
+		let queue = AsyncQueue()
 		enum Event: Equatable {
 			case start(label: String)
 			case end(label: String)
