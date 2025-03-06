@@ -226,8 +226,7 @@ function analyzer(projectDir, buildDir) {
 			for (const [fileName, info] of Object.entries(bundle)) {
 				if (fileName.startsWith("translation")) continue
 				// https://www.rollupjs.org/plugin-development/#generatebundle
-				// FIXME: typeId is not a string!
-				if (info.typeId === "asset") continue
+				if (info.type === "asset") continue
 				for (const dep of info.imports) {
 					if (!dep.includes("translation")) {
 						buffer += `"${dep}" -> "${fileName}"\n`

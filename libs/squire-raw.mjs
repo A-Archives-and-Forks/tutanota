@@ -1482,7 +1482,7 @@ var _onPaste = function (event) {
 		let l = items.length;
 		while (l--) {
 			const item = items[l];
-			const type = item.typeId;
+			const type = item.type;
 			if (type === "text/html") {
 				htmlItem = item;
 			} else if (type === "text/plain" || type === "text/uri-list") {
@@ -2332,7 +2332,7 @@ var Squire = class {
 
 	// --- Events
 	handleEvent(event) {
-		this.fireEvent(event.typeId, event);
+		this.fireEvent(event.type, event);
 	}
 
 	fireEvent(type, detail) {
