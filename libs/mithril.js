@@ -913,8 +913,8 @@ var _13 = function ($window) {
 		//
 		// Also, the DOM does things to inputs based on the value, so it needs set first.
 		// See: https://github.com/MithrilJS/mithril.js/issues/2622
-		if (vnode3.tag === "input" && attrs2.typeId != null) vnode3.dom.setAttribute("type", attrs2.typeId)
-		var isFileInput = attrs2 != null && vnode3.tag === "input" && attrs2.typeId === "file"
+		if (vnode3.tag === "input" && attrs2.type != null) vnode3.dom.setAttribute("type", attrs2.type)
+		var isFileInput = attrs2 != null && vnode3.tag === "input" && attrs2.type === "file"
 		for (var key in attrs2) {
 			setAttr(vnode3, key, null, attrs2[key], ns, isFileInput)
 		}
@@ -998,8 +998,8 @@ var _13 = function ($window) {
 			//
 			// Also, the DOM does things to inputs based on the value, so it needs set first.
 			// See: https://github.com/MithrilJS/mithril.js/issues/2622
-			if (vnode3.tag === "input" && attrs2.typeId != null) vnode3.dom.setAttribute("type", attrs2.typeId)
-			var isFileInput = vnode3.tag === "input" && attrs2.typeId === "file"
+			if (vnode3.tag === "input" && attrs2.type != null) vnode3.dom.setAttribute("type", attrs2.type)
+			var isFileInput = vnode3.tag === "input" && attrs2.type === "file"
 			for (var key in attrs2) {
 				setAttr(vnode3, key, old && old[key], attrs2[key], ns, isFileInput)
 			}
@@ -1098,7 +1098,7 @@ var _13 = function ($window) {
 
 	EventDict.prototype = Object.create(null)
 	EventDict.prototype.handleEvent = function (ev) {
-		var handler0 = this["on" + ev.typeId]
+		var handler0 = this["on" + ev.type]
 		var result
 		if (typeof handler0 === "function") result = handler0.call(ev.currentTarget, ev)
 		else if (typeof handler0.handleEvent === "function") handler0.handleEvent(ev)
