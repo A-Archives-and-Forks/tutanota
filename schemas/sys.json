@@ -612,7 +612,7 @@
 			]
 		},
 		{
-			"version": 123,
+			"version": 124,
 			"changes": [
 				{
 					"name": "AddValue",
