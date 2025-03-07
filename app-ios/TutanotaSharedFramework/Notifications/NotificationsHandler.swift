@@ -7,12 +7,14 @@ public class NotificationsHandler {
 	private let alarmManager: AlarmManager
 	private let notificationStorage: NotificationStorage
 	private let httpClient: HttpClient
+	private let dateProvider: DateProvider
 	private let taskQueue = AsyncQueue()
 
-	public init(alarmManager: AlarmManager, notificationStorage: NotificationStorage, httpClient: HttpClient) {
+	public init(alarmManager: AlarmManager, notificationStorage: NotificationStorage, httpClient: HttpClient, dateProvider: DateProvider) {
 		self.alarmManager = alarmManager
 		self.notificationStorage = notificationStorage
 		self.httpClient = httpClient
+		self.dateProvider = dateProvider
 	}
 
 	public func initialize() {
@@ -42,7 +44,7 @@ public class NotificationsHandler {
 	/// Fetch and process missed notification. Will execute fetch operations one by one if it's queued multiple times.  Will wait for suspension if necessary.
 	public func fetchMissedNotifications(_ completionHandler: @escaping ResponseCallback<Void>) {
 		TUTSLog("Adding fetch notification operation to queue")
-		let receiveTime = Date.now
+		let receiveTime = self.dateProvider.now
 		self.taskQueue.enqueue { [weak self] in
 			let void: Void = ()
 			guard let self else {
@@ -78,17 +80,13 @@ public class NotificationsHandler {
 			self.alarmManager.unscheduleAllAlarms(userId: nil)
 			return
 		}
-		let requestTime = Date.now
+		let requestTime = dateProvider.now
 
 		let url = self.missedNotificationUrl(origin: sseInfo.sseOrigin, pushIdentifier: sseInfo.pushIdentifier)
-		var userId = sseInfo.userIds[0]
-		var headers: [String : String] = [
-			"userIds" : sseInfo.userIds[0],
-		]
+		let userId = sseInfo.userIds[0]
+		var headers: [String: String] = ["userIds": userId]
 		addSystemModelHeaders(to: &headers)
-		if let lastNotificationId = self.notificationStorage.lastProcessedNotificationId {
-			headers["lastProcessedNotificationId"] = lastNotificationId
-		}
+		if let lastNotificationId = self.notificationStorage.lastProcessedNotificationId { headers["lastProcessedNotificationId"] = lastNotificationId }
 
 		TUTSLog("Downloading missed notification with userId \(userId)")
 		let (data, httpResponse) = try await self.httpClient.fetch(url: url, headers: headers)

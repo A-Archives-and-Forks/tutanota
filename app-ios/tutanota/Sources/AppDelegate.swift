@@ -40,8 +40,9 @@ public let TUTA_MAIL_INTEROP_SCHEME = "tutamail"
 		let notificationStorage = NotificationStorage(userPreferencesProvider: userPreferencesProvider)
 		let keychainManager = KeychainManager(keyGenerator: KeyGenerator())
 		let keychainEncryption = KeychainEncryption(keychainManager: keychainManager)
+		let dateProvider: SystemDateProvider = SystemDateProvider()
 
-		let alarmModel = AlarmModel(dateProvider: SystemDateProvider())
+		let alarmModel = AlarmModel(dateProvider: dateProvider)
 		self.alarmManager = AlarmManager(
 			alarmPersistor: AlarmPreferencePersistor(notificationsStorage: notificationStorage, keychainManager: keychainManager),
 			alarmCryptor: KeychainAlarmCryptor(keychainManager: keychainManager),
@@ -50,7 +51,12 @@ public let TUTA_MAIL_INTEROP_SCHEME = "tutamail"
 		)
 		// FIXME
 		let httpClient = URLSessionHttpClient(session: observableUrlSession())
-		self.notificationsHandler = NotificationsHandler(alarmManager: self.alarmManager, notificationStorage: notificationStorage, httpClient: httpClient)
+		self.notificationsHandler = NotificationsHandler(
+			alarmManager: self.alarmManager,
+			notificationStorage: notificationStorage,
+			httpClient: httpClient,
+			dateProvider: dateProvider
+		)
 		self.window = UIWindow(frame: UIScreen.main.bounds)
 
 		let credentialsDb = try! CredentialsDatabase(dbPath: credentialsDatabasePath().absoluteString)
