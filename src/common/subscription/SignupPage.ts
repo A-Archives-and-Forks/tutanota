@@ -20,12 +20,13 @@ export class SignupPage implements WizardPageN<UpgradeSubscriptionData> {
 		let mailAddress: undefined | string = undefined
 		if (newAccountData) mailAddress = newAccountData.mailAddress
 		return m(SignupForm, {
-			onComplete: (newAccountData) => {
-				if (newAccountData) data.newAccountData = newAccountData
-				emitWizardEvent(this.dom, WizardEventType.SHOW_NEXT_PAGE)
-			},
-			onFail: () => {
-				emitWizardEvent(this.dom, WizardEventType.CLOSE_DIALOG)
+			onComplete: (signupResult) => {
+				if (signupResult.type === "success") {
+					if (signupResult.newAccountData) data.newAccountData = signupResult.newAccountData
+					emitWizardEvent(this.dom, WizardEventType.SHOW_NEXT_PAGE)
+				} else {
+					emitWizardEvent(this.dom, WizardEventType.CLOSE_DIALOG)
+				}
 			},
 			onChangePlan: () => {
 				emitWizardEvent(this.dom, WizardEventType.SHOW_PREVIOUS_PAGE)

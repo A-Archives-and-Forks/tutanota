@@ -34,9 +34,7 @@ import { SubscriptionApp } from "./SubscriptionViewer"
 
 export type SignupFormAttrs = {
 	/** Handle a new account signup. if readonly then the argument will always be null */
-	onComplete: (arg0: NewAccountData | null) => void
-	/** Handle failed signup, in case of failed captcha for example */
-	onFail: () => void
+	onComplete: (signupResult: { type: "success"; newAccountData: NewAccountData | null } | { type: "failure" }) => void
 	onChangePlan: () => void
 	isBusinessUse: lazy<boolean>
 	isPaidSubscription: lazy<boolean>
@@ -149,7 +147,7 @@ export class SignupForm implements Component<SignupFormAttrs> {
 				// Email field is read-only, account has already been created but user switched from different subscription.
 				this.__completePreviousStages()
 
-				return a.onComplete(null)
+				return a.onComplete({ type: "success", newAccountData: null })
 			}
 
 			const errorMessage =
@@ -174,9 +172,9 @@ export class SignupForm implements Component<SignupFormAttrs> {
 						a.campaign(),
 					).then((newAccountData) => {
 						if (newAccountData != null) {
-							a.onComplete(newAccountData)
+							a.onComplete({ type: "success", newAccountData })
 						} else {
-							a.onFail()
+							a.onComplete({ type: "failure" })
 						}
 					})
 				}
