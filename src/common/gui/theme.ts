@@ -31,8 +31,8 @@ export type Theme = {
 	content_button_icon_bg?: string
 	content_accent: string
 	content_accent_tuta_bday: string
+	content_accent_secondary_tuta_bday: string
 	content_border: string
-	content_border_tuta_bday: string
 	content_message_bg: string
 	header_bg: string
 	header_box_shadow_bg: string

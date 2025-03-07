@@ -178,8 +178,8 @@ export class CustomColorsEditorViewModel {
 			"header_button_selected",
 			"content_accent",
 			"content_accent_tuta_bday",
+			"content_accent_secondary_tuta_bday",
 			"content_bg_tuta_bday",
-			"content_border_tuta_bday",
 		]
 		return excludedColors.includes(name)
 	}
