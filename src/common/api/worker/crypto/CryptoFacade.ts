@@ -168,7 +168,7 @@ export class CryptoFacade {
 		return decryptKey(ownerKey, key)
 	}
 
-	async decryptSessionKey(instance: Record<string, any>, ownerEncSessionKey: VersionedEncryptedKey): Promise<AesKey> {
+	async decryptSessionKey(instance: Record<number, any>, ownerEncSessionKey: VersionedEncryptedKey): Promise<AesKey> {
 		const gk = await this.keyLoaderFacade.loadSymGroupKey(instance._ownerGroup, ownerEncSessionKey.encryptingKeyVersion)
 		return decryptKey(gk, ownerEncSessionKey.key)
 	}
@@ -182,7 +182,7 @@ export class CryptoFacade {
 	 * @param typeModel the type model of the instance
 	 * @param instance The unencrypted (client-side) instance or encrypted (server-side) object literal
 	 */
-	async resolveSessionKey(typeModel: TypeModel, instance: Record<string, any>): Promise<AesKey | null> {
+	async resolveSessionKey(typeModel: TypeModel, instance: Record<number, any>): Promise<AesKey | null> {
 		try {
 			if (!typeModel.encrypted) {
 				return null
@@ -224,7 +224,8 @@ export class CryptoFacade {
 	 * @param data
 	 * @return the unmapped and still encrypted instance
 	 */
-	async applyMigrations<T extends SomeEntity>(typeRef: TypeRef<T>, data: Record<string, any>): Promise<Record<string, any>> {
+	async applyMigrations<T extends SomeEntity>(typeRef: TypeRef<T>, data: Record<number, any>): Promise<Record<number, any>> {
+		const typeModel = await resolveTypeReference(typeRef)
 		if (isSameTypeRef(typeRef, GroupInfoTypeRef) && data._ownerGroup == null) {
 			return this.applyCustomerGroupOwnershipToGroupInfo(data)
 		} else if (isSameTypeRef(typeRef, TutanotaPropertiesTypeRef) && data._ownerEncSessionKey == null) {
@@ -367,7 +368,7 @@ export class CryptoFacade {
 		}
 	}
 
-	private async addSessionKeyToPushIdentifier(data: Record<string, any>): Promise<Record<string, any>> {
+	private async addSessionKeyToPushIdentifier(data: Record<number, any>): Promise<Record<number, any>> {
 		const userGroupKey = this.userFacade.getCurrentUserGroupKey()
 
 		// set sessionKey for allowing encryption when old instance (< v43) is updated
@@ -376,7 +377,7 @@ export class CryptoFacade {
 		return data
 	}
 
-	private async encryptTutanotaProperties(data: Record<string, any>): Promise<Record<string, any>> {
+	private async encryptTutanotaProperties(data: Record<number, any>): Promise<Record<number, any>> {
 		const userGroupKey = this.userFacade.getCurrentUserGroupKey()
 
 		// EncryptTutanotaPropertiesService could be removed and replaced with a Migration that writes the key
@@ -391,7 +392,7 @@ export class CryptoFacade {
 		return data
 	}
 
-	private async applyCustomerGroupOwnershipToGroupInfo(data: Record<string, any>): Promise<Record<string, any>> {
+	private async applyCustomerGroupOwnershipToGroupInfo(data: Record<number, any>): Promise<Record<number, any>> {
 		const customerGroupMembership = assertNotNull(
 			this.userFacade.getLoggedInUser().memberships.find((g: GroupMembership) => g.groupType === GroupType.Customer),
 		)
@@ -842,7 +843,7 @@ export class CryptoFacade {
 
 	private async updateOwnerEncSessionKey(
 		typeModel: TypeModel,
-		instance: Record<string, any>,
+		instance: Record<number, any>,
 		ownerGroupKey: VersionedKey,
 		sessionKey: AesKey,
 	): Promise<void> {

@@ -1,4 +1,4 @@
-import { create, Stripped, StrippedEntity } from "../../common/utils/EntityUtils.js"
+import { create, StrippedEntity } from "../../common/utils/EntityUtils.js"
 import { TypeRef } from "@tutao/tutanota-utils"
 import { typeModels } from "./TypeModels.js"
 
@@ -18,6 +18,16 @@ export type CustomerAccountPosting = {
 	invoiceNumber: null | string;
 	amount: NumberString;
 }
+export type CustomerAccountPostingWithId = {
+	_type: TypeRef<CustomerAccountPosting>;
+
+	"1": Id;
+	2: NumberString;
+	valueDate: Date;
+	invoiceNumber: null | string;
+	amount: NumberString;
+}
+
 export const CustomerAccountReturnTypeRef: TypeRef<CustomerAccountReturn> = new TypeRef("accounting", 86)
 
 export function createCustomerAccountReturn(values: StrippedEntity<CustomerAccountReturn>): CustomerAccountReturn {

@@ -1,4 +1,4 @@
-import { resolveTypeReference } from "../../common/EntityFunctions"
+import { getAttributeId, resolveTypeReference } from "../../common/EntityFunctions"
 import { ProgrammingError } from "../../common/error/ProgrammingError"
 import {
 	assertNotNull,
@@ -98,36 +98,31 @@ export class InstanceMapper {
 	/// we should create a new object that map fieldName to filedId before putting it
 	/// into storage
 	// object 1: { field1: value1, field2: value2 }
-	// object 2: Map  { "field1" -> "value1", "field2" -> "value2" }
-	async mapToLiteral(instance: SomeEntity, typeModel: TypeModel): Promise<Map<number, any>> {
-		let attributeNameToAttributeId: Map<string, number> = new Map()
-		for (const [valueId, value] of Object.entries(typeModel.values)) {
-			attributeNameToAttributeId.set(valueId, value.id)
-		}
-		for (const [associationId, association] of Object.entries(typeModel.values)) {
-			attributeNameToAttributeId.set(associationId, association.id)
-		}
-
-		let result = new Map<number, any>()
+	// object 2: Map  { "field1Id" -> "value1", "field2" -> "value2" }
+	async mapToLiteral(instance: SomeEntity, typeModel: TypeModel): Promise<Record<number, any>> {
+		let result: Record<number, any> = {}
 		for (const [fieldName, attributeValue] of Object.entries(instance)) {
-			const valueId = attributeNameToAttributeId.get(fieldName) ?? null
+			if (fieldName === "_type") {
+				continue
+			}
+			const valueId = await getAttributeId(instance._type, fieldName)
 			if (valueId) {
-				result.set(valueId, attributeValue)
+				result[valueId] = attributeValue
 			} else {
 				throw new Error("could not find attributeid for value: " + fieldName)
 			}
 		}
-
 		return result
 	}
 
-	async mapFromLiteral(instance: Map<number, any>, typeModel: TypeModel): Promise<Map<string, unknown>> {
-		let nameMappedAttribute = new Map<string, any>()
+	mapFromLiteral(instance: Record<number, any>, typeModel: TypeModel): Record<string, unknown> {
+		let nameMappedAttribute: Record<string, unknown> = {}
 
-		for (const [attributeId, attributeValue] of instance.entries()) {
+		for (const [attributeIdStr, attributeValue] of Object.entries(instance)) {
+			const attributeId = parseInt(attributeIdStr)
 			const fieldName = typeModel.values[attributeId]?.name ?? typeModel.associations[attributeId]?.name ?? null
 			if (fieldName) {
-				nameMappedAttribute.set(fieldName, attributeValue)
+				nameMappedAttribute[fieldName] = attributeValue
 			}
 		}
 		return nameMappedAttribute

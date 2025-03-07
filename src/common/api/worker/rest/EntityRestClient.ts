@@ -269,7 +269,8 @@ export class EntityRestClient implements EntityRestInterface {
 			baseUrl: opts.baseUrl,
 			suspensionBehavior: opts.suspensionBehavior,
 		})
-		return this._handleLoadMultipleResult(typeRef, JSON.parse(json))
+		const parsedResponse: Array<Record<number, any>> = JSON.parse(json)
+		return this._handleLoadMultipleResult(typeRef, parsedResponse)
 	}
 
 	async loadMultiple<T extends SomeEntity>(
@@ -344,7 +345,7 @@ export class EntityRestClient implements EntityRestInterface {
 
 	async _handleLoadMultipleResult<T extends SomeEntity>(
 		typeRef: TypeRef<T>,
-		loadedEntities: Array<any>,
+		loadedEntities: Array<Record<number, any>>,
 		ownerEncSessionKeyProvider?: OwnerEncSessionKeyProvider,
 	): Promise<Array<T>> {
 		const model = await resolveTypeReference(typeRef)
@@ -366,7 +367,7 @@ export class EntityRestClient implements EntityRestInterface {
 		)
 	}
 
-	async _decryptMapAndMigrate<T>(instance: any, model: TypeModel, ownerEncSessionKeyProvider?: OwnerEncSessionKeyProvider): Promise<T> {
+	async _decryptMapAndMigrate<T>(instance: Record<number, any>, model: TypeModel, ownerEncSessionKeyProvider?: OwnerEncSessionKeyProvider): Promise<T> {
 		let sessionKey: AesKey | null
 		if (ownerEncSessionKeyProvider) {
 			sessionKey = await this._crypto.decryptSessionKey(instance, await ownerEncSessionKeyProvider(getElementId(instance)))

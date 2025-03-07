@@ -1,6 +1,6 @@
 import { Type } from "./EntityConstants.js"
 import { TypeRef } from "@tutao/tutanota-utils"
-import type { TypeModel } from "./EntityTypes"
+import type { SomeEntity, TypeModel } from "./EntityTypes"
 import { typeModels as baseTypeModels } from "../entities/base/TypeModels.js"
 import { typeModels as sysTypeModels } from "../entities/sys/TypeModels.js"
 import { typeModels as tutanotaTypeModels } from "../entities/tutanota/TypeModels.js"
@@ -17,6 +17,7 @@ import accountingModelInfo from "../entities/accounting/ModelInfo.js"
 import gossipModelInfo from "../entities/gossip/ModelInfo.js"
 import storageModelInfo from "../entities/storage/ModelInfo.js"
 import usageModelInfo from "../entities/usage/ModelInfo.js"
+import { ProgrammingError } from "./error/ProgrammingError"
 
 export const enum HttpMethod {
 	GET = "GET",
@@ -46,6 +47,41 @@ export const typeModels = Object.freeze({
 	storage: storageTypeModels,
 	usage: usageTypeModels,
 } as const)
+
+// Record<appName, Map<typeId, Map<attrName, attrId>>>
+let typeIdToAttributeNameMap: Record<string, Map<number, Map<string, number>>> = {
+	// Map<typeId, Map<attrName, attrId>>
+	base: new Map(),
+	sys: new Map(),
+	tutanota: new Map(),
+	monitor: new Map<number, Map<string, number>>(),
+	accounting: new Map<number, Map<string, number>>(),
+	gossip: new Map<number, Map<string, number>>(),
+	storage: new Map<number, Map<string, number>>(),
+	usage: new Map<number, Map<string, number>>(),
+}
+
+export async function getAttributeId(typeRef: TypeRef<SomeEntity>, attributeName: string): Promise<number> {
+	const typeIdMap = typeIdToAttributeNameMap[typeRef.app].get(typeRef.typeId) ?? null
+	if (typeIdMap) {
+		const attrId = typeIdMap.get(attributeName) ?? null
+		if (attrId) return attrId
+		else throw new ProgrammingError(`No ${attributeName} in typeRef ${typeRef.toString()}`)
+	} else {
+		const typeModel = await resolveTypeReference(typeRef)
+
+		let attributeNameToAttributeId: Map<string, number> = new Map()
+		for (const [valueId, value] of Object.entries(typeModel.values)) {
+			attributeNameToAttributeId.set(value.name, parseInt(valueId))
+		}
+		for (const [associationId, association] of Object.entries(typeModel.associations)) {
+			attributeNameToAttributeId.set(association.name, parseInt(associationId))
+		}
+
+		typeIdToAttributeNameMap[typeRef.app].set(typeRef.typeId, attributeNameToAttributeId)
+		return await getAttributeId(typeRef, attributeName)
+	}
+}
 
 export const modelInfos = {
 	base: baseModelInfo,

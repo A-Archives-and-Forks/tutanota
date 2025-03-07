@@ -140,6 +140,7 @@ import "./api/worker/facades/KeyCacheTest.js"
 import "./misc/InAppRatingUtilsTest.js"
 import "./native/main/MailExportControllerTest.js"
 import "./api/worker/facades/MailExportFacadeTest.js"
+import "./api/common/EntityFunctionsTest.js"
 
 import * as td from "testdouble"
 import { random } from "@tutao/tutanota-crypto"
