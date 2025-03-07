@@ -14,7 +14,7 @@ import {
 } from "@tutao/tutanota-utils"
 import { AssociationType, Cardinality, Type, ValueType } from "../../common/EntityConstants.js"
 import { compress, uncompress } from "../Compression"
-import type { ModelValue, TypeModel } from "../../common/EntityTypes"
+import { ModelValue, SomeEntity, TypeModel } from "../../common/EntityTypes"
 import { assertWorkerOrNode } from "../../common/Env"
 import { aesDecrypt, aesEncrypt, AesKey, ENABLE_MAC, IV_BYTE_LENGTH, random } from "@tutao/tutanota-crypto"
 import { CryptoError } from "@tutao/tutanota-crypto/error.js"
@@ -92,6 +92,45 @@ export class InstanceMapper {
 		}).then(() => {
 			return decrypted
 		})
+	}
+
+	/// Sit rnce entity have fieldName, CBORG will just use fieldName while serializing,
+	/// we should create a new object that map fieldName to filedId before putting it
+	/// into storage
+	// object 1: { field1: value1, field2: value2 }
+	// object 2: Map  { "field1" -> "value1", "field2" -> "value2" }
+	async mapToLiteral(instance: SomeEntity, typeModel: TypeModel): Promise<Map<number, any>> {
+		let attributeNameToAttributeId: Map<string, number> = new Map()
+		for (const [valueId, value] of Object.entries(typeModel.values)) {
+			attributeNameToAttributeId.set(valueId, value.id)
+		}
+		for (const [associationId, association] of Object.entries(typeModel.values)) {
+			attributeNameToAttributeId.set(associationId, association.id)
+		}
+
+		let result = new Map<number, any>()
+		for (const [fieldName, attributeValue] of Object.entries(instance)) {
+			const valueId = attributeNameToAttributeId.get(fieldName) ?? null
+			if (valueId) {
+				result.set(valueId, attributeValue)
+			} else {
+				throw new Error("could not find attributeid for value: " + fieldName)
+			}
+		}
+
+		return result
+	}
+
+	async mapFromLiteral(instance: Map<number, any>, typeModel: TypeModel): Promise<Map<string, unknown>> {
+		let nameMappedAttribute = new Map<string, any>()
+
+		for (const [attributeId, attributeValue] of instance.entries()) {
+			const fieldName = typeModel.values[attributeId]?.name ?? typeModel.associations[attributeId]?.name ?? null
+			if (fieldName) {
+				nameMappedAttribute.set(fieldName, attributeValue)
+			}
+		}
+		return nameMappedAttribute
 	}
 
 	encryptAndMapToLiteral<T>(typeModel: TypeModel, instance: T, sk: AesKey | null): Promise<Record<number, unknown>> {
