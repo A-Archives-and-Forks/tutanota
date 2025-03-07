@@ -10,10 +10,15 @@ struct NotificationsHandlerTest {
 	private let dateProvider = mock(DateProvider.self)
 	private var httpClient: HttpClientMock! = mock(HttpClient.self)
 
-	let sseInfo = SSEInfo(pushIdentifier: "pushIdentifier", sseOrigin: "sseorigin.com", userIds: ["userId"])
+	let userId1 = "userId1"
+	let userId2 = "userId2"
+	let sseInfo: SSEInfo
 
 	init() {
+		sseInfo = SSEInfo(pushIdentifier: "pushIdentifier", sseOrigin: "sseorigin.com", userIds: [userId1, userId2])
+
 		initMockingbird()
+
 		alarmManager = mock(AlarmManager.self)
 			.initialize(
 				alarmPersistor: mock(AlarmPersistor.self),
@@ -37,8 +42,11 @@ struct NotificationsHandlerTest {
 		let newLastProcessedNotificationId = "newLastProcessedNotificationId"
 		let notification = MissedNotification(alarmNotifications: [], lastProcessedNotificationId: newLastProcessedNotificationId)
 		let data = try! JSONEncoder().encode(notification)
-
 		let response = HTTPURLResponse()
+		// the first date is the one when the task is schduled and the seond one is when the request is made
+		let firstDate = Date(timeIntervalSince1970: 0)
+		let secondDate = Date(timeIntervalSince1970: 1)
+		given(notificationStorage.lastMissedNotificationCheckTime).willReturn(sequence(of: firstDate, secondDate))
 		given(await httpClient.fetch(url: any(), method: .get, headers: any(), body: nil)).willReturn((data, response))
 
 		await notificationsHandler.fetchMissedNotifications()
@@ -48,6 +56,7 @@ struct NotificationsHandlerTest {
 		verify(await httpClient.fetch(url: any(), method: .get, headers: any(), body: nil)).wasCalled()
 		verify(alarmManager.processNewAlarms([])).wasCalled()
 		verify(notificationStorage.lastProcessedNotificationId = newLastProcessedNotificationId).wasCalled()
+		verify(notificationStorage.lastMissedNotificationCheckTime = secondDate).wasCalled()
 	}
 
 	@Test func downloadsAndProcessesAlarms_WithAlarms() async throws {
@@ -86,7 +95,6 @@ struct NotificationsHandlerTest {
 		given(await httpClient.fetch(url: any(), method: .get, headers: any(), body: nil)).willReturn((data, response))
 		given(dateProvider.now).willReturn(Date(timeIntervalSince1970: 10))
 
-		// do two calls in parallel
 		await notificationsHandler.fetchMissedNotifications()
 
 		verify(await httpClient.fetch(url: any(), method: any(), headers: any(), body: any())).wasNeverCalled()
@@ -105,10 +113,37 @@ struct NotificationsHandlerTest {
 		// call was scheduled after the last response, do make the call
 		given(dateProvider.now).willReturn(Date(timeIntervalSince1970: 20))
 
-		// do two calls in parallel
 		await notificationsHandler.fetchMissedNotifications()
 
 		verify(await httpClient.fetch(url: any(), method: any(), headers: any(), body: any())).wasCalled(1)
+	}
+
+	@Test func downloadsAndProcessesAlarms_removesUserIfNotAuthenticated() async throws {
+		var sseInfo = self.sseInfo
+		given(notificationStorage.sseInfo).will { sseInfo }
+		given(notificationStorage.removeUser(userId1)).will { _ in sseInfo.userIds.removeFirst() }
+		let oldLastId = "oldLastId"
+		given(notificationStorage.lastProcessedNotificationId).willReturn(oldLastId)
+		let emptyData = Data()
+		let notAuthenticatedResponse = HTTPURLResponse(
+			url: URL(string: "https://example.com")!,
+			statusCode: HttpStatusCode.notAuthenticated.rawValue,
+			httpVersion: nil,
+			headerFields: nil
+		)!
+
+		let notification = MissedNotification(alarmNotifications: [], lastProcessedNotificationId: "newLastProcessedNotificationId")
+		let data = try! JSONEncoder().encode(notification)
+		let response = HTTPURLResponse()
+		given(await httpClient.fetch(url: any(), method: .get, headers: dict(containing: ("userIds", userId2)), body: nil)).willReturn((data, response))
+		given(await httpClient.fetch(url: any(), method: .get, headers: dict(containing: ("userIds", userId1)), body: nil))
+			.willReturn((emptyData, notAuthenticatedResponse))
+
+		await notificationsHandler.fetchMissedNotifications()
+
+		verify(await httpClient.fetch(url: any(), method: any(), headers: dict(containing: ("userIds", userId1)), body: any())).wasCalled(1)
+		verify(await httpClient.fetch(url: any(), method: any(), headers: dict(containing: ("userIds", userId2)), body: any())).wasCalled(1)
+		verify(notificationStorage.removeUser(userId1)).wasCalled()
 	}
 }
 

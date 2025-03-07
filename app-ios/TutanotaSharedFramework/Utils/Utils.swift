@@ -70,3 +70,8 @@ public func observableUrlSession() -> URLSession {
 	let configuration = URLSessionConfiguration.ephemeral
 	return URLSession(configuration: configuration, delegate: metrics, delegateQueue: nil)
 }
+
+public func printLog(_ message: String, _ file: StaticString = #fileID) {
+	let filename = file
+	TUTSLog("\(filename): \(message)")
+}

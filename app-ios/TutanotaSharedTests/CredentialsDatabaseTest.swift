@@ -28,9 +28,7 @@ struct CredentialsDatabaseTest {
 		try storage.store(credentials: encryptedCredentials2)
 	}
 
-	@Test func test_credentialEncryptionKey_when_there_is_none_it_returns_null() throws {
-		try #expect(storage.getCredentialEncryptionKey() == nil)
-	}
+	@Test func test_credentialEncryptionKey_when_there_is_none_it_returns_null() throws { try #expect(storage.getCredentialEncryptionKey() == nil) }
 
 	@Test func test_credentialEncryptionKey_it_returns_one_after_writing() throws {
 		try storage.setCredentialEncryptionKey(encryptionKey: key1)
@@ -49,9 +47,7 @@ struct CredentialsDatabaseTest {
 		try #expect(storage.getCredentialEncryptionKey() == nil)
 	}
 
-	@Test func test_credentialEncryptionMode_when_there_is_none_it_returns_null() throws {
-		try #expect(storage.getCredentialEncryptionMode() == nil)
-	}
+	@Test func test_credentialEncryptionMode_when_there_is_none_it_returns_null() throws { try #expect(storage.getCredentialEncryptionMode() == nil) }
 
 	@Test func test_credentialEncryptionMode_it_returns_one_after_writing() throws {
 		try storage.setCredentialEncryptionMode(encryptionMode: .systemPassword)

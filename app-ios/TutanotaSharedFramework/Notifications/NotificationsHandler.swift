@@ -27,8 +27,8 @@ public class NotificationsHandler {
 
 			self.fetchMissedNotifications { result in
 				switch result {
-				case .success: TUTSLog("Successfully processed missed notification")
-				case .failure(let err): TUTSLog("Failed to fetch/process missed notification \(err)")
+				case .success: printLog("Successfully processed missed notification")
+				case .failure(let err): printLog("Failed to fetch/process missed notification \(err)")
 				}
 			}
 		}
@@ -43,7 +43,7 @@ public class NotificationsHandler {
 
 	/// Fetch and process missed notification. Will execute fetch operations one by one if it's queued multiple times.  Will wait for suspension if necessary.
 	public func fetchMissedNotifications(_ completionHandler: @escaping ResponseCallback<Void>) {
-		TUTSLog("Adding fetch notification operation to queue")
+		printLog("Adding fetch notification operation to queue")
 		let receiveTime = self.dateProvider.now
 		self.taskQueue.enqueue { [weak self] in
 			let void: Void = ()
@@ -62,7 +62,7 @@ public class NotificationsHandler {
 				try await self.doFetchMissedNotifications()
 				completionHandler(.success(void))
 			} catch {
-				TUTSLog("Failed to fetch missed notificaiton: \(error)")
+				printLog("Failed to fetch missed notificaiton: \(error)")
 				completionHandler(.failure(error))
 			}
 		}
@@ -71,12 +71,12 @@ public class NotificationsHandler {
 	/// Fetch and process missed notification, actual impl without queuing which makes it easier to just call it recursively.
 	private func doFetchMissedNotifications() async throws {
 		guard let sseInfo = self.notificationStorage.sseInfo else {
-			TUTSLog("No stored SSE info")
+			printLog("No stored SSE info")
 			return
 		}
 
 		if sseInfo.userIds.isEmpty {
-			TUTSLog("No users to download missed notification with")
+			printLog("No users to download missed notification with")
 			self.alarmManager.unscheduleAllAlarms(userId: nil)
 			return
 		}
@@ -88,19 +88,19 @@ public class NotificationsHandler {
 		addSystemModelHeaders(to: &headers)
 		if let lastNotificationId = self.notificationStorage.lastProcessedNotificationId { headers["lastProcessedNotificationId"] = lastNotificationId }
 
-		TUTSLog("Downloading missed notification with userId \(userId)")
+		printLog("Downloading missed notification with userId \(userId)")
 		let (data, httpResponse) = try await self.httpClient.fetch(url: url, headers: headers)
-		TUTSLog("Fetched missed notifications with status code \(httpResponse.statusCode)")
+		printLog("Fetched missed notifications with status code \(httpResponse.statusCode)")
 
 		switch HttpStatusCode(rawValue: httpResponse.statusCode) {
 		case .notAuthenticated:
-			TUTSLog("Not authenticated to download missed notification w/ user \(userId)")
+			printLog("Not authenticated to download missed notification w/ user \(userId)")
 			self.alarmManager.unscheduleAllAlarms(userId: userId)
 			self.notificationStorage.removeUser(userId)
 			try await self.doFetchMissedNotifications()
 		case .serviceUnavailable, .tooManyRequests:
 			let suspensionTime = extractSuspensionTime(from: httpResponse)
-			TUTSLog("ServiceUnavailable when downloading missed notification, waiting for \(suspensionTime)s")
+			printLog("ServiceUnavailable when downloading missed notification, waiting for \(suspensionTime)s")
 			try await Task.sleep(nanoseconds: suspensionTime.nanos)
 			try await self.doFetchMissedNotifications()
 		case .notFound: return

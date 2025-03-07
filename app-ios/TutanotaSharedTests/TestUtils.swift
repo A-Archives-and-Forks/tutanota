@@ -1,7 +1,7 @@
+import Combine
 import Mockingbird
 import Testing
 import XCTest
-import Combine
 
 func initMockingbird() {
 	struct SwiftTestFailer: TestFailer {
@@ -13,6 +13,7 @@ func initMockingbird() {
 				Comment(stringLiteral: message),
 				sourceLocation: Testing.SourceLocation(fileID: filename, filePath: filename, line: Int(line), column: 0)
 			)
+			if isFatal { fatalError(message) }
 		}
 	}
 
@@ -24,9 +25,7 @@ extension XCTest {
 	func initMockingbird() {
 		class StandardTestFailer: TestFailer {
 			func fail(message: String, isFatal: Bool, file: StaticString, line: UInt) {
-				guard isFatal else {
-					return XCTFail(message, file: file, line: line)
-				}
+				guard isFatal else { return XCTFail(message, file: file, line: line) }
 
 				// we don't do this
 				// Raise an Objective-C exception to stop the test runner.
@@ -53,4 +52,9 @@ struct ResolvableFuture {
 	var value: Void { get async { await self.future.value } }
 
 	func resolve() { self.promise(.success(())) }
+}
+
+/// A matcher for the Dictionary because the default collection matcher compares by reference
+func dict<K, V>(containing entries: (key: K, value: V)...) -> [K: V] where K: Hashable, K: Equatable, V: Equatable {
+	any(Dictionary<K, V>.self, where: { collection in entries.allSatisfy { entry in collection.contains { entry == $0 } } })
 }
