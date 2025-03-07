@@ -104,8 +104,6 @@ import { CALENDAR_PREFIX } from "../common/misc/RouteChange.js"
 import { AppType } from "../common/misc/ClientConstants.js"
 import type { ParsedEvent } from "../common/calendar/import/CalendarImporter.js"
 import { ExternalCalendarFacade } from "../common/native/common/generatedipc/ExternalCalendarFacade.js"
-import { locator } from "../common/api/main/CommonLocator.js"
-import { showSnackBar } from "../common/gui/base/SnackBar.js"
 import { DbError } from "../common/api/common/error/DbError.js"
 import { WorkerRandomizer } from "../common/api/worker/workerInterfaces.js"
 import { lang } from "../common/misc/LanguageViewModel.js"
@@ -113,6 +111,7 @@ import type { CalendarContactPreviewViewModel } from "./calendar/gui/eventpopup/
 import { ContactSuggestion } from "../common/native/common/generatedipc/ContactSuggestion"
 import { MailImporter } from "../mail-app/mail/import/MailImporter.js"
 import { SyncTracker } from "../common/api/main/SyncTracker.js"
+import { getEventWithDefaultTimes, setNextHalfHour } from "../common/api/common/utils/CommonCalendarUtils.js"
 
 assertMainOrNode()
 
@@ -646,7 +645,11 @@ class CalendarLocator {
 			const { WebAuthnFacadeSendDispatcher } = await import("../common/native/common/generatedipc/WebAuthnFacadeSendDispatcher.js")
 			const { createNativeInterfaces, createDesktopInterfaces } = await import("../common/native/main/NativeInterfaceFactory.js")
 			const { OpenCalendarHandler } = await import("../common/native/main/OpenCalendarHandler.js")
-			const openCalendarHandler = new OpenCalendarHandler(this.logins)
+			const openCalendarHandler = new OpenCalendarHandler(this.logins, async (mode: CalendarOperation, date: Date) => {
+				const mailboxDetail = await this.mailboxModel.getUserMailboxDetails()
+				const mailboxProperties = await this.mailboxModel.getMailboxProperties(mailboxDetail.mailboxGroupRoot)
+				return await this.calendarEventModel(mode, getEventWithDefaultTimes(setNextHalfHour(new Date(date))), mailboxDetail, mailboxProperties, null)
+			})
 			const { OpenSettingsHandler } = await import("../common/native/main/OpenSettingsHandler.js")
 			const openSettingsHandler = new OpenSettingsHandler(this.logins)
 
@@ -663,7 +666,7 @@ class CalendarLocator {
 					async () => this.pushService,
 					this.handleFileImport.bind(this),
 					async (_userId: string, _address: string, _requestedPath: string | null) => {},
-					(userId) => openCalendarHandler.openCalendar(userId),
+					(userId, action, date) => openCalendarHandler.openCalendar(userId, action, date),
 					AppType.Calendar,
 					(path) => openSettingsHandler.openSettings(path),
 				),

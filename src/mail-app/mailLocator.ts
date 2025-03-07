@@ -114,8 +114,6 @@ import { MobilePaymentsFacade } from "../common/native/common/generatedipc/Mobil
 import { MAIL_PREFIX } from "../common/misc/RouteChange.js"
 import { getDisplayedSender } from "../common/api/common/CommonMailUtils.js"
 import { MailModel } from "./mail/model/MailModel.js"
-import { locator } from "../common/api/main/CommonLocator.js"
-import { showSnackBar } from "../common/gui/base/SnackBar.js"
 import { WorkerRandomizer } from "../common/api/worker/workerInterfaces.js"
 import { SearchCategoryTypes } from "./search/model/SearchUtils.js"
 import { WorkerInterface } from "./workerUtils/worker/WorkerImpl.js"
@@ -134,6 +132,7 @@ import { ExportFacade } from "../common/native/common/generatedipc/ExportFacade.
 import { BulkMailLoader } from "./workerUtils/index/BulkMailLoader.js"
 import { MailExportFacade } from "../common/api/worker/facades/lazy/MailExportFacade.js"
 import { SyncTracker } from "../common/api/main/SyncTracker.js"
+import { getEventWithDefaultTimes, setNextHalfHour } from "../common/api/common/utils/CommonCalendarUtils.js"
 
 assertMainOrNode()
 
@@ -813,7 +812,11 @@ class MailLocator {
 			const { createNativeInterfaces, createDesktopInterfaces } = await import("../common/native/main/NativeInterfaceFactory.js")
 			const openMailboxHandler = new OpenMailboxHandler(this.logins, this.mailModel, this.mailboxModel)
 			const { OpenCalendarHandler } = await import("../common/native/main/OpenCalendarHandler.js")
-			const openCalendarHandler = new OpenCalendarHandler(this.logins)
+			const openCalendarHandler = new OpenCalendarHandler(this.logins, async (mode: CalendarOperation, date: Date) => {
+				const mailboxDetail = await this.mailboxModel.getUserMailboxDetails()
+				const mailboxProperties = await this.mailboxModel.getMailboxProperties(mailboxDetail.mailboxGroupRoot)
+				return await this.calendarEventModel(mode, getEventWithDefaultTimes(setNextHalfHour(new Date(date))), mailboxDetail, mailboxProperties, null)
+			})
 			const { OpenSettingsHandler } = await import("../common/native/main/OpenSettingsHandler.js")
 			const openSettingsHandler = new OpenSettingsHandler(this.logins)
 
@@ -831,7 +834,7 @@ class MailLocator {
 					async () => this.pushService,
 					this.handleFileImport.bind(this),
 					(userId, address, requestedPath) => openMailboxHandler.openMailbox(userId, address, requestedPath),
-					(userId) => openCalendarHandler.openCalendar(userId),
+					(userId, action, date) => openCalendarHandler.openCalendar(userId, action, date),
 					AppType.Integrated,
 					(path) => openSettingsHandler.openSettings(path),
 				),
